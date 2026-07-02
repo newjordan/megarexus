@@ -1,0 +1,1697 @@
+{
+  "corpus_id": "sp80_liquid_pour",
+  "game_id": "sp80-589a99af",
+  "review_type": "transcript_segment_usefulness_agent_review",
+  "generated_at_utc": "2026-05-25T18:48:50.588164Z",
+  "status": "agent_review_not_user_audited",
+  "criterion": "Useful means the segment contains SP80/Liquid Pour mechanics, board state, action intent, strategy, constraint, failure/success outcome, or a concrete hypothesis about flow/routing. Non-useful means filler, repeated retry text, off-task speech, session affect only, or a vague fragment with no game mechanic/action content.",
+  "source": {
+    "segments_path": "corpus/sp80_liquid_pour/segments.json",
+    "segments_sha256": "e830a2eb264eb27e1735f0e55d5ea8445598c911de312d32df651ae0433a11f8",
+    "script_path": "scripts/review_sp80_transcript_usefulness.py",
+    "script_sha256": "080d56ea1897b928861cd83703b4199812b50e94fcc4ee50059d65b4a2639bb1",
+    "command": "python scripts/review_sp80_transcript_usefulness.py",
+    "random_seed": "none"
+  },
+  "summary": {
+    "total_segments": 186,
+    "useful_segments": 77,
+    "non_useful_segments": 109
+  },
+  "segments": [
+    {
+      "segment_id": "night_srt_001",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 0.0,
+      "end_s": 19.92,
+      "text": "Okay we're doing liquid pour. Click on the map. I see two yellow U shapes, U shapes, open-ended",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_002",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 19.92,
+      "end_s": 39.88,
+      "text": "shapes, asymmetrical shapes. They're symmetrical but the U isn't, there's a pink block that fits",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_003",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 39.88,
+      "end_s": 48.72,
+      "text": "the center of the U. I'm going to move to the right. I'm going to click, click and",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_004",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 48.72,
+      "end_s": 68.84,
+      "text": "cross. I think I know it's going to happen. I envision a pour when I hit this action button.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_005",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 68.84,
+      "end_s": 87.24,
+      "text": "Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_006",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 87.24,
+      "end_s": 113.48,
+      "text": "asymmetry matching, finding the piece that creates symmetry, lining it up.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_007",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 113.48,
+      "end_s": 133.44,
+      "text": "Waterfall. Only to waterfall this one. You can click in the map. That was discovered.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_008",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 143.48,
+      "end_s": 172.16,
+      "text": "Okay, shit, I might run out of,",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_009",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 172.16,
+      "end_s": 199.6,
+      "text": "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_010",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 199.6,
+      "end_s": 225.08,
+      "text": "I'm just a second.",
+      "agent_review_label": "non_useful",
+      "reason": "session pause; no game content"
+    },
+    {
+      "segment_id": "night_srt_011",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 225.08,
+      "end_s": 242.04,
+      "text": "So this has three spouts that I need to line up and I need to do this in my head very carefully.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_012",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 242.04,
+      "end_s": 268.08,
+      "text": "It takes a lot of routing and elimination. Assume all the pieces will be used. First assumption.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_013",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 268.08,
+      "end_s": 297.04,
+      "text": "I've got it. I understand how I'll do it. The two pieces, I will line up pieces to the gaps immediately to service the needs and that's done.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_014",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 297.04,
+      "end_s": 317.52,
+      "text": "So I've determined the route to the goal. Once I've determined the goal, I route my way towards where I am and fit and determine complexity and challenges along the way.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_015",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 317.52,
+      "end_s": 342.2,
+      "text": "Interations of different horizons and levels of detail on each object between me and the goal. It's critical because the",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_016",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 342.2,
+      "end_s": 355.72,
+      "text": "only thing that matters is touching the goal in this game mode, this game mode. The only thing that matters is lining up with the goal because all the other pieces below that are turned out to be extra.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_017",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 355.72,
+      "end_s": 367.72,
+      "text": "You don't even have to think about them much. They fall in line and it worked.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_018",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 367.72,
+      "end_s": 377.72,
+      "text": "The same system.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_019",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 397.72,
+      "end_s": 425.72,
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_020",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 425.72,
+      "end_s": 445.72,
+      "text": "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_021",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 445.72,
+      "end_s": 473.72,
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_022",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 475.72,
+      "end_s": 491.72,
+      "text": "Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_023",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 491.72,
+      "end_s": 515.72,
+      "text": "There isn't any to fit the one in the middle. I even tested this concept.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_024",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 515.72,
+      "end_s": 529.72,
+      "text": "However, the blue one fits perfect.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_025",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 529.72,
+      "end_s": 549.72,
+      "text": "This is the first time I'm not going to try to use all the pieces.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_026",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 549.72,
+      "end_s": 563.72,
+      "text": "I'm hoping the black thing is a hole.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_027",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 563.72,
+      "end_s": 577.72,
+      "text": "I spilled.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_028",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 577.72,
+      "end_s": 605.72,
+      "text": "I spilled.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_029",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 605.72,
+      "end_s": 625.72,
+      "text": "I spilled.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_030",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 625.72,
+      "end_s": 649.72,
+      "text": "The challenge is routing.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_031",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 649.72,
+      "end_s": 669.72,
+      "text": "There are three parts below.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_032",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 679.72,
+      "end_s": 703.72,
+      "text": "Let's see.",
+      "agent_review_label": "non_useful",
+      "reason": "generic setup phrase"
+    },
+    {
+      "segment_id": "night_srt_033",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 703.72,
+      "end_s": 731.72,
+      "text": "I don't understand.",
+      "agent_review_label": "non_useful",
+      "reason": "vague confusion without object/mechanic detail"
+    },
+    {
+      "segment_id": "night_srt_034",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 731.72,
+      "end_s": 755.72,
+      "text": "I'm going to zoom in.",
+      "agent_review_label": "non_useful",
+      "reason": "UI/meta action only"
+    },
+    {
+      "segment_id": "night_srt_035",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 755.72,
+      "end_s": 775.72,
+      "text": "I'm going to watch it happen again.",
+      "agent_review_label": "non_useful",
+      "reason": "observation setup only"
+    },
+    {
+      "segment_id": "night_srt_036",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 775.72,
+      "end_s": 795.72,
+      "text": "Yeah, I lost her right now.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_037",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 795.72,
+      "end_s": 815.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_038",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 815.72,
+      "end_s": 835.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_039",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 835.72,
+      "end_s": 855.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_040",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 855.72,
+      "end_s": 879.72,
+      "text": "I'm rushing through it.",
+      "agent_review_label": "non_useful",
+      "reason": "session quality note only"
+    },
+    {
+      "segment_id": "night_srt_041",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 885.72,
+      "end_s": 909.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_042",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 909.72,
+      "end_s": 933.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_043",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 933.72,
+      "end_s": 953.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_044",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 953.72,
+      "end_s": 981.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_045",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 981.72,
+      "end_s": 1009.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_046",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1009.72,
+      "end_s": 1029.72,
+      "text": "No, it doesn't work like that.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "night_srt_047",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1029.72,
+      "end_s": 1049.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_048",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1049.72,
+      "end_s": 1069.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_049",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1069.72,
+      "end_s": 1089.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_050",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1089.72,
+      "end_s": 1109.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_051",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1109.72,
+      "end_s": 1129.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_052",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1129.72,
+      "end_s": 1149.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_053",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1149.72,
+      "end_s": 1169.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_054",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1179.72,
+      "end_s": 1199.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_055",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1199.72,
+      "end_s": 1227.72,
+      "text": "Oh.",
+      "agent_review_label": "non_useful",
+      "reason": "affect only"
+    },
+    {
+      "segment_id": "night_srt_056",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1227.72,
+      "end_s": 1251.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_057",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1251.72,
+      "end_s": 1271.72,
+      "text": "Let's see.",
+      "agent_review_label": "non_useful",
+      "reason": "generic setup phrase"
+    },
+    {
+      "segment_id": "night_srt_058",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1281.72,
+      "end_s": 1301.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_059",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1301.72,
+      "end_s": 1321.72,
+      "text": "Oh.",
+      "agent_review_label": "non_useful",
+      "reason": "affect only"
+    },
+    {
+      "segment_id": "night_srt_060",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1321.72,
+      "end_s": 1345.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_061",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1345.72,
+      "end_s": 1365.72,
+      "text": "Let's do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "night_srt_062",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "start_s": 1375.72,
+      "end_s": 1395.72,
+      "text": "I'm tired.",
+      "agent_review_label": "non_useful",
+      "reason": "session affect only"
+    },
+    {
+      "segment_id": "morning_json_000",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 0.0,
+      "end_s": 5.0,
+      "text": "Okay, a new game. This is going to be Liquid Pour.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_001",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 9.0,
+      "end_s": 13.0,
+      "text": "I played this a couple times. I narrated it on it last night. I was very tired.",
+      "agent_review_label": "non_useful",
+      "reason": "session context only"
+    },
+    {
+      "segment_id": "morning_json_002",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 13.0,
+      "end_s": 16.0,
+      "text": "Let's see what happens in the morning when I'm not so tired.",
+      "agent_review_label": "non_useful",
+      "reason": "session context only"
+    },
+    {
+      "segment_id": "morning_json_003",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 16.0,
+      "end_s": 32.0,
+      "text": "So, it's easy to match.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_004",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 46.0,
+      "end_s": 70.0,
+      "text": "Okay, so it's routing based upon flow, so anticipation and understanding of the paint bucket.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_005",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 70.0,
+      "end_s": 98.0,
+      "text": "The paint flow is critical.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_006",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 98.0,
+      "end_s": 106.0,
+      "text": "Yeah, I was tired playing this at 3 in the morning last night. This is much easier right now.",
+      "agent_review_label": "non_useful",
+      "reason": "session context only"
+    },
+    {
+      "segment_id": "morning_json_007",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 106.0,
+      "end_s": 118.0,
+      "text": "If you butt a piece up to another piece, it stops flow from going to its other side.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_008",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 118.0,
+      "end_s": 122.0,
+      "text": "The flow is always going to branch out until stopped.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_009",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 122.0,
+      "end_s": 131.0,
+      "text": "This flow game is actually another example of what do we call it?",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_010",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 131.0,
+      "end_s": 140.0,
+      "text": "Isolated motion, isolated movement. It's just understanding what is the moving piece.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_011",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 140.0,
+      "end_s": 146.0,
+      "text": "So, I think if we ask ourselves what are our moving pieces, do they have isolated movement?",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_012",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 146.0,
+      "end_s": 154.0,
+      "text": "Yes or no? That little micro question is really, really, really important.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_013",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 154.0,
+      "end_s": 163.0,
+      "text": "And we need to exhaust the do we have isolated movement potential until we close that chapter.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_014",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 163.0,
+      "end_s": 170.0,
+      "text": "Because if we have isolated movement potential, like this paint game immediately has isolated movement potential,",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_015",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 170.0,
+      "end_s": 178.0,
+      "text": "knowing if you put one block up against a wall, that's isolated movement on the liquid or whatever we're claiming is a liquid.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_016",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 178.0,
+      "end_s": 197.0,
+      "text": "So, it's the same mechanic being used to create value plays all over the place.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_017",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 197.0,
+      "end_s": 213.0,
+      "text": "And I think, yeah, there's just extra pieces when you do it that way.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_018",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 227.0,
+      "end_s": 247.0,
+      "text": "Man, I was tired last night.",
+      "agent_review_label": "non_useful",
+      "reason": "session affect only"
+    },
+    {
+      "segment_id": "morning_json_019",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 247.0,
+      "end_s": 257.0,
+      "text": "So, I was off. I was making the wrong assumption repeatedly and was locked into my assumption last night as to why I was doing this wrong.",
+      "agent_review_label": "non_useful",
+      "reason": "vague source-quality context without mechanic detail"
+    },
+    {
+      "segment_id": "morning_json_020",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 257.0,
+      "end_s": 284.0,
+      "text": "So, I was misunderstanding.",
+      "agent_review_label": "non_useful",
+      "reason": "vague source-quality context without mechanic detail"
+    },
+    {
+      "segment_id": "morning_json_021",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 284.0,
+      "end_s": 300.0,
+      "text": "All right.",
+      "agent_review_label": "non_useful",
+      "reason": "generic transition phrase"
+    },
+    {
+      "segment_id": "morning_json_022",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 314.0,
+      "end_s": 327.0,
+      "text": "I think one of these is just extra.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_023",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 327.0,
+      "end_s": 342.0,
+      "text": "So.",
+      "agent_review_label": "non_useful",
+      "reason": "incomplete filler"
+    },
+    {
+      "segment_id": "morning_json_024",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 357.0,
+      "end_s": 386.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_025",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 386.0,
+      "end_s": 408.0,
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_026",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 408.0,
+      "end_s": 411.0,
+      "text": "I'm not sure if I'm going to win or not.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_027",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 411.0,
+      "end_s": 418.0,
+      "text": "I realized that my initial technique was wrong based upon the assumption of water falling down also didn't also fall down.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_028",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 418.0,
+      "end_s": 424.0,
+      "text": "It just went where I wanted it to go to the left specifically into the L shape and went to the left.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_029",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 424.0,
+      "end_s": 428.0,
+      "text": "I was expecting it to go into the L shape to the left and also down.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_030",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 428.0,
+      "end_s": 434.0,
+      "text": "When that was confirmed that wasn't the case, I had to reassess all my other pieces.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_031",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 434.0,
+      "end_s": 440.0,
+      "text": "And I believe I have a configuration that still drops to all the points.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_032",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 440.0,
+      "end_s": 458.0,
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_033",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 458.0,
+      "end_s": 462.0,
+      "text": "So, let's see if it works.",
+      "agent_review_label": "non_useful",
+      "reason": "test setup phrase without mechanic detail"
+    },
+    {
+      "segment_id": "morning_json_034",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 462.0,
+      "end_s": 465.0,
+      "text": "Got it.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_035",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 465.0,
+      "end_s": 468.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_036",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 468.0,
+      "end_s": 473.0,
+      "text": "Congratulations to us.",
+      "agent_review_label": "non_useful",
+      "reason": "success affect only"
+    },
+    {
+      "segment_id": "morning_json_037",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 473.0,
+      "end_s": 478.0,
+      "text": "There's a piece that's a faucet.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_038",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 478.0,
+      "end_s": 480.0,
+      "text": "That's what I call it.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_039",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 480.0,
+      "end_s": 485.0,
+      "text": "It goes straight down and it links to the sides.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_040",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 485.0,
+      "end_s": 493.0,
+      "text": "The side parts connect.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_041",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 493.0,
+      "end_s": 497.0,
+      "text": "L shapes go, I'm tracking my paths now.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_042",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 497.0,
+      "end_s": 503.0,
+      "text": "This is not hard. This is just calibration.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_043",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 515.0,
+      "end_s": 527.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_044",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 527.0,
+      "end_s": 545.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_045",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 545.0,
+      "end_s": 559.0,
+      "text": "I'm trying to make sense of the vertical bar, so I'm just doing a lot of pre-calculating and configuring.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_046",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 559.0,
+      "end_s": 568.0,
+      "text": "On where the skinny bar is going to go to a root, I have three roots done, but the fourth root doesn't make sense to me.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_047",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 568.0,
+      "end_s": 579.0,
+      "text": "And it's causing me to think I'm going to need to rethink the faucet. It's not as simple as I wanted it to be, which is aligned with the whole.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_048",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 579.0,
+      "end_s": 589.0,
+      "text": "If it's first immediately obvious and desirable, it's most likely not a game challenge and the challenge is hidden deeper.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_049",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 609.0,
+      "end_s": 634.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_050",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 634.0,
+      "end_s": 644.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_051",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 644.0,
+      "end_s": 650.0,
+      "text": "So let's make sense of this.",
+      "agent_review_label": "non_useful",
+      "reason": "generic setup phrase"
+    },
+    {
+      "segment_id": "morning_json_052",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 650.0,
+      "end_s": 661.0,
+      "text": "Because I have a vertical line that's causing me problems and the central system doesn't work,",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_053",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 661.0,
+      "end_s": 669.0,
+      "text": "I'm most likely going to need more functions on the left and the right because there's only one thing on the right.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_054",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 669.0,
+      "end_s": 681.0,
+      "text": "So let's get...",
+      "agent_review_label": "non_useful",
+      "reason": "incomplete filler"
+    },
+    {
+      "segment_id": "morning_json_055",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 681.0,
+      "end_s": 684.0,
+      "text": "Let's...",
+      "agent_review_label": "non_useful",
+      "reason": "incomplete filler"
+    },
+    {
+      "segment_id": "morning_json_056",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 684.0,
+      "end_s": 695.0,
+      "text": "I'm having trouble seeing the whole board. I don't have the internal RAM to see the whole board with the flow going.",
+      "agent_review_label": "non_useful",
+      "reason": "cognitive-load note without mechanic detail"
+    },
+    {
+      "segment_id": "morning_json_057",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 695.0,
+      "end_s": 713.0,
+      "text": "Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't...",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_058",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 713.0,
+      "end_s": 735.0,
+      "text": "It doesn't do anything.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_059",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 735.0,
+      "end_s": 764.0,
+      "text": "I just don't understand what I can even do with this one.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_060",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 764.0,
+      "end_s": 788.0,
+      "text": "Huh.",
+      "agent_review_label": "non_useful",
+      "reason": "affect only"
+    },
+    {
+      "segment_id": "morning_json_061",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 788.0,
+      "end_s": 793.0,
+      "text": "What?",
+      "agent_review_label": "non_useful",
+      "reason": "affect only"
+    },
+    {
+      "segment_id": "morning_json_062",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 793.0,
+      "end_s": 796.0,
+      "text": "What do you mean, my mom?",
+      "agent_review_label": "non_useful",
+      "reason": "off-task speech"
+    },
+    {
+      "segment_id": "morning_json_063",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 823.0,
+      "end_s": 845.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_064",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 845.0,
+      "end_s": 855.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_065",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 855.0,
+      "end_s": 873.0,
+      "text": "Thanks for getting me up to speed with everything.",
+      "agent_review_label": "non_useful",
+      "reason": "off-task speech"
+    },
+    {
+      "segment_id": "morning_json_066",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 873.0,
+      "end_s": 876.0,
+      "text": "Call Susan Newman.",
+      "agent_review_label": "non_useful",
+      "reason": "off-task speech"
+    },
+    {
+      "segment_id": "morning_json_067",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 876.0,
+      "end_s": 898.0,
+      "text": "Okay. Continue to circle the wagon.",
+      "agent_review_label": "non_useful",
+      "reason": "off-task speech"
+    },
+    {
+      "segment_id": "morning_json_068",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 898.0,
+      "end_s": 927.0,
+      "text": "Okay. This is the last level.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_069",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 928.0,
+      "end_s": 957.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_070",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 957.0,
+      "end_s": 986.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_071",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 986.0,
+      "end_s": 1013.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_072",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1013.0,
+      "end_s": 1038.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_073",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1038.0,
+      "end_s": 1050.0,
+      "text": "I got it.",
+      "agent_review_label": "non_useful",
+      "reason": "vague success claim without mechanic detail"
+    },
+    {
+      "segment_id": "morning_json_074",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1050.0,
+      "end_s": 1054.0,
+      "text": "Fuck. I don't have it.",
+      "agent_review_label": "non_useful",
+      "reason": "vague failed-plan affect without mechanic detail"
+    },
+    {
+      "segment_id": "morning_json_075",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1054.0,
+      "end_s": 1070.0,
+      "text": "I have to make an L.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_076",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1070.0,
+      "end_s": 1083.0,
+      "text": "Fucking fuck.",
+      "agent_review_label": "non_useful",
+      "reason": "expletive only"
+    },
+    {
+      "segment_id": "morning_json_077",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1083.0,
+      "end_s": 1087.0,
+      "text": "I ran out of goddamn...",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_078",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1087.0,
+      "end_s": 1089.0,
+      "text": "I gotta do it again.",
+      "agent_review_label": "non_useful",
+      "reason": "retry marker only"
+    },
+    {
+      "segment_id": "morning_json_079",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1089.0,
+      "end_s": 1111.0,
+      "text": "Fuck.",
+      "agent_review_label": "non_useful",
+      "reason": "expletive only"
+    },
+    {
+      "segment_id": "morning_json_080",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1111.0,
+      "end_s": 1117.0,
+      "text": "I had to make an L with a vertical piece.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_081",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1117.0,
+      "end_s": 1145.0,
+      "text": "That was a solution.",
+      "agent_review_label": "useful",
+      "reason": "contains mechanic/action/strategy/outcome content"
+    },
+    {
+      "segment_id": "morning_json_082",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1145.0,
+      "end_s": 1174.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_083",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1174.0,
+      "end_s": 1201.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_084",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1201.0,
+      "end_s": 1230.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_085",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1230.0,
+      "end_s": 1259.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_086",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1259.0,
+      "end_s": 1269.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_087",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1289.0,
+      "end_s": 1318.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_088",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1318.0,
+      "end_s": 1345.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_089",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1345.0,
+      "end_s": 1374.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_090",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1374.0,
+      "end_s": 1403.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_091",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1403.0,
+      "end_s": 1428.0,
+      "text": "That is life for me right now, defined.",
+      "agent_review_label": "non_useful",
+      "reason": "off-task/affect only"
+    },
+    {
+      "segment_id": "morning_json_092",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1428.0,
+      "end_s": 1457.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_093",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1457.0,
+      "end_s": 1486.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_094",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1486.0,
+      "end_s": 1496.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_095",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1516.0,
+      "end_s": 1527.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_096",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1528.0,
+      "end_s": 1556.0,
+      "text": "Oof.",
+      "agent_review_label": "non_useful",
+      "reason": "affect only"
+    },
+    {
+      "segment_id": "morning_json_097",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1556.0,
+      "end_s": 1566.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_098",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1586.0,
+      "end_s": 1615.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_099",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1616.0,
+      "end_s": 1638.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_100",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1638.0,
+      "end_s": 1665.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_101",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1665.0,
+      "end_s": 1692.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_102",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1692.0,
+      "end_s": 1720.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_103",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1720.0,
+      "end_s": 1749.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_104",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1749.0,
+      "end_s": 1771.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_105",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1771.0,
+      "end_s": 1798.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_106",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1798.0,
+      "end_s": 1825.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_107",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1825.0,
+      "end_s": 1854.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_108",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1854.0,
+      "end_s": 1865.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_109",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1865.0,
+      "end_s": 1874.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_110",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1874.0,
+      "end_s": 1901.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_111",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1901.0,
+      "end_s": 1929.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_112",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1929.0,
+      "end_s": 1956.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_113",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1956.0,
+      "end_s": 1985.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_114",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 1985.0,
+      "end_s": 2014.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_115",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2014.0,
+      "end_s": 2043.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_116",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2043.0,
+      "end_s": 2072.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_117",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2072.0,
+      "end_s": 2101.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_118",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2101.0,
+      "end_s": 2120.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_119",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2120.0,
+      "end_s": 2149.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_120",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2149.0,
+      "end_s": 2176.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_121",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2176.0,
+      "end_s": 2203.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_122",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2203.0,
+      "end_s": 2231.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    },
+    {
+      "segment_id": "morning_json_123",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "start_s": 2231.0,
+      "end_s": 2250.0,
+      "text": "Okay.",
+      "agent_review_label": "non_useful",
+      "reason": "filler only"
+    }
+  ]
+}

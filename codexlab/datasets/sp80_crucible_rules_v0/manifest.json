@@ -1,0 +1,57 @@
+{
+  "anomalies_jsonl": "codexlab/datasets/sp80_crucible_discrepancy_v0/anomalies.jsonl",
+  "anomalies_jsonl_sha256": "6c344db1abf408c6f95707fa0ebbf4c1b72034a6dc039ae73a0540f6835edfb6",
+  "anomaly_count": 220,
+  "arity_histogram": {
+    "1": 1950,
+    "2": 338
+  },
+  "corpus_jsonl": "codexlab/datasets/sp80_crucible_transitions_v0/corpus.jsonl",
+  "corpus_manifest": "codexlab/datasets/sp80_crucible_transitions_v0/manifest.json",
+  "corpus_manifest_sha256": "2ec31da95b162ae4233c903b84ef6fdeed856218c7a69a707a09e91909059757",
+  "created_at_utc": "2026-06-15T16:22:16.939106Z",
+  "discrepancy_ledger": "codexlab/datasets/sp80_crucible_discrepancy_v0/ledger.json",
+  "discrepancy_ledger_sha256": "b44cf2f7e2ff41b0253e2f81742a95cef460a69d2e0a5db771534adbcaf72237",
+  "effect_histogram": {
+    "blocked": 663,
+    "forward": 325,
+    "redirect_left": 325,
+    "redirect_right": 325,
+    "reverse": 325,
+    "slide_until_blocked": 325
+  },
+  "grammar_version": "crucible_grammar.v0",
+  "induced_rule_count": 410,
+  "manifest_json": "codexlab/datasets/sp80_crucible_rules_v0/manifest.json",
+  "rule_count": 2288,
+  "rules_jsonl": "codexlab/datasets/sp80_crucible_rules_v0/rules.jsonl",
+  "schema": "codexlab.crucible_rule_corpus.v1",
+  "selector_histogram": {
+    "direction_generic": 530,
+    "per_primitive:move_down": 418,
+    "per_primitive:move_left": 418,
+    "per_primitive:move_right": 418,
+    "per_primitive:move_up": 504
+  },
+  "source_hashes": {
+    "codexlab/contra_head/crucible/canon.py": "2d9f7b5f42e955f5c4213ba67b8e3d417fabb2a3a3e1a040dd97af5e9143eadc",
+    "codexlab/contra_head/crucible/corpus.py": "4ea470dfc56fe01e1940bd6cb8e7f0d6e1c036fbbd6dc631e64d56c37c9c09af",
+    "codexlab/contra_head/crucible/grammar.py": "ea5b55f6072b759a612377268b74d65e1dabd16ced422c85cc194c601debafae",
+    "codexlab/contra_head/crucible/model.py": "d05e524e8f93e77b9ac965b2006c46c698d14d02a423ce0e153a7b3edb7bbec2",
+    "codexlab/contra_verify_crucible.py": "77cb454a93e85d0d60ca9b37afba1ef862537a0f0d662d246a6c2d6b06e66858",
+    "codexlab/crucible_induce_rules.py": "a883d06877b0aa719162df8c7f19ca8abad7e3ae24e150183b8c10d445d0bc80",
+    "codexlab/crucible_mine_transitions.py": "6c0a10c492b79a76f5bea0ce7d84f6153ffc4ac97dcbcbdeaff5931016190d10",
+    "codexlab/sp80_player_harness.py": "7fedc11678142861a5f5b3916785e4d8b87d7adab3248cdac438e8f5ee86ac19"
+  },
+  "truth_boundary": {
+    "action_choice_admitted": false,
+    "boundary": "mechanic_forward_model_is_hypothesis_ledger_composition_not_control_truth",
+    "control_truth_admitted": false,
+    "coordinate_copy_used": false,
+    "goal_condition_admitted": false,
+    "goal_truth_admitted": false,
+    "route_or_replay_used": false,
+    "solve_condition_admitted": false,
+    "solve_truth_admitted": false
+  }
+}

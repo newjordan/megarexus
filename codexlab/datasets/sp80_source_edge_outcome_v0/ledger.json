@@ -1,0 +1,2856 @@
+{
+  "activation_corpus_jsonl": "codexlab/datasets/sp80_crucible_activation_transitions_v0/corpus.jsonl",
+  "activation_corpus_sha256": "2ec0389d387ee181d299473850a13c282460a7e4421e1466f3123fb81d1c8b7e",
+  "activation_manifest": "codexlab/datasets/sp80_crucible_activation_transitions_v0/manifest.json",
+  "activation_manifest_sha256": "abc4edaa3015fad08ab307e0e3cb4e755f1597fa54c22d33bfb585f074c40757",
+  "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+  "c0008_contradiction_audit": {
+    "key_a": {
+      "active_portband_source_key": "source_component:c0008",
+      "before_selected_identity": "plzwjbfyfli-5",
+      "click_display_coord": [
+        62,
+        52
+      ],
+      "focus_edge": 0,
+      "primitive": "activate_flow"
+    },
+    "key_b": {
+      "active_portband_source_key": "source_component:c0008",
+      "before_selected_identity": "plzwjbfyfli-6",
+      "click_display_coord": [
+        62,
+        52
+      ],
+      "focus_edge": 0,
+      "primitive": "activate_flow"
+    },
+    "negative_example": {
+      "action_index": 31,
+      "activation_id": "ec1e713d06d7b8d84a9929ecb0541f6e8b1abf4b7ef5f67407cb5461e3ff7a73",
+      "after_selected_identity": "plzwjbfyfli-5",
+      "before_selected_identity": "plzwjbfyfli-6",
+      "candidate_keys": null,
+      "distance_delta": -2.5,
+      "key": {
+        "active_portband_source_key": "source_component:c0008",
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "levels_completed_delta": 0,
+      "line_number": 32,
+      "outcome_class": "distance_negative",
+      "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local/level_02/packets.jsonl",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local",
+      "target_distance": 1.0
+    },
+    "positive_example": {
+      "action_index": 38,
+      "activation_id": "e2449ac863cbcc227b1cfc3c663503ceb006843924af2035b5911265e27635bb",
+      "after_selected_identity": "plzwjbfyfli-6",
+      "before_selected_identity": "plzwjbfyfli-5",
+      "candidate_keys": null,
+      "distance_delta": 0.5,
+      "key": {
+        "active_portband_source_key": "source_component:c0008",
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "levels_completed_delta": 0,
+      "line_number": 39,
+      "outcome_class": "distance_positive",
+      "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local/level_02/packets.jsonl",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local",
+      "target_distance": 1.0
+    },
+    "reason": null,
+    "separated": true,
+    "separating_fields": [
+      "before_selected_identity"
+    ]
+  },
+  "created_at_utc": "2026-06-12T16:00:49.953567Z",
+  "entries": [
+    {
+      "contradictions": 0,
+      "entry_id": "23a9677330f7a1d636454286a7384e5b3a168d0d0993d503e4fc288d90a10d52",
+      "key": {
+        "active_portband_source_key": "source_component:c0005",
+        "before_selected_identity": "plzwjbfyfli-4",
+        "click_display_coord": [
+          51,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 28,
+          "activation_id": "c2a6c25e9d798a9dd60457a2a786672c7132494bd3b0471044612d3a0a774fef",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-4",
+          "candidate_keys": null,
+          "distance_delta": -9.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0005",
+            "before_selected_identity": "plzwjbfyfli-4",
+            "click_display_coord": [
+              51,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 29,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_post_saturation_activation_20260612T055543Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_post_saturation_activation_20260612T055543Z",
+          "target_distance": 3.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "5654c72c0c8eae07a0f17528834f111c40c582331c00e4c28a118d5fc5a34320",
+      "key": {
+        "active_portband_source_key": "source_component:c0005",
+        "before_selected_identity": "plzwjbfyfli-4",
+        "click_display_coord": [
+          61,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 32,
+          "activation_id": "865d23dc61618644cc541052de09858efe79e094a4f9749640689a80a559b769",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-4",
+          "candidate_keys": null,
+          "distance_delta": -11.0,
+          "key": {
+            "active_portband_source_key": "source_component:c0005",
+            "before_selected_identity": "plzwjbfyfli-4",
+            "click_display_coord": [
+              61,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 33,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "2e74e9e496291e937e9f66c7d5a44026a5534ae22962edd55c9c429266598f1c",
+      "key": {
+        "active_portband_source_key": "source_component:c0005",
+        "before_selected_identity": "plzwjbfyfli-4",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 38,
+          "activation_id": "40be379993260fe71628360b4c81c3826da3644f325cd3b8d4b9c95de8147dcc",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-4",
+          "candidate_keys": null,
+          "distance_delta": -3.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0005",
+            "before_selected_identity": "plzwjbfyfli-4",
+            "click_display_coord": [
+              62,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 39,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_unscoped_activation_guard_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_unscoped_activation_guard_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "6676007f3c34e993ba684d232aa99cc91c1017938d6780cb9959e9d5deecd991",
+      "key": {
+        "active_portband_source_key": "source_component:c0005",
+        "before_selected_identity": "plzwjbfyfli-4",
+        "click_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 31,
+          "activation_id": "8ef00f5013c6e67232dc8c8d84e9686e0293d59671bcc08ede573bfb50a7e8e1",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-4",
+          "candidate_keys": null,
+          "distance_delta": -3.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0005",
+            "before_selected_identity": "plzwjbfyfli-4",
+            "click_display_coord": [
+              63,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 32,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_budget_selection_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_budget_selection_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "d12bd00a0124488188733f28c2c7348af2d66b9cb26edbcc1a56b36b7d95e3e7",
+      "key": {
+        "active_portband_source_key": "source_component:c0006",
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 30,
+          "activation_id": "78e6e009aae79ec6c6c24fe751cfbf57ada3b7cdc4270e076e91b908414b9cdc",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": -1.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0006",
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              63,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 31,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_c0008_activation62_ledger_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_c0008_activation62_ledger_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "4098ecd5be1e59ca753fb67be77ae6b09cadf2372e3be032218015825e8ff31b",
+      "key": {
+        "active_portband_source_key": "source_component:c0007",
+        "before_selected_identity": "plzwjbfyfli-4",
+        "click_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 31,
+          "activation_id": "7e1eae2364a9dffa47d5555ec8038f382e656e4f01ab2c6c8493883feea66841",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-4",
+          "candidate_keys": null,
+          "distance_delta": -12.0,
+          "key": {
+            "active_portband_source_key": "source_component:c0007",
+            "before_selected_identity": "plzwjbfyfli-4",
+            "click_display_coord": [
+              63,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 32,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "0eb663a777bb3d100bd4af533fa1e004e784e4865f3c062941d6e7df7c15bb70",
+      "key": {
+        "active_portband_source_key": "source_component:c0007",
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          61,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 22,
+          "activation_id": "92d4ed219da8e4872920b5ed8247c9f7c26c3b26ba08e86a88aed5297da8b98e",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": -10.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0007",
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              61,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 23,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "2072f68c48cace9ecb3589a693e0d6c1766b8cde436e0a8162883c6c5bab8e13",
+      "key": {
+        "active_portband_source_key": "source_component:c0007",
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 26,
+          "activation_id": "3c544eed64464af3743fe069a93eb853e706467d85da276e9f8411e88b7e23b4",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": -0.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0007",
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              62,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 27,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_c0008_outcome_ledger_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_c0008_outcome_ledger_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "47dd081cdc19669f971f44ab24b68f5c3a819b8c8c7c2bea4808754f2be3a0ca",
+      "key": {
+        "active_portband_source_key": "source_component:c0007",
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 24,
+          "activation_id": "a4dc0b4217412e0d9cc2c15992111cd85ee54994e7243cc73824511a06d270a3",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": -1.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0007",
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              63,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 25,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_active_source_memory_activation_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_active_source_memory_activation_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "8a400186bc3172fc0a55b5b8b284aeef020307c773c3a0de53ace7f1a691fbbf",
+      "key": {
+        "active_portband_source_key": "source_component:c0008",
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 38,
+          "activation_id": "e2449ac863cbcc227b1cfc3c663503ceb006843924af2035b5911265e27635bb",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0008",
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              62,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 39,
+          "outcome_class": "distance_positive",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_positive": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.206543
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "ab15ecd3e6ddbb19e1f6bfbdf64c8f6efde68e97c06715265da0de0566c1ddcb",
+      "key": {
+        "active_portband_source_key": "source_component:c0008",
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          59,
+          55
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 42,
+          "activation_id": "2d2bfa0f72dac7e8722e4142fafa3f48f19f2426af759750d4c8a4dac5c64733",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": "source_component:c0008",
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              59,
+              55
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 43,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z",
+          "target_distance": 2.0
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "8f79afcd16294c9ca1014705144f63e9451b6818e4990fdd37821816333724a8",
+      "key": {
+        "active_portband_source_key": "source_component:c0008",
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          61,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 29,
+          "activation_id": "21cb563af7cf54f8bba93c0296a69c7ed2fe7f6ff10ea4492e578cef3736539c",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": -1.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0008",
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              61,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 30,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "b24be5f7dfc485c9a00b2aaddc6e964b57ad2c20c7f3942947c4a84dbb5edd04",
+      "key": {
+        "active_portband_source_key": "source_component:c0008",
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 31,
+          "activation_id": "ec1e713d06d7b8d84a9929ecb0541f6e8b1abf4b7ef5f67407cb5461e3ff7a73",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": -2.5,
+          "key": {
+            "active_portband_source_key": "source_component:c0008",
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              62,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 32,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "68e39af85bca62d90dd39156e5bc592dd2d387e1f32283a122c59dbdc0d1eb78",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-3",
+        "click_display_coord": [
+          51,
+          52
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 16,
+          "activation_id": "9bcb8fa43db8a4a6f58ea3e1ad5736c3fd445523b71899eb6186509021d2a7c9",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -7.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              51,
+              52
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 17,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/contra_sp80_episode_levels_01_20260608T185017Z/level_01/packets.jsonl",
+          "run_dir": "codexlab/runs/contra_sp80_episode_levels_01_20260608T185017Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "6063171b295ca8923f335b99e9ae809a3e9628ec889075b06de70d984140ba2d",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-3",
+        "click_display_coord": [
+          52,
+          52
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 19,
+          "activation_id": "8b38df2afa466d09b5e12d7ae1aad0116aebb369c6c884e05460360f57d3e5e3",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -8.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              52,
+              52
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 20,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T191146Z/level_01/packets.jsonl",
+          "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T191146Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 1,
+      "entry_id": "d11fd03f618e95126e251326351f83488a9a293187f65d0f1853e6ac647916a5",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-3",
+        "click_display_coord": [
+          57,
+          52
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 4,
+          "activation_id": "0981c405066c105591fd5211188dcf6f45a3875baff9de034b749440fde3bf9d",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -6.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              57,
+              52
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 5,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 13,
+          "activation_id": "b1f784c9a6dcdcd27cad4962e11c7c120169712efda8a226bb3064e7833c4c99",
+          "after_selected_identity": "plzwjbfyfli-3",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              57,
+              52
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 14,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 15,
+          "activation_id": "a50d00e4175bf671282be789c833cecfc13f1623d5815124d047541ab456a32e",
+          "after_selected_identity": "plzwjbfyfli-3",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              57,
+              52
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 16,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 17,
+          "activation_id": "a428f6f7a1f1190714d1446bb835f32bc06c06268ea847ef89bcf5ab4e02657a",
+          "after_selected_identity": "plzwjbfyfli-3",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              57,
+              52
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 18,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1,
+        "neutral": 3
+      },
+      "spans_run_dirs": 1,
+      "support": 4,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "fc3695cbc4ff6a0a4d69ea2c8242346f856fcfc4d5dbd4f722c6df36bb3fe790",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-3",
+        "click_display_coord": [
+          57,
+          54
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 7,
+          "activation_id": "e6898847472753d4d61582520c1058212d5b6d16612c26e660ab95e9a888d92b",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -4.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              57,
+              54
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 8,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/sp80_value_scored_episode_level_01_20260602T033000Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_value_scored_episode_level_01_20260602T033000Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 9,
+          "activation_id": "0e38df36c71ec5e78c54c9c976ec3a825cab69c535b6168a44088d5efc793299",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -4.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              57,
+              54
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 10,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/sp80_value_scored_episode_level_01_20260602T033000Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_value_scored_episode_level_01_20260602T033000Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 11,
+          "activation_id": "666c07e08fbff475cba98ac874805fbee6a81d090dd5de0f2e8929a2ab27a666",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -4.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              57,
+              54
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 12,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/sp80_value_scored_episode_level_01_20260602T033000Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_value_scored_episode_level_01_20260602T033000Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 3
+      },
+      "spans_run_dirs": 1,
+      "support": 3,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "5d5b98e293b1374e1e2ceec8750c96b95fa2b05621465ca032fadb492594a939",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-3",
+        "click_display_coord": [
+          58,
+          53
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 11,
+          "activation_id": "9b1a6c539ee16423250c753176cdde941e60fc5cfcca191928f678d5dfb60c32",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -3.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              58,
+              53
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 12,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/level_01/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run",
+          "target_distance": null
+        },
+        {
+          "action_index": 13,
+          "activation_id": "ba955ac13b582597f0ece41d763895cc51b3a4f1734ea7297aefbd158ca6da76",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -3.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              58,
+              53
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 14,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/level_01/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run",
+          "target_distance": null
+        },
+        {
+          "action_index": 19,
+          "activation_id": "7d85ea5f2fd2440b06a7fbfae26baa7b06c717af69676562bad4ef2117fe7ba1",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-3",
+          "candidate_keys": null,
+          "distance_delta": -3.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-3",
+            "click_display_coord": [
+              58,
+              53
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 20,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/contra_sp80_episode_levels_01_20260608T185017Z/level_01/packets.jsonl",
+          "run_dir": "codexlab/runs/contra_sp80_episode_levels_01_20260608T185017Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 3
+      },
+      "spans_run_dirs": 2,
+      "support": 3,
+      "tier": "candidate",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "1d6577c64d7cb8148319fc0346275e3bea2c2cd056536497b5da74f43e51bef7",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-4",
+        "click_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 51,
+          "activation_id": "5a26072d3c3e945d0881c1fc4a0e87dd4a6f7ba83563d7c03f78dc564e1bd7b2",
+          "after_selected_identity": "plzwjbfyfli-4",
+          "before_selected_identity": "plzwjbfyfli-4",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-4",
+            "click_display_coord": [
+              63,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 52,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "2c498dbcf32437b164fa8ce9a4c894ff001b01ada650c731b60502e46a27c0d8",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          3,
+          11
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 9,
+          "activation_id": "5fbc11bdad5ec31581981057c1ee94086be3e9a630d5b25fcb07779c8e7e94ee",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 10,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 11,
+          "activation_id": "ff111b2fd58b2fcb67988e6a34a058a04e203a03f5a9813a85745cec859ba40b",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 12,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 13,
+          "activation_id": "abfffe760eae58437c29104fadac7e2e368cbacf1252fa7d7cb9929cf00c70cf",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 14,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 15,
+          "activation_id": "e992112d7926ce9531347376a95c1d11b9a807afb9f9027d067a43246bb05473",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 16,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 17,
+          "activation_id": "c833f02ba28b6643365c38cd1f2d8e4e268651d08f304cba43f40324b04d43ac",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 18,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 5
+      },
+      "spans_run_dirs": 1,
+      "support": 5,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "f14ae9fb9a344f7f25d96dd815dea2674a77cd246da9c37aeeb6a6af7d707cf3",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          3,
+          4
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": null,
+          "activation_id": "73efcc084a30957339dbd3466962063af5f59ed8bcdfd44c741646aa8b6a2c91",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              4
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 6,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/_system_run/pufferlib_sp80_probe/harness_action_set/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/pufferlib_sp80_probe/harness_action_set",
+          "target_distance": null
+        },
+        {
+          "action_index": 2,
+          "activation_id": "9289f73769c8a8eb6a7771329ea907a5d1ab3e4d3413d918baff4844f1924c83",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              4
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 3,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 2
+      },
+      "spans_run_dirs": 2,
+      "support": 2,
+      "tier": "candidate",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "d02113ec445deb09f3bcd0c9afa894de634931153c9faa6c28f5b15de57fe078",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          3,
+          5
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 4,
+          "activation_id": "99fd2572b2660d780e6e6394b2bce5d63d93fc982b9b48f7fd3201d91a3b7bf8",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              5
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 5,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "6198eb9104534ac365a2ecc29d58ec6345dcb5d8b5793455430d69ac3f1d748f",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          3,
+          6
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 6,
+          "activation_id": "4be8884cade060aba863cda5db8d15e582a5de4f3a0923aa5f42ef78d689326f",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              6
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 7,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "50cb0fb0fe7a8d75bf600c1e29fb97e30ae4da38b645ba42db654f4c88de5ce1",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          3,
+          7
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 8,
+          "activation_id": "fc1ccad3b8d59a581b2d3fa4482662ddb12aa018598a926f7647b390d15c19de",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              7
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 9,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "18cfe465aa7a567b5b320e00ce2fbfbaf12fa4269924645df4026f7ad9cd9c3a",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          3,
+          8
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 11,
+          "activation_id": "c8997e715837006abb3f94ff7705cd1eaa9973a357d3775fe63ed559147a92aa",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              3,
+              8
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 12,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "9050da27f27ea9cfea2acaa54f2e317940f4384a4f3db76ec11d9c5a48b443ff",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          5,
+          11
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 16,
+          "activation_id": "cb0748abd14113d215dab862d41e636a3fcfffe1d657cf7fc8c33af69760fe60",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              5,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 17,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/contra_sp80_episode_levels_00_20260608T190328Z/level_00/packets.jsonl",
+          "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_20260608T190328Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 18,
+          "activation_id": "bd55a9b84510bb8868b5039ce4df20fdf64229064bb4c42373fc720b406157f1",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              5,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 19,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/contra_sp80_episode_levels_00_20260608T190328Z/level_00/packets.jsonl",
+          "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_20260608T190328Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 2
+      },
+      "spans_run_dirs": 1,
+      "support": 2,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "ab642c7fa3bb8b072aa832f13ec15cbf814ab8ddc90af05366309108fd8a9bf4",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          5,
+          5
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 5,
+          "activation_id": "0c83bbddc6274eb4d1fdb2a2b418b47275cb0f09521edd82562cb50798ac8a98",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              5,
+              5
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 6,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/_system_run/level_00/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run",
+          "target_distance": null
+        },
+        {
+          "action_index": null,
+          "activation_id": "ba5a5308bab20246d95a424508b35c5cc7379cbf941fb4bbb6e40230fee69597",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              5,
+              5
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 6,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_player_harness_lora_adapter_levels/level_03/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_player_harness_lora_adapter_levels",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 2
+      },
+      "spans_run_dirs": 2,
+      "support": 2,
+      "tier": "candidate",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "8b3490810fd7ef635fd2c9fd36c5f386e3a88f79c8285b26808f9ee1bdac6085",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          57,
+          52
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 11,
+          "activation_id": "6bff8207cf638dae9c60556157132039cc37599d85ac1add059dd2033ad56dc9",
+          "after_selected_identity": "plzwjbfyfli-3",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 1.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              57,
+              52
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 12,
+          "outcome_class": "distance_positive",
+          "packets_jsonl": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "distance_positive": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.206543
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "ff6fb033e9a1ba374809984f2158aaf7248c7aeb5e8fe11fc22119c01fe8d441",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          57,
+          57
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": null,
+          "activation_id": "b0bf25ac53c4ab5dff2add3eb826b7e77ea3702a303035f525766ab67167cf83",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              57,
+              57
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 6,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_connected_harness_tiny_mlp_levels_00_01_20260602T010938Z/level_01/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_connected_harness_tiny_mlp_levels_00_01_20260602T010938Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "16d5fa8d4687b6bf6d243bca2e24880db867dae069bfb87a707bff06df379f89",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          6,
+          11
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 15,
+          "activation_id": "7effda7a995640f1758d9d33b98315070cbdf082b0bcfffc41280ca3901f2708",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": -7.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              6,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 1,
+          "line_number": 16,
+          "outcome_class": "level_completed",
+          "packets_jsonl": "codexlab/runs/_system_run/level_00/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run",
+          "target_distance": null
+        },
+        {
+          "action_index": 13,
+          "activation_id": "ee97428f7a17599361d4d140a0e31d77ece51cf4d84cdde7d25aa95fab0173d3",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": -7.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              6,
+              11
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 1,
+          "line_number": 14,
+          "outcome_class": "level_completed",
+          "packets_jsonl": "codexlab/runs/sp80_ghost_capture_level_00_20260602T041500Z/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_ghost_capture_level_00_20260602T041500Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "level_completed": 2
+      },
+      "spans_run_dirs": 2,
+      "support": 2,
+      "tier": "candidate",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.342372
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "81e97894423db61bec88713515fa6595c509ba3730d250390428fce6a8e60a59",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          6,
+          6
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 5,
+          "activation_id": "89318fd7a88555306d07005849b93a25b4a5ec803c9e07c55d95d93b2d0b540c",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": -2.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              6,
+              6
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 1,
+          "line_number": 6,
+          "outcome_class": "level_completed",
+          "packets_jsonl": "codexlab/runs/puffer_contra_l1_learned_paintflow_v0_20260611T_full_report/level_00/packets.jsonl",
+          "run_dir": "codexlab/runs/puffer_contra_l1_learned_paintflow_v0_20260611T_full_report",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "level_completed": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.206543
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "06980002e9d8d7a0d62ac04d7e37cdeccac8f8079522baaa1297c98c44bd424b",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          61,
+          54
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": null,
+          "activation_id": "9892a9465e0402433d7e15f696a127bfa2989153102019cf9c90a90164e602a1",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              61,
+              54
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 6,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_player_harness_lora_adapter_levels/level_04/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_player_harness_lora_adapter_levels",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "2216533a396c81f1bdce8eb88e863e3138e398642a93bde120a7adf6903a07c6",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          62,
+          55
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 13,
+          "activation_id": "22f20852da53ae93492505b7352daf307639db76e47aa61f8798bb84f3e9e80a",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              62,
+              55
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 14,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 14,
+          "activation_id": "d62f390ac2e17221b5bfdbf726b90f7128ab35a3e17790bf5f0d961c78d85011",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              62,
+              55
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 15,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 15,
+          "activation_id": "ec414becdb2872849a587cf18f8cd1323545a4726418ba973ca81e9173e13727",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              62,
+              55
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 16,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z",
+          "target_distance": null
+        },
+        {
+          "action_index": 16,
+          "activation_id": "01a7a45cb27344c2b7ce9fb082532548918d4a35fe2785cf010bf82629d517ba",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              62,
+              55
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 17,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 4
+      },
+      "spans_run_dirs": 1,
+      "support": 4,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "2a5e2642f45706493d604e1cca72a645094b8471a8edb4d695395e910e36de48",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 23,
+          "activation_id": "f8b519de3e221596ae8557f7f69a5f0374f60b6007fb9148223547c095c5a126",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-5",
+          "candidate_keys": null,
+          "distance_delta": -12.5,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-5",
+            "click_display_coord": [
+              63,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 24,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_aperture_activation_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_aperture_activation_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "99501159afb34052f10351cb937048c6bea0f3c1715c6be0f1e5d646ddc1fe55",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 7,
+          "activation_id": "3ebb37943ed66908be22575fab3038b8c0f9d7b8064eb86283299bdd74ec04f7",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": -2.5,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              62,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 8,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z",
+          "target_distance": 1.0
+        },
+        {
+          "action_index": 27,
+          "activation_id": "8e4df4519327eaa1b17055bd582a7ea4047f2f557fe1f5e2f18658f8e3b2c88f",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": -2.5,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              62,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 28,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_stationary_fallback_guard_20260612T0500Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_stationary_fallback_guard_20260612T0500Z",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 2
+      },
+      "spans_run_dirs": 2,
+      "support": 2,
+      "tier": "candidate",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "a28575242f523c4f4b6246c5cf4669028dd8c854ef0d5744dca865bac2a1264c",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          62,
+          58
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": null,
+          "activation_id": "40ec57357d254c518d84b058247cdb35f6aed85605e62a8c545d509839d80c8f",
+          "after_selected_identity": "plzwjbfyfli-6",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              62,
+              58
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 6,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_player_harness_lora_adapter_levels/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_player_harness_lora_adapter_levels",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "30721821aea2705ebe5c59f64d655ed18fdb82142288ddee586f6d5dd4d493a4",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 10,
+          "activation_id": "84fc2f7bf72f2c4551813365e65e12f611b968e0e1ad756a0b1767090b2ceb59",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": -3.5,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              63,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 11,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_aperture_activation_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_aperture_activation_20260612T_local",
+          "target_distance": 1.0
+        },
+        {
+          "action_index": 9,
+          "activation_id": "b6ccdb6054f09ca0421baf85cfc7f91b72fd079a4e6086a7e17141aeb69892c6",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": -3.5,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              63,
+              52
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 10,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 2
+      },
+      "spans_run_dirs": 2,
+      "support": 2,
+      "tier": "candidate",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "6f39e065f1070e752371f026333c5c706fc59dec67cbcd458aad858fff8fb433",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          63,
+          53
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": 12,
+          "activation_id": "1fcf8b071d3f18a6d1ea98c9dd0a0e13f038395ddd5af620c52aab3944c43e24",
+          "after_selected_identity": "plzwjbfyfli-5",
+          "before_selected_identity": "plzwjbfyfli-6",
+          "candidate_keys": null,
+          "distance_delta": -2.5,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "plzwjbfyfli-6",
+            "click_display_coord": [
+              63,
+              53
+            ],
+            "focus_edge": 0,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 13,
+          "outcome_class": "distance_negative",
+          "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_activation_tolerance_20260612T0725Z/level_02/packets.jsonl",
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_activation_tolerance_20260612T0725Z",
+          "target_distance": 1.0
+        }
+      ],
+      "outcome_histogram": {
+        "distance_negative": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    },
+    {
+      "contradictions": 0,
+      "entry_id": "1c04188a041be4b182580f7d37ecfe5716f69c2a5e31e611f87741811118126f",
+      "key": {
+        "active_portband_source_key": null,
+        "before_selected_identity": "tuvkdkhdokr-riwynidseun",
+        "click_display_coord": [
+          9,
+          5
+        ],
+        "focus_edge": null,
+        "primitive": "activate_flow"
+      },
+      "observed_examples": [
+        {
+          "action_index": null,
+          "activation_id": "0a82f28cff9aec8ff8728120d755a3df4117a8e94675b9467891f665c886022f",
+          "after_selected_identity": "tuvkdkhdokr-riwynidseun",
+          "before_selected_identity": "tuvkdkhdokr-riwynidseun",
+          "candidate_keys": null,
+          "distance_delta": 0.0,
+          "key": {
+            "active_portband_source_key": null,
+            "before_selected_identity": "tuvkdkhdokr-riwynidseun",
+            "click_display_coord": [
+              9,
+              5
+            ],
+            "focus_edge": null,
+            "primitive": "activate_flow"
+          },
+          "levels_completed_delta": 0,
+          "line_number": 6,
+          "outcome_class": "neutral",
+          "packets_jsonl": "codexlab/runs/sp80_player_harness_lora_adapter_levels/level_05/packets.jsonl",
+          "run_dir": "codexlab/runs/sp80_player_harness_lora_adapter_levels",
+          "target_distance": null
+        }
+      ],
+      "outcome_histogram": {
+        "neutral": 1
+      },
+      "spans_run_dirs": 1,
+      "support": 1,
+      "tier": "observed",
+      "truth_boundary": {
+        "action_choice_admitted": false,
+        "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+        "control_truth_admitted": false,
+        "coordinate_copy_used": false,
+        "goal_condition_admitted": false,
+        "goal_truth_admitted": false,
+        "route_or_replay_used": false,
+        "solve_condition_admitted": false,
+        "solve_truth_admitted": false
+      },
+      "wilson_lower_bound": 0.0
+    }
+  ],
+  "entry_count": 39,
+  "ledger_json": "codexlab/datasets/sp80_source_edge_outcome_v0/ledger.json",
+  "promotion_gates": {
+    "candidate": {
+      "contradictions": 0,
+      "non_consumable": true,
+      "spans_run_dirs_min": 2,
+      "support_min": 2
+    },
+    "promoted": {
+      "contradictions": 0,
+      "spans_run_dirs_min": 2,
+      "support_min": 8,
+      "wilson_lower_bound_min": 0.75
+    }
+  },
+  "schema": "codexlab.source_edge_outcome_ledger.v1",
+  "truth_boundary": {
+    "action_choice_admitted": false,
+    "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+    "control_truth_admitted": false,
+    "coordinate_copy_used": false,
+    "goal_condition_admitted": false,
+    "goal_truth_admitted": false,
+    "route_or_replay_used": false,
+    "solve_condition_admitted": false,
+    "solve_truth_admitted": false
+  }
+}

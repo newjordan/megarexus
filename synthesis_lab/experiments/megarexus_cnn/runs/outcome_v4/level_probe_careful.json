@@ -1,0 +1,2637 @@
+{
+  "schema": "synthesis_lab.level_probe.v1",
+  "evidence": "local offline environment fields only; SCOUT_EXPERIMENT",
+  "paired_seeds": [
+    20280001,
+    20280020
+  ],
+  "finder": "learned",
+  "model": {
+    "episodes": 20,
+    "episodes_with_level_completed": 20,
+    "level_rate": 1.0,
+    "total_levels_completed": 20,
+    "total_pours": 140,
+    "total_strict_catches": 120,
+    "total_misses": 20,
+    "total_declines": 0,
+    "total_side_block_contacts": 120
+  },
+  "random": {
+    "episodes": 20,
+    "episodes_with_level_completed": 5,
+    "level_rate": 0.25,
+    "total_levels_completed": 5,
+    "total_pours": 100,
+    "total_strict_catches": 38,
+    "total_misses": 62,
+    "total_declines": 0,
+    "total_side_block_contacts": 81
+  },
+  "detail": {
+    "model": [
+      {
+        "episode_seed": 20280001,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280002,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280003,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280004,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280005,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280006,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280007,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280008,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280009,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280010,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280011,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280012,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280013,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280014,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280015,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280016,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280017,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280018,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280019,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280020,
+        "pours": 7,
+        "strict_catches": 6,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 7
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 4
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": 0
+          }
+        ]
+      }
+    ],
+    "random": [
+      {
+        "episode_seed": 20280001,
+        "pours": 4,
+        "strict_catches": 2,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280002,
+        "pours": 3,
+        "strict_catches": 0,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280003,
+        "pours": 5,
+        "strict_catches": 2,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280004,
+        "pours": 5,
+        "strict_catches": 3,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280005,
+        "pours": 5,
+        "strict_catches": 2,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280006,
+        "pours": 4,
+        "strict_catches": 1,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280007,
+        "pours": 5,
+        "strict_catches": 0,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280008,
+        "pours": 5,
+        "strict_catches": 3,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280009,
+        "pours": 4,
+        "strict_catches": 2,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280010,
+        "pours": 8,
+        "strict_catches": 3,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280011,
+        "pours": 5,
+        "strict_catches": 1,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280012,
+        "pours": 3,
+        "strict_catches": 2,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280013,
+        "pours": 3,
+        "strict_catches": 0,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280014,
+        "pours": 4,
+        "strict_catches": 1,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280015,
+        "pours": 5,
+        "strict_catches": 3,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280016,
+        "pours": 8,
+        "strict_catches": 3,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280017,
+        "pours": 6,
+        "strict_catches": 1,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280018,
+        "pours": 6,
+        "strict_catches": 1,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280019,
+        "pours": 7,
+        "strict_catches": 5,
+        "levels_completed": 1,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 1,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      },
+      {
+        "episode_seed": 20280020,
+        "pours": 5,
+        "strict_catches": 3,
+        "levels_completed": 0,
+        "final_state": "GameState.GAME_OVER",
+        "gauge_final": 64,
+        "declines": [],
+        "pour_detail": [
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": true,
+            "side_contact_cells": 16,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 36,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": true,
+            "side_block_contact": true,
+            "side_contact_cells": 24,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          },
+          {
+            "level_at_pour": 0,
+            "caught": false,
+            "side_block_contact": false,
+            "side_contact_cells": 0,
+            "gauge_before": 64,
+            "gauge_after": 64,
+            "predicted_plan_drain": null
+          }
+        ]
+      }
+    ]
+  }
+}

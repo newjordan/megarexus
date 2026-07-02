@@ -1,0 +1,42 @@
+{
+  "schema": "codexlab.puffer_paintflow_condition.v1",
+  "condition_id": "puffer_paintflow_groundhog_v0",
+  "run_label": "scout",
+  "created_at_utc": "2026-06-11T00:00:00Z",
+  "natural_language_goal": "Use repeated PufferLib-backed SP80 episodes to learn paintflow mechanics: catch paint in buckets, then redirect paint to a requested bucket target.",
+  "truth_boundary": "mechanics scout only; not control truth, solve evidence, or proof of mastery",
+  "source_script": "codexlab/sp80_puffer_paintflow_run.py",
+  "game_source": "environment/environment_files/sp80/589a99af/sp80.py",
+  "pufferlib_source": "/tmp/pufferlib-4.0-newjordan",
+  "pufferlib_patch": "codexlab/docs/pufferlib_4_0_arm64_build.patch",
+  "seed": 20260611,
+  "levels": [0, 1, 2, 3, 4, 5],
+  "episodes": 24,
+  "max_actions_per_episode": 30,
+  "policy": "random_valid",
+  "target_bucket_schedule": "episode_index_mod_bucket_count",
+  "backend": "pufferlib.pufferl import-gated direct SP80 mechanics scout",
+  "gpu_count": 0,
+  "world_size": 1,
+  "loader_mode": "live_sp80_game",
+  "loader_settings": {
+    "raw_frames": true,
+    "save_review_frames": 12,
+    "action_space": "select_candidate_0..11 plus move_up,move_down,move_left,move_right,activate_flow",
+    "pufferlib_4_0_api_note": "The checked-out 4.0 branch does not expose the older Python PufferEnv/vector/emulation APIs; this scout gates on pufferlib.pufferl native import but executes SP80 through the existing Python game/controller API."
+  },
+  "quantization_policy": "none",
+  "compile_kernel_policy": "none",
+  "metric_names": [
+    "target_catch_rate",
+    "any_catch_rate",
+    "all_bucket_catch_rate",
+    "overflow_rate",
+    "level_completion_rate",
+    "mean_episode_reward"
+  ],
+  "historical_comparator": {
+    "artifact_path": null,
+    "status": "none"
+  }
+}

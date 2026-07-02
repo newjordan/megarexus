@@ -1,0 +1,139 @@
+{
+  "allowed_primitives": [
+    "select_object",
+    "move_up",
+    "move_down",
+    "move_left",
+    "move_right",
+    "activate_flow",
+    "no_selected_motion"
+  ],
+  "controller_boundary": "primitive-only target; no routes, no coordinates",
+  "created_at_utc": "2026-05-27T00:37:17.310487Z",
+  "dataset": "sp80_control_sft_v0",
+  "drift_ping_ids": [
+    "raw_display_transform_detected",
+    "display_controls_stable",
+    "calibration_slice_rotation_lever",
+    "flow_timing_lever",
+    "blocked_motion_setup_lever",
+    "select_auto_focus_lever"
+  ],
+  "exporter_source": "codexlab/sp80_export_control_dataset.py",
+  "exporter_source_sha256": "7d606bced466c8419ba7033e8ef244bfe617da1b832139616031452139ccd28f",
+  "heldout_calibration_slices": [
+    5
+  ],
+  "heldout_count": 8,
+  "heldout_jsonl": "codexlab/datasets/sp80_control_sft_v0/heldout.jsonl",
+  "heldout_jsonl_sha256": "11e83f9957863f11b7945f369005c495a46702269d16313b61e27dcc6ca86ce4",
+  "heldout_levels": [
+    5
+  ],
+  "passed_calibration_slices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "passed_levels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "recommended_training_space": "selected_display_coord_delta",
+  "reporting_note": "level_index is retained only as SP80 environment provenance; slice rows are not gameplay-completion claims.",
+  "reporting_term": "calibration_slice",
+  "row_count": 48,
+  "schema": "codexlab.sp80_control_sft_manifest.v1",
+  "source_control_drift_report": "codexlab/runs/sp80_player_harness_tiny_mlp_levels/control_drift_report.json",
+  "source_control_drift_report_sha256": "c3bcb3799d8e643bfe307a614a975acb5b3a252046f4598487aaf62d050e5226",
+  "source_summary": "codexlab/runs/sp80_player_harness_tiny_mlp_levels/summary.json",
+  "source_summary_sha256": "92ebcb15c3ed3db06fd1625eeb58d9e54ffbb82bbae615a3a779ba1a00755207",
+  "source_sweep_dir": "codexlab/runs/sp80_player_harness_tiny_mlp_levels",
+  "status": "exported",
+  "train_calibration_slices": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "train_count": 40,
+  "train_jsonl": "codexlab/datasets/sp80_control_sft_v0/train.jsonl",
+  "train_jsonl_sha256": "742c2b2a3b514130a6ebe61b0cdb27c2c13963b340f9168756c27ff9615e576b",
+  "train_levels": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "verifier_records": {
+    "0": {
+      "cmd": [
+        "/home/frosty40/miniconda3/bin/python3",
+        "codexlab/sp80_verify_run.py",
+        "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_00"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "SP80 verifier: passed\n"
+    },
+    "1": {
+      "cmd": [
+        "/home/frosty40/miniconda3/bin/python3",
+        "codexlab/sp80_verify_run.py",
+        "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_01"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "SP80 verifier: passed\n"
+    },
+    "2": {
+      "cmd": [
+        "/home/frosty40/miniconda3/bin/python3",
+        "codexlab/sp80_verify_run.py",
+        "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_02"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "SP80 verifier: passed\n"
+    },
+    "3": {
+      "cmd": [
+        "/home/frosty40/miniconda3/bin/python3",
+        "codexlab/sp80_verify_run.py",
+        "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_03"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "SP80 verifier: passed\n"
+    },
+    "4": {
+      "cmd": [
+        "/home/frosty40/miniconda3/bin/python3",
+        "codexlab/sp80_verify_run.py",
+        "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_04"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "SP80 verifier: passed\n"
+    },
+    "5": {
+      "cmd": [
+        "/home/frosty40/miniconda3/bin/python3",
+        "codexlab/sp80_verify_run.py",
+        "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_05"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "SP80 verifier: passed\n"
+    }
+  }
+}

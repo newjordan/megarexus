@@ -1,0 +1,65 @@
+{
+  "schema": "synthesis_lab.megarexus_ghost_overlay.v0",
+  "mechanic_hypothesis": "sp80_paint_flow_catch_and_redirect",
+  "eval_source": "fresh rollout shard sp80_flow_valset.pt",
+  "evidence_status": "hypothesis",
+  "control_truth_admitted": false,
+  "goal_truth_admitted": false,
+  "solve_truth_admitted": false,
+  "action_choice_admitted": false,
+  "windows": 40,
+  "step1_confirmed": 39,
+  "step1_confirm_rate": 0.975,
+  "iou_confirm_threshold": 0.5,
+  "per_horizon": [
+    {
+      "horizon": 1,
+      "mean_changed_cell_acc": 1.0,
+      "mean_cell_acc": 0.994927978515625,
+      "mean_persistence_cell_acc": 0.93673095703125,
+      "mean_change_iou": 0.9744644197236136
+    },
+    {
+      "horizon": 2,
+      "mean_changed_cell_acc": 0.980943627683182,
+      "mean_cell_acc": 0.977728271484375,
+      "mean_persistence_cell_acc": 0.934283447265625,
+      "mean_change_iou": 0.7877614581259591
+    },
+    {
+      "horizon": 3,
+      "mean_changed_cell_acc": 0.7387100054261356,
+      "mean_cell_acc": 0.9479248046875,
+      "mean_persistence_cell_acc": 0.905523681640625,
+      "mean_change_iou": 0.7032802907454715
+    },
+    {
+      "horizon": 4,
+      "mean_changed_cell_acc": 0.830724029425169,
+      "mean_cell_acc": 0.96973876953125,
+      "mean_persistence_cell_acc": 0.909130859375,
+      "mean_change_iou": 0.8372509997849333
+    },
+    {
+      "horizon": 5,
+      "mean_changed_cell_acc": 0.7902054632808642,
+      "mean_cell_acc": 0.967333984375,
+      "mean_persistence_cell_acc": 0.93135986328125,
+      "mean_change_iou": 0.7765456152278063
+    }
+  ],
+  "lockkey_goal_seeker": [
+    {
+      "game": "sp80",
+      "frames_probed": 40,
+      "frames_with_lockkey_hypothesis": 0,
+      "examples": []
+    },
+    {
+      "game": "s5i5",
+      "frames_probed": 0,
+      "frames_with_lockkey_hypothesis": 0,
+      "examples": []
+    }
+  ]
+}

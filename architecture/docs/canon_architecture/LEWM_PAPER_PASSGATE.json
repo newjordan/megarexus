@@ -1,0 +1,106 @@
+{
+  "checks": {
+    "arc_deviation_labeled": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "behavior_policy_recorded": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "cem_mpc_setup_recorded": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "decoder_not_core_training": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "eval_budget_goal_sampling_recorded": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "frame_contract_recorded": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "frame_skip_or_deviation_recorded": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "goal_observation_and_terminal_latent_cost": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "lewm_loss_matches": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "no_reward_or_task_spec_in_worldmodel_training": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "offline_obs_action_trajectories": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "primary_paper_read": {
+      "note": "Used LeWM paper anchor from passgate skill",
+      "status": "pass"
+    },
+    "provenance_artifacts_recorded": {
+      "note": "Canon doc, doc map, and linked history saved",
+      "status": "pass"
+    },
+    "push_t_condition_recorded_for_comparison": {
+      "note": "",
+      "status": "unchecked"
+    },
+    "surface_classified": {
+      "note": "Architecture doc for ARC adaptation, not PushT parity",
+      "status": "pass"
+    }
+  },
+  "created_at_utc": "2026-05-24T01:59:47.816824+00:00",
+  "deviations": [
+    "ARCPrize3 discrete-action architecture, not PushT parity",
+    "Document set is architecture canon, not a training/eval result"
+  ],
+  "evidence": [
+    {
+      "exists": true,
+      "path": "/home/frosty40/Loom/docs/canon_architecture/README.md",
+      "sha256": "443409c64217d35a9fcaaea28e865a260ea0b7479969bc026066cd12f5c9b33a"
+    },
+    {
+      "exists": true,
+      "path": "/home/frosty40/Loom/docs/canon_architecture/DOC_MAP.md",
+      "sha256": "79c582cd39e5b507f0728a01c24723d66e84ae5fda9e650d4dc8d9741696d9ab"
+    },
+    {
+      "exists": true,
+      "path": "/home/frosty40/Loom/docs/REXUS_CORE_ACTION_LOOP.md",
+      "sha256": "36b1e054b9c95281fa74e9569c941f3f38fc0fcaf042f0517c8675388e845b06"
+    },
+    {
+      "exists": true,
+      "path": "/home/frosty40/Loom/lab/comm/latest/LEWM_FORWARD_SURFACE_LOCK_2026-05-24.md",
+      "sha256": "806518adabfc559646aba831e6ee848b668a1ba01ce14b6c09e13956c422ca66"
+    }
+  ],
+  "note": "Current canon requires Rexus/LeWM candidate O_pred before Q6 scorer work.",
+  "paper": {
+    "arxiv": "2603.19312v2",
+    "title": "LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels",
+    "url": "https://arxiv.org/abs/2603.19312"
+  },
+  "required_checks": [
+    "primary_paper_read",
+    "provenance_artifacts_recorded",
+    "surface_classified"
+  ],
+  "schema": "loom.lewm_paper_passgate.v001",
+  "status": "adapted-paper-grounded",
+  "surface": "other",
+  "task": "Loom canon architecture entrypoint and documentation map"
+}

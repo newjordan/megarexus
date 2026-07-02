@@ -1,0 +1,108 @@
+{
+  "c0008_contradiction_audit": {
+    "key_a": {
+      "active_portband_source_key": "source_component:c0008",
+      "before_selected_identity": "plzwjbfyfli-5",
+      "click_display_coord": [
+        62,
+        52
+      ],
+      "focus_edge": 0,
+      "primitive": "activate_flow"
+    },
+    "key_b": {
+      "active_portband_source_key": "source_component:c0008",
+      "before_selected_identity": "plzwjbfyfli-6",
+      "click_display_coord": [
+        62,
+        52
+      ],
+      "focus_edge": 0,
+      "primitive": "activate_flow"
+    },
+    "negative_example": {
+      "action_index": 31,
+      "activation_id": "ec1e713d06d7b8d84a9929ecb0541f6e8b1abf4b7ef5f67407cb5461e3ff7a73",
+      "after_selected_identity": "plzwjbfyfli-5",
+      "before_selected_identity": "plzwjbfyfli-6",
+      "candidate_keys": null,
+      "distance_delta": -2.5,
+      "key": {
+        "active_portband_source_key": "source_component:c0008",
+        "before_selected_identity": "plzwjbfyfli-6",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "levels_completed_delta": 0,
+      "line_number": 32,
+      "outcome_class": "distance_negative",
+      "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local/level_02/packets.jsonl",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local",
+      "target_distance": 1.0
+    },
+    "positive_example": {
+      "action_index": 38,
+      "activation_id": "e2449ac863cbcc227b1cfc3c663503ceb006843924af2035b5911265e27635bb",
+      "after_selected_identity": "plzwjbfyfli-6",
+      "before_selected_identity": "plzwjbfyfli-5",
+      "candidate_keys": null,
+      "distance_delta": 0.5,
+      "key": {
+        "active_portband_source_key": "source_component:c0008",
+        "before_selected_identity": "plzwjbfyfli-5",
+        "click_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow"
+      },
+      "levels_completed_delta": 0,
+      "line_number": 39,
+      "outcome_class": "distance_positive",
+      "packets_jsonl": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local/level_02/packets.jsonl",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local",
+      "target_distance": 1.0
+    },
+    "reason": null,
+    "separated": true,
+    "separating_fields": [
+      "before_selected_identity"
+    ]
+  },
+  "created_at_utc": "2026-06-12T16:00:49.954233Z",
+  "entry_count": 39,
+  "ledger_json": "codexlab/datasets/sp80_source_edge_outcome_v0/ledger.json",
+  "ledger_sha256": "d258ea3415d4924913c51c0cede545022b4bc4a9f22f8e0a03309ab2ea1a087d",
+  "manifest_json": "codexlab/datasets/sp80_source_edge_outcome_v0/manifest.json",
+  "schema": "codexlab.source_edge_outcome_manifest.v1",
+  "source_hashes": {
+    "codexlab/contra_head/crucible/canon.py": "2d9f7b5f42e955f5c4213ba67b8e3d417fabb2a3a3e1a040dd97af5e9143eadc",
+    "codexlab/contra_head/crucible/corpus.py": "4ea470dfc56fe01e1940bd6cb8e7f0d6e1c036fbbd6dc631e64d56c37c9c09af",
+    "codexlab/contra_head/crucible/model.py": "8d9e0f7ba04cca5308512c0a4fbef660fa45ce76aa61332e8248b530e7be5c33",
+    "codexlab/contra_head/crucible/source_edge_outcome.py": "e6d58940437257e6c6fdfc9a799361b64d14ba596dc80b539c0db66bd6c308d8",
+    "codexlab/contra_verify_crucible.py": "a27fada34bd76dbe70d45692eb3ceeaaea5b952c66080540c3e0f134295d9554",
+    "codexlab/crucible_build_source_edge_outcome_model.py": "99d66dde51b2248050d558821cb8963a3809229fc7780b0a5086f09e8fdd0478",
+    "codexlab/crucible_mine_transitions.py": "6c0a10c492b79a76f5bea0ce7d84f6153ffc4ac97dcbcbdeaff5931016190d10",
+    "codexlab/sp80_player_harness.py": "b161d6894ed974a5c381b0d09cdf5d285c73e84c75bd6f41b0a07f54c653e2ad"
+  },
+  "tier_histogram": {
+    "candidate": 6,
+    "observed": 33
+  },
+  "truth_boundary": {
+    "action_choice_admitted": false,
+    "boundary": "source_edge_outcome_model_is_activation_hypothesis_evidence_not_control_truth",
+    "control_truth_admitted": false,
+    "coordinate_copy_used": false,
+    "goal_condition_admitted": false,
+    "goal_truth_admitted": false,
+    "route_or_replay_used": false,
+    "solve_condition_admitted": false,
+    "solve_truth_admitted": false
+  }
+}

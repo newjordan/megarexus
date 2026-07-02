@@ -1,0 +1,52 @@
+{
+  "schema": "codexlab.puffer_paintflow_condition.v1",
+  "condition_id": "puffer_paintflow_groundhog_l1_pose_bandit_v0",
+  "run_label": "new_experiment",
+  "created_at_utc": "2026-06-11T00:00:00Z",
+  "natural_language_goal": "Run repeated PufferLib-gated SP80 level-1 episodes to learn a primitive-action algorithm for catching paintflow and redirecting it to the requested target bucket.",
+  "truth_boundary": "controlled level-1 mechanics run; PufferLib import-gated but not a native PufferLib trainer; not full CONTRA Angel solve evidence",
+  "source_script": "codexlab/sp80_puffer_paintflow_run.py",
+  "game_source": "environment/environment_files/sp80/589a99af/sp80.py",
+  "pufferlib_source": "/tmp/pufferlib-4.0-newjordan",
+  "pufferlib_patch": "codexlab/docs/pufferlib_4_0_arm64_build.patch",
+  "seed": 20260611,
+  "levels": [0],
+  "episodes": 96,
+  "max_actions_per_episode": 20,
+  "policy": "level1_pose_bandit_v0",
+  "target_bucket_schedule": "episode_index_mod_bucket_count",
+  "backend": "pufferlib.pufferl import-gated direct SP80 primitive-action mechanics loop",
+  "gpu_count": 0,
+  "world_size": 1,
+  "loader_mode": "live_sp80_game",
+  "loader_settings": {
+    "raw_frames": true,
+    "save_review_frames": 160,
+    "action_space": "select_candidate_0..11 plus move_up,move_down,move_left,move_right,activate_flow",
+    "policy_representation": "tabular pose-bandit over legal level-1 bar poses; each episode selects one pose, executes bounded primitive moves, activates flow, and updates pose value from pre-reset catch/overflow events",
+    "pufferlib_4_0_api_note": "The checked-out 4.0 branch does not expose the older Python PufferEnv/vector/emulation APIs; this condition gates on pufferlib.pufferl native import but executes SP80 through the existing Python game/controller API."
+  },
+  "quantization_policy": "none",
+  "compile_kernel_policy": "none",
+  "metric_names": [
+    "target_catch_rate",
+    "any_catch_rate",
+    "all_bucket_catch_rate",
+    "target_clean_catch_rate",
+    "all_bucket_clean_catch_rate",
+    "overflow_rate",
+    "level_completion_rate",
+    "mean_episode_reward"
+  ],
+  "historical_comparator": {
+    "artifact_path": "codexlab/runs/puffer_paintflow_groundhog_v0_20260611T_scout/result.json",
+    "status": "negative_random_valid_scout",
+    "summary": {
+      "target_catch_rate": 0.0,
+      "any_catch_rate": 0.0,
+      "all_bucket_catch_rate": 0.0,
+      "overflow_rate": 0.0,
+      "level_completion_rate": 0.0
+    }
+  }
+}

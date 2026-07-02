@@ -1,0 +1,696 @@
+{
+  "created_at_utc": "2026-06-12T15:49:08.782047Z",
+  "default_policy": "exclude",
+  "entries": [
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_harness_smoke",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_activation_readiness_20260612T0600Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_activation_tolerance_20260612T0725Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_active_portband_slot_20260612T051102Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_active_source_memory_activation_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_active_source_no_click_slot_20260612T052240Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_adjacent_activation_80_20260612T060922Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_aperture_activation_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_budget_outcome_v3_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_budget_selection_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_budget_selection_v2_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_c0005_6353_outcome_guard_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_c0008_activation62_ledger_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_c0008_outcome_ledger_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_component_selection_guard_20260612T053829Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_blocked_rerank_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_demote_penalty_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_local_delta_away_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_local_delta_same_axis_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_no_productive_guard_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_direct_feedback_guard_20260612T0515Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_display_bridge_20260612T0300Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_exact_activation_only_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_fallback_exhaustion_audit_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_feedback_guard_v2_20260612T0410Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_final_source_scoped_guard_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_focus_preserve_20260612T062345Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_focus_preserve_v2_20260612T062652Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_global_activation_ledger_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_goal_direction_fallback_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_known_source_adjacent_activation_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_low_evidence_source_gate_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_outcome_history_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_outcome_history_v2_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_portband_locked_selection_20260612T050403Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_position_feedback_20260612T0735Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_post_saturation_activation_20260612T055543Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_productive_fallback_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_ranked_fallback_20260612T0320Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_saturation_release_20260612T0750Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selected_state_activation_ledger_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_lock_20260612T0715Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_geometry_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_guard_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_slot0_active_source_20260612T053238Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_slot_guard_20260612T0445Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_diversity_probe_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_scoped_activation_ledger_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_scoped_adjacent_activation_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_scoped_feedback_20260612T052727Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_slot_diversity_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_stable_portband_task_key_20260612T051528Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_stationary_fallback_guard_20260612T0500Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_target_goal_80_20260612T060353Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_target_goal_activation_20260612T060105Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_target_goal_clean_20260612T061553Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_target_scope_filter_20260612T063825Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_target_specificity_20260612T064328Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_unscoped_activation_guard_20260612T_local",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_runner_report_smoke",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_runner_report_smoke_v2",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_test_drive_level00_20260612T0030Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_test_drive_level02_20260612T0100Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_test_drive_level02_guarded_20260612T0236Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_paint_skill_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_test_drive_level02_guarded_v2_20260612T0240Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/_system_run/pufferlib_sp80_probe/harness_action_set",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T191146Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_20260608T190328Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/contra_sp80_episode_levels_01_20260608T185017Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/contra_sp80_episode_levels_01_20260608T190255Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/puffer_contra_l1_learned_paintflow_v0_20260611T_full_report",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/sp80_connected_harness_tiny_mlp_levels_00_01_20260602T010938Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_00_20260602T021200Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/sp80_contra_episode_harness_level_01_20260602T021200Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/sp80_ghost_capture_level_00_20260602T041500Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/sp80_ghost_context_level_01_20260602T042000Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/sp80_player_harness_lora_adapter_levels",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/sp80_value_scored_episode_level_00_20260602T033000Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    },
+    {
+      "admitted": true,
+      "category": "controlled_episode_or_smoke_run",
+      "notes": "Observation evidence only; admission does not imply solve, control truth, or promotion.",
+      "reason": "current controlled SP80 packet run admitted for offline Crucible mining",
+      "run_dir": "codexlab/runs/sp80_value_scored_episode_level_01_20260602T033000Z",
+      "verifier_status": "historical_or_current_packet_artifact_present"
+    }
+  ],
+  "explicit_exclusions": [
+    {
+      "reason": "quarantined bad reports are never admitted",
+      "run_dir_or_glob": "codexlab/runs/_quarantine_bad_reports_20260604/**"
+    },
+    {
+      "reason": "stale alias dirs are excluded",
+      "run_dir_or_glob": "codexlab/runs/**/_alias/**"
+    },
+    {
+      "reason": "stale alias dirs are excluded",
+      "run_dir_or_glob": "codexlab/runs/**/stale_alias/**"
+    }
+  ],
+  "schema": "codexlab.crucible_admitted_runs.v1",
+  "truth_boundary": {
+    "action_choice_admitted": false,
+    "boundary": "crucible_admitted_runs_allowlist_is_input_provenance_not_solve_truth",
+    "control_truth_admitted": false,
+    "coordinate_copy_used": false,
+    "goal_condition_admitted": false,
+    "goal_truth_admitted": false,
+    "route_or_replay_used": false,
+    "solve_condition_admitted": false,
+    "solve_truth_admitted": false
+  }
+}

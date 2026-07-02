@@ -1,0 +1,169 @@
+diff --git a/build.sh b/build.sh
+index 5a7c94d..4e66b85 100755
+--- a/build.sh
++++ b/build.sh
+@@ -52,9 +52,27 @@ fi
+ 
+ # Linux/mac
+ PLATFORM="$(uname -s)"
++MACHINE="$(uname -m)"
++CC_BIN="${CC:-}"
++if [ -z "$CC_BIN" ]; then
++    if command -v clang >/dev/null 2>&1; then
++        CC_BIN=clang
++    else
++        CC_BIN=gcc
++    fi
++fi
++CC_FLAVOR="$(basename "${CC_BIN%% *}")"
+ if [ "$PLATFORM" = "Linux" ]; then
+-    RAYLIB_NAME='raylib-5.5_linux_amd64'
+-    OMP_LIB=-lomp5
++    if [ "$MACHINE" = "x86_64" ] || [ "$MACHINE" = "amd64" ]; then
++        RAYLIB_NAME='raylib-5.5_linux_amd64'
++    else
++        RAYLIB_NAME=''
++    fi
++    if [[ "$CC_FLAVOR" == gcc* ]] || [[ "$CC_FLAVOR" == g++* ]]; then
++        OMP_LIB=-lgomp
++    else
++        OMP_LIB=-lomp5
++    fi
+     SANITIZE_FLAGS=(-fsanitize=address,undefined,bounds,pointer-overflow,leak -fno-omit-frame-pointer)
+     STANDALONE_LDFLAGS=(-lGL)
+     SHARED_LDFLAGS=(-Bsymbolic-functions)
+@@ -75,6 +93,16 @@ CLANG_WARN=(
+     -Wno-incompatible-pointer-types-discards-qualifiers
+     -Wno-error=array-parameter
+ )
++GNU_WARN=(
++    -Wall
++    -Werror=incompatible-pointer-types
++    -Werror=return-type
++    -Wno-error=array-parameter
++)
++WARN_FLAGS=("${CLANG_WARN[@]}")
++if [[ "$CC_FLAVOR" == gcc* ]] || [[ "$CC_FLAVOR" == g++* ]]; then
++    WARN_FLAGS=("${GNU_WARN[@]}")
++fi
+ 
+ download() {
+     local name=$1 url=$2
+@@ -86,10 +114,24 @@ download() {
+     esac
+ }
+ 
++build_raylib_from_source() {
++    local name=$1
++    [ -f "$name/lib/libraylib.a" ] && return
++    local source_dir="raylib-5.5"
++    download "$source_dir" "https://github.com/raysan5/raylib/archive/refs/tags/5.5.tar.gz"
++    make -C "$source_dir/src" PLATFORM=PLATFORM_DESKTOP RAYLIB_LIBTYPE=STATIC -j"$(nproc)"
++    mkdir -p "$name/include" "$name/lib"
++    cp "$source_dir/src/libraylib.a" "$name/lib/libraylib.a"
++    cp "$source_dir/src/raylib.h" "$source_dir/src/raymath.h" "$source_dir/src/rlgl.h" "$name/include/"
++}
++
+ RAYLIB_URL="https://github.com/raysan5/raylib/releases/download/5.5"
+ if [ "$MODE" = "web" ]; then
+     RAYLIB_NAME='raylib-5.5_webassembly'
+     download "$RAYLIB_NAME" "$RAYLIB_URL/$RAYLIB_NAME.zip"
++elif [ -z "$RAYLIB_NAME" ]; then
++    RAYLIB_NAME="raylib-5.5_${PLATFORM}_${MACHINE}"
++    build_raylib_from_source "$RAYLIB_NAME"
+ else
+     download "$RAYLIB_NAME" "$RAYLIB_URL/$RAYLIB_NAME.tar.gz"
+ fi
+@@ -143,13 +185,16 @@ OUTPUT_NAME=${OUTPUT_NAME:-$ENV}
+ # Standalone environment build
+ # -mavx2 enables AVX2 intrinsics (__m256, _mm256_*) which drive.h and
+ # src/bf16.h use directly. x86_64 only — strip if porting to ARM/Apple Silicon.
+-SIMD_FLAGS=(-mavx2 -mfma)
++SIMD_FLAGS=()
++if [ "$MACHINE" = "x86_64" ] || [ "$MACHINE" = "amd64" ]; then
++    SIMD_FLAGS=(-mavx2 -mfma)
++fi
+ if [ -n "$DEBUG" ] || [ "$MODE" = "local" ]; then
+-    CLANG_OPT=(-g -O0 "${CLANG_WARN[@]}" "${SANITIZE_FLAGS[@]}" "${SIMD_FLAGS[@]}")
++    CLANG_OPT=(-g -O0 "${WARN_FLAGS[@]}" "${SANITIZE_FLAGS[@]}" "${SIMD_FLAGS[@]}")
+     NVCC_OPT="-O0 -g"
+     LINK_OPT="-g"
+ else
+-    CLANG_OPT=(-O2 -DNDEBUG "${CLANG_WARN[@]}" "${SIMD_FLAGS[@]}")
++    CLANG_OPT=(-O2 -DNDEBUG "${WARN_FLAGS[@]}" "${SIMD_FLAGS[@]}")
+     NVCC_OPT="-O2 --threads 0"
+     LINK_OPT="-O2"
+ fi
+@@ -164,7 +209,7 @@ if [ "$MODE" = "local" ] || [ "$MODE" = "fast" ]; then
+         -DPLATFORM_DESKTOP
+     )
+     echo "Compiling $ENV..."
+-    ${CC:-clang} "${CLANG_OPT[@]}" "${FLAGS[@]}"
++    $CC_BIN "${CLANG_OPT[@]}" "${FLAGS[@]}"
+     echo "Built: ./$OUTPUT_NAME"
+     exit 0
+ elif [ "$MODE" = "web" ]; then
+@@ -192,6 +237,7 @@ fi
+ CUDA_HOME=${CUDA_HOME:-${CUDA_PATH:-$(dirname "$(dirname "$(which nvcc)")")}}
+ CUDNN_IFLAG=""
+ CUDNN_LFLAG=""
++CUDNN_LINK_LIB="-lcudnn"
+ for dir in /usr/local/cuda/include /usr/include; do
+     if [ -f "$dir/cudnn.h" ]; then
+         CUDNN_IFLAG="-I$dir"
+@@ -209,12 +255,15 @@ if [ -z "$CUDNN_IFLAG" ]; then
+ fi
+ if [ -z "$CUDNN_LFLAG" ]; then
+     CUDNN_LFLAG=$(python -c "import nvidia.cudnn, os; print('-L' + os.path.join(nvidia.cudnn.__path__[0], 'lib'))" 2>/dev/null || echo "")
++    CUDNN_WHEEL_LIB=$(python -c "import nvidia.cudnn, os; path=os.path.join(nvidia.cudnn.__path__[0], 'lib', 'libcudnn.so.9'); print(path if os.path.exists(path) else '')" 2>/dev/null || echo "")
++    if [ -n "$CUDNN_WHEEL_LIB" ]; then CUDNN_LINK_LIB="$CUDNN_WHEEL_LIB"; fi
+ fi
+ 
+ # NCCL include/lib fallback (mirrors the cuDNN fallback above).
+ # Needed when NCCL is provided by the nvidia-nccl-cu12 wheel in the active venv.
+ NCCL_IFLAG=""
+ NCCL_LFLAG=""
++NCCL_LINK_LIB="-lnccl"
+ for dir in /usr/include /usr/local/cuda/include; do
+     if [ -f "$dir/nccl.h" ]; then NCCL_IFLAG="-I$dir"; break; fi
+ done
+@@ -226,6 +275,8 @@ if [ -z "$NCCL_IFLAG" ]; then
+ fi
+ if [ -z "$NCCL_LFLAG" ]; then
+     NCCL_LFLAG=$(python -c "import nvidia.nccl, os; print('-L' + os.path.join(nvidia.nccl.__path__[0], 'lib'))" 2>/dev/null || echo "")
++    NCCL_WHEEL_LIB=$(python -c "import nvidia.nccl, os; path=os.path.join(nvidia.nccl.__path__[0], 'lib', 'libnccl.so.2'); print(path if os.path.exists(path) else '')" 2>/dev/null || echo "")
++    if [ -n "$NCCL_WHEEL_LIB" ]; then NCCL_LINK_LIB="$NCCL_WHEEL_LIB"; fi
+ fi
+ 
+ WHEEL_RPATH_FLAGS=()
+@@ -238,7 +289,11 @@ done
+ export CCACHE_DIR="${CCACHE_DIR:-$HOME/.ccache}"
+ export CCACHE_BASEDIR="$(pwd)"
+ export CCACHE_COMPILERCHECK=content
+-NVCC="ccache $CUDA_HOME/bin/nvcc"
++if command -v ccache >/dev/null 2>&1; then
++    NVCC="ccache $CUDA_HOME/bin/nvcc"
++else
++    NVCC="$CUDA_HOME/bin/nvcc"
++fi
+ CC="${CC:-$(command -v ccache >/dev/null && echo 'ccache clang' || echo 'clang')}"
+ ARCH=${NVCC_ARCH:-native}
+ 
+@@ -259,7 +314,7 @@ if [ ! -f "$BINDING_SRC" ]; then
+ fi
+ 
+ echo "Compiling static library for $ENV..."
+-${CC:-clang} -c "${CLANG_OPT[@]}" $EXTRA_CFLAGS \
++$CC_BIN -c "${CLANG_OPT[@]}" $EXTRA_CFLAGS \
+     -I. -Isrc -I$SRC_DIR -Ivendor \
+     "${INCLUDES[@]}" \
+     -I./$RAYLIB_NAME/include -I$CUDA_HOME/include \
+@@ -298,7 +353,7 @@ if [ -z "$MODE" ]; then
+         -L$CUDA_HOME/lib64 $CUDNN_LFLAG $NCCL_LFLAG
+         "${WHEEL_RPATH_FLAGS[@]}"
+         "${EXTRA_LDFLAGS[@]}"
+-        -lcudart -lnccl -lnvidia-ml -lcublas -lcusolver -lcurand -lcudnn
++        -lcudart "$NCCL_LINK_LIB" -lnvidia-ml -lcublas -lcusolver -lcurand "$CUDNN_LINK_LIB"
+         $OMP_LIB $LINK_OPT
+         "${SHARED_LDFLAGS[@]}"
+         -o "$OUTPUT"

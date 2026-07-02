@@ -1,0 +1,301 @@
+{
+  "boundary": "paint_skill_outcome_ledger_is_controlled_run_feedback_not_selection_truth_not_activation_truth_not_solve_evidence",
+  "created_at_utc": "2026-06-12T10:15:00Z",
+  "evidence_runs": [
+    {
+      "feedback_summary": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_local_delta_same_axis_20260612T_local/paint_control_skill_feedback/paint_control_skill_feedback_summary.json",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_local_delta_same_axis_20260612T_local"
+    },
+    {
+      "feedback_summary": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local/paint_control_skill_feedback/paint_control_skill_feedback_summary.json",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local"
+    },
+    {
+      "feedback_summary": "codexlab/runs/_system_run/paint_control_skill_level02_active_source_memory_activation_20260612T_local/paint_control_skill_feedback/paint_control_skill_feedback_summary.json",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_active_source_memory_activation_20260612T_local"
+    },
+    {
+      "feedback_summary": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local/paint_control_skill_feedback/paint_control_skill_feedback_summary.json",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local"
+    },
+    {
+      "feedback_summary": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local/paint_control_skill_feedback/paint_control_skill_feedback_summary.json",
+      "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local"
+    }
+  ],
+  "rules": [
+    {
+      "confidence": 1.0,
+      "contradictions": 0,
+      "effect_kind": "harmful_selection",
+      "match": {
+        "candidate_keys": [
+          "source_component:c0006",
+          "c0006_v08_00"
+        ],
+        "current_display_coord": [
+          63,
+          52
+        ],
+        "primitive": "select_object"
+      },
+      "observed_examples": [
+        {
+          "action_index": 9,
+          "distance_delta": -10.0,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_local_delta_same_axis_20260612T_local",
+          "selected_display_coord_after": [
+            53,
+            53
+          ],
+          "selected_display_coord_before": [
+            63,
+            52
+          ]
+        },
+        {
+          "action_index": 33,
+          "distance_delta": -12.0,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_local_delta_same_axis_20260612T_local",
+          "selected_display_coord_after": [
+            55,
+            56
+          ],
+          "selected_display_coord_before": [
+            63,
+            52
+          ]
+        }
+      ],
+      "rule_id": "paint_skill_outcome.source_component_c0006.coord_63_52.select_object.harmful.v0",
+      "support": 2
+    },
+    {
+      "confidence": 1.0,
+      "contradictions": 0,
+      "effect_kind": "harmful_selection",
+      "match": {
+        "candidate_keys": [
+          "source_component:c0007",
+          "c0007_v08_01"
+        ],
+        "current_display_coord": [
+          63,
+          52
+        ],
+        "primitive": "select_object"
+      },
+      "observed_examples": [
+        {
+          "action_index": 22,
+          "distance_delta": -3.5,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_local_delta_same_axis_20260612T_local",
+          "selected_display_coord_after": [
+            62,
+            55
+          ],
+          "selected_display_coord_before": [
+            63,
+            52
+          ]
+        }
+      ],
+      "rule_id": "paint_skill_outcome.source_component_c0007.coord_63_52.select_object.harmful.v0",
+      "support": 1
+    },
+    {
+      "confidence": 1.0,
+      "contradictions": 0,
+      "effect_kind": "harmful_selection",
+      "match": {
+        "candidate_keys": [
+          "source_component:c0005",
+          "c0005_v08_00"
+        ],
+        "current_display_coord": [
+          63,
+          52
+        ],
+        "primitive": "select_object"
+      },
+      "observed_examples": [
+        {
+          "action_index": 32,
+          "distance_delta": -0.5,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_crucible_local_delta_same_axis_20260612T_local",
+          "selected_display_coord_after": [
+            63,
+            52
+          ],
+          "selected_display_coord_before": [
+            63,
+            52
+          ]
+        }
+      ],
+      "rule_id": "paint_skill_outcome.source_component_c0005.coord_63_52.select_object.harmful.v0",
+      "support": 1
+    },
+    {
+      "confidence": 1.0,
+      "contradictions": 0,
+      "effect_kind": "harmful_activation",
+      "match": {
+        "current_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow",
+        "target_distance": 1
+      },
+      "observed_examples": [
+        {
+          "action_index": 9,
+          "distance_delta": -3.5,
+          "levels_completed_delta": 0,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local",
+          "selected_display_coord_after": [
+            62,
+            55
+          ],
+          "selected_display_coord_before": [
+            63,
+            52
+          ]
+        },
+        {
+          "action_index": 31,
+          "distance_delta": -12.0,
+          "levels_completed_delta": 0,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_selection_outcome_adjacent_activation_20260612T_local",
+          "selected_display_coord_after": [
+            55,
+            56
+          ],
+          "selected_display_coord_before": [
+            63,
+            52
+          ]
+        }
+      ],
+      "rule_id": "paint_skill_outcome.focus_edge_0.coord_63_52.target_distance_1.activate_flow.harmful.v0",
+      "support": 2
+    },
+    {
+      "confidence": 1.0,
+      "contradictions": 0,
+      "effect_kind": "harmful_activation",
+      "match": {
+        "active_portband_source_key": "source_component:c0007",
+        "current_display_coord": [
+          63,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow",
+        "target_distance": 1
+      },
+      "observed_examples": [
+        {
+          "action_index": 24,
+          "distance_delta": -1.5,
+          "levels_completed_delta": 0,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_active_source_memory_activation_20260612T_local",
+          "selected_display_coord_after": [
+            63,
+            53
+          ],
+          "selected_display_coord_before": [
+            63,
+            52
+          ]
+        }
+      ],
+      "rule_id": "paint_skill_outcome.source_component_c0007.focus_edge_0.coord_63_52.target_distance_1.activate_flow.harmful.v0",
+      "support": 1
+    },
+    {
+      "confidence": 1.0,
+      "contradictions": 0,
+      "effect_kind": "harmful_activation",
+      "match": {
+        "active_portband_source_key": "source_component:c0008",
+        "current_display_coord": [
+          61,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow",
+        "target_distance": 1
+      },
+      "observed_examples": [
+        {
+          "action_index": 29,
+          "distance_delta": -1.5,
+          "levels_completed_delta": 0,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_probe_20260612T_local",
+          "selected_display_coord_after": [
+            62,
+            55
+          ],
+          "selected_display_coord_before": [
+            61,
+            52
+          ]
+        }
+      ],
+      "rule_id": "paint_skill_outcome.source_component_c0008.focus_edge_0.coord_61_52.target_distance_1.activate_flow.harmful.v0",
+      "support": 1
+    },
+    {
+      "confidence": 1.0,
+      "contradictions": 0,
+      "effect_kind": "harmful_activation",
+      "match": {
+        "active_portband_source_key": "source_component:c0008",
+        "current_display_coord": [
+          62,
+          52
+        ],
+        "focus_edge": 0,
+        "primitive": "activate_flow",
+        "selected_name_before": "plzwjbfyfli-6",
+        "selected_shape_before": [
+          6,
+          1
+        ],
+        "target_distance": 1
+      },
+      "observed_examples": [
+        {
+          "action_index": 31,
+          "distance_delta": -2.5,
+          "levels_completed_delta": 0,
+          "run_dir": "codexlab/runs/_system_run/paint_control_skill_level02_source_edge_activation_ledger_20260612T_local",
+          "selected_display_coord_after": [
+            62,
+            55
+          ],
+          "selected_display_coord_before": [
+            62,
+            52
+          ],
+          "selected_name_after": "plzwjbfyfli-5",
+          "selected_name_before": "plzwjbfyfli-6",
+          "selected_shape_after": [
+            5,
+            1
+          ],
+          "selected_shape_before": [
+            6,
+            1
+          ]
+        }
+      ],
+      "rule_id": "paint_skill_outcome.source_component_c0008.focus_edge_0.coord_62_52.selected_plzwjbfyfli_6_shape_6_1.target_distance_1.activate_flow.harmful.v0",
+      "support": 1
+    }
+  ],
+  "schema": "codexlab.paint_control_skill_outcome_ledger.v1"
+}

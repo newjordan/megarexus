@@ -1,0 +1,878 @@
+{
+  "corpus_id": "sp80_liquid_pour",
+  "game_id": "sp80-589a99af",
+  "game_name": "Liquid Pour",
+  "method": "manual_anchor_linear_interpolation",
+  "generated_at_utc": "2026-05-25T18:48:25.309351Z",
+  "narration_window_scalar_policy": {
+    "purpose": "Downweight fragile narration/frame matches instead of treating all transcript overlap as equal evidence.",
+    "alignment_confidence_scalar": {
+      "high": 1.0,
+      "medium": 0.65,
+      "low": 0.25
+    },
+    "interpolation_distance_scalar": {
+      "anchor": 1.0,
+      "midpoint_floor": 0.65,
+      "description": "Linearly decays from each anchor toward the midpoint between adjacent anchors."
+    },
+    "narration_usefulness_scalar": {
+      "description": "Duration-weighted fraction of overlapping transcript segments marked useful by agent review; silent/no-transcript windows are 0.0.",
+      "source": "scripts/review_sp80_transcript_usefulness.py NON_USEFUL table",
+      "status": "agent_review_not_user_audited"
+    },
+    "combined": "narration_window_scalar = alignment_confidence_scalar * interpolation_distance_scalar * narration_usefulness_scalar"
+  },
+  "provenance": {
+    "condition_name": "SP80 Liquid Pour audio-frame alignment corpus",
+    "condition": "Render every SP80 win-bank frame and align frames to human narration using documented manual anchors.",
+    "command_line": "python scripts/build_sp80_liquid_pour_corpus.py",
+    "working_directory": "/home/frosty40/rexus",
+    "start_time_utc": "2026-05-25T18:48:25.309351Z",
+    "builder_script": "scripts/build_sp80_liquid_pour_corpus.py",
+    "source_code_hashes": {
+      "scripts/build_sp80_liquid_pour_corpus.py": "69b440c9d339b79f65b21711f22e673660e6d8efeb7ed0e31125baae287e85cc"
+    },
+    "input_file_paths": [
+      "human/win_bank_2026-05-16_human_cheat_map_v1/sp80-589a99af_wins.pkl",
+      "human/raw_incoming_audio_and_sidecars/liquid_pour.m4a",
+      "human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "human/raw_incoming_audio_and_sidecars/liquid_pour_2.m4a",
+      "human/raw_incoming_audio_and_sidecars/liquid_pour_2.json"
+    ],
+    "input_file_hashes": {
+      "human/win_bank_2026-05-16_human_cheat_map_v1/sp80-589a99af_wins.pkl": {
+        "sha256": "e8fa00464434edff9fdbf369318d09cb5e6c43b76e47298455137ae0d4cce848",
+        "size_bytes": 5195633,
+        "mtime": "2026-05-25T18:29:13.106823Z"
+      },
+      "human/raw_incoming_audio_and_sidecars/liquid_pour.m4a": {
+        "sha256": "dad241c2a269d1daebd000be26e7c5c4357902dd6b364c4a7f0f4c71b4fd1d59",
+        "size_bytes": 35432209,
+        "mtime": "2026-05-25T18:29:13.077641Z"
+      },
+      "human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt": {
+        "sha256": "992207f6b09b606805b1c482d307a0fef41b2df506d84e1af0c1d01bf5826fe4",
+        "size_bytes": 5094,
+        "mtime": "2026-05-22T21:00:38.664137Z"
+      },
+      "human/raw_incoming_audio_and_sidecars/liquid_pour_2.m4a": {
+        "sha256": "742d521bf3244d94a088d187904d0876717370931f50ec6e1f4829acd901f7e4",
+        "size_bytes": 57182723,
+        "mtime": "2026-05-25T18:29:13.077643Z"
+      },
+      "human/raw_incoming_audio_and_sidecars/liquid_pour_2.json": {
+        "sha256": "139f10aa4cb7ce18f1b9ccc04afd8d81e039cb0d0041f010f8ae8fb4f4c03bb4",
+        "size_bytes": 43094,
+        "mtime": "2026-05-21T15:33:59.916093Z"
+      }
+    },
+    "output_dir": "corpus/sp80_liquid_pour",
+    "random_seed": "none",
+    "runtime": {
+      "python": "3.13.12",
+      "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39"
+    },
+    "run_type": "controlled",
+    "alignment_basis": "manual anchors from transcript text plus deterministic interpolation"
+  },
+  "source_verification": {
+    "command": "sha256sum --quiet -c SHA256SUMS",
+    "ran_before_generation": true,
+    "returncode": 0,
+    "passed": true,
+    "stderr": ""
+  },
+  "audio_durations_s": {
+    "human/raw_incoming_audio_and_sidecars/liquid_pour.m4a": 1393.33175,
+    "human/raw_incoming_audio_and_sidecars/liquid_pour_2.m4a": 2251.054667
+  },
+  "sessions": [
+    {
+      "session_id": "night_liquid_pour_2026-05-21",
+      "audio_path": "human/raw_incoming_audio_and_sidecars/liquid_pour.m4a",
+      "transcript_path": "human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "episode_indices": [
+        0,
+        1,
+        2
+      ],
+      "pairing_status": "admitted_with_limitations",
+      "pairing_basis": "Night audio file timing and transcript_027 SP80 content align with win-bank episodes 0-2; early episode has strong mechanical anchors, later retry sections are low confidence."
+    },
+    {
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "audio_path": "human/raw_incoming_audio_and_sidecars/liquid_pour_2.m4a",
+      "transcript_path": "human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "episode_indices": [
+        3,
+        4,
+        5
+      ],
+      "pairing_status": "admitted_with_limitations",
+      "pairing_basis": "Morning audio file timing, liquid_pour_2 Whisper segments, and explicit morning transcript text align with win-bank episodes 3-5; late repeated-okay retry tail is low confidence."
+    }
+  ],
+  "episodes": [
+    {
+      "episode_index": 0,
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "session_episode_index": 0,
+      "win_bank_episode_field": 1,
+      "human_played_utc": "2026-05-21T07:28:05Z",
+      "frame_count": 230,
+      "level_boundaries": [
+        {
+          "episode_frame": 0,
+          "level": 0
+        },
+        {
+          "episode_frame": 8,
+          "level": 1
+        },
+        {
+          "episode_frame": 50,
+          "level": 2
+        },
+        {
+          "episode_frame": 64,
+          "level": 3
+        },
+        {
+          "episode_frame": 129,
+          "level": 4
+        },
+        {
+          "episode_frame": 229,
+          "level": 4
+        }
+      ],
+      "final_state": "GAME_OVER",
+      "won_levels": 4,
+      "anchors": [
+        {
+          "episode_frame": 0,
+          "global_frame_index": 0,
+          "level": 0,
+          "ts_s": 0.0,
+          "segment_id": "night_srt_001",
+          "source_segment_index": 1,
+          "label": "episode 0 level 0 start",
+          "confidence": "high",
+          "quote": "Okay we're doing liquid pour.",
+          "rationale": "Direct Liquid Pour session start.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 8,
+          "global_frame_index": 8,
+          "level": 1,
+          "ts_s": 68.84,
+          "segment_id": "night_srt_005",
+          "source_segment_index": 5,
+          "label": "episode 0 level 1 boundary",
+          "confidence": "high",
+          "quote": "Yep, that's what happened.",
+          "rationale": "Verbal confirmation immediately after the first pour.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 50,
+          "global_frame_index": 50,
+          "level": 2,
+          "ts_s": 225.08,
+          "segment_id": "night_srt_011",
+          "source_segment_index": 11,
+          "label": "episode 0 level 2 boundary",
+          "confidence": "high",
+          "quote": "So this has three spouts",
+          "rationale": "New three-spout layout matches the level boundary.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 64,
+          "global_frame_index": 64,
+          "level": 3,
+          "ts_s": 397.72,
+          "segment_id": "night_srt_019",
+          "source_segment_index": 19,
+          "label": "episode 0 level 3 boundary",
+          "confidence": "medium",
+          "quote": "One has a gap",
+          "rationale": "New gap/asymmetry discussion matches the next layout.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 129,
+          "global_frame_index": 129,
+          "level": 4,
+          "ts_s": 625.72,
+          "segment_id": "night_srt_030",
+          "source_segment_index": 30,
+          "label": "episode 0 level 4 boundary",
+          "confidence": "medium",
+          "quote": "The challenge is routing.",
+          "rationale": "Routing-only hard section follows repeated spill observations.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 229,
+          "global_frame_index": 229,
+          "level": 4,
+          "ts_s": 795.72,
+          "segment_id": "night_srt_036",
+          "source_segment_index": 36,
+          "label": "episode 0 game over",
+          "confidence": "high",
+          "quote": "Yeah, I lost",
+          "rationale": "Explicit loss statement before retry narration.",
+          "limitation": null
+        }
+      ]
+    },
+    {
+      "episode_index": 1,
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "session_episode_index": 1,
+      "win_bank_episode_field": 2,
+      "human_played_utc": "2026-05-21T07:33:57Z",
+      "frame_count": 190,
+      "level_boundaries": [
+        {
+          "episode_frame": 0,
+          "level": 0
+        },
+        {
+          "episode_frame": 5,
+          "level": 1
+        },
+        {
+          "episode_frame": 27,
+          "level": 2
+        },
+        {
+          "episode_frame": 43,
+          "level": 3
+        },
+        {
+          "episode_frame": 95,
+          "level": 4
+        },
+        {
+          "episode_frame": 189,
+          "level": 4
+        }
+      ],
+      "final_state": "GAME_OVER",
+      "won_levels": 4,
+      "anchors": [
+        {
+          "episode_frame": 0,
+          "global_frame_index": 230,
+          "level": 0,
+          "ts_s": 815.72,
+          "segment_id": "night_srt_037",
+          "source_segment_index": 37,
+          "label": "episode 1 level 0 start",
+          "confidence": "medium",
+          "quote": "Let's do it again.",
+          "rationale": "Retry marker after episode 0 loss.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 5,
+          "global_frame_index": 235,
+          "level": 1,
+          "ts_s": 835.72,
+          "segment_id": "night_srt_038",
+          "source_segment_index": 38,
+          "label": "episode 1 level 1 boundary",
+          "confidence": "low",
+          "quote": "Let's do it again.",
+          "rationale": "Repeated retry speech, not level-specific.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 27,
+          "global_frame_index": 257,
+          "level": 2,
+          "ts_s": 855.72,
+          "segment_id": "night_srt_039",
+          "source_segment_index": 39,
+          "label": "episode 1 level 2 boundary",
+          "confidence": "low",
+          "quote": "Let's do it again.",
+          "rationale": "Repeated retry speech, not level-specific.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 43,
+          "global_frame_index": 273,
+          "level": 3,
+          "ts_s": 875.72,
+          "segment_id": "night_srt_040",
+          "source_segment_index": 40,
+          "label": "episode 1 level 3 boundary",
+          "confidence": "medium",
+          "quote": "I'm rushing through it.",
+          "rationale": "Player explicitly says the retry is being rushed.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 95,
+          "global_frame_index": 325,
+          "level": 4,
+          "ts_s": 1009.72,
+          "segment_id": "night_srt_046",
+          "source_segment_index": 46,
+          "label": "episode 1 level 4 boundary",
+          "confidence": "low",
+          "quote": "No, it doesn't work like that.",
+          "rationale": "Failure analysis within late-level retry.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 189,
+          "global_frame_index": 419,
+          "level": 4,
+          "ts_s": 1199.72,
+          "segment_id": "night_srt_055",
+          "source_segment_index": 55,
+          "label": "episode 1 game over",
+          "confidence": "low",
+          "quote": "Oh.",
+          "rationale": "Positional retry/loss marker only.",
+          "limitation": "No explicit game-over phrase at this boundary."
+        }
+      ]
+    },
+    {
+      "episode_index": 2,
+      "episode_id": "night_liquid_pour_2026-05-21_episode_02_winbank_002",
+      "session_id": "night_liquid_pour_2026-05-21",
+      "session_episode_index": 2,
+      "win_bank_episode_field": 3,
+      "human_played_utc": "2026-05-21T07:40:16Z",
+      "frame_count": 174,
+      "level_boundaries": [
+        {
+          "episode_frame": 0,
+          "level": 0
+        },
+        {
+          "episode_frame": 4,
+          "level": 1
+        },
+        {
+          "episode_frame": 26,
+          "level": 2
+        },
+        {
+          "episode_frame": 43,
+          "level": 3
+        },
+        {
+          "episode_frame": 82,
+          "level": 4
+        },
+        {
+          "episode_frame": 173,
+          "level": 4
+        }
+      ],
+      "final_state": "GAME_OVER",
+      "won_levels": 4,
+      "anchors": [
+        {
+          "episode_frame": 0,
+          "global_frame_index": 420,
+          "level": 0,
+          "ts_s": 1227.72,
+          "segment_id": "night_srt_056",
+          "source_segment_index": 56,
+          "label": "episode 2 level 0 start",
+          "confidence": "medium",
+          "quote": "Let's do it again.",
+          "rationale": "Retry marker after prior loss.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 4,
+          "global_frame_index": 424,
+          "level": 1,
+          "ts_s": 1251.72,
+          "segment_id": "night_srt_057",
+          "source_segment_index": 57,
+          "label": "episode 2 level 1 boundary",
+          "confidence": "low",
+          "quote": "Let's see.",
+          "rationale": "Retry-section marker, not level-specific.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 26,
+          "global_frame_index": 446,
+          "level": 2,
+          "ts_s": 1281.72,
+          "segment_id": "night_srt_058",
+          "source_segment_index": 58,
+          "label": "episode 2 level 2 boundary",
+          "confidence": "low",
+          "quote": "Let's do it again.",
+          "rationale": "Repeated retry speech, not level-specific.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 43,
+          "global_frame_index": 463,
+          "level": 3,
+          "ts_s": 1321.72,
+          "segment_id": "night_srt_060",
+          "source_segment_index": 60,
+          "label": "episode 2 level 3 boundary",
+          "confidence": "low",
+          "quote": "Let's do it again.",
+          "rationale": "Repeated retry speech, not level-specific.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 82,
+          "global_frame_index": 502,
+          "level": 4,
+          "ts_s": 1345.72,
+          "segment_id": "night_srt_061",
+          "source_segment_index": 61,
+          "label": "episode 2 level 4 boundary",
+          "confidence": "low",
+          "quote": "Let's do it again.",
+          "rationale": "Repeated retry speech, not level-specific.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 173,
+          "global_frame_index": 593,
+          "level": 4,
+          "ts_s": 1393.332,
+          "segment_id": "night_srt_062",
+          "source_segment_index": 62,
+          "label": "episode 2 game over",
+          "confidence": "medium",
+          "quote": "I'm tired.",
+          "rationale": "End-of-night fatigue marker at the audio tail.",
+          "limitation": "SRT tail extends slightly beyond ffprobe duration."
+        }
+      ]
+    },
+    {
+      "episode_index": 3,
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "session_episode_index": 0,
+      "win_bank_episode_field": 1,
+      "human_played_utc": "2026-05-21T14:52:56Z",
+      "frame_count": 301,
+      "level_boundaries": [
+        {
+          "episode_frame": 0,
+          "level": 0
+        },
+        {
+          "episode_frame": 4,
+          "level": 1
+        },
+        {
+          "episode_frame": 32,
+          "level": 2
+        },
+        {
+          "episode_frame": 44,
+          "level": 3
+        },
+        {
+          "episode_frame": 88,
+          "level": 4
+        },
+        {
+          "episode_frame": 180,
+          "level": 5
+        },
+        {
+          "episode_frame": 300,
+          "level": 5
+        }
+      ],
+      "final_state": "GAME_OVER",
+      "won_levels": 5,
+      "anchors": [
+        {
+          "episode_frame": 0,
+          "global_frame_index": 594,
+          "level": 0,
+          "ts_s": 0.0,
+          "segment_id": "morning_json_000",
+          "source_segment_index": 0,
+          "label": "episode 3 level 0 start",
+          "confidence": "high",
+          "quote": "Okay, a new game. This is going to be Liquid Pour.",
+          "rationale": "Direct morning Liquid Pour start.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 4,
+          "global_frame_index": 598,
+          "level": 1,
+          "ts_s": 16.0,
+          "segment_id": "morning_json_003",
+          "source_segment_index": 3,
+          "label": "episode 3 level 1 boundary",
+          "confidence": "medium",
+          "quote": "So, it's easy to match.",
+          "rationale": "Player summarizes the early matching solution.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 32,
+          "global_frame_index": 626,
+          "level": 2,
+          "ts_s": 46.0,
+          "segment_id": "morning_json_004",
+          "source_segment_index": 4,
+          "label": "episode 3 level 2 boundary",
+          "confidence": "medium",
+          "quote": "routing based upon flow",
+          "rationale": "Flow/routing description follows early completion.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 44,
+          "global_frame_index": 638,
+          "level": 3,
+          "ts_s": 386.0,
+          "segment_id": "morning_json_025",
+          "source_segment_index": 25,
+          "label": "episode 3 level 3 boundary",
+          "confidence": "medium",
+          "quote": "the isolated movement technique",
+          "rationale": "Player describes the harder isolated-flow section.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 88,
+          "global_frame_index": 682,
+          "level": 4,
+          "ts_s": 473.0,
+          "segment_id": "morning_json_037",
+          "source_segment_index": 37,
+          "label": "episode 3 level 4 boundary",
+          "confidence": "high",
+          "quote": "There's a piece that's a faucet.",
+          "rationale": "New faucet description matches the next layout.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 180,
+          "global_frame_index": 774,
+          "level": 5,
+          "ts_s": 898.0,
+          "segment_id": "morning_json_068",
+          "source_segment_index": 68,
+          "label": "episode 3 level 5 boundary",
+          "confidence": "high",
+          "quote": "This is the last level.",
+          "rationale": "Explicit final-level marker.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 300,
+          "global_frame_index": 894,
+          "level": 5,
+          "ts_s": 1089.0,
+          "segment_id": "morning_json_078",
+          "source_segment_index": 78,
+          "label": "episode 3 game over",
+          "confidence": "high",
+          "quote": "I gotta do it again.",
+          "rationale": "Explicit restart after running out.",
+          "limitation": null
+        }
+      ]
+    },
+    {
+      "episode_index": 4,
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_01_winbank_004",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "session_episode_index": 1,
+      "win_bank_episode_field": 2,
+      "human_played_utc": "2026-05-21T15:08:37Z",
+      "frame_count": 198,
+      "level_boundaries": [
+        {
+          "episode_frame": 0,
+          "level": 0
+        },
+        {
+          "episode_frame": 6,
+          "level": 1
+        },
+        {
+          "episode_frame": 30,
+          "level": 2
+        },
+        {
+          "episode_frame": 43,
+          "level": 3
+        },
+        {
+          "episode_frame": 85,
+          "level": 4
+        },
+        {
+          "episode_frame": 111,
+          "level": 5
+        },
+        {
+          "episode_frame": 197,
+          "level": 5
+        }
+      ],
+      "final_state": "GAME_OVER",
+      "won_levels": 5,
+      "anchors": [
+        {
+          "episode_frame": 0,
+          "global_frame_index": 895,
+          "level": 0,
+          "ts_s": 1111.0,
+          "segment_id": "morning_json_080",
+          "source_segment_index": 80,
+          "label": "episode 4 level 0 start",
+          "confidence": "medium",
+          "quote": "I had to make an L with a vertical piece.",
+          "rationale": "Post-failure solution insight before retry.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 6,
+          "global_frame_index": 901,
+          "level": 1,
+          "ts_s": 1145.0,
+          "segment_id": "morning_json_082",
+          "source_segment_index": 82,
+          "label": "episode 4 level 1 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information morning retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 30,
+          "global_frame_index": 925,
+          "level": 2,
+          "ts_s": 1230.0,
+          "segment_id": "morning_json_085",
+          "source_segment_index": 85,
+          "label": "episode 4 level 2 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information morning retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 43,
+          "global_frame_index": 938,
+          "level": 3,
+          "ts_s": 1318.0,
+          "segment_id": "morning_json_088",
+          "source_segment_index": 88,
+          "label": "episode 4 level 3 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information morning retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 85,
+          "global_frame_index": 980,
+          "level": 4,
+          "ts_s": 1403.0,
+          "segment_id": "morning_json_091",
+          "source_segment_index": 91,
+          "label": "episode 4 level 4 boundary",
+          "confidence": "low",
+          "quote": "That is life for me right now, defined.",
+          "rationale": "Only distinctive text in this retry span.",
+          "limitation": null
+        },
+        {
+          "episode_frame": 111,
+          "global_frame_index": 1006,
+          "level": 5,
+          "ts_s": 1516.0,
+          "segment_id": "morning_json_095",
+          "source_segment_index": 95,
+          "label": "episode 4 level 5 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information morning retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 197,
+          "global_frame_index": 1092,
+          "level": 5,
+          "ts_s": 1801.0,
+          "segment_id": "morning_json_106",
+          "source_segment_index": 106,
+          "label": "episode 4 game over",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Positional boundary in repeated-okay retry tail.",
+          "limitation": "No explicit game-over phrase at this boundary."
+        }
+      ]
+    },
+    {
+      "episode_index": 5,
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_02_winbank_005",
+      "session_id": "morning_liquid_pour_2_2026-05-21",
+      "session_episode_index": 2,
+      "win_bank_episode_field": 3,
+      "human_played_utc": "2026-05-21T15:22:57Z",
+      "frame_count": 152,
+      "level_boundaries": [
+        {
+          "episode_frame": 0,
+          "level": 0
+        },
+        {
+          "episode_frame": 4,
+          "level": 1
+        },
+        {
+          "episode_frame": 24,
+          "level": 2
+        },
+        {
+          "episode_frame": 36,
+          "level": 3
+        },
+        {
+          "episode_frame": 72,
+          "level": 4
+        },
+        {
+          "episode_frame": 105,
+          "level": 5
+        },
+        {
+          "episode_frame": 151,
+          "level": 6
+        }
+      ],
+      "final_state": "WIN",
+      "won_levels": 6,
+      "anchors": [
+        {
+          "episode_frame": 0,
+          "global_frame_index": 1093,
+          "level": 0,
+          "ts_s": 1801.0,
+          "segment_id": "morning_json_106",
+          "source_segment_index": 106,
+          "label": "episode 5 level 0 start",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Positional restart in repeated-okay retry tail.",
+          "limitation": "No explicit restart phrase at this boundary."
+        },
+        {
+          "episode_frame": 4,
+          "global_frame_index": 1097,
+          "level": 1,
+          "ts_s": 1874.0,
+          "segment_id": "morning_json_110",
+          "source_segment_index": 110,
+          "label": "episode 5 level 1 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information final retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 24,
+          "global_frame_index": 1117,
+          "level": 2,
+          "ts_s": 1956.0,
+          "segment_id": "morning_json_113",
+          "source_segment_index": 113,
+          "label": "episode 5 level 2 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information final retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 36,
+          "global_frame_index": 1129,
+          "level": 3,
+          "ts_s": 2014.0,
+          "segment_id": "morning_json_115",
+          "source_segment_index": 115,
+          "label": "episode 5 level 3 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information final retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 72,
+          "global_frame_index": 1165,
+          "level": 4,
+          "ts_s": 2101.0,
+          "segment_id": "morning_json_118",
+          "source_segment_index": 118,
+          "label": "episode 5 level 4 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information final retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 105,
+          "global_frame_index": 1198,
+          "level": 5,
+          "ts_s": 2176.0,
+          "segment_id": "morning_json_121",
+          "source_segment_index": 121,
+          "label": "episode 5 level 5 boundary",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Low-information final retry speech.",
+          "limitation": "No level-specific verbal description in this section."
+        },
+        {
+          "episode_frame": 151,
+          "global_frame_index": 1244,
+          "level": 6,
+          "ts_s": 2250.0,
+          "segment_id": "morning_json_123",
+          "source_segment_index": 123,
+          "label": "episode 5 win",
+          "confidence": "low",
+          "quote": "Okay.",
+          "rationale": "Final frame reaches WIN in win-bank; transcript is non-specific.",
+          "limitation": "Win is from win-bank state, not verbal confirmation."
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No synchronized gameplay video was available; frame times are manual-anchor estimates.",
+    "Late night retry sections mostly say 'Let's do it again' and are intentionally low confidence.",
+    "Late morning retry sections mostly say 'Okay' and are intentionally low confidence.",
+    "Win/fail states come from the win-bank pickle, not from transcript speech unless an anchor says so.",
+    "Agent-authored visual/mechanic labels are not ground truth and are left null."
+  ]
+}

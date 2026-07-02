@@ -1,0 +1,85 @@
+[train] device=cuda
+[dataset] split=train: 42727 transitions (1177 human, 41550 rollout), 25279 unique frames
+[dataset] split=val: 6988 transitions (245 human, 6743 rollout), 4326 unique frames
+[train] MegarexusCNN params: 3.64M
+[epoch 001] bc=2.4096 catch=0.2649 change=0.0431 control=0.2292 dyn=0.4910 inv=1.3077 inv_click=6.5820 level=0.9998 settle=0.2892
+          val: cell=0.9361 (persist=0.9717) changed=0.862 flow=0.858 inv=0.677 (maj=0.677) click_d=22.0px chg=0.996 bc=0.641 catch=0.921(base=0.642,n=190) level=0.636(base=0.826,tp=20/23,fp=45) settle_iou=0.000 ctl=0.971(base=0.540,n=2621)
+[epoch 002] bc=2.1471 catch=0.1938 change=0.0267 control=0.0746 dyn=0.1447 inv=0.9592 inv_click=5.7655 level=1.2628 settle=0.2795
+          val: cell=0.9705 (persist=0.9717) changed=0.904 flow=0.901 inv=0.755 (maj=0.677) click_d=23.5px chg=0.996 bc=0.678 catch=0.921(base=0.642,n=190) level=0.826(base=0.826,tp=0/23,fp=0) settle_iou=0.009 ctl=0.977(base=0.540,n=2621)
+[epoch 003] bc=2.0469 catch=0.1888 change=0.0251 control=0.0573 dyn=0.0840 inv=0.6706 inv_click=5.3693 level=1.6563 settle=0.2338
+          val: cell=0.9789 (persist=0.9717) changed=0.974 flow=0.974 inv=0.800 (maj=0.677) click_d=21.9px chg=0.996 bc=0.722 catch=0.932(base=0.642,n=190) level=0.826(base=0.826,tp=0/23,fp=0) settle_iou=0.057 ctl=0.986(base=0.540,n=2621)
+[epoch 004] bc=1.9839 catch=0.1805 change=0.0230 control=0.0460 dyn=0.0663 inv=0.5952 inv_click=5.2459 level=1.1571 settle=0.2895
+          val: cell=0.9831 (persist=0.9717) changed=0.974 flow=0.974 inv=0.811 (maj=0.677) click_d=18.3px chg=0.996 bc=0.637 catch=0.937(base=0.642,n=190) level=0.682(base=0.826,tp=19/23,fp=38) settle_iou=0.131 ctl=0.993(base=0.540,n=2621)
+[epoch 005] bc=1.9877 catch=0.1703 change=0.0195 control=0.0301 dyn=0.0525 inv=0.4892 inv_click=5.3306 level=0.8005 settle=0.2608
+          val: cell=0.9869 (persist=0.9717) changed=0.966 flow=0.965 inv=0.887 (maj=0.677) click_d=18.7px chg=0.996 bc=0.694 catch=0.937(base=0.642,n=190) level=0.947(base=0.826,tp=16/23,fp=0) settle_iou=0.095 ctl=0.996(base=0.540,n=2621)
+[epoch 006] bc=1.8176 catch=0.1596 change=0.0204 control=0.0239 dyn=0.0434 inv=0.2998 inv_click=5.1090 level=0.6778 settle=0.2546
+          val: cell=0.9871 (persist=0.9717) changed=0.986 flow=0.986 inv=0.966 (maj=0.677) click_d=18.7px chg=0.996 bc=0.718 catch=0.947(base=0.642,n=190) level=0.826(base=0.826,tp=0/23,fp=0) settle_iou=0.156 ctl=0.997(base=0.540,n=2621)
+[epoch 007] bc=1.6443 catch=0.1578 change=0.0199 control=0.0163 dyn=0.0362 inv=0.2299 inv_click=5.0784 level=0.4135 settle=0.2126
+          val: cell=0.9889 (persist=0.9717) changed=0.988 flow=0.988 inv=0.968 (maj=0.677) click_d=17.3px chg=0.996 bc=0.718 catch=0.937(base=0.642,n=190) level=0.962(base=0.826,tp=18/23,fp=0) settle_iou=0.150 ctl=0.999(base=0.540,n=2621)
+[epoch 008] bc=1.5280 catch=0.1289 change=0.0187 control=0.0132 dyn=0.0377 inv=0.2022 inv_click=4.9424 level=0.2623 settle=0.1840
+          val: cell=0.9889 (persist=0.9717) changed=0.972 flow=0.972 inv=0.968 (maj=0.677) click_d=18.0px chg=0.996 bc=0.902 catch=0.947(base=0.642,n=190) level=0.985(base=0.826,tp=21/23,fp=0) settle_iou=0.165 ctl=0.999(base=0.540,n=2621)
+[epoch 009] bc=1.3023 catch=0.1421 change=0.0171 control=0.0118 dyn=0.0329 inv=0.1827 inv_click=4.9438 level=0.3377 settle=0.2210
+          val: cell=0.9900 (persist=0.9717) changed=0.985 flow=0.984 inv=0.967 (maj=0.677) click_d=17.9px chg=0.996 bc=0.857 catch=0.937(base=0.642,n=190) level=0.985(base=0.826,tp=22/23,fp=1) settle_iou=0.180 ctl=0.998(base=0.540,n=2621)
+[epoch 010] bc=1.2143 catch=0.1032 change=0.0168 control=0.0133 dyn=0.0297 inv=0.1680 inv_click=4.8494 level=0.1580 settle=0.2276
+          val: cell=0.9909 (persist=0.9717) changed=0.987 flow=0.986 inv=0.980 (maj=0.677) click_d=18.1px chg=0.995 bc=0.853 catch=0.942(base=0.642,n=190) level=0.992(base=0.826,tp=22/23,fp=0) settle_iou=0.202 ctl=1.000(base=0.540,n=2621)
+[epoch 011] bc=1.0939 catch=0.1167 change=0.0167 control=0.0107 dyn=0.0370 inv=0.1524 inv_click=4.8476 level=0.0924 settle=0.2071
+          val: cell=0.9907 (persist=0.9717) changed=0.987 flow=0.987 inv=0.984 (maj=0.677) click_d=20.8px chg=0.995 bc=0.902 catch=0.947(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.169 ctl=0.999(base=0.540,n=2621)
+[epoch 012] bc=1.1076 catch=0.1037 change=0.0180 control=0.0113 dyn=0.0274 inv=0.1425 inv_click=4.7668 level=0.1011 settle=0.1490
+          val: cell=0.9907 (persist=0.9717) changed=0.987 flow=0.987 inv=0.986 (maj=0.677) click_d=18.7px chg=0.995 bc=0.935 catch=0.932(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.150 ctl=0.999(base=0.540,n=2621)
+[epoch 013] bc=0.9846 catch=0.1118 change=0.0175 control=0.0069 dyn=0.0264 inv=0.1293 inv_click=4.7465 level=0.0859 settle=0.1621
+          val: cell=0.9911 (persist=0.9717) changed=0.988 flow=0.987 inv=0.971 (maj=0.677) click_d=18.0px chg=0.995 bc=0.980 catch=0.921(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.261 ctl=1.000(base=0.540,n=2621)
+[epoch 014] bc=0.9160 catch=0.0976 change=0.0154 control=0.0068 dyn=0.0265 inv=0.1231 inv_click=4.6174 level=0.0977 settle=0.1746
+          val: cell=0.9914 (persist=0.9717) changed=0.988 flow=0.988 inv=0.987 (maj=0.677) click_d=17.9px chg=0.995 bc=0.988 catch=0.942(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.116 ctl=0.999(base=0.540,n=2621)
+[epoch 015] bc=0.9071 catch=0.0824 change=0.0156 control=0.0064 dyn=0.0227 inv=0.1127 inv_click=4.5722 level=0.0413 settle=0.1875
+          val: cell=0.9913 (persist=0.9717) changed=0.987 flow=0.987 inv=0.990 (maj=0.677) click_d=17.6px chg=0.995 bc=0.955 catch=0.932(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.235 ctl=0.998(base=0.540,n=2621)
+[epoch 016] bc=0.8917 catch=0.0862 change=0.0158 control=0.0051 dyn=0.0216 inv=0.1066 inv_click=4.6743 level=0.0898 settle=0.1575
+          val: cell=0.9911 (persist=0.9717) changed=0.988 flow=0.988 inv=0.989 (maj=0.677) click_d=18.1px chg=0.992 bc=0.988 catch=0.932(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.243 ctl=1.000(base=0.540,n=2621)
+[epoch 017] bc=0.8404 catch=0.0644 change=0.0140 control=0.0060 dyn=0.0211 inv=0.1029 inv_click=4.4448 level=0.0468 settle=0.1626
+          val: cell=0.9916 (persist=0.9717) changed=0.987 flow=0.987 inv=0.988 (maj=0.677) click_d=17.8px chg=0.991 bc=0.976 catch=0.947(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.211 ctl=1.000(base=0.540,n=2621)
+[epoch 018] bc=0.8096 catch=0.0731 change=0.0146 control=0.0039 dyn=0.0190 inv=0.1000 inv_click=4.4082 level=0.0332 settle=0.1192
+          val: cell=0.9918 (persist=0.9717) changed=0.988 flow=0.988 inv=0.988 (maj=0.677) click_d=18.1px chg=0.991 bc=0.992 catch=0.947(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.239 ctl=1.000(base=0.540,n=2621)
+[epoch 019] bc=0.8049 catch=0.0588 change=0.0144 control=0.0039 dyn=0.0193 inv=0.1007 inv_click=4.3997 level=0.0456 settle=0.1616
+          val: cell=0.9917 (persist=0.9717) changed=0.989 flow=0.989 inv=0.992 (maj=0.677) click_d=17.4px chg=0.995 bc=0.992 catch=0.947(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.207 ctl=1.000(base=0.540,n=2621)
+[epoch 020] bc=0.8040 catch=0.0540 change=0.0149 control=0.0031 dyn=0.0175 inv=0.0921 inv_click=4.1756 level=0.0292 settle=0.1244
+          val: cell=0.9919 (persist=0.9717) changed=0.988 flow=0.988 inv=0.987 (maj=0.677) click_d=17.4px chg=0.991 bc=1.000 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.284 ctl=1.000(base=0.540,n=2621)
+[epoch 021] bc=0.7874 catch=0.0516 change=0.0123 control=0.0033 dyn=0.0159 inv=0.0906 inv_click=4.2071 level=0.0413 settle=0.1189
+          val: cell=0.9920 (persist=0.9717) changed=0.988 flow=0.988 inv=0.990 (maj=0.677) click_d=16.3px chg=0.992 bc=0.996 catch=0.963(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.268 ctl=0.999(base=0.540,n=2621)
+[epoch 022] bc=0.7372 catch=0.0468 change=0.0127 control=0.0031 dyn=0.0152 inv=0.0859 inv_click=4.1148 level=0.0369 settle=0.1432
+          val: cell=0.9919 (persist=0.9717) changed=0.988 flow=0.988 inv=0.989 (maj=0.677) click_d=17.7px chg=0.991 bc=0.992 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.252 ctl=1.000(base=0.540,n=2621)
+[epoch 023] bc=0.7668 catch=0.0371 change=0.0138 control=0.0026 dyn=0.0155 inv=0.0845 inv_click=4.1678 level=0.0454 settle=0.1367
+          val: cell=0.9919 (persist=0.9717) changed=0.988 flow=0.988 inv=0.991 (maj=0.677) click_d=17.6px chg=0.994 bc=0.992 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.251 ctl=0.998(base=0.540,n=2621)
+[epoch 024] bc=0.6944 catch=0.0326 change=0.0123 control=0.0025 dyn=0.0142 inv=0.0845 inv_click=4.1753 level=0.0464 settle=0.1396
+          val: cell=0.9909 (persist=0.9717) changed=0.989 flow=0.989 inv=0.992 (maj=0.677) click_d=17.5px chg=0.986 bc=1.000 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.274 ctl=0.999(base=0.540,n=2621)
+[epoch 025] bc=0.7350 catch=0.0308 change=0.0129 control=0.0018 dyn=0.0137 inv=0.0802 inv_click=4.0912 level=0.0394 settle=0.1411
+          val: cell=0.9919 (persist=0.9717) changed=0.987 flow=0.987 inv=0.992 (maj=0.677) click_d=17.4px chg=0.986 bc=0.984 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.265 ctl=0.999(base=0.540,n=2621)
+[epoch 026] bc=0.6729 catch=0.0381 change=0.0124 control=0.0018 dyn=0.0136 inv=0.0793 inv_click=3.9644 level=0.0296 settle=0.1389
+          val: cell=0.9920 (persist=0.9717) changed=0.988 flow=0.988 inv=0.992 (maj=0.677) click_d=17.7px chg=0.986 bc=1.000 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.273 ctl=0.999(base=0.540,n=2621)
+[epoch 027] bc=0.7169 catch=0.0247 change=0.0115 control=0.0015 dyn=0.0126 inv=0.0784 inv_click=3.9420 level=0.0384 settle=0.1124
+          val: cell=0.9922 (persist=0.9717) changed=0.988 flow=0.988 inv=0.993 (maj=0.677) click_d=17.7px chg=0.986 bc=0.992 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.304 ctl=1.000(base=0.540,n=2621)
+[epoch 028] bc=0.6824 catch=0.0209 change=0.0112 control=0.0014 dyn=0.0121 inv=0.0747 inv_click=4.0174 level=0.0252 settle=0.1051
+          val: cell=0.9922 (persist=0.9717) changed=0.989 flow=0.989 inv=0.993 (maj=0.677) click_d=17.6px chg=0.991 bc=1.000 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.272 ctl=1.000(base=0.540,n=2621)
+[epoch 029] bc=0.6882 catch=0.0222 change=0.0114 control=0.0011 dyn=0.0120 inv=0.0724 inv_click=3.8921 level=0.0356 settle=0.1353
+          val: cell=0.9921 (persist=0.9717) changed=0.988 flow=0.988 inv=0.992 (maj=0.677) click_d=17.2px chg=0.989 bc=0.992 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.222 ctl=1.000(base=0.540,n=2621)
+[epoch 030] bc=0.6080 catch=0.0198 change=0.0120 control=0.0013 dyn=0.0116 inv=0.0746 inv_click=3.7453 level=0.0255 settle=0.1226
+          val: cell=0.9922 (persist=0.9717) changed=0.988 flow=0.988 inv=0.990 (maj=0.677) click_d=17.6px chg=0.991 bc=0.992 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.272 ctl=1.000(base=0.540,n=2621)
+[epoch 031] bc=0.6583 catch=0.0188 change=0.0127 control=0.0010 dyn=0.0114 inv=0.0717 inv_click=3.7062 level=0.0294 settle=0.0971
+          val: cell=0.9922 (persist=0.9717) changed=0.988 flow=0.988 inv=0.991 (maj=0.677) click_d=17.3px chg=0.991 bc=0.992 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.288 ctl=0.999(base=0.540,n=2621)
+[epoch 032] bc=0.6001 catch=0.0129 change=0.0104 control=0.0009 dyn=0.0111 inv=0.0696 inv_click=3.6887 level=0.0248 settle=0.0910
+          val: cell=0.9922 (persist=0.9717) changed=0.989 flow=0.989 inv=0.992 (maj=0.677) click_d=17.5px chg=0.986 bc=0.992 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.266 ctl=1.000(base=0.540,n=2621)
+[epoch 033] bc=0.6216 catch=0.0176 change=0.0119 control=0.0008 dyn=0.0110 inv=0.0686 inv_click=3.7968 level=0.0422 settle=0.1141
+          val: cell=0.9923 (persist=0.9717) changed=0.988 flow=0.988 inv=0.992 (maj=0.677) click_d=17.3px chg=0.986 bc=1.000 catch=0.958(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.268 ctl=0.999(base=0.540,n=2621)
+[epoch 034] bc=0.5864 catch=0.0112 change=0.0111 control=0.0008 dyn=0.0106 inv=0.0672 inv_click=3.6862 level=0.0257 settle=0.0880
+          val: cell=0.9923 (persist=0.9717) changed=0.989 flow=0.989 inv=0.993 (maj=0.677) click_d=17.1px chg=0.986 bc=0.996 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.265 ctl=1.000(base=0.540,n=2621)
+[epoch 035] bc=0.5726 catch=0.0157 change=0.0111 control=0.0007 dyn=0.0104 inv=0.0658 inv_click=3.6573 level=0.0343 settle=0.0973
+          val: cell=0.9923 (persist=0.9717) changed=0.988 flow=0.988 inv=0.992 (maj=0.677) click_d=17.4px chg=0.986 bc=1.000 catch=0.963(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.257 ctl=1.000(base=0.540,n=2621)
+[epoch 036] bc=0.6097 catch=0.0124 change=0.0114 control=0.0006 dyn=0.0103 inv=0.0666 inv_click=3.6355 level=0.0255 settle=0.1344
+          val: cell=0.9922 (persist=0.9717) changed=0.988 flow=0.988 inv=0.992 (maj=0.677) click_d=17.8px chg=0.986 bc=1.000 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.267 ctl=1.000(base=0.540,n=2621)
+[epoch 037] bc=0.6081 catch=0.0147 change=0.0105 control=0.0006 dyn=0.0102 inv=0.0655 inv_click=3.7064 level=0.0330 settle=0.0994
+          val: cell=0.9923 (persist=0.9717) changed=0.988 flow=0.988 inv=0.992 (maj=0.677) click_d=17.9px chg=0.986 bc=1.000 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.262 ctl=1.000(base=0.540,n=2621)
+[epoch 038] bc=0.5998 catch=0.0150 change=0.0112 control=0.0006 dyn=0.0102 inv=0.0654 inv_click=3.5550 level=0.0331 settle=0.1056
+          val: cell=0.9923 (persist=0.9717) changed=0.988 flow=0.988 inv=0.992 (maj=0.677) click_d=17.9px chg=0.986 bc=1.000 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.269 ctl=1.000(base=0.540,n=2621)
+[epoch 039] bc=0.5766 catch=0.0101 change=0.0115 control=0.0006 dyn=0.0102 inv=0.0645 inv_click=3.6638 level=0.0231 settle=0.0848
+          val: cell=0.9923 (persist=0.9717) changed=0.988 flow=0.988 inv=0.993 (maj=0.677) click_d=17.9px chg=0.986 bc=1.000 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.266 ctl=1.000(base=0.540,n=2621)
+[epoch 040] bc=0.6093 catch=0.0106 change=0.0102 control=0.0005 dyn=0.0101 inv=0.0646 inv_click=3.5793 level=0.0271 settle=0.1016
+          val: cell=0.9923 (persist=0.9717) changed=0.988 flow=0.988 inv=0.993 (maj=0.677) click_d=17.9px chg=0.986 bc=1.000 catch=0.953(base=0.642,n=190) level=1.000(base=0.826,tp=23/23,fp=0) settle_iou=0.266 ctl=1.000(base=0.540,n=2621)
+[train] done in 4926s; best changed-cell acc 0.989; artifacts → synthesis_lab/experiments/megarexus_cnn/runs/outcome_v6

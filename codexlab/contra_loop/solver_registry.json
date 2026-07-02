@@ -1,0 +1,121 @@
+{
+  "provenance_note": "Every solver carries a run_dir with levels_completed_delta>0. No exceptions.",
+  "schema": "codexlab.contra_loop.solver_registry.v1",
+  "solvers": [
+    {
+      "applies_when": "a selectable source actor and a target port/sink exist",
+      "evidence_sources": [
+        "portband.lineup_matrix.rows"
+      ],
+      "mechanic": "liquid flows only when the source actor is edge-aligned with its sink",
+      "name": "PORTBAND_EDGE_LOCK_ALIGN",
+      "procedure": "select source; issue axis-ordered PortBand lineup moves toward the target port (value_score~0.82, centered_dual_port_projection) until edge-locked",
+      "provenance": {
+        "levels_completed_delta": 1,
+        "packet_indices": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T175142Z/level_00"
+      },
+      "target": "sp80:0",
+      "verified": true
+    },
+    {
+      "applies_when": "a locked source must close remaining distance to its sink along one axis",
+      "evidence_sources": [
+        "goal_condition.nearest_goal.relative_display_direction"
+      ],
+      "mechanic": "monotone distance descent finishes the alignment a lineup-lock leaves open",
+      "name": "FLOW_DIRECTION_DESCENT",
+      "procedure": "repeat move toward sink while distance_reduced (value_score~0.69); stop when distance_delta==0",
+      "provenance": {
+        "levels_completed_delta": 1,
+        "packet_indices": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T175142Z/level_00"
+      },
+      "target": "sp80:0",
+      "verified": true
+    },
+    {
+      "applies_when": "multiple independent source->sink pairs remain",
+      "evidence_sources": [
+        "portband.lineup_matrix.rows"
+      ],
+      "mechanic": "each source is locked to its own sink before any flow is committed",
+      "name": "MULTI_SOURCE_GOAL_ADJACENCY",
+      "procedure": "least-steps plan over independent source->target pairs (value_score~0.75)",
+      "provenance": {
+        "levels_completed_delta": 1,
+        "packet_indices": [
+          13,
+          14
+        ],
+        "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T175142Z/level_00"
+      },
+      "target": "sp80:0",
+      "verified": true
+    },
+    {
+      "applies_when": "all source actors are edge-locked to their sinks",
+      "evidence_sources": [
+        "action_semantics_ledger"
+      ],
+      "mechanic": "activate_flow while fully aligned commits the pour and completes the level (negative control: identical activate_flow at idx 5 did NOT win -- only alignment differed)",
+      "name": "ACTIVATE_FLOW_ON_FULL_ALIGNMENT",
+      "procedure": "issue activate_flow (ACTION5) ONLY when board alignment is complete",
+      "provenance": {
+        "levels_completed_delta": 1,
+        "packet_indices": [
+          15
+        ],
+        "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T175142Z/level_00",
+        "stop_reason": "levels_completed_increased"
+      },
+      "target": "sp80:0",
+      "verified": true
+    }
+  ],
+  "wanted_mechanics": [
+    {
+      "crystallization_target": "scorer modifier: (a) lock-hold bonus on the committed leg's candidate_kind, (b) penalty on candidate_kind switches while a leg is locked-and-closing, (c) hard gate on activate_flow until all legs locked.",
+      "evidence_missing": "L1: multi_object_goal_adjacency_plan lock (vs->1.0) engages pkt0-4 then is ABANDONED at pkt5 (switch to a 0.6 candidate) and never re-locks; 14 candidate_kind switches across 9 kinds; activate_flow fires prematurely at pkt11 & pkt13 (vs=0.48, dist_delta=-3, unaligned). Ends budget_exhausted, delta=0.",
+      "implementation_status": "PARTIAL: HOLD rule implemented in sp80_player_harness.relay_lock_hold_bonus (+0.20 persistence on a committed relay leg, released when stuck). Measured: thrash 14->12 switches, bonus fired 7/20 packets, L0 still solves (delta=1), full gate green. NOT YET SOLVING L1 (delta=0) -- DEFER (hard-gate premature activate_flow) and ADVANCE (per-leg target_object_id tracking) still TODO.",
+      "name": "STABLE_MULTI_SOURCE_RELAY_LOCK",
+      "procedure": [
+        "LOCK: when a multi_object_goal_adjacency_plan candidate scores >=0.85, COMMIT to it and pin the (source,target) pair as the active relay leg.",
+        "HOLD: while the active leg is still closing distance, SUPPRESS switching to any other candidate_kind (anti-thrash). Release only when the leg's source is edge-locked (portband_score==1.0) or stuck (2 consecutive no-progress on this leg).",
+        "ADVANCE: on lock-complete, move to the next unlocked source->sink leg; repeat LOCK/HOLD.",
+        "DEFER: hard-gate activate_flow until ALL legs are locked; the bare 0.48 unknown_action_family activate_flow probe must NOT win while any leg is unlocked."
+      ],
+      "provenance_failure": {
+        "levels_completed_delta": 0,
+        "lock_abandoned_packet": 5,
+        "premature_activate_flow_packets": [
+          11,
+          13
+        ],
+        "run_dir": "codexlab/runs/contra_sp80_episode_levels_01_20260608T184427Z/level_01"
+      },
+      "target": "sp80:1",
+      "thresholds_from_evidence": {
+        "lock_engage_value": 0.85,
+        "premature_activate_flow_value": 0.48,
+        "thrash_switches_observed": 14
+      },
+      "verified": false,
+      "want": "commit to one source->target edge-lock at a time, suppress re-selection thrash, and defer activate_flow until ALL sources are locked"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "codexlab.puffer_paintflow_condition.v1",
+  "condition_id": "puffer_paintflow_groundhog_l1_learned_clean_pose_v0",
+  "run_label": "controlled_run",
+  "created_at_utc": "2026-06-11T00:00:00Z",
+  "natural_language_goal": "Evaluate the deterministic level-1 paintflow algorithm learned from the pose-bandit run: move the bar to a clean learned redirect/catch pose for the requested target bucket and activate flow.",
+  "truth_boundary": "controlled level-1 mechanics evaluation over learned clean pose table; PufferLib import-gated but not a native PufferLib trainer; not full CONTRA Angel solve evidence",
+  "source_script": "codexlab/sp80_puffer_paintflow_run.py",
+  "game_source": "environment/environment_files/sp80/589a99af/sp80.py",
+  "pufferlib_source": "/tmp/pufferlib-4.0-newjordan",
+  "pufferlib_patch": "codexlab/docs/pufferlib_4_0_arm64_build.patch",
+  "seed": 20260611,
+  "levels": [0],
+  "episodes": 32,
+  "max_actions_per_episode": 20,
+  "policy": "level1_learned_clean_pose_v0",
+  "target_bucket_schedule": "episode_index_mod_bucket_count",
+  "backend": "pufferlib.pufferl import-gated direct SP80 primitive-action mechanics loop",
+  "gpu_count": 0,
+  "world_size": 1,
+  "loader_mode": "live_sp80_game",
+  "loader_settings": {
+    "raw_frames": true,
+    "save_review_frames": 160,
+    "action_space": "select_candidate_0..11 plus move_up,move_down,move_left,move_right,activate_flow",
+    "policy_representation": "deterministic learned level-1 clean pose table from puffer_paintflow_groundhog_l1_pose_bandit_v0: target 0 uses x=6,y=6; target 1 uses x=6,y=11; each episode executes bounded primitive moves and activates flow",
+    "pufferlib_4_0_api_note": "The checked-out 4.0 branch does not expose the older Python PufferEnv/vector/emulation APIs; this condition gates on pufferlib.pufferl native import but executes SP80 through the existing Python game/controller API."
+  },
+  "quantization_policy": "none",
+  "compile_kernel_policy": "none",
+  "metric_names": [
+    "target_catch_rate",
+    "any_catch_rate",
+    "all_bucket_catch_rate",
+    "target_clean_catch_rate",
+    "all_bucket_clean_catch_rate",
+    "overflow_rate",
+    "level_completion_rate",
+    "mean_episode_reward"
+  ],
+  "historical_comparator": {
+    "artifact_path": "codexlab/runs/puffer_paintflow_groundhog_l1_pose_bandit_v0_20260611T_groundhog_v2/result.json",
+    "status": "source_pose_bandit_training_run",
+    "summary": {
+      "target_clean_catch_rate": 0.6770833333333334,
+      "level_completion_rate": 0.6770833333333334
+    }
+  }
+}

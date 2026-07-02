@@ -1,0 +1,44 @@
+{
+  "schema": "codexlab.puffer_native_env_condition.v1",
+  "condition_id": "rexus_sp80_paintflow_lateral_random_target_v0",
+  "created_at_utc": "2026-06-11T00:00:00Z",
+  "run_label": "new_experiment",
+  "natural_language_goal": "Simulate a randomized target position along the lateral axis of each actual SP80 paintflow target row so the policy sees where to catch paint, rather than memorizing a single fixed target column.",
+  "truth_boundary": "native PufferLib C environment for the SP80 level-1 paintflow abstraction; proves randomized target sampling only when the compiled env probe passes; not a trained policy, not full Python SP80 engine control, and not CONTRA gameplay solve evidence",
+  "pufferlib_source": ".external/pufferlib-4.0-newjordan",
+  "pufferlib_env_name": "rexus_sp80_paintflow",
+  "pufferlib_env_files": [
+    "codexlab/pufferlib_envs/rexus_sp80_paintflow/rexus_sp80_paintflow.h",
+    "codexlab/pufferlib_envs/rexus_sp80_paintflow/binding.c",
+    "codexlab/pufferlib_envs/rexus_sp80_paintflow/rexus_sp80_paintflow.ini"
+  ],
+  "install_command": "PYTHONPATH=codexlab /home/frosty40/miniconda3/bin/python3 -B codexlab/install_pufferlib_envs.py",
+  "build_command": "cd .external/pufferlib-4.0-newjordan && NVCC_ARCH=sm_120 bash ./build.sh rexus_sp80_paintflow",
+  "probe_command": "PYTHONPATH=codexlab:.external/pufferlib-4.0-newjordan /home/frosty40/miniconda3/bin/python3 -B codexlab/pufferlib_lateral_target_probe.py --samples 256 --out-dir codexlab/runs/_system_run/rexus_sp80_paintflow_lateral_random_target_v0",
+  "action_space": {
+    "0": "noop",
+    "1": "move_up",
+    "2": "move_down",
+    "3": "move_left",
+    "4": "move_right",
+    "5": "activate_flow"
+  },
+  "target_sampling_contract": {
+    "target_family_0": {"base_x": 6, "fixed_y": 6},
+    "target_family_1": {"base_x": 6, "fixed_y": 11},
+    "sampled_x_min": 1,
+    "sampled_x_max": 12,
+    "sampled_x_observation_slot": 3,
+    "fixed_y_observation_slot": 4,
+    "lateral_axis": "x_axis_on_actual_target_row"
+  },
+  "reward_contract": {
+    "clean_target_catch": 10.0,
+    "near_target_catch": 2.0,
+    "wrong_activation": -4.0,
+    "timeout": -1.0,
+    "step_cost": -0.01,
+    "distance_delta_scale": 0.04
+  },
+  "success_metric": "compiled_env=rexus_sp80_paintflow, native trainer smoke passes, and lateral target probe observes multiple X positions in [1, 12] while all target Y values are in {6, 11}"
+}

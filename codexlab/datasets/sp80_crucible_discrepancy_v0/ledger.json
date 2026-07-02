@@ -1,0 +1,70 @@
+{
+  "anomalies_jsonl": "codexlab/datasets/sp80_crucible_discrepancy_v0/anomalies.jsonl",
+  "anomaly_count": 220,
+  "anomaly_kind_by_primitive": {
+    "blocked": {
+      "move_down": 10,
+      "move_left": 1,
+      "move_right": 66,
+      "move_up": 135
+    },
+    "moved_when_static_expected": {
+      "activate_flow": 2
+    },
+    "other": {
+      "no_selected_motion": 6
+    }
+  },
+  "corpus_jsonl": "codexlab/datasets/sp80_crucible_transitions_v0/corpus.jsonl",
+  "corpus_jsonl_sha256": "ef19b44b32b6c22e0eac1259e656be5df14679b667907629761a19276f04b510",
+  "corpus_manifest": "codexlab/datasets/sp80_crucible_transitions_v0/manifest.json",
+  "corpus_manifest_sha256": "2ec31da95b162ae4233c903b84ef6fdeed856218c7a69a707a09e91909059757",
+  "created_at_utc": "2026-06-15T14:18:58.461295Z",
+  "forward_cell_color_histogram": {
+    "blocked": {
+      "-1": 66,
+      "1": 118,
+      "11": 15,
+      "12": 13
+    },
+    "moved_when_static_expected": {
+      "12": 2
+    },
+    "other": {
+      "1": 1,
+      "12": 5
+    }
+  },
+  "ledger_json": "codexlab/datasets/sp80_crucible_discrepancy_v0/ledger.json",
+  "ledger_sha256": "4ce9a6e46fda43eaa215bdebe642ad21a505fea26f1567ce2998c82f6fd72195",
+  "predictor_version": "naive_translation_v0",
+  "schema": "codexlab.crucible_discrepancy_ledger.v1",
+  "source_hashes": {
+    "codexlab/contra_head/crucible/canon.py": "2d9f7b5f42e955f5c4213ba67b8e3d417fabb2a3a3e1a040dd97af5e9143eadc",
+    "codexlab/contra_head/crucible/corpus.py": "4ea470dfc56fe01e1940bd6cb8e7f0d6e1c036fbbd6dc631e64d56c37c9c09af",
+    "codexlab/contra_head/crucible/forward_v0.py": "1478165e2d499cdc8bc47cfe5cf24197648c8ce300c5afa176c141c6f3d1a824",
+    "codexlab/contra_head/crucible/ledger.py": "9b01105a33ed2690ed438fd1d3467b67bed0e7b4377fb5f95f8fc12fc41c83ba",
+    "codexlab/contra_head/crucible/model.py": "8d9e0f7ba04cca5308512c0a4fbef660fa45ce76aa61332e8248b530e7be5c33",
+    "codexlab/contra_verify_crucible.py": "a27fada34bd76dbe70d45692eb3ceeaaea5b952c66080540c3e0f134295d9554",
+    "codexlab/crucible_discrepancy_ledger.py": "f89045e2af49f6b3d0c7d836573a8828f3c96920b361e32165ce9acaabfb8f67",
+    "codexlab/crucible_mine_transitions.py": "6c0a10c492b79a76f5bea0ce7d84f6153ffc4ac97dcbcbdeaff5931016190d10",
+    "codexlab/sp80_player_harness.py": "b161d6894ed974a5c381b0d09cdf5d285c73e84c75bd6f41b0a07f54c653e2ad"
+  },
+  "status_counts": {
+    "anomaly": 220,
+    "matched_v0": 528,
+    "selection_changed_transition": 208
+  },
+  "transition_count": 956,
+  "truth_boundary": {
+    "action_choice_admitted": false,
+    "boundary": "crucible_transition_corpus_is_observation_evidence_not_control_truth",
+    "control_truth_admitted": false,
+    "coordinate_copy_used": false,
+    "goal_condition_admitted": false,
+    "goal_truth_admitted": false,
+    "route_or_replay_used": false,
+    "solve_condition_admitted": false,
+    "solve_truth_admitted": false
+  }
+}

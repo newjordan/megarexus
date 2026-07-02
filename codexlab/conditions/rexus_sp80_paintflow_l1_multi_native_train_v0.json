@@ -1,0 +1,53 @@
+{
+  "schema": "codexlab.puffer_native_env_condition.v1",
+  "condition_id": "rexus_sp80_paintflow_l1_multi_native_train_v0",
+  "created_at_utc": "2026-06-11T00:00:00Z",
+  "run_label": "new_experiment",
+  "natural_language_goal": "Train native PufferLib on Level 1 SP80 paintflow abstraction: control multiple paint objects, solve sampled 2-object and 3-object stacks, and activate only the requested focus edge for selective reroute.",
+  "truth_boundary": "native PufferLib C environment for a level-1 SP80 paintflow abstraction; proves only this abstraction unless exported policy is evaluated through the controlled SP80/CONTRA harness",
+  "pufferlib_source": ".external/pufferlib-4.0-newjordan",
+  "pufferlib_env_name": "rexus_sp80_paintflow_l1_multi",
+  "pufferlib_env_files": [
+    "codexlab/pufferlib_envs/rexus_sp80_paintflow_l1_multi/rexus_sp80_paintflow_l1_multi.h",
+    "codexlab/pufferlib_envs/rexus_sp80_paintflow_l1_multi/binding.c",
+    "codexlab/pufferlib_envs/rexus_sp80_paintflow_l1_multi/rexus_sp80_paintflow_l1_multi.ini"
+  ],
+  "install_command": "PYTHONPATH=codexlab /home/frosty40/miniconda3/bin/python3 -B codexlab/install_pufferlib_envs.py --env rexus_sp80_paintflow_l1_multi",
+  "build_command": "cd .external/pufferlib-4.0-newjordan && NVCC_ARCH=sm_120 bash ./build.sh rexus_sp80_paintflow_l1_multi",
+  "action_space": {
+    "0": "noop",
+    "1": "object_0_move_up",
+    "2": "object_0_move_down",
+    "3": "object_0_move_left",
+    "4": "object_0_move_right",
+    "5": "object_1_move_up",
+    "6": "object_1_move_down",
+    "7": "object_1_move_left",
+    "8": "object_1_move_right",
+    "9": "object_2_move_up",
+    "10": "object_2_move_down",
+    "11": "object_2_move_left",
+    "12": "object_2_move_right",
+    "13": "activate_object_0_edge",
+    "14": "activate_object_1_edge",
+    "15": "activate_object_2_edge"
+  },
+  "task_sampling_contract": {
+    "required_objects": [2, 3],
+    "target_rows": [4, 8, 12],
+    "sampled_x_min": 1,
+    "sampled_x_max": 12,
+    "focus_edge": "one sampled required object; only this edge may be activated after all required objects are placed",
+    "wrong_edge_activation": "episode terminates with overflow penalty"
+  },
+  "reward_contract": {
+    "correct_focus_edge_after_stack": "16 + 2 * required_objects",
+    "wrong_edge_activation": -8.0,
+    "invalid_activation": -5.0,
+    "timeout": -2.0,
+    "step_cost": -0.015,
+    "distance_delta_scale": 0.05,
+    "placed_object_bonus_per_step": 0.02
+  },
+  "success_metric": "env/level_completion rises above the random/timeout baseline while stack2_completion, stack3_completion, and selective_edge_reroute are logged"
+}

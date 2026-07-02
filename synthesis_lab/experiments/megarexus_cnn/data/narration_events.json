@@ -1,0 +1,4335 @@
+{
+  "schema": "synthesis_lab.narration_events.v0",
+  "evidence": "human narration segments (useful-reviewed) aligned to win-bank frames; risk scalars from corpus ALIGNMENT.md; SCOUT_EXPERIMENT data curation, below user-audited ground truth",
+  "corpus": "corpus/sp80_liquid_pour",
+  "tag_rules": {
+    "outcome_spill": "\\bspill",
+    "fuel": "run out|ran out|fuel|conservation|barely made",
+    "outcome_success": "\\bgot it\\b|\\bit worked\\b|\\bmade it\\b|that's what happened|that was a solution",
+    "outcome_fail": "doesn't work|doesn't do anything|wasn't the case|technique was wrong|couldn't fill|I lost",
+    "intent": "I'm going to|I will\\b|I envision|if I jet|I'm trying to|I'm hoping|I have to make",
+    "mechanic": "flow|isolated m\\w+|faucet|branch|butt a piece|gravity|waterfall|straight down|moving piece|stops? flow",
+    "planning": "rout|symmetr|configur|lin(e|ing) up|calculat|assum|goal|extra piece|pre-calc"
+  },
+  "n_frames_tagged": 231,
+  "frames": [
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 2,
+      "level": 0,
+      "image": "frames/episode_000/frame_0002.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "Okay we're doing liquid pour. Click on the map. I see two yellow U shapes, U shapes, open-ended shapes, asymmetrical shapes. They're symmetrical but the U isn't, there's a pink block that fits",
+      "segment_ids": [
+        "night_srt_001",
+        "night_srt_002"
+      ],
+      "narration_window_scalar": 0.825,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 3,
+      "level": 0,
+      "image": "frames/episode_000/frame_0003.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "shapes, asymmetrical shapes. They're symmetrical but the U isn't, there's a pink block that fits",
+      "segment_ids": [
+        "night_srt_002"
+      ],
+      "narration_window_scalar": 0.7375,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 4,
+      "level": 0,
+      "image": "frames/episode_000/frame_0004.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "shapes, asymmetrical shapes. They're symmetrical but the U isn't, there's a pink block that fits",
+      "segment_ids": [
+        "night_srt_002"
+      ],
+      "narration_window_scalar": 0.65,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 5,
+      "level": 0,
+      "image": "frames/episode_000/frame_0005.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "planning"
+      ],
+      "text": "shapes, asymmetrical shapes. They're symmetrical but the U isn't, there's a pink block that fits the center of the U. I'm going to move to the right. I'm going to click, click and",
+      "segment_ids": [
+        "night_srt_002",
+        "night_srt_003"
+      ],
+      "narration_window_scalar": 0.7375,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 6,
+      "level": 0,
+      "image": "frames/episode_000/frame_0006.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "the center of the U. I'm going to move to the right. I'm going to click, click and cross. I think I know it's going to happen. I envision a pour when I hit this action button.",
+      "segment_ids": [
+        "night_srt_003",
+        "night_srt_004"
+      ],
+      "narration_window_scalar": 0.825,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 7,
+      "level": 0,
+      "image": "frames/episode_000/frame_0007.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "cross. I think I know it's going to happen. I envision a pour when I hit this action button.",
+      "segment_ids": [
+        "night_srt_004"
+      ],
+      "narration_window_scalar": 0.9125,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 8,
+      "level": 1,
+      "image": "frames/episode_000/frame_0008.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "intent",
+        "mechanic",
+        "planning"
+      ],
+      "text": "cross. I think I know it's going to happen. I envision a pour when I hit this action button. Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry",
+      "segment_ids": [
+        "night_srt_004",
+        "night_srt_005"
+      ],
+      "narration_window_scalar": 1.0,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 9,
+      "level": 1,
+      "image": "frames/episode_000/frame_0009.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic",
+        "planning"
+      ],
+      "text": "Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry",
+      "segment_ids": [
+        "night_srt_005"
+      ],
+      "narration_window_scalar": 0.9833,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 10,
+      "level": 1,
+      "image": "frames/episode_000/frame_0010.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic",
+        "planning"
+      ],
+      "text": "Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry",
+      "segment_ids": [
+        "night_srt_005"
+      ],
+      "narration_window_scalar": 0.9667,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 11,
+      "level": 1,
+      "image": "frames/episode_000/frame_0011.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic",
+        "planning"
+      ],
+      "text": "Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry",
+      "segment_ids": [
+        "night_srt_005"
+      ],
+      "narration_window_scalar": 0.95,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 12,
+      "level": 1,
+      "image": "frames/episode_000/frame_0012.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic",
+        "planning"
+      ],
+      "text": "Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry",
+      "segment_ids": [
+        "night_srt_005"
+      ],
+      "narration_window_scalar": 0.9333,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 13,
+      "level": 1,
+      "image": "frames/episode_000/frame_0013.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic",
+        "planning"
+      ],
+      "text": "Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry asymmetry matching, finding the piece that creates symmetry, lining it up.",
+      "segment_ids": [
+        "night_srt_005",
+        "night_srt_006"
+      ],
+      "narration_window_scalar": 0.9167,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 14,
+      "level": 1,
+      "image": "frames/episode_000/frame_0014.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "asymmetry matching, finding the piece that creates symmetry, lining it up.",
+      "segment_ids": [
+        "night_srt_006"
+      ],
+      "narration_window_scalar": 0.9,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 15,
+      "level": 1,
+      "image": "frames/episode_000/frame_0015.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "asymmetry matching, finding the piece that creates symmetry, lining it up.",
+      "segment_ids": [
+        "night_srt_006"
+      ],
+      "narration_window_scalar": 0.8833,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 16,
+      "level": 1,
+      "image": "frames/episode_000/frame_0016.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "asymmetry matching, finding the piece that creates symmetry, lining it up.",
+      "segment_ids": [
+        "night_srt_006"
+      ],
+      "narration_window_scalar": 0.8667,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 17,
+      "level": 1,
+      "image": "frames/episode_000/frame_0017.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "asymmetry matching, finding the piece that creates symmetry, lining it up.",
+      "segment_ids": [
+        "night_srt_006"
+      ],
+      "narration_window_scalar": 0.85,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 18,
+      "level": 1,
+      "image": "frames/episode_000/frame_0018.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "asymmetry matching, finding the piece that creates symmetry, lining it up.",
+      "segment_ids": [
+        "night_srt_006"
+      ],
+      "narration_window_scalar": 0.8333,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 19,
+      "level": 1,
+      "image": "frames/episode_000/frame_0019.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "asymmetry matching, finding the piece that creates symmetry, lining it up.",
+      "segment_ids": [
+        "night_srt_006"
+      ],
+      "narration_window_scalar": 0.8167,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 20,
+      "level": 1,
+      "image": "frames/episode_000/frame_0020.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "asymmetry matching, finding the piece that creates symmetry, lining it up. Waterfall. Only to waterfall this one. You can click in the map. That was discovered.",
+      "segment_ids": [
+        "night_srt_006",
+        "night_srt_007"
+      ],
+      "narration_window_scalar": 0.8,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 21,
+      "level": 1,
+      "image": "frames/episode_000/frame_0021.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "Waterfall. Only to waterfall this one. You can click in the map. That was discovered.",
+      "segment_ids": [
+        "night_srt_007"
+      ],
+      "narration_window_scalar": 0.7833,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 22,
+      "level": 1,
+      "image": "frames/episode_000/frame_0022.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "Waterfall. Only to waterfall this one. You can click in the map. That was discovered.",
+      "segment_ids": [
+        "night_srt_007"
+      ],
+      "narration_window_scalar": 0.7667,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 23,
+      "level": 1,
+      "image": "frames/episode_000/frame_0023.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "Waterfall. Only to waterfall this one. You can click in the map. That was discovered.",
+      "segment_ids": [
+        "night_srt_007"
+      ],
+      "narration_window_scalar": 0.75,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 24,
+      "level": 1,
+      "image": "frames/episode_000/frame_0024.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "Waterfall. Only to waterfall this one. You can click in the map. That was discovered.",
+      "segment_ids": [
+        "night_srt_007"
+      ],
+      "narration_window_scalar": 0.7333,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 25,
+      "level": 1,
+      "image": "frames/episode_000/frame_0025.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "Waterfall. Only to waterfall this one. You can click in the map. That was discovered.",
+      "segment_ids": [
+        "night_srt_007"
+      ],
+      "narration_window_scalar": 0.7167,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 28,
+      "level": 1,
+      "image": "frames/episode_000/frame_0028.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Okay, shit, I might run out of,",
+      "segment_ids": [
+        "night_srt_008"
+      ],
+      "narration_window_scalar": 0.6667,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 29,
+      "level": 1,
+      "image": "frames/episode_000/frame_0029.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Okay, shit, I might run out of,",
+      "segment_ids": [
+        "night_srt_008"
+      ],
+      "narration_window_scalar": 0.65,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 30,
+      "level": 1,
+      "image": "frames/episode_000/frame_0030.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Okay, shit, I might run out of,",
+      "segment_ids": [
+        "night_srt_008"
+      ],
+      "narration_window_scalar": 0.6667,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 31,
+      "level": 1,
+      "image": "frames/episode_000/frame_0031.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Okay, shit, I might run out of,",
+      "segment_ids": [
+        "night_srt_008"
+      ],
+      "narration_window_scalar": 0.6833,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 32,
+      "level": 1,
+      "image": "frames/episode_000/frame_0032.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Okay, shit, I might run out of,",
+      "segment_ids": [
+        "night_srt_008"
+      ],
+      "narration_window_scalar": 0.7,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 33,
+      "level": 1,
+      "image": "frames/episode_000/frame_0033.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Okay, shit, I might run out of,",
+      "segment_ids": [
+        "night_srt_008"
+      ],
+      "narration_window_scalar": 0.7167,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 34,
+      "level": 1,
+      "image": "frames/episode_000/frame_0034.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Okay, shit, I might run out of,",
+      "segment_ids": [
+        "night_srt_008"
+      ],
+      "narration_window_scalar": 0.7333,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 35,
+      "level": 1,
+      "image": "frames/episode_000/frame_0035.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Okay, shit, I might run out of,",
+      "segment_ids": [
+        "night_srt_008"
+      ],
+      "narration_window_scalar": 0.75,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 36,
+      "level": 1,
+      "image": "frames/episode_000/frame_0036.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel",
+        "outcome_success"
+      ],
+      "text": "Okay, shit, I might run out of, but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+      "segment_ids": [
+        "night_srt_008",
+        "night_srt_009"
+      ],
+      "narration_window_scalar": 0.7667,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 37,
+      "level": 1,
+      "image": "frames/episode_000/frame_0037.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel",
+        "outcome_success"
+      ],
+      "text": "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+      "segment_ids": [
+        "night_srt_009"
+      ],
+      "narration_window_scalar": 0.7833,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 38,
+      "level": 1,
+      "image": "frames/episode_000/frame_0038.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel",
+        "outcome_success"
+      ],
+      "text": "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+      "segment_ids": [
+        "night_srt_009"
+      ],
+      "narration_window_scalar": 0.8,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 39,
+      "level": 1,
+      "image": "frames/episode_000/frame_0039.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel",
+        "outcome_success"
+      ],
+      "text": "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+      "segment_ids": [
+        "night_srt_009"
+      ],
+      "narration_window_scalar": 0.8167,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 40,
+      "level": 1,
+      "image": "frames/episode_000/frame_0040.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel",
+        "outcome_success"
+      ],
+      "text": "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+      "segment_ids": [
+        "night_srt_009"
+      ],
+      "narration_window_scalar": 0.8333,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 41,
+      "level": 1,
+      "image": "frames/episode_000/frame_0041.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel",
+        "outcome_success"
+      ],
+      "text": "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+      "segment_ids": [
+        "night_srt_009"
+      ],
+      "narration_window_scalar": 0.85,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 42,
+      "level": 1,
+      "image": "frames/episode_000/frame_0042.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel",
+        "outcome_success"
+      ],
+      "text": "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+      "segment_ids": [
+        "night_srt_009"
+      ],
+      "narration_window_scalar": 0.8667,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 43,
+      "level": 1,
+      "image": "frames/episode_000/frame_0043.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel",
+        "outcome_success"
+      ],
+      "text": "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation. I'm just a second.",
+      "segment_ids": [
+        "night_srt_009"
+      ],
+      "narration_window_scalar": 0.5746,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 50,
+      "level": 2,
+      "image": "frames/episode_000/frame_0050.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "I'm just a second. So this has three spouts that I need to line up and I need to do this in my head very carefully.",
+      "segment_ids": [
+        "night_srt_011"
+      ],
+      "narration_window_scalar": 0.7682,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 51,
+      "level": 2,
+      "image": "frames/episode_000/frame_0051.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "So this has three spouts that I need to line up and I need to do this in my head very carefully. It takes a lot of routing and elimination. Assume all the pieces will be used. First assumption.",
+      "segment_ids": [
+        "night_srt_011",
+        "night_srt_012"
+      ],
+      "narration_window_scalar": 0.6175,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 52,
+      "level": 2,
+      "image": "frames/episode_000/frame_0052.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "It takes a lot of routing and elimination. Assume all the pieces will be used. First assumption.",
+      "segment_ids": [
+        "night_srt_012"
+      ],
+      "narration_window_scalar": 0.585,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 53,
+      "level": 2,
+      "image": "frames/episode_000/frame_0053.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "intent",
+        "planning"
+      ],
+      "text": "It takes a lot of routing and elimination. Assume all the pieces will be used. First assumption. I've got it. I understand how I'll do it. The two pieces, I will line up pieces to the gaps immediately to service the needs and that's done.",
+      "segment_ids": [
+        "night_srt_012",
+        "night_srt_013"
+      ],
+      "narration_window_scalar": 0.5525,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 54,
+      "level": 2,
+      "image": "frames/episode_000/frame_0054.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "intent",
+        "planning"
+      ],
+      "text": "I've got it. I understand how I'll do it. The two pieces, I will line up pieces to the gaps immediately to service the needs and that's done.",
+      "segment_ids": [
+        "night_srt_013"
+      ],
+      "narration_window_scalar": 0.52,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 55,
+      "level": 2,
+      "image": "frames/episode_000/frame_0055.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "intent",
+        "planning"
+      ],
+      "text": "I've got it. I understand how I'll do it. The two pieces, I will line up pieces to the gaps immediately to service the needs and that's done.",
+      "segment_ids": [
+        "night_srt_013"
+      ],
+      "narration_window_scalar": 0.4875,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 56,
+      "level": 2,
+      "image": "frames/episode_000/frame_0056.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "intent",
+        "planning"
+      ],
+      "text": "I've got it. I understand how I'll do it. The two pieces, I will line up pieces to the gaps immediately to service the needs and that's done. So I've determined the route to the goal. Once I've determined the goal, I route my way towards where I am and fit and determine complexity and challenges along the way.",
+      "segment_ids": [
+        "night_srt_013",
+        "night_srt_014"
+      ],
+      "narration_window_scalar": 0.455,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 57,
+      "level": 2,
+      "image": "frames/episode_000/frame_0057.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "So I've determined the route to the goal. Once I've determined the goal, I route my way towards where I am and fit and determine complexity and challenges along the way. Interations of different horizons and levels of detail on each object between me and the goal. It's critical because the",
+      "segment_ids": [
+        "night_srt_014",
+        "night_srt_015"
+      ],
+      "narration_window_scalar": 0.4225,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 58,
+      "level": 2,
+      "image": "frames/episode_000/frame_0058.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "Interations of different horizons and levels of detail on each object between me and the goal. It's critical because the",
+      "segment_ids": [
+        "night_srt_015"
+      ],
+      "narration_window_scalar": 0.455,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 59,
+      "level": 2,
+      "image": "frames/episode_000/frame_0059.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "Interations of different horizons and levels of detail on each object between me and the goal. It's critical because the only thing that matters is touching the goal in this game mode, this game mode. The only thing that matters is lining up with the goal because all the other pieces below that are turned out to be extra.",
+      "segment_ids": [
+        "night_srt_015",
+        "night_srt_016"
+      ],
+      "narration_window_scalar": 0.4875,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 60,
+      "level": 2,
+      "image": "frames/episode_000/frame_0060.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "only thing that matters is touching the goal in this game mode, this game mode. The only thing that matters is lining up with the goal because all the other pieces below that are turned out to be extra.",
+      "segment_ids": [
+        "night_srt_016"
+      ],
+      "narration_window_scalar": 0.52,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 61,
+      "level": 2,
+      "image": "frames/episode_000/frame_0061.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "planning"
+      ],
+      "text": "only thing that matters is touching the goal in this game mode, this game mode. The only thing that matters is lining up with the goal because all the other pieces below that are turned out to be extra. You don't even have to think about them much. They fall in line and it worked.",
+      "segment_ids": [
+        "night_srt_016",
+        "night_srt_017"
+      ],
+      "narration_window_scalar": 0.5525,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 62,
+      "level": 2,
+      "image": "frames/episode_000/frame_0062.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "You don't even have to think about them much. They fall in line and it worked. The same system.",
+      "segment_ids": [
+        "night_srt_017",
+        "night_srt_018"
+      ],
+      "narration_window_scalar": 0.585,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 64,
+      "level": 3,
+      "image": "frames/episode_000/frame_0064.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "segment_ids": [
+        "night_srt_019"
+      ],
+      "narration_window_scalar": 0.65,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 65,
+      "level": 3,
+      "image": "frames/episode_000/frame_0065.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "segment_ids": [
+        "night_srt_019"
+      ],
+      "narration_window_scalar": 0.643,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 66,
+      "level": 3,
+      "image": "frames/episode_000/frame_0066.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "segment_ids": [
+        "night_srt_019"
+      ],
+      "narration_window_scalar": 0.636,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 67,
+      "level": 3,
+      "image": "frames/episode_000/frame_0067.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "segment_ids": [
+        "night_srt_019"
+      ],
+      "narration_window_scalar": 0.629,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 68,
+      "level": 3,
+      "image": "frames/episode_000/frame_0068.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "segment_ids": [
+        "night_srt_019"
+      ],
+      "narration_window_scalar": 0.622,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 69,
+      "level": 3,
+      "image": "frames/episode_000/frame_0069.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "segment_ids": [
+        "night_srt_019"
+      ],
+      "narration_window_scalar": 0.615,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 70,
+      "level": 3,
+      "image": "frames/episode_000/frame_0070.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "segment_ids": [
+        "night_srt_019"
+      ],
+      "narration_window_scalar": 0.608,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 71,
+      "level": 3,
+      "image": "frames/episode_000/frame_0071.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+      "segment_ids": [
+        "night_srt_019"
+      ],
+      "narration_window_scalar": 0.601,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 72,
+      "level": 3,
+      "image": "frames/episode_000/frame_0072.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail",
+        "planning"
+      ],
+      "text": "One has a gap and I've been sitting here looking at a piece that I couldn't fill. So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends.",
+      "segment_ids": [
+        "night_srt_019",
+        "night_srt_020"
+      ],
+      "narration_window_scalar": 0.594,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 73,
+      "level": 3,
+      "image": "frames/episode_000/frame_0073.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends.",
+      "segment_ids": [
+        "night_srt_020"
+      ],
+      "narration_window_scalar": 0.587,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 74,
+      "level": 3,
+      "image": "frames/episode_000/frame_0074.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends.",
+      "segment_ids": [
+        "night_srt_020"
+      ],
+      "narration_window_scalar": 0.58,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 75,
+      "level": 3,
+      "image": "frames/episode_000/frame_0075.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends.",
+      "segment_ids": [
+        "night_srt_020"
+      ],
+      "narration_window_scalar": 0.573,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 76,
+      "level": 3,
+      "image": "frames/episode_000/frame_0076.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends.",
+      "segment_ids": [
+        "night_srt_020"
+      ],
+      "narration_window_scalar": 0.566,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 77,
+      "level": 3,
+      "image": "frames/episode_000/frame_0077.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends.",
+      "segment_ids": [
+        "night_srt_020"
+      ],
+      "narration_window_scalar": 0.559,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 78,
+      "level": 3,
+      "image": "frames/episode_000/frame_0078.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends. The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "segment_ids": [
+        "night_srt_020",
+        "night_srt_021"
+      ],
+      "narration_window_scalar": 0.552,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 79,
+      "level": 3,
+      "image": "frames/episode_000/frame_0079.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "segment_ids": [
+        "night_srt_021"
+      ],
+      "narration_window_scalar": 0.545,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 80,
+      "level": 3,
+      "image": "frames/episode_000/frame_0080.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "segment_ids": [
+        "night_srt_021"
+      ],
+      "narration_window_scalar": 0.538,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 81,
+      "level": 3,
+      "image": "frames/episode_000/frame_0081.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "segment_ids": [
+        "night_srt_021"
+      ],
+      "narration_window_scalar": 0.531,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 82,
+      "level": 3,
+      "image": "frames/episode_000/frame_0082.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "segment_ids": [
+        "night_srt_021"
+      ],
+      "narration_window_scalar": 0.524,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 83,
+      "level": 3,
+      "image": "frames/episode_000/frame_0083.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "segment_ids": [
+        "night_srt_021"
+      ],
+      "narration_window_scalar": 0.517,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 84,
+      "level": 3,
+      "image": "frames/episode_000/frame_0084.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "segment_ids": [
+        "night_srt_021"
+      ],
+      "narration_window_scalar": 0.51,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 85,
+      "level": 3,
+      "image": "frames/episode_000/frame_0085.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+      "segment_ids": [
+        "night_srt_021"
+      ],
+      "narration_window_scalar": 0.503,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 86,
+      "level": 3,
+      "image": "frames/episode_000/frame_0086.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "The third is asymmetrical and causes me to have to analyze what configuration of bars. Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element.",
+      "segment_ids": [
+        "night_srt_021",
+        "night_srt_022"
+      ],
+      "narration_window_scalar": 0.496,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 87,
+      "level": 3,
+      "image": "frames/episode_000/frame_0087.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element.",
+      "segment_ids": [
+        "night_srt_022"
+      ],
+      "narration_window_scalar": 0.489,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 88,
+      "level": 3,
+      "image": "frames/episode_000/frame_0088.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element.",
+      "segment_ids": [
+        "night_srt_022"
+      ],
+      "narration_window_scalar": 0.482,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 89,
+      "level": 3,
+      "image": "frames/episode_000/frame_0089.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element.",
+      "segment_ids": [
+        "night_srt_022"
+      ],
+      "narration_window_scalar": 0.475,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 90,
+      "level": 3,
+      "image": "frames/episode_000/frame_0090.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element.",
+      "segment_ids": [
+        "night_srt_022"
+      ],
+      "narration_window_scalar": 0.468,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 91,
+      "level": 3,
+      "image": "frames/episode_000/frame_0091.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element. There isn't any to fit the one in the middle. I even tested this concept.",
+      "segment_ids": [
+        "night_srt_022",
+        "night_srt_023"
+      ],
+      "narration_window_scalar": 0.461,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 107,
+      "level": 3,
+      "image": "frames/episode_000/frame_0107.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "This is the first time I'm not going to try to use all the pieces. I'm hoping the black thing is a hole.",
+      "segment_ids": [
+        "night_srt_025",
+        "night_srt_026"
+      ],
+      "narration_window_scalar": 0.496,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 108,
+      "level": 3,
+      "image": "frames/episode_000/frame_0108.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I'm hoping the black thing is a hole.",
+      "segment_ids": [
+        "night_srt_026"
+      ],
+      "narration_window_scalar": 0.503,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 109,
+      "level": 3,
+      "image": "frames/episode_000/frame_0109.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I'm hoping the black thing is a hole.",
+      "segment_ids": [
+        "night_srt_026"
+      ],
+      "narration_window_scalar": 0.51,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 110,
+      "level": 3,
+      "image": "frames/episode_000/frame_0110.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I'm hoping the black thing is a hole.",
+      "segment_ids": [
+        "night_srt_026"
+      ],
+      "narration_window_scalar": 0.517,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 111,
+      "level": 3,
+      "image": "frames/episode_000/frame_0111.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill",
+        "intent"
+      ],
+      "text": "I'm hoping the black thing is a hole. I spilled.",
+      "segment_ids": [
+        "night_srt_026",
+        "night_srt_027"
+      ],
+      "narration_window_scalar": 0.524,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 112,
+      "level": 3,
+      "image": "frames/episode_000/frame_0112.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_027"
+      ],
+      "narration_window_scalar": 0.531,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 113,
+      "level": 3,
+      "image": "frames/episode_000/frame_0113.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_027"
+      ],
+      "narration_window_scalar": 0.538,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 114,
+      "level": 3,
+      "image": "frames/episode_000/frame_0114.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_027"
+      ],
+      "narration_window_scalar": 0.545,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 115,
+      "level": 3,
+      "image": "frames/episode_000/frame_0115.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled. I spilled.",
+      "segment_ids": [
+        "night_srt_027",
+        "night_srt_028"
+      ],
+      "narration_window_scalar": 0.552,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 116,
+      "level": 3,
+      "image": "frames/episode_000/frame_0116.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_028"
+      ],
+      "narration_window_scalar": 0.559,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 117,
+      "level": 3,
+      "image": "frames/episode_000/frame_0117.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_028"
+      ],
+      "narration_window_scalar": 0.566,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 118,
+      "level": 3,
+      "image": "frames/episode_000/frame_0118.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_028"
+      ],
+      "narration_window_scalar": 0.573,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 119,
+      "level": 3,
+      "image": "frames/episode_000/frame_0119.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_028"
+      ],
+      "narration_window_scalar": 0.58,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 120,
+      "level": 3,
+      "image": "frames/episode_000/frame_0120.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_028"
+      ],
+      "narration_window_scalar": 0.587,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 121,
+      "level": 3,
+      "image": "frames/episode_000/frame_0121.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_028"
+      ],
+      "narration_window_scalar": 0.594,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 122,
+      "level": 3,
+      "image": "frames/episode_000/frame_0122.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_028"
+      ],
+      "narration_window_scalar": 0.601,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 123,
+      "level": 3,
+      "image": "frames/episode_000/frame_0123.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled. I spilled.",
+      "segment_ids": [
+        "night_srt_028",
+        "night_srt_029"
+      ],
+      "narration_window_scalar": 0.608,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 124,
+      "level": 3,
+      "image": "frames/episode_000/frame_0124.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_029"
+      ],
+      "narration_window_scalar": 0.615,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 125,
+      "level": 3,
+      "image": "frames/episode_000/frame_0125.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_029"
+      ],
+      "narration_window_scalar": 0.622,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 126,
+      "level": 3,
+      "image": "frames/episode_000/frame_0126.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_029"
+      ],
+      "narration_window_scalar": 0.629,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 127,
+      "level": 3,
+      "image": "frames/episode_000/frame_0127.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_029"
+      ],
+      "narration_window_scalar": 0.636,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 128,
+      "level": 3,
+      "image": "frames/episode_000/frame_0128.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill"
+      ],
+      "text": "I spilled.",
+      "segment_ids": [
+        "night_srt_029"
+      ],
+      "narration_window_scalar": 0.643,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 129,
+      "level": 4,
+      "image": "frames/episode_000/frame_0129.png",
+      "primary": "outcome_spill",
+      "tags": [
+        "outcome_spill",
+        "planning"
+      ],
+      "text": "I spilled. The challenge is routing.",
+      "segment_ids": [
+        "night_srt_029",
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.65,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 130,
+      "level": 4,
+      "image": "frames/episode_000/frame_0130.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6454,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 131,
+      "level": 4,
+      "image": "frames/episode_000/frame_0131.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6409,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 132,
+      "level": 4,
+      "image": "frames/episode_000/frame_0132.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6363,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 133,
+      "level": 4,
+      "image": "frames/episode_000/frame_0133.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6318,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 134,
+      "level": 4,
+      "image": "frames/episode_000/frame_0134.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6272,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 135,
+      "level": 4,
+      "image": "frames/episode_000/frame_0135.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6227,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 136,
+      "level": 4,
+      "image": "frames/episode_000/frame_0136.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6181,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 137,
+      "level": 4,
+      "image": "frames/episode_000/frame_0137.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6136,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 138,
+      "level": 4,
+      "image": "frames/episode_000/frame_0138.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6091,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 139,
+      "level": 4,
+      "image": "frames/episode_000/frame_0139.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6045,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 140,
+      "level": 4,
+      "image": "frames/episode_000/frame_0140.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.6,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 141,
+      "level": 4,
+      "image": "frames/episode_000/frame_0141.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.5954,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 142,
+      "level": 4,
+      "image": "frames/episode_000/frame_0142.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing.",
+      "segment_ids": [
+        "night_srt_030"
+      ],
+      "narration_window_scalar": 0.5908,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 143,
+      "level": 4,
+      "image": "frames/episode_000/frame_0143.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "The challenge is routing. There are three parts below.",
+      "segment_ids": [
+        "night_srt_030",
+        "night_srt_031"
+      ],
+      "narration_window_scalar": 0.5863,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 217,
+      "level": 4,
+      "image": "frames/episode_000/frame_0217.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail",
+        "intent"
+      ],
+      "text": "I'm going to watch it happen again. Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.1576,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 218,
+      "level": 4,
+      "image": "frames/episode_000/frame_0218.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 219,
+      "level": 4,
+      "image": "frames/episode_000/frame_0219.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6045,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 220,
+      "level": 4,
+      "image": "frames/episode_000/frame_0220.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6091,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 221,
+      "level": 4,
+      "image": "frames/episode_000/frame_0221.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6136,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 222,
+      "level": 4,
+      "image": "frames/episode_000/frame_0222.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6181,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 223,
+      "level": 4,
+      "image": "frames/episode_000/frame_0223.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6227,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 224,
+      "level": 4,
+      "image": "frames/episode_000/frame_0224.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6272,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 225,
+      "level": 4,
+      "image": "frames/episode_000/frame_0225.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6318,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 226,
+      "level": 4,
+      "image": "frames/episode_000/frame_0226.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6363,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 227,
+      "level": 4,
+      "image": "frames/episode_000/frame_0227.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6409,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 228,
+      "level": 4,
+      "image": "frames/episode_000/frame_0228.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 0.6454,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "episode_frame_index": 229,
+      "level": 4,
+      "image": "frames/episode_000/frame_0229.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Yeah, I lost her right now. Let's do it again.",
+      "segment_ids": [
+        "night_srt_036"
+      ],
+      "narration_window_scalar": 1.0,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 95,
+      "level": 4,
+      "image": "frames/episode_001/frame_0095.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Let's do it again. No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.11,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 96,
+      "level": 4,
+      "image": "frames/episode_001/frame_0096.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.2482,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 97,
+      "level": 4,
+      "image": "frames/episode_001/frame_0097.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.2463,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 98,
+      "level": 4,
+      "image": "frames/episode_001/frame_0098.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.2444,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 99,
+      "level": 4,
+      "image": "frames/episode_001/frame_0099.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.2425,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 100,
+      "level": 4,
+      "image": "frames/episode_001/frame_0100.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.2407,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 101,
+      "level": 4,
+      "image": "frames/episode_001/frame_0101.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.2388,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 102,
+      "level": 4,
+      "image": "frames/episode_001/frame_0102.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.237,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 103,
+      "level": 4,
+      "image": "frames/episode_001/frame_0103.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.2351,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 104,
+      "level": 4,
+      "image": "frames/episode_001/frame_0104.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.2333,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "episode_frame_index": 105,
+      "level": 4,
+      "image": "frames/episode_001/frame_0105.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "No, it doesn't work like that. Let's do it again.",
+      "segment_ids": [
+        "night_srt_046"
+      ],
+      "narration_window_scalar": 0.0914,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 32,
+      "level": 2,
+      "image": "frames/episode_003/frame_0032.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "Okay, so it's routing based upon flow, so anticipation and understanding of the paint bucket.",
+      "segment_ids": [
+        "morning_json_004"
+      ],
+      "narration_window_scalar": 0.65,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 33,
+      "level": 2,
+      "image": "frames/episode_003/frame_0033.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "Okay, so it's routing based upon flow, so anticipation and understanding of the paint bucket. The paint flow is critical.",
+      "segment_ids": [
+        "morning_json_004",
+        "morning_json_005"
+      ],
+      "narration_window_scalar": 0.6121,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 34,
+      "level": 2,
+      "image": "frames/episode_003/frame_0034.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "The paint flow is critical. Yeah, I was tired playing this at 3 in the morning last night. This is much easier right now. If you butt a piece up to another piece, it stops flow from going to its other side.",
+      "segment_ids": [
+        "morning_json_005",
+        "morning_json_007"
+      ],
+      "narration_window_scalar": 0.412,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 35,
+      "level": 2,
+      "image": "frames/episode_003/frame_0035.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "If you butt a piece up to another piece, it stops flow from going to its other side. The flow is always going to branch out until stopped. This flow game is actually another example of what do we call it? Isolated motion, isolated movement. It's just understanding what is the moving piece. So, I think if we ask ourselves what are our moving pieces, do they have isolated movement?",
+      "segment_ids": [
+        "morning_json_007",
+        "morning_json_008",
+        "morning_json_009",
+        "morning_json_010",
+        "morning_json_011"
+      ],
+      "narration_window_scalar": 0.5363,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 36,
+      "level": 2,
+      "image": "frames/episode_003/frame_0036.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, I think if we ask ourselves what are our moving pieces, do they have isolated movement? Yes or no? That little micro question is really, really, really important. And we need to exhaust the do we have isolated movement potential until we close that chapter. Because if we have isolated movement potential, like this paint game immediately has isolated movement potential, knowing if you put one block up against a wall, that's isolated movement on the liquid or whatever we're claiming is a liquid.",
+      "segment_ids": [
+        "morning_json_011",
+        "morning_json_012",
+        "morning_json_013",
+        "morning_json_014",
+        "morning_json_015"
+      ],
+      "narration_window_scalar": 0.4984,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 37,
+      "level": 2,
+      "image": "frames/episode_003/frame_0037.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic",
+        "planning"
+      ],
+      "text": "knowing if you put one block up against a wall, that's isolated movement on the liquid or whatever we're claiming is a liquid. So, it's the same mechanic being used to create value plays all over the place. And I think, yeah, there's just extra pieces when you do it that way.",
+      "segment_ids": [
+        "morning_json_015",
+        "morning_json_016",
+        "morning_json_017"
+      ],
+      "narration_window_scalar": 0.4604,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 38,
+      "level": 2,
+      "image": "frames/episode_003/frame_0038.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "And I think, yeah, there's just extra pieces when you do it that way. Man, I was tired last night.",
+      "segment_ids": [
+        "morning_json_017"
+      ],
+      "narration_window_scalar": 0.3292,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 44,
+      "level": 3,
+      "image": "frames/episode_003/frame_0044.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "Okay. So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.0424,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 45,
+      "level": 3,
+      "image": "frames/episode_003/frame_0045.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.6397,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 46,
+      "level": 3,
+      "image": "frames/episode_003/frame_0046.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.6293,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 47,
+      "level": 3,
+      "image": "frames/episode_003/frame_0047.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.619,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 48,
+      "level": 3,
+      "image": "frames/episode_003/frame_0048.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.6087,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 49,
+      "level": 3,
+      "image": "frames/episode_003/frame_0049.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.5983,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 50,
+      "level": 3,
+      "image": "frames/episode_003/frame_0050.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.5879,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 51,
+      "level": 3,
+      "image": "frames/episode_003/frame_0051.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.5776,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 52,
+      "level": 3,
+      "image": "frames/episode_003/frame_0052.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.5673,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 53,
+      "level": 3,
+      "image": "frames/episode_003/frame_0053.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.5569,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 54,
+      "level": 3,
+      "image": "frames/episode_003/frame_0054.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+      "segment_ids": [
+        "morning_json_025"
+      ],
+      "narration_window_scalar": 0.5466,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 55,
+      "level": 3,
+      "image": "frames/episode_003/frame_0055.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "mechanic"
+      ],
+      "text": "So, the isolated movement technique, I had to fumble around on this one a decent amount. I'm not sure if I'm going to win or not.",
+      "segment_ids": [
+        "morning_json_025",
+        "morning_json_026"
+      ],
+      "narration_window_scalar": 0.5363,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 56,
+      "level": 3,
+      "image": "frames/episode_003/frame_0056.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I'm not sure if I'm going to win or not.",
+      "segment_ids": [
+        "morning_json_026"
+      ],
+      "narration_window_scalar": 0.5259,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 57,
+      "level": 3,
+      "image": "frames/episode_003/frame_0057.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail",
+        "intent",
+        "planning"
+      ],
+      "text": "I'm not sure if I'm going to win or not. I realized that my initial technique was wrong based upon the assumption of water falling down also didn't also fall down.",
+      "segment_ids": [
+        "morning_json_026",
+        "morning_json_027"
+      ],
+      "narration_window_scalar": 0.5156,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 58,
+      "level": 3,
+      "image": "frames/episode_003/frame_0058.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail",
+        "planning"
+      ],
+      "text": "I realized that my initial technique was wrong based upon the assumption of water falling down also didn't also fall down.",
+      "segment_ids": [
+        "morning_json_027"
+      ],
+      "narration_window_scalar": 0.5052,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 59,
+      "level": 3,
+      "image": "frames/episode_003/frame_0059.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail",
+        "planning"
+      ],
+      "text": "I realized that my initial technique was wrong based upon the assumption of water falling down also didn't also fall down.",
+      "segment_ids": [
+        "morning_json_027"
+      ],
+      "narration_window_scalar": 0.4949,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 60,
+      "level": 3,
+      "image": "frames/episode_003/frame_0060.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail",
+        "planning"
+      ],
+      "text": "I realized that my initial technique was wrong based upon the assumption of water falling down also didn't also fall down. It just went where I wanted it to go to the left specifically into the L shape and went to the left.",
+      "segment_ids": [
+        "morning_json_027",
+        "morning_json_028"
+      ],
+      "narration_window_scalar": 0.4846,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 65,
+      "level": 3,
+      "image": "frames/episode_003/frame_0065.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "I was expecting it to go into the L shape to the left and also down. When that was confirmed that wasn't the case, I had to reassess all my other pieces.",
+      "segment_ids": [
+        "morning_json_029",
+        "morning_json_030"
+      ],
+      "narration_window_scalar": 0.4328,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 66,
+      "level": 3,
+      "image": "frames/episode_003/frame_0066.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "When that was confirmed that wasn't the case, I had to reassess all my other pieces.",
+      "segment_ids": [
+        "morning_json_030"
+      ],
+      "narration_window_scalar": 0.4225,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 67,
+      "level": 3,
+      "image": "frames/episode_003/frame_0067.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "When that was confirmed that wasn't the case, I had to reassess all my other pieces.",
+      "segment_ids": [
+        "morning_json_030"
+      ],
+      "narration_window_scalar": 0.4328,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 68,
+      "level": 3,
+      "image": "frames/episode_003/frame_0068.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail",
+        "planning"
+      ],
+      "text": "When that was confirmed that wasn't the case, I had to reassess all my other pieces. And I believe I have a configuration that still drops to all the points.",
+      "segment_ids": [
+        "morning_json_030",
+        "morning_json_031"
+      ],
+      "narration_window_scalar": 0.4432,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 69,
+      "level": 3,
+      "image": "frames/episode_003/frame_0069.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "And I believe I have a configuration that still drops to all the points.",
+      "segment_ids": [
+        "morning_json_031"
+      ],
+      "narration_window_scalar": 0.4535,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 70,
+      "level": 3,
+      "image": "frames/episode_003/frame_0070.png",
+      "primary": "planning",
+      "tags": [
+        "planning"
+      ],
+      "text": "And I believe I have a configuration that still drops to all the points.",
+      "segment_ids": [
+        "morning_json_031"
+      ],
+      "narration_window_scalar": 0.4638,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 71,
+      "level": 3,
+      "image": "frames/episode_003/frame_0071.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic",
+        "planning"
+      ],
+      "text": "And I believe I have a configuration that still drops to all the points. But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_031",
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.4742,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 72,
+      "level": 3,
+      "image": "frames/episode_003/frame_0072.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.4846,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 73,
+      "level": 3,
+      "image": "frames/episode_003/frame_0073.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.4949,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 74,
+      "level": 3,
+      "image": "frames/episode_003/frame_0074.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.5052,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 75,
+      "level": 3,
+      "image": "frames/episode_003/frame_0075.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.5156,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 76,
+      "level": 3,
+      "image": "frames/episode_003/frame_0076.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.5259,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 77,
+      "level": 3,
+      "image": "frames/episode_003/frame_0077.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.5363,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 78,
+      "level": 3,
+      "image": "frames/episode_003/frame_0078.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.5466,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 79,
+      "level": 3,
+      "image": "frames/episode_003/frame_0079.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.5569,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 80,
+      "level": 3,
+      "image": "frames/episode_003/frame_0080.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success",
+        "mechanic"
+      ],
+      "text": "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path. So, let's see if it works.",
+      "segment_ids": [
+        "morning_json_032"
+      ],
+      "narration_window_scalar": 0.5182,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 82,
+      "level": 3,
+      "image": "frames/episode_003/frame_0082.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "So, let's see if it works. Got it.",
+      "segment_ids": [
+        "morning_json_034"
+      ],
+      "narration_window_scalar": 0.0372,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 83,
+      "level": 3,
+      "image": "frames/episode_003/frame_0083.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "Got it.",
+      "segment_ids": [
+        "morning_json_034"
+      ],
+      "narration_window_scalar": 0.5983,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 84,
+      "level": 3,
+      "image": "frames/episode_003/frame_0084.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "Got it. Okay.",
+      "segment_ids": [
+        "morning_json_034"
+      ],
+      "narration_window_scalar": 0.2765,
+      "alignment_confidence": "medium"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 88,
+      "level": 4,
+      "image": "frames/episode_003/frame_0088.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "Congratulations to us. There's a piece that's a faucet.",
+      "segment_ids": [
+        "morning_json_037"
+      ],
+      "narration_window_scalar": 0.7004,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 89,
+      "level": 4,
+      "image": "frames/episode_003/frame_0089.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "There's a piece that's a faucet. That's what I call it.",
+      "segment_ids": [
+        "morning_json_037",
+        "morning_json_038"
+      ],
+      "narration_window_scalar": 0.9924,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 90,
+      "level": 4,
+      "image": "frames/episode_003/frame_0090.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "That's what I call it. It goes straight down and it links to the sides.",
+      "segment_ids": [
+        "morning_json_038",
+        "morning_json_039"
+      ],
+      "narration_window_scalar": 0.9848,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 91,
+      "level": 4,
+      "image": "frames/episode_003/frame_0091.png",
+      "primary": "mechanic",
+      "tags": [
+        "mechanic"
+      ],
+      "text": "It goes straight down and it links to the sides. The side parts connect.",
+      "segment_ids": [
+        "morning_json_039",
+        "morning_json_040"
+      ],
+      "narration_window_scalar": 0.9772,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 104,
+      "level": 4,
+      "image": "frames/episode_003/frame_0104.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "planning"
+      ],
+      "text": "Okay. I'm trying to make sense of the vertical bar, so I'm just doing a lot of pre-calculating and configuring.",
+      "segment_ids": [
+        "morning_json_045"
+      ],
+      "narration_window_scalar": 0.8029,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 105,
+      "level": 4,
+      "image": "frames/episode_003/frame_0105.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "planning"
+      ],
+      "text": "I'm trying to make sense of the vertical bar, so I'm just doing a lot of pre-calculating and configuring.",
+      "segment_ids": [
+        "morning_json_045"
+      ],
+      "narration_window_scalar": 0.8707,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 106,
+      "level": 4,
+      "image": "frames/episode_003/frame_0106.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "planning"
+      ],
+      "text": "I'm trying to make sense of the vertical bar, so I'm just doing a lot of pre-calculating and configuring.",
+      "segment_ids": [
+        "morning_json_045"
+      ],
+      "narration_window_scalar": 0.863,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 107,
+      "level": 4,
+      "image": "frames/episode_003/frame_0107.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "planning"
+      ],
+      "text": "I'm trying to make sense of the vertical bar, so I'm just doing a lot of pre-calculating and configuring. On where the skinny bar is going to go to a root, I have three roots done, but the fourth root doesn't make sense to me.",
+      "segment_ids": [
+        "morning_json_045",
+        "morning_json_046"
+      ],
+      "narration_window_scalar": 0.8554,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 109,
+      "level": 4,
+      "image": "frames/episode_003/frame_0109.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "mechanic"
+      ],
+      "text": "On where the skinny bar is going to go to a root, I have three roots done, but the fourth root doesn't make sense to me. And it's causing me to think I'm going to need to rethink the faucet. It's not as simple as I wanted it to be, which is aligned with the whole.",
+      "segment_ids": [
+        "morning_json_046",
+        "morning_json_047"
+      ],
+      "narration_window_scalar": 0.8402,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 110,
+      "level": 4,
+      "image": "frames/episode_003/frame_0110.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "mechanic"
+      ],
+      "text": "And it's causing me to think I'm going to need to rethink the faucet. It's not as simple as I wanted it to be, which is aligned with the whole.",
+      "segment_ids": [
+        "morning_json_047"
+      ],
+      "narration_window_scalar": 0.8326,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 111,
+      "level": 4,
+      "image": "frames/episode_003/frame_0111.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "mechanic"
+      ],
+      "text": "And it's causing me to think I'm going to need to rethink the faucet. It's not as simple as I wanted it to be, which is aligned with the whole. If it's first immediately obvious and desirable, it's most likely not a game challenge and the challenge is hidden deeper.",
+      "segment_ids": [
+        "morning_json_047",
+        "morning_json_048"
+      ],
+      "narration_window_scalar": 0.825,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 126,
+      "level": 4,
+      "image": "frames/episode_003/frame_0126.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "So let's make sense of this. Because I have a vertical line that's causing me problems and the central system doesn't work,",
+      "segment_ids": [
+        "morning_json_052"
+      ],
+      "narration_window_scalar": 0.1313,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 127,
+      "level": 4,
+      "image": "frames/episode_003/frame_0127.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Because I have a vertical line that's causing me problems and the central system doesn't work,",
+      "segment_ids": [
+        "morning_json_052"
+      ],
+      "narration_window_scalar": 0.7033,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 128,
+      "level": 4,
+      "image": "frames/episode_003/frame_0128.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Because I have a vertical line that's causing me problems and the central system doesn't work,",
+      "segment_ids": [
+        "morning_json_052"
+      ],
+      "narration_window_scalar": 0.6957,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 129,
+      "level": 4,
+      "image": "frames/episode_003/frame_0129.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "Because I have a vertical line that's causing me problems and the central system doesn't work, I'm most likely going to need more functions on the left and the right because there's only one thing on the right.",
+      "segment_ids": [
+        "morning_json_052",
+        "morning_json_053"
+      ],
+      "narration_window_scalar": 0.688,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 136,
+      "level": 4,
+      "image": "frames/episode_003/frame_0136.png",
+      "primary": "intent",
+      "tags": [
+        "intent",
+        "mechanic"
+      ],
+      "text": "I'm having trouble seeing the whole board. I don't have the internal RAM to see the whole board with the flow going. Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't...",
+      "segment_ids": [
+        "morning_json_057"
+      ],
+      "narration_window_scalar": 0.295,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 137,
+      "level": 4,
+      "image": "frames/episode_003/frame_0137.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't...",
+      "segment_ids": [
+        "morning_json_057"
+      ],
+      "narration_window_scalar": 0.6728,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 138,
+      "level": 4,
+      "image": "frames/episode_003/frame_0138.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't...",
+      "segment_ids": [
+        "morning_json_057"
+      ],
+      "narration_window_scalar": 0.6804,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 139,
+      "level": 4,
+      "image": "frames/episode_003/frame_0139.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't...",
+      "segment_ids": [
+        "morning_json_057"
+      ],
+      "narration_window_scalar": 0.688,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 140,
+      "level": 4,
+      "image": "frames/episode_003/frame_0140.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail",
+        "intent"
+      ],
+      "text": "Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't... It doesn't do anything.",
+      "segment_ids": [
+        "morning_json_057",
+        "morning_json_058"
+      ],
+      "narration_window_scalar": 0.6957,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 141,
+      "level": 4,
+      "image": "frames/episode_003/frame_0141.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "It doesn't do anything.",
+      "segment_ids": [
+        "morning_json_058"
+      ],
+      "narration_window_scalar": 0.7033,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 142,
+      "level": 4,
+      "image": "frames/episode_003/frame_0142.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "It doesn't do anything.",
+      "segment_ids": [
+        "morning_json_058"
+      ],
+      "narration_window_scalar": 0.7109,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 143,
+      "level": 4,
+      "image": "frames/episode_003/frame_0143.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "It doesn't do anything.",
+      "segment_ids": [
+        "morning_json_058"
+      ],
+      "narration_window_scalar": 0.7185,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 144,
+      "level": 4,
+      "image": "frames/episode_003/frame_0144.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "It doesn't do anything.",
+      "segment_ids": [
+        "morning_json_058"
+      ],
+      "narration_window_scalar": 0.7261,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 145,
+      "level": 4,
+      "image": "frames/episode_003/frame_0145.png",
+      "primary": "outcome_fail",
+      "tags": [
+        "outcome_fail"
+      ],
+      "text": "It doesn't do anything. I just don't understand what I can even do with this one.",
+      "segment_ids": [
+        "morning_json_058",
+        "morning_json_059"
+      ],
+      "narration_window_scalar": 0.7337,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 278,
+      "level": 5,
+      "image": "frames/episode_003/frame_0278.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "Fuck. I don't have it. I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.4268,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 279,
+      "level": 5,
+      "image": "frames/episode_003/frame_0279.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.8775,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 280,
+      "level": 5,
+      "image": "frames/episode_003/frame_0280.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.8833,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 281,
+      "level": 5,
+      "image": "frames/episode_003/frame_0281.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.8892,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 282,
+      "level": 5,
+      "image": "frames/episode_003/frame_0282.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.895,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 283,
+      "level": 5,
+      "image": "frames/episode_003/frame_0283.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.9008,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 284,
+      "level": 5,
+      "image": "frames/episode_003/frame_0284.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.9067,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 285,
+      "level": 5,
+      "image": "frames/episode_003/frame_0285.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.9125,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 286,
+      "level": 5,
+      "image": "frames/episode_003/frame_0286.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.9183,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 287,
+      "level": 5,
+      "image": "frames/episode_003/frame_0287.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.9242,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 288,
+      "level": 5,
+      "image": "frames/episode_003/frame_0288.png",
+      "primary": "intent",
+      "tags": [
+        "intent"
+      ],
+      "text": "I have to make an L. Fucking fuck.",
+      "segment_ids": [
+        "morning_json_075"
+      ],
+      "narration_window_scalar": 0.5234,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 296,
+      "level": 5,
+      "image": "frames/episode_003/frame_0296.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "Fucking fuck. I ran out of goddamn...",
+      "segment_ids": [
+        "morning_json_077"
+      ],
+      "narration_window_scalar": 0.2633,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 297,
+      "level": 5,
+      "image": "frames/episode_003/frame_0297.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "I ran out of goddamn...",
+      "segment_ids": [
+        "morning_json_077"
+      ],
+      "narration_window_scalar": 0.9825,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 298,
+      "level": 5,
+      "image": "frames/episode_003/frame_0298.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "I ran out of goddamn...",
+      "segment_ids": [
+        "morning_json_077"
+      ],
+      "narration_window_scalar": 0.9883,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "episode_frame_index": 299,
+      "level": 5,
+      "image": "frames/episode_003/frame_0299.png",
+      "primary": "fuel",
+      "tags": [
+        "fuel"
+      ],
+      "text": "I ran out of goddamn... I gotta do it again.",
+      "segment_ids": [
+        "morning_json_077"
+      ],
+      "narration_window_scalar": 0.2423,
+      "alignment_confidence": "high"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_01_winbank_004",
+      "episode_frame_index": 1,
+      "level": 0,
+      "image": "frames/episode_004/frame_0001.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "I had to make an L with a vertical piece. That was a solution.",
+      "segment_ids": [
+        "morning_json_080",
+        "morning_json_081"
+      ],
+      "narration_window_scalar": 0.2208,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_01_winbank_004",
+      "episode_frame_index": 2,
+      "level": 0,
+      "image": "frames/episode_004/frame_0002.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "That was a solution.",
+      "segment_ids": [
+        "morning_json_081"
+      ],
+      "narration_window_scalar": 0.1917,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_01_winbank_004",
+      "episode_frame_index": 3,
+      "level": 0,
+      "image": "frames/episode_004/frame_0003.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "That was a solution.",
+      "segment_ids": [
+        "morning_json_081"
+      ],
+      "narration_window_scalar": 0.1625,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_01_winbank_004",
+      "episode_frame_index": 4,
+      "level": 0,
+      "image": "frames/episode_004/frame_0004.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "That was a solution.",
+      "segment_ids": [
+        "morning_json_081"
+      ],
+      "narration_window_scalar": 0.1917,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_01_winbank_004",
+      "episode_frame_index": 5,
+      "level": 0,
+      "image": "frames/episode_004/frame_0005.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "That was a solution.",
+      "segment_ids": [
+        "morning_json_081"
+      ],
+      "narration_window_scalar": 0.2208,
+      "alignment_confidence": "low"
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_01_winbank_004",
+      "episode_frame_index": 6,
+      "level": 1,
+      "image": "frames/episode_004/frame_0006.png",
+      "primary": "outcome_success",
+      "tags": [
+        "outcome_success"
+      ],
+      "text": "That was a solution. Okay.",
+      "segment_ids": [
+        "morning_json_081"
+      ],
+      "narration_window_scalar": 0.1538,
+      "alignment_confidence": "low"
+    }
+  ],
+  "spans": [
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 0,
+      "primary": "planning",
+      "frame_start": 2,
+      "frame_end": 4,
+      "n_frames": 3,
+      "mean_scalar": 0.7375,
+      "texts": [
+        "Okay we're doing liquid pour. Click on the map. I see two yellow U shapes, U shapes, open-ended shapes, asymmetrical shapes. They're symmetrical but the U isn't, there's a pink block that fits",
+        "shapes, asymmetrical shapes. They're symmetrical but the U isn't, there's a pink block that fits"
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 0,
+      "primary": "intent",
+      "frame_start": 5,
+      "frame_end": 7,
+      "n_frames": 3,
+      "mean_scalar": 0.825,
+      "texts": [
+        "shapes, asymmetrical shapes. They're symmetrical but the U isn't, there's a pink block that fits the center of the U. I'm going to move to the right. I'm going to click, click and",
+        "the center of the U. I'm going to move to the right. I'm going to click, click and cross. I think I know it's going to happen. I envision a pour when I hit this action button.",
+        "cross. I think I know it's going to happen. I envision a pour when I hit this action button."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 1,
+      "primary": "outcome_success",
+      "frame_start": 8,
+      "frame_end": 13,
+      "n_frames": 6,
+      "mean_scalar": 0.9583,
+      "texts": [
+        "cross. I think I know it's going to happen. I envision a pour when I hit this action button. Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry",
+        "Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry",
+        "Yep, that's what happened. So it's another gravity game and I was symmetry matching, symmetry asymmetry matching, finding the piece that creates symmetry, lining it up."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 1,
+      "primary": "planning",
+      "frame_start": 14,
+      "frame_end": 19,
+      "n_frames": 6,
+      "mean_scalar": 0.8583,
+      "texts": [
+        "asymmetry matching, finding the piece that creates symmetry, lining it up."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 1,
+      "primary": "mechanic",
+      "frame_start": 20,
+      "frame_end": 25,
+      "n_frames": 6,
+      "mean_scalar": 0.7583,
+      "texts": [
+        "asymmetry matching, finding the piece that creates symmetry, lining it up. Waterfall. Only to waterfall this one. You can click in the map. That was discovered.",
+        "Waterfall. Only to waterfall this one. You can click in the map. That was discovered."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 1,
+      "primary": "fuel",
+      "frame_start": 28,
+      "frame_end": 43,
+      "n_frames": 16,
+      "mean_scalar": 0.7411,
+      "texts": [
+        "Okay, shit, I might run out of,",
+        "Okay, shit, I might run out of, but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+        "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation.",
+        "but I think I just barely made it. Yeah. So fuel is really tight and so it's conservation. I'm just a second."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 2,
+      "primary": "planning",
+      "frame_start": 50,
+      "frame_end": 52,
+      "n_frames": 3,
+      "mean_scalar": 0.6569,
+      "texts": [
+        "I'm just a second. So this has three spouts that I need to line up and I need to do this in my head very carefully.",
+        "So this has three spouts that I need to line up and I need to do this in my head very carefully. It takes a lot of routing and elimination. Assume all the pieces will be used. First assumption.",
+        "It takes a lot of routing and elimination. Assume all the pieces will be used. First assumption."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 2,
+      "primary": "outcome_success",
+      "frame_start": 53,
+      "frame_end": 56,
+      "n_frames": 4,
+      "mean_scalar": 0.5038,
+      "texts": [
+        "It takes a lot of routing and elimination. Assume all the pieces will be used. First assumption. I've got it. I understand how I'll do it. The two pieces, I will line up pieces to the gaps immediately to service the needs and that's done.",
+        "I've got it. I understand how I'll do it. The two pieces, I will line up pieces to the gaps immediately to service the needs and that's done.",
+        "I've got it. I understand how I'll do it. The two pieces, I will line up pieces to the gaps immediately to service the needs and that's done. So I've determined the route to the goal. Once I've determined the goal, I route my way towards where I am and fit and determine complexity and challenges along the way."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 2,
+      "primary": "planning",
+      "frame_start": 57,
+      "frame_end": 60,
+      "n_frames": 4,
+      "mean_scalar": 0.4713,
+      "texts": [
+        "So I've determined the route to the goal. Once I've determined the goal, I route my way towards where I am and fit and determine complexity and challenges along the way. Interations of different horizons and levels of detail on each object between me and the goal. It's critical because the",
+        "Interations of different horizons and levels of detail on each object between me and the goal. It's critical because the",
+        "Interations of different horizons and levels of detail on each object between me and the goal. It's critical because the only thing that matters is touching the goal in this game mode, this game mode. The only thing that matters is lining up with the goal because all the other pieces below that are turned out to be extra.",
+        "only thing that matters is touching the goal in this game mode, this game mode. The only thing that matters is lining up with the goal because all the other pieces below that are turned out to be extra."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 2,
+      "primary": "outcome_success",
+      "frame_start": 61,
+      "frame_end": 62,
+      "n_frames": 2,
+      "mean_scalar": 0.5687,
+      "texts": [
+        "only thing that matters is touching the goal in this game mode, this game mode. The only thing that matters is lining up with the goal because all the other pieces below that are turned out to be extra. You don't even have to think about them much. They fall in line and it worked.",
+        "You don't even have to think about them much. They fall in line and it worked. The same system."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 3,
+      "primary": "outcome_fail",
+      "frame_start": 64,
+      "frame_end": 72,
+      "n_frames": 9,
+      "mean_scalar": 0.622,
+      "texts": [
+        "One has a gap and I've been sitting here looking at a piece that I couldn't fill.",
+        "One has a gap and I've been sitting here looking at a piece that I couldn't fill. So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 3,
+      "primary": "planning",
+      "frame_start": 73,
+      "frame_end": 85,
+      "n_frames": 13,
+      "mean_scalar": 0.545,
+      "texts": [
+        "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends.",
+        "So in the context of symmetries, one is alone and is not hard to fill one. Two is natural to a line with a bar with two ends. The third is asymmetrical and causes me to have to analyze what configuration of bars.",
+        "The third is asymmetrical and causes me to have to analyze what configuration of bars."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 3,
+      "primary": "mechanic",
+      "frame_start": 86,
+      "frame_end": 91,
+      "n_frames": 6,
+      "mean_scalar": 0.4785,
+      "texts": [
+        "The third is asymmetrical and causes me to have to analyze what configuration of bars. Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element.",
+        "Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element.",
+        "Could I do and route the poor that goes straight down and on either side of the bar straight down to such a small element. There isn't any to fit the one in the middle. I even tested this concept."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 3,
+      "primary": "intent",
+      "frame_start": 107,
+      "frame_end": 110,
+      "n_frames": 4,
+      "mean_scalar": 0.5065,
+      "texts": [
+        "This is the first time I'm not going to try to use all the pieces. I'm hoping the black thing is a hole.",
+        "I'm hoping the black thing is a hole."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 3,
+      "primary": "outcome_spill",
+      "frame_start": 111,
+      "frame_end": 129,
+      "n_frames": 19,
+      "mean_scalar": 0.587,
+      "texts": [
+        "I'm hoping the black thing is a hole. I spilled.",
+        "I spilled.",
+        "I spilled. I spilled.",
+        "I spilled. The challenge is routing."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 4,
+      "primary": "planning",
+      "frame_start": 130,
+      "frame_end": 143,
+      "n_frames": 14,
+      "mean_scalar": 0.6159,
+      "texts": [
+        "The challenge is routing.",
+        "The challenge is routing. There are three parts below."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_00_winbank_000",
+      "level": 4,
+      "primary": "outcome_fail",
+      "frame_start": 217,
+      "frame_end": 229,
+      "n_frames": 13,
+      "mean_scalar": 0.6159,
+      "texts": [
+        "I'm going to watch it happen again. Yeah, I lost her right now.",
+        "Yeah, I lost her right now.",
+        "Yeah, I lost her right now. Let's do it again."
+      ]
+    },
+    {
+      "episode_id": "night_liquid_pour_2026-05-21_episode_01_winbank_001",
+      "level": 4,
+      "primary": "outcome_fail",
+      "frame_start": 95,
+      "frame_end": 105,
+      "n_frames": 11,
+      "mean_scalar": 0.2152,
+      "texts": [
+        "Let's do it again. No, it doesn't work like that.",
+        "No, it doesn't work like that.",
+        "No, it doesn't work like that. Let's do it again."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 2,
+      "primary": "mechanic",
+      "frame_start": 32,
+      "frame_end": 37,
+      "n_frames": 6,
+      "mean_scalar": 0.5282,
+      "texts": [
+        "Okay, so it's routing based upon flow, so anticipation and understanding of the paint bucket.",
+        "Okay, so it's routing based upon flow, so anticipation and understanding of the paint bucket. The paint flow is critical.",
+        "The paint flow is critical. Yeah, I was tired playing this at 3 in the morning last night. This is much easier right now. If you butt a piece up to another piece, it stops flow from going to its other side.",
+        "If you butt a piece up to another piece, it stops flow from going to its other side. The flow is always going to branch out until stopped. This flow game is actually another example of what do we call it? Isolated motion, isolated movement. It's just understanding what is the moving piece. So, I think if we ask ourselves what are our moving pieces, do they have isolated movement?",
+        "So, I think if we ask ourselves what are our moving pieces, do they have isolated movement? Yes or no? That little micro question is really, really, really important. And we need to exhaust the do we have isolated movement potential until we close that chapter. Because if we have isolated movement potential, like this paint game immediately has isolated movement potential, knowing if you put one block up against a wall, that's isolated movement on the liquid or whatever we're claiming is a liquid.",
+        "knowing if you put one block up against a wall, that's isolated movement on the liquid or whatever we're claiming is a liquid. So, it's the same mechanic being used to create value plays all over the place. And I think, yeah, there's just extra pieces when you do it that way."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 2,
+      "primary": "planning",
+      "frame_start": 38,
+      "frame_end": 38,
+      "n_frames": 1,
+      "mean_scalar": 0.3292,
+      "texts": [
+        "And I think, yeah, there's just extra pieces when you do it that way. Man, I was tired last night."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 3,
+      "primary": "mechanic",
+      "frame_start": 44,
+      "frame_end": 54,
+      "n_frames": 11,
+      "mean_scalar": 0.5431,
+      "texts": [
+        "Okay. So, the isolated movement technique, I had to fumble around on this one a decent amount.",
+        "So, the isolated movement technique, I had to fumble around on this one a decent amount."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 3,
+      "primary": "intent",
+      "frame_start": 55,
+      "frame_end": 56,
+      "n_frames": 2,
+      "mean_scalar": 0.5311,
+      "texts": [
+        "So, the isolated movement technique, I had to fumble around on this one a decent amount. I'm not sure if I'm going to win or not.",
+        "I'm not sure if I'm going to win or not."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 3,
+      "primary": "outcome_fail",
+      "frame_start": 57,
+      "frame_end": 60,
+      "n_frames": 4,
+      "mean_scalar": 0.5001,
+      "texts": [
+        "I'm not sure if I'm going to win or not. I realized that my initial technique was wrong based upon the assumption of water falling down also didn't also fall down.",
+        "I realized that my initial technique was wrong based upon the assumption of water falling down also didn't also fall down.",
+        "I realized that my initial technique was wrong based upon the assumption of water falling down also didn't also fall down. It just went where I wanted it to go to the left specifically into the L shape and went to the left."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 3,
+      "primary": "outcome_fail",
+      "frame_start": 65,
+      "frame_end": 68,
+      "n_frames": 4,
+      "mean_scalar": 0.4328,
+      "texts": [
+        "I was expecting it to go into the L shape to the left and also down. When that was confirmed that wasn't the case, I had to reassess all my other pieces.",
+        "When that was confirmed that wasn't the case, I had to reassess all my other pieces.",
+        "When that was confirmed that wasn't the case, I had to reassess all my other pieces. And I believe I have a configuration that still drops to all the points."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 3,
+      "primary": "planning",
+      "frame_start": 69,
+      "frame_end": 70,
+      "n_frames": 2,
+      "mean_scalar": 0.4587,
+      "texts": [
+        "And I believe I have a configuration that still drops to all the points."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 3,
+      "primary": "outcome_success",
+      "frame_start": 71,
+      "frame_end": 80,
+      "n_frames": 10,
+      "mean_scalar": 0.5158,
+      "texts": [
+        "And I believe I have a configuration that still drops to all the points. But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+        "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path.",
+        "But the final piece that made it work was using another isolated motion mechanic on the liquid that's going to come out by vertically keeping things close to each other vertically and locking in a horizontal branching path. So, let's see if it works."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 3,
+      "primary": "outcome_success",
+      "frame_start": 82,
+      "frame_end": 84,
+      "n_frames": 3,
+      "mean_scalar": 0.304,
+      "texts": [
+        "So, let's see if it works. Got it.",
+        "Got it.",
+        "Got it. Okay."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 4,
+      "primary": "mechanic",
+      "frame_start": 88,
+      "frame_end": 91,
+      "n_frames": 4,
+      "mean_scalar": 0.9137,
+      "texts": [
+        "Congratulations to us. There's a piece that's a faucet.",
+        "There's a piece that's a faucet. That's what I call it.",
+        "That's what I call it. It goes straight down and it links to the sides.",
+        "It goes straight down and it links to the sides. The side parts connect."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 4,
+      "primary": "intent",
+      "frame_start": 104,
+      "frame_end": 107,
+      "n_frames": 4,
+      "mean_scalar": 0.848,
+      "texts": [
+        "Okay. I'm trying to make sense of the vertical bar, so I'm just doing a lot of pre-calculating and configuring.",
+        "I'm trying to make sense of the vertical bar, so I'm just doing a lot of pre-calculating and configuring.",
+        "I'm trying to make sense of the vertical bar, so I'm just doing a lot of pre-calculating and configuring. On where the skinny bar is going to go to a root, I have three roots done, but the fourth root doesn't make sense to me."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 4,
+      "primary": "intent",
+      "frame_start": 109,
+      "frame_end": 111,
+      "n_frames": 3,
+      "mean_scalar": 0.8326,
+      "texts": [
+        "On where the skinny bar is going to go to a root, I have three roots done, but the fourth root doesn't make sense to me. And it's causing me to think I'm going to need to rethink the faucet. It's not as simple as I wanted it to be, which is aligned with the whole.",
+        "And it's causing me to think I'm going to need to rethink the faucet. It's not as simple as I wanted it to be, which is aligned with the whole.",
+        "And it's causing me to think I'm going to need to rethink the faucet. It's not as simple as I wanted it to be, which is aligned with the whole. If it's first immediately obvious and desirable, it's most likely not a game challenge and the challenge is hidden deeper."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 4,
+      "primary": "outcome_fail",
+      "frame_start": 126,
+      "frame_end": 129,
+      "n_frames": 4,
+      "mean_scalar": 0.5546,
+      "texts": [
+        "So let's make sense of this. Because I have a vertical line that's causing me problems and the central system doesn't work,",
+        "Because I have a vertical line that's causing me problems and the central system doesn't work,",
+        "Because I have a vertical line that's causing me problems and the central system doesn't work, I'm most likely going to need more functions on the left and the right because there's only one thing on the right."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 4,
+      "primary": "intent",
+      "frame_start": 136,
+      "frame_end": 139,
+      "n_frames": 4,
+      "mean_scalar": 0.584,
+      "texts": [
+        "I'm having trouble seeing the whole board. I don't have the internal RAM to see the whole board with the flow going. Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't...",
+        "Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't..."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 4,
+      "primary": "outcome_fail",
+      "frame_start": 140,
+      "frame_end": 145,
+      "n_frames": 6,
+      "mean_scalar": 0.7147,
+      "texts": [
+        "Okay. Okay. Okay. Okay. Okay. Okay. So if I jet this, you can't... It doesn't do anything.",
+        "It doesn't do anything.",
+        "It doesn't do anything. I just don't understand what I can even do with this one."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 5,
+      "primary": "intent",
+      "frame_start": 278,
+      "frame_end": 288,
+      "n_frames": 11,
+      "mean_scalar": 0.8234,
+      "texts": [
+        "Fuck. I don't have it. I have to make an L.",
+        "I have to make an L.",
+        "I have to make an L. Fucking fuck."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_00_winbank_003",
+      "level": 5,
+      "primary": "fuel",
+      "frame_start": 296,
+      "frame_end": 299,
+      "n_frames": 4,
+      "mean_scalar": 0.6191,
+      "texts": [
+        "Fucking fuck. I ran out of goddamn...",
+        "I ran out of goddamn...",
+        "I ran out of goddamn... I gotta do it again."
+      ]
+    },
+    {
+      "episode_id": "morning_liquid_pour_2_2026-05-21_episode_01_winbank_004",
+      "level": 0,
+      "primary": "outcome_success",
+      "frame_start": 1,
+      "frame_end": 6,
+      "n_frames": 6,
+      "mean_scalar": 0.1902,
+      "texts": [
+        "I had to make an L with a vertical piece. That was a solution.",
+        "That was a solution.",
+        "That was a solution. Okay."
+      ]
+    }
+  ]
+}

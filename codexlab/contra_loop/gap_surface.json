@@ -1,0 +1,18 @@
+{
+  "baseline_levels": [
+    0
+  ],
+  "boundary": "Hypothesis material only; not local CONTRA evidence. A solve is real ONLY with levels_completed_delta>0 + verifier rc=0.",
+  "completed_levels": [
+    0
+  ],
+  "existing_hypotheses_count": 0,
+  "gap_finder_status": "TODO: extend with gap_finder.py + ground_truth.py for pixel-exact before/after frame diffs vs win-bank/engine oracle.",
+  "run_dir": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T191146Z",
+  "schema": "codexlab.contra_loop.gap_surface.v1",
+  "target": "sp80:1",
+  "target_delta": 0,
+  "target_episode_status": "budget_exhausted",
+  "target_level": 1,
+  "wanted_mechanic_hint": "STABLE_MULTI_SOURCE_RELAY_LOCK: commit to one source->target edge-lock at a time, suppress re-selection thrash, and defer activate_flow until ALL sources are locked"
+}

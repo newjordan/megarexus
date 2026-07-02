@@ -1,0 +1,35 @@
+{
+  "schema": "codexlab.puffer_native_env_condition.v1",
+  "condition_id": "rexus_sp80_paintflow_native_puffer_env_v0",
+  "created_at_utc": "2026-06-11T00:00:00Z",
+  "natural_language_goal": "Create a native PufferLib environment for the SP80 level-1 paintflow control abstraction so PufferLib owns reset, step, reward, rollout, and train for catching and redirecting paint to the requested target bucket.",
+  "truth_boundary": "native PufferLib C environment for the SP80 level-1 paintflow abstraction; not a full Python SP80 engine transplant and not CONTRA gameplay solve evidence until an exported policy is evaluated through the controlled SP80/CONTRA harness",
+  "pufferlib_source": ".external/pufferlib-4.0-newjordan",
+  "pufferlib_env_name": "rexus_sp80_paintflow",
+  "pufferlib_env_files": [
+    ".external/pufferlib-4.0-newjordan/ocean/rexus_sp80_paintflow/rexus_sp80_paintflow.h",
+    ".external/pufferlib-4.0-newjordan/ocean/rexus_sp80_paintflow/binding.c",
+    ".external/pufferlib-4.0-newjordan/config/rexus_sp80_paintflow.ini"
+  ],
+  "build_command": "NVCC_ARCH=sm_120 bash ./build.sh rexus_sp80_paintflow",
+  "action_space": {
+    "0": "noop",
+    "1": "move_up",
+    "2": "move_down",
+    "3": "move_left",
+    "4": "move_right",
+    "5": "activate_flow"
+  },
+  "target_pose_table": {
+    "target_0": {"x": 6, "y": 6},
+    "target_1": {"x": 6, "y": 11}
+  },
+  "reward_contract": {
+    "clean_target_catch": 10.0,
+    "near_target_catch": 2.0,
+    "wrong_activation_or_timeout": -4.0,
+    "step_cost": -0.01,
+    "distance_delta_scale": 0.04
+  },
+  "success_metric": "native_cuda_trainer_ready=true, compiled_env=rexus_sp80_paintflow, and native trainer smoke passes"
+}

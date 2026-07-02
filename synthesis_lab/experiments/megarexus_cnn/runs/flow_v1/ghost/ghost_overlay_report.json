@@ -1,0 +1,65 @@
+{
+  "schema": "synthesis_lab.megarexus_ghost_overlay.v0",
+  "mechanic_hypothesis": "sp80_paint_flow_catch_and_redirect",
+  "eval_source": "human corpus val split",
+  "evidence_status": "hypothesis",
+  "control_truth_admitted": false,
+  "goal_truth_admitted": false,
+  "solve_truth_admitted": false,
+  "action_choice_admitted": false,
+  "windows": 40,
+  "step1_confirmed": 9,
+  "step1_confirm_rate": 0.225,
+  "iou_confirm_threshold": 0.5,
+  "per_horizon": [
+    {
+      "horizon": 1,
+      "mean_changed_cell_acc": 0.5642433538306814,
+      "mean_cell_acc": 0.9296142578125,
+      "mean_persistence_cell_acc": 0.9857177734375,
+      "mean_change_iou": 0.27203838540700837
+    },
+    {
+      "horizon": 2,
+      "mean_changed_cell_acc": 0.31302166713637636,
+      "mean_cell_acc": 0.918487548828125,
+      "mean_persistence_cell_acc": 0.924932861328125,
+      "mean_change_iou": 0.37500054404156813
+    },
+    {
+      "horizon": 3,
+      "mean_changed_cell_acc": 0.2446601946808736,
+      "mean_cell_acc": 0.90745849609375,
+      "mean_persistence_cell_acc": 0.91629638671875,
+      "mean_change_iou": 0.29618425446894914
+    },
+    {
+      "horizon": 4,
+      "mean_changed_cell_acc": 0.19155692578805986,
+      "mean_cell_acc": 0.89615478515625,
+      "mean_persistence_cell_acc": 0.906439208984375,
+      "mean_change_iou": 0.23926339499255667
+    },
+    {
+      "horizon": 5,
+      "mean_changed_cell_acc": 0.14913060257147234,
+      "mean_cell_acc": 0.88480224609375,
+      "mean_persistence_cell_acc": 0.895599365234375,
+      "mean_change_iou": 0.21779583337408806
+    }
+  ],
+  "lockkey_goal_seeker": [
+    {
+      "game": "sp80",
+      "frames_probed": 40,
+      "frames_with_lockkey_hypothesis": 0,
+      "examples": []
+    },
+    {
+      "game": "s5i5",
+      "frames_probed": 40,
+      "frames_with_lockkey_hypothesis": 0,
+      "examples": []
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "schema": "codexlab.contra_loop.gate_pin.v1",
+  "_purpose": "SHA-256 allowlist for the three gate scripts that form the CONTRA admission spine. gate.py verifies each script against this file before calling any layer. A mismatch causes an immediate Refusal(layer='gate_integrity'). Modifying a gate script without updating this file WILL block every admission; updating this file without a human-reviewed gate_change_log entry violates the anti-reward-hacking invariant.",
+  "created_at_utc": "2026-06-08T00:00:00Z",
+  "pinned_at_git_commit": "aad65940eeb3ad01d9ec2932e1c8b9ba4c98a03a",
+  "policy": {
+    "change_requirement": "human_reviewed_gate_change_record",
+    "change_procedure": [
+      "1. Edit the gate script with a clear, scoped fix (see verifier_fix_provenance for the bar).",
+      "2. Recompute sha256: sha256sum codexlab/<script>.py",
+      "3. Update the sha256 field in gate_scripts.",
+      "4. Append a gate_change_log entry with: change_id, date_utc, author, commit_sha, rationale referencing the failure the fix addresses, and the decisive_evidence that the fix is correct (passing verifier_returncode+levels_completed_delta on a real run_dir).",
+      "5. Have the entry reviewed by a human before merging."
+    ],
+    "admission_rule": "At gate.VerificationGate.run() time, sha256 of EACH on-disk script MUST equal the pinned value. Any mismatch stops all five gate layers and emits Refusal(layer='gate_integrity', mismatched_scripts=[...]). The agent cannot weaken the gate without the mismatch appearing in gate_script_hashes of every SolverRecord it tries to admit.",
+    "agent_cannot_do": "The agent (Claude) may write new solver code and keystone scripts, but MUST NOT edit sp80_verify_episode_run.py, dev_check.py, or contra.py without a matching human-reviewed gate_change_log entry here. Editing a gate script and re-pinning in the same commit is a reward-hacking attempt that any diff review will catch.",
+    "honest_non_admission_is_success": "If a gate script change is needed to fix a genuine verifier-contract bug (see verifier_fix_provenance for the precedent), the correct path is: isolate the failure on a clean base-worktree, prove it is a verifier-contract bug not a solver bug, add a gate_change_log entry, get human review, THEN re-pin. No admission is made until the full five-layer gate passes on the re-pinned version."
+  },
+  "gate_scripts": {
+    "codexlab/sp80_verify_episode_run.py": {
+      "sha256": "f9d12957c6837b1fff43b06c84783addac967bb7450cc1006323157867ac387d",
+      "role": "Layer-4 per-level episode verifier. Called in-process by gate.VerificationGate for every level_XX/ in a run_dir. Checks: boundary flags (route_or_replay_used/human_trace_used/coordinate_script_used all False); ranking_policy == 'value_scored_signal_modulation_no_static_family_priority'; rows[0].value_score == max(values); evidence_sources present; PortBand lineup rows not dropped when present in contra_packet; strong ExploreBand/PortBand signal (portband_score>=0.75) carried as a scored probe row OR saturation escape; stale_repetition_hard_blocked is False on the selected row; oscillation gate not triggered; brain decision consumed top recommendation. Returns {status:'passed', run_dir, action_count, levels_completed_delta}.",
+      "gate_layers": [4],
+      "critical_invariants": [
+        "status:'passed' in the return dict does NOT mean the level was solved. Solve evidence is levels_completed_delta>0 only (registry.admit reads this field).",
+        "The strong-signal gate (portband_score>=0.75 branch) requires probe_rows OR saturated_portband_escape. probe_rows = candidate_probe_queue rows in ranked_recommendations. saturated_portband_escape = action_semantics_ledger is top + PortBand is task_saturated. This was INTENTIONALLY designed after fix_1 (see verifier_fix_provenance); do not revert.",
+        "stale_repetition_hard_blocked is False on the SELECTED row, not every row. Rows with value=0.0 and stale_repetition_hard_blocked=True may exist; they must NOT be selected (enforced by the harness, not rejected from the packet by the verifier). The emit-but-mark pattern (see fix_2 provenance) is what makes both conditions hold simultaneously."
+      ]
+    },
+    "codexlab/dev_check.py": {
+      "sha256": "a76019cea20a6b28a72a5387043338a7e9d4bdddc964de731a4d1d03494917cb",
+      "role": "Layer-1 structural gate, invoked via `contra gate`. Syntax-checks ~125 Python files; runs 4 regression suites (sp80_recommendation_optimum_regression, sp80_affordance_regression, sp80_controller_regression, sp80_cross_game_isolation_regression); checks contra-service-contract drift (contracts.py vs handlers.py); verifies in-process<->HTTP byte parity; import smoke. Must return 0 before any episode run begins.",
+      "gate_layers": [1],
+      "critical_invariants": [
+        "dev_check must cover contra_loop/ import smoke and the test_gate_rejects_false_solver regression (codexlab/contra_loop/tests/) once that file exists; until then the import smoke covers the loop package.",
+        "The contra-service-contract drift check guards the 8-endpoint informer-DAG surface (contra_service/contracts.py vs handlers.py). Adding a loop-related endpoint must update contracts.py first."
+      ]
+    },
+    "codexlab/contra.py": {
+      "sha256": "8a80c7cea228ff323f52540a9ceb5013a1e042b2911484a31993d9d16b358919",
+      "role": "Layer-1/2 cockpit entry point. `contra gate` delegates to dev_check (Layer 1). `contra check` runs _check_live_edges (Oracle/Ghost->CONTRA + Oracle/Ghost->scorer on a deterministic smoke frame) and _check_static_edges (5 source tripwires via grep of harness/report source text) (contra.py:77,153). Also routes `contra loop` to contra_loop/loop.py. The smoke frame for live-edge checks is deterministic: any change to how CONTRA wires Oracle/Ghost that breaks the DAG is caught here before Layer 3 runs.",
+      "gate_layers": [1, 2],
+      "critical_invariants": [
+        "contra check ghost->scorer tripwire (line ~145): asserts that sp80_player_harness.py calls ghost_relation_memory_candidates(). If a new solver refactor removes this call, Layer 2 fires before any episode runs.",
+        "The COMMANDS dispatch at contra.py:215 must include 'loop' -> contra_loop/loop.py. If this routing is absent, `contra loop` silently falls through to the 'unknown command' path and the loop harness is structurally detached.",
+        "GAME_ID, CALIBRATION, HARNESS_SRC at contra.py:36-39 must route through adapter.GAME_TABLE once a second game is onboarded; until then these constants are SP80-locked and correct."
+      ]
+    }
+  },
+  "verifier_fix_provenance": [
+    {
+      "fix_id": "verifier_fix_1_saturation_guard",
+      "commit_sha": "6be8b8917285f47ce38cb961cc0336b40ebdc8dc",
+      "date_utc": "2026-06-02T18:59:12Z",
+      "title": "Add PortBand task saturation guard",
+      "changed_script": "codexlab/sp80_verify_episode_run.py",
+      "problem": "The verifier's strong-signal branch (portband_score>=0.75) required a candidate_probe_queue row to be present in ranked_recommendations AND that the best probe_row value_score was <= rows[0].value_score. This failed for packets where PortBand was in 'post_positive_portband_task_revisit_penalty_without_route_replay' saturation mode: the harness correctly ranked action_semantics_ledger top (value_score > saturated PortBand penalty score), so no candidate_probe_queue row was top-ranked even though the PortBand signal was fully incorporated.",
+      "fix": "Added a 'saturated_portband_escape' boolean: True when rows[0] is backed by action_semantics_ledger AND at least one ranked row has portband.lineup_matrix.rows in evidence_sources with task_saturation_policy='post_positive_portband_task_revisit_penalty_without_route_replay' and task_saturated=True and task_saturation_penalty>0.0. The require() now accepts probe_rows OR saturated_portband_escape.",
+      "why_correct": "The ranking_policy 'value_scored_signal_modulation_no_static_family_priority' explicitly allows non-PortBand actions to win when the value-scorer has penalized PortBand. After a successful PortBand-driven completion (L0), revisiting the same lineup move incurs the task_saturation_penalty, which legitimately pushes exploration probes higher. Requiring the PortBand probe to be rank-1 re-imposed the static family priority the policy rejects.",
+      "decisive_evidence": "SP80 L0 and L1 controlled runs passing all packets after the fix; dev_check green.",
+      "do_not_re_diagnose": "A future agent seeing the saturated_portband_escape path and thinking 'this looks like a gap that could be exploited to admit a weak solver' is wrong. The condition requires task_saturated=True AND task_saturation_penalty>0.0 from the harness's own value-scoring, which cannot be fabricated without editing sp80_player_harness.py (which changes its SHA and breaks the source-SHA pin in registry.admit)."
+    },
+    {
+      "fix_id": "verifier_fix_2_emit_but_mark_probe_gate",
+      "commit_sha": "73ed33b77e4af60633b5980fca8f66d1d6b65bea",
+      "date_utc": "2026-06-08T13:43:28Z",
+      "title": "Fix probe gate + status vocab (emit-but-mark stale probes; status 'passed'->'nominal')",
+      "changed_scripts": [
+        "codexlab/sp80_player_harness.py",
+        "codexlab/sp80_run_contra_levels.py"
+      ],
+      "note": "This fix is to the HARNESS and RUNNER, not to sp80_verify_episode_run.py itself. The verifier's logic (fix_1) was already correct. This is the fix that resolved the 'pre-existing L0 packet-2 verifier failure' that earlier agents treated as a genesis blocker.",
+      "problem": "sp80_player_harness.py was silently dropping stale/oscillation-gated exploration probe candidates from the recommendation packet instead of emitting them with value=0.0 and a reason field. At L0 packet_index=2, a high portband_score (>=0.75) triggered the verifier's strong-signal gate, but no candidate_probe_queue row was present in ranked_recommendations (it had been silently dropped), causing the verifier's 'probe_rows or saturated_portband_escape' require() to raise AssertionError. The episode HAD completed (levels_completed_delta=1) but every run at that time produced verifier_returncode=1, making the L0 verifier failure look like a blocker for genesis admission.",
+      "fix": "sp80_player_harness.py portband_signal_candidates: stale and oscillation-gated probe rows are now emitted with value=0.0 and stale_repetition_hard_blocked=True (emit-but-mark), mirroring the lineup builder's existing pattern. This keeps the candidate_probe_queue row present in the packet so the verifier's strong-signal gate sees the row and passes. The selected recommendation still has stale_repetition_hard_blocked=False (the harness never selects a blocked row), which the verifier also checks. Decisions are byte-identical because the row has value=0.0 and is never selected. sp80_run_contra_levels.py: episode status 'passed'->'nominal' to prevent misreading a clean-but-unsolved run as a solved one (solve evidence is levels_completed_delta>0, not status string).",
+      "why_correct": "The verifier contract says 'the strong signal must be offered and scored, not silently dropped'. A stale-blocked row with value=0.0 IS offered (it appears in ranked_recommendations), which satisfies the contract. The block flag is on the row itself, visible to the verifier: selected_signals.stale_repetition_hard_blocked is False on the SELECTED row, True on the blocked row. Both invariants hold simultaneously after the fix.",
+      "decisive_evidence": "codexlab/runs/contra_sp80_episode_levels_00_01_20260608T175142Z/summary.jsonl: L0 levels_completed_delta=1, verifier_returncode=0, status=nominal; L1 levels_completed_delta=0, verifier_returncode=0, status=nominal. Both levels pass the verifier on the same run (the 20260604 run showed rc=1 on both before this fix).",
+      "do_not_re_diagnose": "A future agent seeing verifier_returncode=0 on L1 (delta=0) and thinking 'L1 is solved or nearly solved' is wrong. nominal + rc=0 + delta=0 = episode ran cleanly and the verifier found no contract violations, but the level was NOT completed. Only delta>0 means solved. The status rename was specifically made to prevent this misreading.",
+      "historical_artifact_with_old_behavior": "codexlab/runs/contra_sp80_episode_levels_00_01_20260604T171457Z/summary.jsonl shows the pre-fix state: L0 levels_completed_delta=1 but verifier_returncode=1, status=failed. This run_dir is intentionally preserved as the reference artifact for what the old harness produced. Do not re-run it expecting different results; it was produced before the emit-but-mark fix."
+    }
+  ],
+  "gate_change_log": [
+    {
+      "change_id": "gate_pin_genesis",
+      "date_utc": "2026-06-08T00:00:00Z",
+      "author": "Claude Sonnet 4.6 (sub-agent, contra_loop scaffold task)",
+      "pinned_git_commit": "aad65940eeb3ad01d9ec2932e1c8b9ba4c98a03a",
+      "type": "genesis",
+      "rationale": "Initial creation of gate_pin.json as part of the CONTRA Loop Harness scaffold (codexlab/contra_loop/). No gate script was modified; the pinned SHAs reflect the CURRENT on-disk state of each gate script at HEAD=aad65940. The two verifier_fix_provenance entries document changes made in prior commits (6be8b891, 73ed33b7) so that future agents reading this file understand why the current verifier logic is correct and intentional.",
+      "scripts_audited": {
+        "codexlab/sp80_verify_episode_run.py": "f9d12957c6837b1fff43b06c84783addac967bb7450cc1006323157867ac387d",
+        "codexlab/dev_check.py": "a76019cea20a6b28a72a5387043338a7e9d4bdddc964de731a4d1d03494917cb",
+        "codexlab/contra.py": "8a80c7cea228ff323f52540a9ceb5013a1e042b2911484a31993d9d16b358919"
+      },
+      "human_reviewed": false,
+      "human_review_note": "Genesis creation of a data file; the SHA values were computed via 'sha256sum' against the on-disk scripts at HEAD. The design authority for this file is the CONTRA Loop Harness spec (see codexlab/contra_loop/CONTRA_LOOP.md). A human should review the verifier_fix_provenance entries on first use to confirm the 'do_not_re_diagnose' conclusions are still accurate."
+    }
+  ],
+  "usage_by_gate_py": {
+    "check_command": "sha256sum codexlab/sp80_verify_episode_run.py codexlab/dev_check.py codexlab/contra.py",
+    "pseudo_code": [
+      "pin = json.loads(Path('codexlab/contra_loop/registry/gate_pin.json').read_text())",
+      "for path, entry in pin['gate_scripts'].items():",
+      "    live_sha = sha256_file(ROOT / path)",
+      "    if live_sha != entry['sha256']:",
+      "        return Refusal(layer='gate_integrity', reason=f'gate script SHA drift: {path}')",
+      "# All match -> proceed to Layer 1 (dev_check)"
+    ],
+    "where_called": "gate.VerificationGate.run(), before any of the five gate layers execute. Also recorded in SolverRecord.verification_artifact.gate_script_hashes for every admission, so reverify() can confirm the gate that admitted the solver is still intact."
+  }
+}
