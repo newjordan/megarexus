@@ -28,6 +28,33 @@ verbatim; the old session's background-completion notifications do NOT
 reach a new session — poll with `pgrep -af train.py` + `ls` on the run
 dir instead.
 
+**UPDATE 2026-07-02 15:20 — BABYSITTER MODE (lighter-model session OK
+until late afternoon).** v9 at epoch ~34/40, ETA ~15:50 CDT. Gate
+steps 1–2 below are AUTOMATED: `synthesis_lab/orchestration/
+run_v9_gates.sh` is already running in the background — it waits for
+train.py to exit, then runs gate_eval ×3 (v9 last / v9 best / v8
+baseline, on v8's valset) and level_probe + arrange_probe on symlinked
+scratch run dirs. Outputs → `runs/outcome_v9_gates/` (timeline.txt =
+progress, DONE = finished, train_log_tail.txt = final train summary).
+
+Babysitter scope — each wake do ONLY this: (1) `pgrep -af train.py`;
+(2) `tail runs/outcome_v9_gates/timeline.txt` + check for DONE;
+(3) glance at the newest `runs/outcome_v9_gates/*.log|*.txt` for
+tracebacks. If the runner died before DONE and training is gone,
+relaunch `bash synthesis_lab/orchestration/run_v9_gates.sh` as a
+background task (it is idempotent, overwrites its own outputs). Do
+NOT: interpret gate numbers, make release decisions, edit code or
+notes, start new training/collection, or write into canonical
+`runs/outcome_v9`. When DONE appears, report "gates complete, awaiting
+adjudication" and keep sleeping. End EVERY turn with ScheduleWakeup
+carrying the /loop prompt verbatim (§ directive below): ~1200s near
+the ~15:50 train→gates handover, 2700–3600s otherwise. Old sessions'
+background-task notifications do NOT reach a new session — poll files.
+Adjudication (no-loss comparison, probe 20/20 & 10/10 verdicts,
+release decision, docs, next element) is reserved for the main
+session: it resumes at "WHEN v9 LANDS" step 1 using the already-
+written outputs in `runs/outcome_v9_gates/` instead of re-running.
+
 **IN FLIGHT: outcome_v9 training** (current element, task #5 = pure
 object-control curriculum; collector `orchestration/
 collect_control_play.py`, shards verified: train 27,713 transitions /
