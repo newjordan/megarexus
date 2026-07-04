@@ -1,5 +1,31 @@
 # Research log
 
+## 2026-07-03 - User direction: pours must be linked to the lock/key goal signal; audit says nothing is wired
+
+The user sharpened the level-3 direction: pour amounts must be directly
+linked to the lock-and-key mechanism — the lock/key signal sets the goal
+and therefore defines pour amounts. Specifically: the singular color block
+is the key; the U-shaped targets are ALWAYS opposite it.
+
+Audit answer (verified against code and logs): NO on all three counts.
+(1) `megarexus_live_policy.py` has zero lock/key or goal references; pour
+count is the hard-coded `MAX_POURS_PER_LEVEL = 6` cap (line 77) — the
+Stage20 level-3 stall is the direct symptom. (2) The goal seeker
+`codexlab/contra_head/vision.py::antisymmetric_relationship_hypotheses`
+exists as informer-only but its single controlled test (2026-07-01) was a
+negative — 0/80 confident facings on sp80+snake held-out frames — and it
+was never re-run on Stage14/Stage20 live frames or with the specific
+key-block/U-target hypothesis. (3) The CNN has no goal head; nothing was
+ever trained to recognize the key-to-opposite-target relation.
+
+Recorded as advisory §2b with a three-step Lane C: re-probe the seeker on
+captured live frames (read-only, legal during v13 training), wire as
+informer-only goal provider if it fires, then a hindsight-labeled goal-head
+training condition (target-that-scored is recoverable from env fields +
+pixels in hindsight — legal label source). Role ownership: Contra informs
+the goal, LeWM/Rex imagines pour outcomes, pour count is derived from both;
+never a hand-coded key-target map in training.
+
 ## 2026-07-03 - User direction: level-3 mechanic and pour-count calibration
 
 After the wrap, the user described the level-3 mechanic as research

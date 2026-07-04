@@ -83,6 +83,55 @@ mechanics into training labels, rewards, or a spill model. The 8 kept
 Stage22b trajectories are legal experience and may already embody the
 wall-adjacent arrangement — verify from the captured frames, do not assume.
 
+### 2b. Lock/key goal linkage — user follow-up + status audit (2026-07-03)
+
+The user sharpened the direction: **pours must be directly linked to the
+lock-and-key mechanism.** The lock/key signal defines pour amounts — defines
+everything — because it sets the goal. Specifically: the **singular color
+block is the key; the U-shaped targets are ALWAYS opposite it.**
+
+Status audit (verified against code and logs, 2026-07-03):
+
+- **Not wired:** `megarexus_live_policy.py` has zero references to the
+  lock/key seeker or any goal signal. Pour count is the hard-coded
+  `MAX_POURS_PER_LEVEL = 6` cap — the Stage20 stall is the direct symptom.
+- **Seeker parked on a stale negative:** the goal seeker exists
+  (`codexlab/contra_head/vision.py::antisymmetric_relationship_hypotheses`,
+  informer-only, truth flags False) but its only controlled test was
+  2026-07-01: 0/80 confident facings on sp80+snake held-out frames. It has
+  never seen the Stage14/Stage20 live frames and was never re-run with the
+  now-much-more-specific hypothesis (singular color block vs U-shaped
+  targets, opposite placement).
+- **No trained head:** the CNN has no goal head. Nothing recognizes the
+  key-to-opposite-target relation.
+
+Lane C (goal-signal linkage), in order of cost:
+
+1. **Re-probe (read-only, can run DURING v13 training — no GPU/resource
+   conflict):** run `antisymmetric_relationship_hypotheses` over the
+   captured live frames (Stage20 `policy_frames.npz`, 244 unique frames,
+   plus Stage14's), stratified by level. Question: does the key-block /
+   opposite-U-target relation surface, or does `component_asymmetry` still
+   give no confident facings? If the generic detector misses it, a more
+   specific informer in the same family (singular-color-block vs U-shape,
+   opposite-side scoring) is a legal Contra-role addition — informer-only,
+   truth flags False.
+2. **Wire as goal provider (only if the probe fires):** the informer's
+   goal region enters planning — which stream/glove matters, and pour count
+   becomes derived from goal + imagined outcome instead of pour-to-cap.
+   This is Contra informing action selection, same boundary as the
+   graph-adaptive policy.
+3. **Train a goal head (hindsight-labeled, a proper future condition):**
+   when a level completes, which target actually scored is recoverable in
+   hindsight from env fields + pixels — a legal label source. A goal head
+   trained on that experience is the "trained head that recognizes the key"
+   the user is asking for. Record as its own CONDITION.json; full gate
+   stack applies.
+
+Role ownership: goal seeker = Contra/informer; pour-outcome prediction =
+LeWM/Rex imagination; pour count = plan variable derived from both. Never a
+hand-coded key-target map in training.
+
 ## 3. Preflight checklist (mandatory before relaunch)
 
 Run all of these; any failure blocks relaunch until resolved.
@@ -204,5 +253,11 @@ No live scorecard from training metrics alone, ever.
 - Pour-count calibration as its own future condition: use the imagination
   heads to predict per-pour outcome and stop pouring when the predicted
   score is achieved; gate on wasted-pour count, not only levels reached.
+  Per section 2b, the pour count should ultimately be set by the lock/key
+  goal signal, not by a heuristic stopping rule.
+- **Lane C step 1 is immediately actionable and free:** re-probe the
+  lock/key seeker over the Stage20/Stage14 captured frames while v13
+  trains (read-only, CPU). The 2026-07-01 0/80 negative is stale and was
+  not testing the specific key-block/U-target hypothesis.
 - Verify from the Stage22b captured frames whether the 8 kept human-mined
   trajectories use the wall-adjacent arrangement described in section 2.
