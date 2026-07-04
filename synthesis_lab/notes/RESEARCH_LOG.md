@@ -1,5 +1,22 @@
 # Research log
 
+## 2026-07-03 - User refinement: the goal schema is the lock inventory, not pour history
+
+Correction to the level-0 goal-lock framing: what gets extracted is NOT how
+many pours the completion took. The goal schema is the **lock inventory** —
+how many lock/bucket/targets there are and WHERE they are ("where do we
+shoot") is the main solving target. Paint is the supply side: there is (Y)
+paint and we care where it comes from (source count + origins). The
+required pours/streams are then DERIVED from the lock count by matching
+supply routing to the lock inventory — never copied from a past level's
+pour history and never a hard-coded cap.
+
+Advisory §2b updated accordingly: goal schema definition (primary = lock
+count/positions, secondary = paint sources, derived = required pours),
+runtime lock step (count and locate the locks first at every level), and
+the hindsight label tuple (pre-completion frame → lock count/positions,
+scored target, key block, paint sources; pour history incidental).
+
 ## 2026-07-03 - User breakthrough: the goal is VISIBLE at level-0 completion; ghost should lock it in
 
 The user's follow-up on the lock/key direction: the objective is literally

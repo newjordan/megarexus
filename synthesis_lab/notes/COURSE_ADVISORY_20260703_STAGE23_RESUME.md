@@ -111,11 +111,22 @@ when it scores. Verified in the artifacts: Stage20
 `policy_frames/policy_frames_meta.json` record 5 is the levels 0→1
 transition with the full 20-frame scoring animation captured (records 15
 and 26 hold the 1→2 and 2→3 completions, 22 and 25 frames). After that
-window the system has everything needed — which block is the key, which
-U-shaped target scored (the one opposite the key), and how many pours it
-took. The ghost/imagination should LOCK IN the goal and the paint routing
-from that observation. There is no excuse for the policy not knowing the
-objective, and how many targets there are, after level 0. This also means
+window the system has everything needed to define the goal schema — and
+the schema is the LOCK INVENTORY, not the pour history:
+
+- **Primary (the solving target): how many lock/bucket/targets there are
+  and WHERE they are.** This is "where do we shoot." Target count and
+  positions define the objective.
+- **Secondary (supply): there is (Y) paint — where is it coming from.**
+  Source count and origins.
+- **Derived: required pours/streams come FROM the lock count** — match
+  supply routing to the lock inventory. Never copied from how many pours a
+  past level happened to take, and never a hard-coded cap.
+
+The ghost/imagination should LOCK IN that goal schema and the paint routing
+from the level-0 observation. There is no excuse for the policy not knowing
+the objective — how many locks there are and where — after level 0. This
+also means
 the goal-head training set already exists: every completed level in the
 corpus (human demos to level 4+, both live runs' transition records, the 8
 Stage22b trajectories) is a free hindsight goal label. Nobody has extracted
@@ -135,14 +146,17 @@ Lane C (goal-signal linkage), in order of cost:
    truth flags False.
 2. **Runtime level-0 goal lock (wire as goal provider):** after the first
    level-up in an episode, run hindsight extraction over the completion
-   window (the captured n_frames animation of the scoring pour): key block,
-   scored target, pours used. Lock that as the episode goal schema. At each
-   subsequent level, re-instantiate — count keys/targets in the new layout,
-   derive needed pours, plan arrangement so streams reach targets, pour
-   exactly that many. The ghost confirms the lock: imagine the pour and
-   check predicted paint reaches the identified target before committing.
-   This is Contra informing action selection plus LeWM/Rex verification —
-   the same boundary as the graph-adaptive policy.
+   window (the captured n_frames animation of the scoring pour) and emit
+   the goal schema: the lock/target inventory (count + positions — where do
+   we shoot), the key block, and the paint sources ((Y) count + origins —
+   where it comes from). Lock that schema. At each subsequent level,
+   re-instantiate it: count and locate the locks FIRST, identify the paint
+   sources, derive the required streams/pours from the lock count, plan the
+   arrangement so each stream is routed to a lock, pour exactly that many.
+   The ghost confirms before committing: imagine the pour and check the
+   predicted paint reaches the identified lock. This is Contra informing
+   action selection plus LeWM/Rex verification — the same boundary as the
+   graph-adaptive policy.
 3. **Train the goal head (hindsight-labeled, a proper future condition):**
    extract the goal labels from every completed level already in the corpus
    (env fields + pixels in hindsight — legal label source; zero new
@@ -286,9 +300,10 @@ No live scorecard from training metrics alone, ever.
   animation) rather than eyeballing.
 - **Extract the hindsight goal-label dataset:** walk every completed level
   in the corpus (human demo episodes, live transition records — Stage20
-  records 5/15/26 — and the 8 Stage22b trajectories) and emit (pre-
-  completion frame, key block, scored target, pours used) tuples. This is
-  the training set for the Lane C goal head and it requires no new
-  collection.
+  records 5/15/26 — and the 8 Stage22b trajectories) and emit
+  (pre-completion frame → lock/target count and positions, scored target,
+  key block, paint sources) tuples. Lock inventory is the label that
+  matters; pour history is incidental. This is the training set for the
+  Lane C goal head and it requires no new collection.
 - Verify from the Stage22b captured frames whether the 8 kept human-mined
   trajectories use the wall-adjacent arrangement described in section 2.
