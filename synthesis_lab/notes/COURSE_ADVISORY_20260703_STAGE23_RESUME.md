@@ -48,10 +48,42 @@ heads) at lr 5e-5 (5x v12's lr). This is the first real model-learning
 attempt since v11. **Fixed-val failure risk is high by precedent** — v11
 failed with less unfrozen — and the new shard is tiny relative to the base
 shards. That is acceptable: it is a properly recorded, gated experiment. The
-decision tree in section 5 exists so a failure becomes a clean controlled
+decision tree in section 6 exists so a failure becomes a clean controlled
 negative, not churn.
 
-## 2. Preflight checklist (mandatory before relaunch)
+## 2. Level-3 mechanic — user-provided direction (2026-07-03)
+
+The user described the level-3 mechanic after the wrap. Use this as research
+direction under the honesty rules; it is NOT evidence and must never become
+a hand-coded label, reward, or simulator.
+
+- Two top objects split the flow; unblocked, the level produces four
+  streams. The sidewalls can block: **placing the top two blocks against the
+  sidewalls converts four streams into two.**
+- The two remaining streams are distributed to two catch gloves, which score
+  the bucket.
+- The more important lesson: **calculate how many pours are actually needed,
+  then do not overpour.** Pours are a scarce, fatal resource (level-2
+  finding: the 5th pour call is an instant GAME_OVER). The Stage20 stall is
+  consistent with this reading — 6 pours at level 3 exhausted the MAX_POURS
+  budget with no level-up, followed by 209 pour-budget no-ops: a retry loop
+  where a calculated pour count was needed.
+- Framing: an interrelational calibration problem. The system needs a robust
+  enough imagination (dynamics/settle heads) to sequence and navigate paint
+  between objects and predict per-pour outcomes, so that pour count becomes
+  a planned quantity rather than a retry loop.
+
+Legal uses (research direction): shape Lane B's candidate family
+(wall-adjacent placements of the two top movables; pour count as an explicit
+plan variable scored by imagined outcome); design data-collection or probe
+conditions; after v13, evaluate specifically whether imagined rollouts
+predict level-3 paint routing well enough to count needed pours before
+pouring. Illegal uses (answer-key ban): hand-coding the stream-splitting
+mechanics into training labels, rewards, or a spill model. The 8 kept
+Stage22b trajectories are legal experience and may already embody the
+wall-adjacent arrangement — verify from the captured frames, do not assume.
+
+## 3. Preflight checklist (mandatory before relaunch)
 
 Run all of these; any failure blocks relaunch until resolved.
 
@@ -78,7 +110,7 @@ Run all of these; any failure blocks relaunch until resolved.
    interrupted launch will be overwritten/appended. That is fine. Do not
    treat its current content as a result.
 
-## 3. Relaunch procedure (authorized)
+## 4. Relaunch procedure (authorized)
 
 The user has authorized auto-relaunch once preflight passes — do not wait
 for a further go-ahead.
@@ -99,7 +131,7 @@ for a further go-ahead.
   failure or resource conflict. Do not claim any result until at least one
   checkpoint plus `history.json` exists.
 
-## 4. Gate chain after training (pre-committed)
+## 5. Gate chain after training (pre-committed)
 
 Strictly ordered; never skip forward. This instantiates `gate_after` from
 the condition.
@@ -118,7 +150,7 @@ the condition.
 
 No live scorecard from training metrics alone, ever.
 
-## 5. Decision tree
+## 6. Decision tree
 
 - **Fixed-val fails (v11-style drift):** record the controlled negative in
   RESEARCH_LOG with the failing rows. Do NOT iterate lr/epochs blind. Two
@@ -131,7 +163,11 @@ No live scorecard from training metrics alone, ever.
     family from the 8 kept Stage22b trajectories, Stage17-style; wire it
     into the graph-adaptive policy; gate with
     `adapter_gate.py --target-levels 4`. This is the proven-cheaper path —
-    it is exactly how levels 2 and 3 fell.
+    it is exactly how levels 2 and 3 fell. Per section 2, bias the candidate
+    family toward wall-adjacent placements of the two top movables, and make
+    pour count an explicit plan variable (plan = arrangement + N pours,
+    scored by imagined settle/level outcome) instead of pouring to the
+    budget cap.
 - **Fixed-val passes but the level-3 gate fails:** v13 did not learn the
   transition usefully. Keep v12 best as the live checkpoint. Diff v13's
   per-head `history.json` against v12 to see what actually moved, then go to
@@ -139,7 +175,7 @@ No live scorecard from training metrics alone, ever.
 - **Both gates pass:** run the single live scout, then write the wrap note
   and HANDOFF §0 update per the session-handoff protocol.
 
-## 6. Standing boundaries (restated, non-negotiable)
+## 7. Standing boundaries (restated, non-negotiable)
 
 - Answer-key ban: `sp80_spill_model.py` and any hand-authored mechanic model
   never touch training in any form.
@@ -153,7 +189,7 @@ No live scorecard from training metrics alone, ever.
 - Paired random baselines always; one backlog element per training run;
   negatives get documented, not buried.
 
-## 7. Open items
+## 8. Open items
 
 - The arXiv fit check for `https://arxiv.org/abs/2607.01224` has no valid
   verdict. Do not cite one until a fresh read-only review reads the paper
@@ -163,4 +199,10 @@ No live scorecard from training metrics alone, ever.
   basin.
 - The Stage20 level-3 stall trace (8 plans built, 6 pours, 179 plan-budget +
   209 pour-budget no-ops) is the raw material for Lane B analysis if v13
-  fails.
+  fails — reread it through the section-2 lens (overpour retry loop vs
+  calculated pour count).
+- Pour-count calibration as its own future condition: use the imagination
+  heads to predict per-pour outcome and stop pouring when the predicted
+  score is achieved; gate on wasted-pour count, not only levels reached.
+- Verify from the Stage22b captured frames whether the 8 kept human-mined
+  trajectories use the wall-adjacent arrangement described in section 2.

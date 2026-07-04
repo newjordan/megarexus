@@ -1,5 +1,27 @@
 # Research log
 
+## 2026-07-03 - User direction: level-3 mechanic and pour-count calibration
+
+After the wrap, the user described the level-3 mechanic as research
+direction (legal per the honesty rules; never a hand-coded label, reward,
+or simulator): two top objects split the flow into four streams; placing
+the top two blocks against the sidewalls converts four streams into two,
+which feed two catch gloves that score the bucket. The stated key lesson:
+calculate how many pours are actually needed and do not overpour — pours
+are scarce and fatal (level-2 finding: 5th pour = instant GAME_OVER). The
+user frames level 3 as an interrelational calibration problem that may need
+a more robust imagination for sequencing/navigating paint between objects.
+
+This reading is consistent with the Stage20 stall trace: 6 pours at level 3
+exhausted the MAX_POURS budget with no level-up, then 209 pour-budget
+no-ops — a retry loop where a calculated pour count was needed.
+
+Recorded in `COURSE_ADVISORY_20260703_STAGE23_RESUME.md` §2 with legal/illegal
+uses spelled out; Lane B refined to bias wall-adjacent placements and treat
+pour count as an explicit plan variable; new open items added (pour-count
+calibration condition; verify whether the 8 Stage22b trajectories use the
+wall-adjacent arrangement).
+
 ## 2026-07-03 - Post-wrap review: condition hash erratum + course advisory
 
 A post-wrap review verified every hash and claim in the Stage23 handoff set
