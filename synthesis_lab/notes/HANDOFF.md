@@ -6,7 +6,1177 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
-## 0. ACTIVE SESSION HANDOFF (2026-07-02, ~12:45)
+## COURSE ADVISORY (2026-07-03 post-wrap review) - READ THIS FIRST TO RESUME
+
+`synthesis_lab/notes/COURSE_ADVISORY_20260703_STAGE23_RESUME.md` is the
+pick-up document for the next agent: whole-program progress assessment,
+mandatory preflight checklist, authorized v13 relaunch procedure,
+pre-committed gate chain and decision tree, and open items.
+
+Erratum from the same review: the wrapped Stage23 `CONDITION.json` had an
+invalid 65-char sha256 recorded for `perturb_recovery_mining_v11_train.pt`
+(extra `1`). Fixed in place; the shard's verified hash is
+`8e8d850d098e4a33abdfa028109b8ee890d6116c6933b9e340adb21ad18949d5`.
+Current authoritative condition sha256 (supersedes `75e06152...`):
+`b09ca513f43ce59301c1c236aca81b70e443ccd346bfa86a2df4dddf27790950`.
+All other wrap-note hashes/claims verified against disk and matched. GPU
+recheck at review time: the Leanstral export had finished; no compute
+process, 0% util.
+
+## WRAP NOTE (2026-07-03 21:48 CDT) - STAGE23 CONDITION READY, V13 NOT RUN
+
+Detailed wrap note:
+`synthesis_lab/notes/WRAP_20260703_STAGE23_V13_READY_NOT_RUN.md`.
+
+Stage23/v13 has a recorded condition but no completed training artifact.
+Condition:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage23_v13_level3_human_mined_20260704/CONDITION.json`.
+Pre-interruption condition sha256 (superseded by the erratum above):
+`75e06152ce3849d615e6fe6e435da773bac28c76dc8d1bd094449a09518abb21`.
+
+The exact v13 command was launched locally at about
+`2026-07-03T21:46:41-05:00`, then the user interrupted and asked for
+handoff/wrap. The launch kept running in the background, so it was explicitly
+stopped: Python PID `2548534`, shell PID `2548529`, and `tee` PID `2548535`.
+
+Post-stop check at `2026-07-03T21:47:58-05:00`: no v13 training process
+remained; `nvidia-smi` showed no compute process; the log contained only
+`[train] device=cuda` and was `20` bytes; no
+`outcome_v13_level3_human_mined_20260704/` directory, checkpoint, history,
+gate report, or review page exists. Do not claim any v13 result from this.
+
+Resume by rechecking runtime and relaunching the command recorded in the
+Stage23 condition. Let it produce checkpoints before running gates.
+
+## PAUSE NOTE (2026-07-03 21:42 CDT) - STAGE LABELS ARE BOOKKEEPING, NOT NEAR-DONE STATUS
+
+Detailed pause note:
+`synthesis_lab/notes/REVIEW_PAUSE_20260703_STAGE22.md`.
+
+The user asked whether "stage 22 of 23" means this lane is almost done. It
+does not. The stage numbers are local bookkeeping labels, not a finite
+countdown and not a completion percentage.
+
+Current state at pause:
+
+- Stage20 live ARC SP80 scout reached `total_levels_completed=3` with closed
+  SDK score `28.57142857142857`, then stalled in level-3 control. This is the
+  current live evidence boundary, not a solve/release claim.
+- Stage22 exclusive was a controlled negative because it omitted the first
+  level-4 action from mined human sequences.
+- Stage22b inclusive is the useful new artifact: controlled offline replay of
+  human-mined level-3 sequences, `6/12` candidates reached level 4, `8`
+  trajectories kept. Report:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage22b_level3_human_mined_inclusive_v12_graphadaptive_20260704/level3_human_mined_report.json`.
+  Review URL verified `200`:
+  `http://127.0.0.1:8765/synthesis_lab/experiments/megarexus_cnn/runs/stage22b_level3_human_mined_inclusive_v12_graphadaptive_20260704/index.html`.
+- Stage22b output shard:
+  `synthesis_lab/experiments/megarexus_cnn/data/level3_human_mined_inclusive_stage22b_20260704.pt`,
+  sha256 `2e98eeaa68aa8a71da62ad5a23a1df7704f4781d974991bc809746eeed91e6e3`.
+- Stage23/v13 is only the next proposed training condition label. It has not
+  been launched, gated, or live-tested.
+- The requested arXiv fit check for `https://arxiv.org/abs/2607.01224` was
+  paused before any subagent paper verdict existed. Do not cite a fit verdict
+  until a fresh review reads the arXiv PDF and any official code.
+- Runtime checked at `2026-07-03T21:42:12-05:00`: no active Megarexus
+  train/gate/collection/live-scout process was found locally; evidence server
+  is running on `127.0.0.1:8765`; unrelated Leanstral export PID `2517434` is
+  using CUDA on the GB10, so recheck local/Apollo availability before launching
+  any v13 work.
+
+## 0-CURRENT RESULT (2026-07-03 21:20 CDT) - V12 GRAPH-ADAPTIVE HIT LIVE 3 LEVELS; NEXT BASIN IS LEVEL-3 CONTROL
+
+This section supersedes the older "next basin is level-2 four-bar control"
+section below. Do not launch another live scorecard just to repeat this
+result. The next valid work is level-3 representation/search or a training
+data condition that targets the level-3 layouts exposed by the live run.
+
+Stage 17 level-2 representation scout:
+
+- Modified `synthesis_lab/orchestration/graph_plan_probe_level2.py`,
+  sha256 `26704bed478977f6bd5f92e04661a079d910a7534dd25a7f9fdad13b0961f698`,
+  preserving the old horizontal mode while adding a raw action-ID template
+  candidate family with optional single vertical nudges and emitted
+  `CONDITION.json`.
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage17_level2_action_template_probe_v12_graphadaptive_20260704/CONDITION.json`,
+  sha256 `d6f1ca052015f9fe6dd217a8969286c1f484fcd1bb91b8005eabf837143e00fe`.
+- Report:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage17_level2_action_template_probe_v12_graphadaptive_20260704/graph_plan_probe_level2.json`,
+  sha256 `4bfa869576771d9340c82085e3b9a6c2109fc7dbf04ec3c788b249d04cfb2140`.
+  Review:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage17_level2_action_template_probe_v12_graphadaptive_20260704/index.html`,
+  sha256 `60680326d3acf20893122bf9f8f3a2cfb1ba80213aca50816c18e85f4810d7d0`.
+- Result: prefix reached level 2, then `36/1458` raw action-ID template
+  candidates reached `levels_completed >= 3`. Base winning candidate:
+  `codexlab_solution_level2_action_ids_counts_1_2_2_1`, action items
+  y-rank `0:[4]`, `1:[3,3]`, `2:[3,3]`, `3:[4]`. The inverse raw-action
+  family produced no winners in the extracted winner list.
+
+Policy and gate updates:
+
+- Modified `synthesis_lab/orchestration/megarexus_live_policy.py`,
+  sha256 `681266eff43010a2ea633ac07ea100f50324b5e25e5c6b040501b4970792cb9b`,
+  to admit four midband movables behind `MEGAREXUS_GRAPH_DEMO_PLAN=1` and
+  execute the Stage17-backed raw action-ID plan. This is action-side
+  representation wiring, not proof that the CNN alone learned level 2.
+- Modified `synthesis_lab/orchestration/adapter_gate.py`, sha256
+  `e4789d878f51c066e46410e702e408b2db82e45260584f747f7cf66437a3e515`,
+  to emit `CONDITION.json` and support `--target-levels`.
+- Stage 19 same-path adapter gate target `levels_completed >= 3` passed:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage19_adapter_gate_l3_full_v12_graphadaptive_20260704/adapter_gate.json`,
+  sha256 `823a58ccfcf41956aa7ff0d336d3998e0a2db9bde19d2e34e3f0bf5a52efedeb`.
+  Condition sha256
+  `f77b7d0b8d09809ba1f9e43419eb5270d6e1e70d5166081e560c4bfe7ffed60d`.
+  Review sha256
+  `610012828668bf2a5dd7391c0dde9b6c15ba444ab438970c91bfd512cada6ad4`.
+  Verdict: `PASS`, model `10/10` reached `levels_completed=3`,
+  random `levels>=2` was `0/10`, zero policy errors.
+
+Live scout:
+
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage20_live_scout_l3_v12_graphadaptive_20260704/CONDITION.json`,
+  sha256 `95342da97ef99c6baf268b60b0b5a3965749f62faada0a2a8f2beea20f93ace7`.
+- Run directory:
+  `codexlab/runs/arc_live_sp80_megarexus_v12_graphadaptive_l3_20260704T021637Z`.
+- Live scorecard id: `453a74e8-9113-43a8-a37a-fcdfacac55ce`.
+- Closed ARC SDK payload in `result.json`: score
+  `28.57142857142857`, `total_levels_completed=3`, policy errors `0`.
+  Per-game row: `sp80-589a99af`, `levels_completed=3`, `actions=496`,
+  `resets=4`, final state `GameState.NOT_FINISHED`. Scorecard close payload
+  recorded `total_actions=500`, `total_levels_completed=3`.
+- Artifact hashes:
+  `result.json` sha256
+  `f159aeaf130c757ecae2fdded45456c906090ae16c99c46426372859472a7df3`;
+  `index.html` sha256
+  `eff4c75dd94155a25b76186fd165e149b0b4a707dad39e41668e2ea739959711`;
+  `report_trace.jsonl` sha256
+  `22b1e44eea64cc4d113374121e8a88cdad58c4cdcff3c2866af0ae8a56511722`;
+  `report_manifest.json` sha256
+  `25c656b3b54183e4ce524c123e44c7807323d6906480af612970bb7be37898fb`;
+  `policy_frames_meta.json` sha256
+  `03d08a7c28e4dbf4df3430dcb814b00e0c82cdc99dd351d9cbf9da7a46abd7d3`;
+  `policy_frames.npz` sha256
+  `abe380d0a82ede67216e5eb02036cdaa26bf71040aa19fa5eaffa0e0852291a0`.
+- Local review URL verified `200`:
+  `http://127.0.0.1:8765/codexlab/runs/arc_live_sp80_megarexus_v12_graphadaptive_l3_20260704T021637Z/index.html`.
+  Public `https://arcprize.org/api/v3/scorecards/453a74e8-9113-43a8-a37a-fcdfacac55ce`
+  returned `404`; treat the closed SDK payload in `result.json` as
+  controlling evidence.
+- Frame capture exists with `496` records and `frames_fallback_count=0`.
+  Trace source histogram: catch select/move/pour `1/3/1`, arrange
+  select/move/pour `34/61/8`, plan-budget no-ops `179`,
+  pour-budget no-ops `209`. `plans_built`: level 1 = 1, level 2 = 1,
+  level 3 = 8. `pours_at_level`: level 1 = 1, level 2 = 1,
+  level 3 = 6.
+
+Interpretation and next valid work:
+
+- This is a real live improvement over the prior v12 graph-adaptive scout
+  (`2` levels, score `14.285714285714285`) and over v9retry (`1` level,
+  score `4.761904761904762`).
+- It is not a release/completion claim. The adapter now clears level 2,
+  reaches level 3, then spends the remaining budget in repeated level-3
+  attempts and fail-closed no-ops after plan/pour budgets are exhausted.
+- Do not keep rerunning the Stage17 raw action-ID template on level 3 as if
+  it is a new experiment. The next condition must expose a new level-3
+  representation/search space or mine/collect a level-3 transition shard.
+
+## 0-CURRENT RESULT (2026-07-03 20:59 CDT) - V12 GRAPH-ADAPTIVE HIT LIVE TARGET; NEXT BASIN IS LEVEL-2 FOUR-BAR CONTROL
+
+This section supersedes the older "live scout blocked" sections below.
+Do not launch another live scorecard just to repeat this result. The next
+valid work is level-2 representation/search, or a training/data condition
+that targets the level-2 four-bar state exposed by the live run.
+
+Gate stack before live:
+
+- v12 fixed-v8 no-loss gate stayed green:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v12_headlevel_perturb_recovery_20260703_gates/gate_eval_many_full_on_v8val.json`,
+  sha256 `f5a1a2b8865d68360d6d9d1fe8aa68d56abf846e0a520b952c803993d373a5a9`.
+- Stage 12 full perturb gate with `MEGAREXUS_GRAPH_DEMO_PLAN=1` passed
+  at threshold: `9/10` model rows passed, paired random `0/10`.
+  Seed `20290106` remained a real miss (`levels_completed=1`), so this
+  is not a perfect local generalization result.
+  Report:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_graphadaptive_full_20260703/perturb_gate.json`,
+  sha256 `9c2997431431fc554f92b0db80aedcd39af0beed2db8f78cbfbb403d63c29df2`.
+  Review:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_graphadaptive_full_20260703/index.html`,
+  sha256 `12673f2771d7792c5d37f9f3595399d3a39a49c81d3eab0f116357e049411fec`.
+- Stage 13 same-path adapter gate with `MEGAREXUS_GRAPH_DEMO_PLAN=1`
+  passed `10/10`; paired random reached `levels>=2` in `0/10`.
+  Report:
+  `synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v12_headlevel_best_graphadaptive_20260703/adapter_gate.json`,
+  sha256 `ae3036b021e2ca535086f5ac4a03933eef79d7ff3416630f7d77fd8011c6a828`.
+  Review:
+  `synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v12_headlevel_best_graphadaptive_20260703/index.html`,
+  sha256 `8f54763aba5900d9a064cbf0141b4cf4b796c244238b0b78b19ac6ae86a4b32e`.
+
+Live scout:
+
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage14_live_scout_v12_graphadaptive_20260703/CONDITION.json`.
+- Run directory:
+  `codexlab/runs/arc_live_sp80_megarexus_v12_graphadaptive_20260703T2052`.
+- Live scorecard id: `9ff01749-a750-438c-a3dd-b84091df6fb5`.
+- Closed ARC SDK payload in `result.json`: score
+  `14.285714285714285`, `total_levels_completed=2`, policy errors `0`.
+  Per-game row: `sp80-589a99af`, `levels_completed=2`, `actions=496`,
+  `resets=4`, final state `GameState.NOT_FINISHED`.
+- `result.json` sha256
+  `9b44dbb6626ff4b2b0b8880b35aa6efbc80f87c824161e64faf43611b7a3e305`.
+  `index.html` sha256
+  `c40c0cdc5ece18c53601730b2084c29e5c0665f68b8b96c287370d6c25c8c25e`.
+  `report_trace.jsonl` sha256
+  `8fa07ea18b42055488659bd8a32bfea5077c846d5a8a3eb224bccd6a30255a4a`.
+  `report_manifest.json` sha256
+  `fa20ab505b24a93d9acf7688c3c281fb0eaaf9ee6849a8376f318aaf99bf1d66`.
+  `CONDITION.json` copied into the run dir, sha256
+  `8e370627913b576642a6ef86e25c8eccb214bde640e41377914dae10a49bd13d`.
+- Frame capture exists:
+  `codexlab/runs/arc_live_sp80_megarexus_v12_graphadaptive_20260703T2052/policy_frames/policy_frames.npz`
+  and `policy_frames_meta.json`; `496` frame records, no frame fallback.
+- Public HTTP probe for
+  `https://arcprize.org/api/v3/scorecards/9ff01749-a750-438c-a3dd-b84091df6fb5`
+  returned `404`, matching the earlier lane warning that public scorecard
+  endpoints can be unreliable for these live runs. Treat the closed SDK
+  payload in `result.json` as controlling evidence.
+
+Live behavior interpretation:
+
+- The run met the staged target (`levels_completed >= 2`, zero policy
+  errors) and is a real improvement over the prior v9retry live scout
+  (`1/6` levels, score `4.761904761904762`).
+- It is not a release/completion claim. After the level-1 graph pour,
+  the adapter reached level 2 at call 15, then spent the remaining budget
+  in fail-closed `megarexus_arrange_no_roster` no-ops because the level-2
+  state has four large midband bars, while the current graph branch only
+  admits exactly three.
+- Source histogram from the live policy trace: catch select/move/pour
+  `1/3/1`, arrange select/move/pour `3/6/1`, then
+  `481` `megarexus_arrange_no_roster` actions. This is intentionally not
+  a pour loop, but it is the next control failure basin.
+
+Post-live diagnostics:
+
+- Stage 15 static live-frame graph review:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage15_live_level2_graph_review_v12_graphadaptive_20260703/index.html`,
+  sha256 `ddb2eef80f3809725b72e5574055a8eff793a6b4c5536b34064af9a98a13d45e`.
+  Report sha256
+  `59a0827e1b595e683752141e9335a1511602f717ab2b4e1e68ae619a82277271`.
+  First level-2 frame has four large bars:
+  centers `[15,21]`, `[49,29]`, `[19,33]`, `[47,41]`.
+- Added new scout runner:
+  `synthesis_lab/orchestration/graph_plan_probe_level2.py`,
+  sha256 `16bbee14da56c04cdfbfad24d4765f5cf6e14d7ca1100140f0c06cdbe4aefb37`.
+- Stage 16 level-2 anchor-horizontal four-bar scout:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage16_level2_graph_plan_probe_v12_graphadaptive_20260703/graph_plan_probe_level2.json`,
+  sha256 `ddc951f9dd19f49cc6e1fde3a54c58aa34c93f181ca8749163eaeb28554d41a3`.
+  Review sha256
+  `bc62d9fac331a4157b2d375c7c4418a53ad24fe08e121dff8b311083c0a1a729`.
+  Result: `0/581` candidates reached level 3; every candidate stayed at
+  `levels_completed=2`.
+
+Next valid work:
+
+- Do not repeat the same horizontal anchor-derived four-bar scout as if
+  it is progress. Stage 16 is a controlled negative in that representation.
+- The next runnable condition needs a real new degree of freedom:
+  vertical moves on the four-bar level-2 roster, a richer ordering/anchor
+  representation, or a level-2 data/training collection shard that labels
+  successful level-3 transitions.
+- If launching training, keep v12 fixed-val no-loss as the comparator and
+  treat the graph-adaptive live result as action-side evidence, not proof
+  that the CNN alone solved the level-2 regime.
+
+## 0-CURRENT RESULT (2026-07-03 20:03 CDT) - V12 + ARRANGE MEMORY FAILED SAME PERTURB BASIN; LIVE SCOUT BLOCKED
+
+Do not run a live scout. Do not run Stage 1a adapter for v12 unless
+there is a new reason to spend the time: v12 already failed the
+discriminating Stage 1b perturb gate, and the AutoMem-inspired
+arrange-memory scaffold did not change the first failed seed.
+
+v12 condition:
+
+- `synthesis_lab/experiments/megarexus_cnn/runs/stage2_v12_headlevel_perturb_recovery_20260703/CONDITION.json`.
+- Purpose: narrow calibration from v10dynonly memsafe `best.pt`, training
+  only `head_level` after v11 proved that broad perturb-recovery training
+  drifts fixed-val changed-cell metrics.
+- Code fix required before v12 could run: `train.py` now skips
+  backward/optimizer only for batches whose losses do not require grad,
+  needed when a narrow trainable-prefix run sees batches with no
+  trainable-head labels. Patched `train.py` sha256
+  `c866b722bba477afbf9961e8fe89037dfa1838b05452c198ac4040199dabf430`.
+- v12 trained on Apollo, PID `243592`, completed cleanly in `1164s`.
+  `head_level` trainable params: `8321/3644714`.
+- Expanded mining-val did NOT improve: every epoch stayed at level
+  `tp=135/141`, `fp=5`, catch `0.950`, settle IoU `0.658`. Treat this
+  as a warning that v12 may still fail heldout perturb recovery.
+
+v12 fixed-v8 gate:
+
+- Gate JSON:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v12_headlevel_perturb_recovery_20260703_gates/gate_eval_many_full_on_v8val.json`,
+  sha256 `f5a1a2b8865d68360d6d9d1fe8aa68d56abf846e0a520b952c803993d373a5a9`.
+- Review page:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v12_headlevel_perturb_recovery_20260703_gates/index.html`,
+  sha256 `dcaeb9741798b1e7196f28b8381974525f300c4fb60a7a97c18ca2a129628897`.
+- Verdict: `10/10` candidate rows pass strict no-loss. Baseline v8:
+  `bc=1.0`, `catch=0.956303`, `level_tp=109/109`, `level_fp=0`,
+  `settle_iou=0.655881`, `changed=0.995984`. All v12 rows:
+  `bc=1.0`, `catch=0.956303`, `level_tp=109/109`, `level_fp=0`,
+  `settle_iou=0.655881`, `changed=0.996143`.
+- Recommended next action: run behavioral gates, preferably starting with
+  the heldout perturb gate because it is the discriminating failure basin.
+  A failed Stage 1b blocks live scout immediately.
+
+v12 Stage 1b perturb gate:
+
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_20260703/CONDITION.json`,
+  sha256 `eaba726839fa0f8661d7c402c76647e11efe32714b046be5d49eb491902fa70f`.
+- Partial report:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_20260703/perturb_gate_partial_stopped.json`,
+  sha256 `fa41e665f714ebd975fb119759f2a70d931637966402e3ffed2567c8edca6bc4`.
+- Review page:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_20260703/index.html`,
+  sha256 `cf0f970bd53ae7d123a933b0b2cac3a4a3aea0c983fefeb6077264e6914a73f1`.
+- Log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_20260703.log`,
+  sha256 `005b783585c6ea4e75a463547cad7e9528c3c423ef394bcc2cd007219314f337`.
+- Completed rows before stop: seeds `20290101` and `20290102` passed;
+  seeds `20290103`, `20290104`, and `20290105` failed. The failed rows
+  all reached plumbing, replay matched, had zero policy/runtime hygiene
+  failures, but remained at `levels_completed=1`. With three failures,
+  the 9/10 pass threshold was unreachable, so PID `270818` was stopped
+  at 19:33 CDT.
+- This repeats the v10 heldout failure basin. Fixed-val preservation is
+  not enough; the perturb-recovery/action-side behavior still fails.
+
+Stage 5 targeted arrange-memory A/B:
+
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage5_v12_arrange_memory_failedseeds_20260703/CONDITION.json`,
+  sha256 `f865e9678562c131396edabb1271f21767d0f37addea9b21df3531753cda83c0`.
+- Env change: `MEGAREXUS_ARRANGE_MEMORY=1`; checkpoint unchanged
+  (`v12 best.pt`).
+- Targeted run started at failed seed `20290103`, intended for three
+  failed default seeds. It was stopped after the first row because the
+  memory-enabled adapter repeated the exact default failure:
+  `reached=True`, `replay_match=True`, hygiene checks all true,
+  `levels_completed=1`, `actions=43`.
+- Partial report:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_arrange_memory_failedseeds_20260703/perturb_gate_partial_stopped.json`,
+  sha256 `fd97e7a91167c677de887ed23d93f2d11e011e190b7f55c279bed55e0f374a06`.
+- Review page:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_arrange_memory_failedseeds_20260703/index.html`,
+  sha256 `226025f7724e115f1ce7f9251a35de8685bb0e83a053d7d5832b4736196184a2`.
+- Log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v12_headlevel_best_arrange_memory_failedseeds_20260703.log`,
+  sha256 `0948069ca0c35e2304efd1f8b7d51cfc3f89e45b945804f1e09008d1a8c4d5a6`.
+
+Interpretation: the paper-inspired memory ledger is a plausible
+adapter-side idea in general, but this concrete scaffold did not affect
+the v12 heldout perturb failure. Stop same-basin CNN/head-only/attempt
+memory churn here; the next useful change needs a different
+action-search or representation mechanism, not another small shard over
+the same labels.
+
+Apollo status at the last check: idle, no `train.py`, RTX 4080 at
+display-only usage, about 12 GiB RAM available.
+
+## 0-RECENT RESULT (2026-07-03 16:58 CDT) - V11 FAILED FIXED-VAL; LIVE SCOUT STILL BLOCKED
+
+Do not promote v11. Do not run Stage 1a/1b for v11, and do not run a live
+scout from v11.
+
+The v11 perturb-recovery run completed cleanly on Apollo, was copied back,
+and was gated against the fixed v8 validation surface. The strict no-loss
+gate failed: `0/14` v11 candidate rows passed. Baseline v8 row:
+`bc=1.0`, `catch=0.956303`, `level_tp=109/109`, `level_fp=0`,
+`settle_iou=0.655881`, `changed=0.995984`. Every v11 row lost
+`fwd/changed_cell_acc`; some early rows also introduced level false
+positives or lost settle IoU. `best.pt` has `level_fp=2`,
+`settle_iou=0.654983`, `changed=0.995978`.
+
+Primary artifacts:
+
+- Run dir:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v11_perturb_recovery_mining_20260703`.
+- Training log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v11_perturb_recovery_mining_20260703_train.log`,
+  sha256 `61d4e70252d6fedd6f76a0830564d99ff7334719a3903a60dab2b795a16e1564`.
+- Fixed-val gate JSON:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v11_perturb_recovery_mining_20260703_gates/gate_eval_many_full_on_v8val.json`,
+  sha256 `169719757f0e673b7134f6fd4046c159529f7279b2e25db248b3a93c880618b5`.
+- Fixed-val gate review:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v11_perturb_recovery_mining_20260703_gates/index.html`,
+  sha256 `2b6778ae088f12c8a19dfe217ff269bf886dbfd2b640c0046789bab50555c6ee`.
+- New review helper:
+  `synthesis_lab/orchestration/build_gate_many_review.py`,
+  sha256 `aa631a921c0f72eac169dd9dfa1101415a7eaccdcfb0fbae33996c9465e61166`.
+
+Apollo is currently idle after the run/gate: no `train.py` process, RTX
+4080 at display-only usage, about 12 GiB RAM available. The current
+usable checkpoint remains v10dynonly memsafe `best.pt` for analysis
+purposes, but it already failed heldout perturb Stage 1b and therefore
+is not live-scout eligible.
+
+Recommended next step: do not continue the same v11 CNN basin. Either
+analyze why perturb-recovery positives trade away fixed-val changed-cell
+and level cleanliness, or use the staged AutoMem-inspired arrange-memory
+A/B only if the next observed failure is arrange/repetition-specific.
+
+## 0-PRIOR APOLLO PICKUP (2026-07-03 16:09 CDT) - SUPERSEDED BY THE V11 FIXED-VAL FAILURE ABOVE
+
+Do not treat this as a release state. The current v10 candidate failed
+the heldout perturb gate, so the staged live scout remains blocked even
+if the adapter gate later passes.
+
+Stage 1a adapter gate on Apollo:
+
+- Active remote Python PID `87565`, launcher shell `87563`, nice level
+  10, elapsed about 44 minutes at the 14:55 poll and about 73 minutes
+  at the 15:24 poll.
+- As of 16:02 CDT, log has five completed model episodes:
+  seed `20280001`, `passed=True`, `levels=2`, `actions=119`,
+  `resets=1`, all checks true; paired random reached `levels=0`.
+  Seed `20280002` also passed with `levels=2`, `actions=119`,
+  `resets=1`, all checks true; paired random reached `levels=0`.
+  Seed `20280003` also passed with `levels=2`, `actions=119`,
+  `resets=1`, all checks true; paired random reached `levels=1`.
+  Seeds `20280004` and `20280005` also passed with `levels=2`,
+  `actions=119`, `resets=1`, all checks true; paired random reached
+  `levels=0` for each.
+- No `adapter_gate.json` exists yet because the 10-episode run is still
+  active.
+- Remote output dir:
+  `apollo:/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703`.
+
+Stage 1b perturb gate on local host:
+
+- Active local Python PID `1632633`, nice level 10, elapsed about 21
+  minutes at the 14:41 poll, CPU-active; elapsed about 26 minutes at the
+  14:46 poll, about 35 minutes at the 14:55 poll, and about 50 minutes
+  at the 15:10 poll; about 64 minutes at the 15:24 poll.
+- First row completed at wall `1437.4s`: seed `20290101`,
+  `passed=True`, `reached=True`, `levels=2`, `actions=72`,
+  `replay_match=True`; all model checks true including
+  `paired_replay_match`. Paired random from the same replay-verified
+  perturbed state reached `levels=1` in 12 actions.
+- Second row completed at wall `1412.2s`: seed `20290102`,
+  `passed=True`, `reached=True`, `levels=2`, `actions=110`,
+  `replay_match=True`; all model checks true including
+  `paired_replay_match`. Paired random reached `levels=1` in 17
+  actions.
+- Seed `20290103` failed at wall `1361.9s`: `reached=True`,
+  `levels=1`, `actions=43`, `replay_match=True`; checks all true
+  except `levels_ge_2`.
+- Seed `20290104` failed the same way at wall `1356.0s`:
+  `reached=True`, `levels=1`, `actions=43`, `replay_match=True`; checks
+  all true except `levels_ge_2`.
+- This is enough to block the live scout and trigger perturb recovery
+  mining. The 10-episode perturb process is still active as of 16:02
+  CDT, but it is no longer promotion evidence.
+- Output dir currently contains the recorded condition plus first-seed
+  frame capture:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v10dynonly_memsafe_best_parallel_20260703/CONDITION.json`.
+
+New helper added for gate harvesting:
+
+- `synthesis_lab/orchestration/build_gate_review.py`, sha256
+  `eda60da449f148a8e88801eac692781f427bff30037c7dd3b97c973d680c1364`.
+- It compiles and rendered a test page from an old completed adapter
+  gate into `/tmp/megarexus_gate_review_test.html`.
+- Use it on finished `adapter_gate.json` or `perturb_gate.json` to
+  create the run-local `index.html` review surface before reporting raw
+  JSON.
+
+Data audit finding for next training:
+
+- `course_correction_v10_train.manifest.json`: reached plumbing `12/12`,
+  but `level2_episodes=0`.
+- `course_correction_v10_val.manifest.json`: reached plumbing `4/4`,
+  but `level2_episodes=0`.
+- Therefore do not run another same-basin train over only the v10
+  course-correction shard as if it contains successful perturbed
+  recovery examples.
+
+Conditional next data condition staged, not launched:
+
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage2_perturb_recovery_mining_20260703/CONDITION.json`,
+  sha256
+  `604c00c0307a20cb47b45bd3ac1231882fd4be0f685d3890ffadf0bb421a16cb`.
+- Collector:
+  `synthesis_lab/orchestration/collect_perturb_recovery_mining.py`,
+  sha256
+  `81a646d0a51ea1e88e95ad448b106e5efab0ee1234ede4f670d7ab11088ec533`.
+- Triggered by Stage 1b failures on seeds `20290103` and `20290104`.
+- Local mining completed:
+  train shard `perturb_recovery_mining_v11_train.pt`, sha256
+  `8e8d850d098e4a33abdfa028109b8ee890d6116c6933b9e340adb21ad18949d5`,
+  manifest sha256
+  `aec3dc56ed91f3646b00bc0ca4a107be11a089002a34025fb8f095bc0e66af9e`,
+  `kept_successes=16`, `kept_failures=12`.
+  Val shard `perturb_recovery_mining_v11_val.pt`, sha256
+  `6841a132d7deb6d07be07d8570c223ae3611d06de5e6844f260cd8fe8d870843`,
+  manifest sha256
+  `a544a7f765d15a24a361b3f210c7d83e446133d63840c6ab27cb4f09197a20d7`,
+  `kept_successes=11`, `kept_failures=6`.
+- The positive-success gate for follow-on v11 training is satisfied.
+
+Stage 2 v11 perturb-recovery training running on Apollo:
+
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage2_v11_perturb_recovery_mining_20260703/CONDITION.json`.
+- It initializes from
+  `outcome_v10dynonly_memsafe_course_correction_20260703/best.pt`
+  (`e82815647038a3749442eb356b4daa6013885c81d16da8ae811fb685b28f27ac`)
+  and adds the mined train/val shards above.
+- Training prefixes: `dynamics`, `click_plane_proj`, `up1`, `up2`,
+  `skip_gate`, `head_next_frame`, `settle_conv`, `head_settle`,
+  `head_level`; lr `5e-5`, epochs `12`, batch `64`, workers `0`.
+- Remote Python PID `184675`, nice level 10. Log:
+  `apollo:/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v11_perturb_recovery_mining_20260703_train.log`.
+- The stale v10 Apollo adapter gate was stopped at 5/10 because v10 was
+  already disqualified by Stage 1b perturb failures. The stale local
+  perturb gate was also stopped after two repeated heldout failures.
+- As of 16:19 CDT epoch 1 completed. Dataset counts:
+  train `102001` transitions (`1177` human, `100824` rollout),
+  `67423` unique frames; val `20577` transitions (`245` human,
+  `20332` rollout), `13847` unique frames. Trainable parameters:
+  `1964563/3644714`.
+- Epoch 1 expanded-val metrics: changed `0.996`, catch `0.950`,
+  level `tp=137/141`, `fp=6`, settle IoU `0.657`. This is expanded
+  mining val, not the fixed-v8 release gate.
+- Epoch 1 artifacts on Apollo:
+  `epoch_001.pt` sha256
+  `c2f9c1455464d62557bf71ac70416a44b85bcd3fc8694e3405f7b3e99a637b45`,
+  `best.pt` sha256
+  `8cc51d9415ca35fa257b80ea8d091b96d812bbc7c5e473a50701a4e5707defa4`,
+  `last.pt` sha256
+  `f74af9aa70cd0c2f9b6c0495cb313b7e509a6f7694f8bb88d271352d1d345d83`.
+- Do not promote this run until it finishes and passes fixed-v8-val
+  no-loss plus new Stage 1a/1b gates.
+
+Stage 4 live scout condition staged, not launched:
+
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage4_live_scout_v10dynonly_memsafe_best_20260703/CONDITION.json`,
+  sha256
+  `8f2b3d72edb570b0c5aa5d8791fbdc7568188fce15709a1557b2e0e73cd4ce00`.
+- Status: `blocked_until_gate_stack_passes`.
+- Planned live command uses
+  `MEGAREXUS_CKPT=synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703/best.pt`
+  and
+  `MEGAREXUS_TRACE_DIR=codexlab/runs/arc_live_sp80_megarexus_v10dynonly_best_20260703/policy_frames`.
+- Do not run it until both `adapter_gate.json` and `perturb_gate.json`
+  exist with `gate_verdict=PASS`. The planned success criterion is live
+  `sp80-589a99af` with `levels_completed >= 2`, zero policy errors, no
+  capped-pour loop, and policy frame capture present.
+
+Conditional Stage 5 arrange-memory scaffold A/B staged, not launched:
+
+- Source idea: AutoMem paper triage on 2026-07-03. Useful fit is an
+  adapter-level representation/search-space change, not another CNN
+  training shard.
+- Code change is opt-in only: `MEGAREXUS_ARRANGE_MEMORY=1` enables
+  explicit layout-signature and attempt-signature memory for arrange
+  pours. Default is off, so the active Stage 1a/1b gates are not
+  changed.
+- Updated adapter source:
+  `synthesis_lab/orchestration/megarexus_live_policy.py`, sha256
+  `4c210f2772163afcf21e974fb9eed3ca153b310de1422ee18319aa2f7469edd8`.
+  It compiles together with `adapter_gate.py` and `perturb_gate.py`, and
+  a direct import check verified the feature flag is false by default
+  and true when set.
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage5_arrange_memory_scaffold_ab_20260703/CONDITION.json`,
+  sha256
+  `d2be91ea68a070183a0d45ee1273b56f22c7b408be3ab55df322248d1efb44d1`.
+- Status: `staged_not_launched`. Do not launch while the current Stage
+  1a/1b gates are still running. Use it if current gates fail on
+  arrange/repetition behavior, or if the gated live scout later fails in
+  the same arrange-loop basin. It is local offline gate evidence only,
+  not a live scorecard and not a CNN training result.
+
+## 0-CURRENT APOLLO PICKUP (2026-07-03 14:15 CDT) - MEMSAFE BEST PASSED FIXED VAL; ADAPTER GATE RUNNING
+
+Apollo is not crashed. User reboot restored it after the first
+v10dynonly launch wedged SSH. The memsafe relaunch completed cleanly on
+Apollo with swap still unused and the GPU idle afterward.
+
+Completed training condition:
+
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage2_v10dynonly_memsafe_course_correction_20260703/CONDITION.json`,
+  sha256
+  `0fa28a586e3f566141b35046a193009152c566fd242e82df3510482f2283882c`.
+- Output:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703`
+- Log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703_train.log`,
+  sha256
+  `1679f2b50b591a5824c8280fdbb250dbff4661120c6e9eeb9b32a3a9abc83a58`.
+- `best.pt` sha256:
+  `e82815647038a3749442eb356b4daa6013885c81d16da8ae811fb685b28f27ac`.
+
+Full fixed-v8-val gate:
+
+- Report:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703_gates/gate_eval_many_full_on_v8val.json`,
+  sha256
+  `4c46f3ad6cd0b74cb648ca9921a2bd503a5391840660db9281de6e47a0004433`.
+- Review page:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703_gates/index.html`,
+  sha256
+  `5cdeece00f368d81769463ff0a193a06ca8fdf13e80cd75e8c126da62afd0217`.
+  It was verified via local HTTP on `127.0.0.1:18765`: `index.html`
+  and the raw full gate JSON both returned `200 OK`.
+- V8 baseline: `bc=1.0`, `catch=0.956303`, `level_tp=109/109`,
+  `level_fp=0`, `settle_iou=0.655881`, `changed=0.995986`.
+- `best.pt`: `bc=1.0`, `catch=0.956303`, `level_tp=109/109`,
+  `level_fp=0`, `settle_iou=0.655881`, `changed=0.996143`.
+- Strict fixed-val no-loss candidates: epochs 1-4 plus `best.pt`.
+  Epochs 5-12 and `last.pt` regress changed-cell below v8.
+
+Adapter gate status:
+
+- A foreground local one-seed probe was stopped after seed `20280001`
+  passed, to avoid a four-hour foreground session. Log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_20260703.log`,
+  sha256
+  `a5d5c48e091adceeff231f83152948c119f8b850f3a434e1f19e93e7f8129406`.
+  Probe row: model passed, `levels=2`, `actions=119`, all checks true;
+  paired random reached `levels=0`.
+- Full 10-episode Stage 1a adapter gate is now running detached on
+  Apollo, nice level 10:
+  Python PID `87565`, launcher shell `87563`.
+- Remote output:
+  `apollo:/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703`
+- Remote log:
+  `apollo:/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703.log`
+
+Monitor the active adapter gate:
+
+    ssh -o BatchMode=yes apollo 'ps -eo pid,ppid,stat,ni,etime,pcpu,pmem,rss,cmd | grep -E "87565|adapter_gate.py" | grep -v grep; tail -n 40 /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703.log'
+
+When Stage 1a finishes, sync the remote adapter gate dir and log back.
+If Stage 1a passes, run Stage 1b perturbation arrange gate on the same
+`best.pt`. Do not run a live scout before the gate stack is complete.
+
+Parallel Stage 1b early evidence run:
+
+- Local host `spark-2949`, detached nice-level 10 Python PID `1632633`.
+- Boundary: controlled Stage 1b perturb gate condition, but launched in
+  parallel while Apollo Stage 1a is still running. It is useful for early
+  failure-basin discovery; it is not promotion evidence until Stage 1a
+  also passes.
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v10dynonly_memsafe_best_parallel_20260703/CONDITION.json`,
+  sha256
+  `47fe723866c1b8eee60f6a5ebb93303686f1454974d23379adcce231582fde73`.
+- Output:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v10dynonly_memsafe_best_parallel_20260703`
+- Log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v10dynonly_memsafe_best_parallel_20260703.log`
+
+Monitor local Stage 1b:
+
+    ps -eo pid,ppid,stat,sid,ni,etime,pcpu,pmem,rss,cmd | grep -E '1632633|perturb_gate.py' | grep -v grep; tail -n 40 synthesis_lab/experiments/megarexus_cnn/runs/perturb_gate_v10dynonly_memsafe_best_parallel_20260703.log
+
+## 0-CURRENT APOLLO PICKUP (2026-07-03 12:49 CDT) - ACTIVE RUN IS V10DYNONLY_MEMSAFE
+
+Apollo was rebooted by the user after the first v10dynonly launch made
+the host pingable with TCP/22 open but SSH banner-dead. That first
+launch wrote only startup lines and no epoch checkpoint; do not chase
+PID `2697981` or output
+`outcome_v10dynonly_course_correction_20260703` as the active lane.
+
+Current active training is the memsafe relaunch:
+
+- Remote workspace: `apollo:/home/frosty/megarexus_train_20260703`
+- Active Python PID: `9451` (launcher shell parent `9450` may remain
+  until the job exits).
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage2_v10dynonly_memsafe_course_correction_20260703/CONDITION.json`,
+  sha256
+  `0fa28a586e3f566141b35046a193009152c566fd242e82df3510482f2283882c`.
+- Code hashes recorded in that condition:
+  `train.py` `b1c6e92273e9469959102665245493f5a578e0f2a47c52ee05072d1b282e16d1`,
+  `gate_eval_many.py` `46f646d75e7405609dbc76e517ed6867ac8b5de9d0ec7a8a88a660c3ea93b7c0`,
+  `model.py` `546dc6d432023f6d7d82f9fbe5407feab806a06aef15f08cf2c4edcc503ab628`.
+- Output dir:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703`
+- Log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703_train.log`
+
+Memsafe change: `train.py` and `gate_eval_many.py` now accept
+`--num-workers`; this run uses `--num-workers 0` to avoid DataLoader
+worker duplication of the precomputed dataset cache on Apollo's 16 GiB
+RAM. No model, data, optimizer, seed, epoch count, batch size, or
+trainable-prefix condition changed from the previous v10dynonly
+condition.
+
+12:48 CDT health sample after relaunch:
+
+- Apollo uptime 15 minutes; SSH responsive on LAN.
+- Training had passed both dataset caches and reached GPU execution.
+- Log showed train dataset `98250` transitions / `64882` unique frames,
+  val dataset `18406` transitions / `12330` unique frames,
+  `dataloader num_workers=0`, v8 init hash matched, and trainable
+  params `1,587,217/3,644,714`.
+- RAM: 15 GiB total, 8.2 GiB used, 7.3 GiB available, swap 0.
+- GPU: RTX 4080, 2.6 GiB allocated by PID `9451`, utilization 23%.
+
+Monitor:
+
+    ssh -o BatchMode=yes apollo 'tail -n 120 /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703_train.log'
+
+When checkpoints exist, copy the memsafe output dir and log back, then
+gate all `epoch_*.pt` plus `last.pt` against the fixed v8 valset with
+`gate_eval_many.py --num-workers 0` on Apollo or a safe local setting.
+No release or live scout before that gate.
+
+## 0-CURRENT APOLLO PICKUP (2026-07-03 12:24 CDT) — ACTIVE RUN IS V10DYNONLY
+
+Active training was moved off the failed selective Apollo lane and onto
+a dynamics-only search-space condition on Apollo. This section
+supersedes the 12:00 Apollo block immediately below.
+
+Current active condition:
+
+- Remote workspace: `apollo:/home/frosty/megarexus_train_20260703`
+- Active remote PID at launch verification: `2697981`
+- Condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage2_v10dynonly_course_correction_20260703/CONDITION.json`,
+  sha256
+  `9a5c133b9d91b99c3486af13fe27576769e1cf8daeb09482fa502965327284b3`.
+- Output dir:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_course_correction_20260703`
+- Log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_course_correction_20260703_train.log`
+
+Why this exists: fresh v10, v10ft, and v10sel/Apollo all failed the
+strict no-loss gate by introducing level false positives and/or losing
+settle IoU. The partial fixed-v8-val gate for the Apollo selective run
+is:
+`runs/outcome_v10sel_apollo_cont_20260703_gates/gate_eval_many_partial_on_v8val.json`,
+sha256
+`3bce5e84d86640173418fcb576a0680668b87cda537aab8bc1684a378a5523fc`.
+It showed v8 baseline `level_fp=0`, Apollo selective epoch 1
+`level_fp=1`, and Apollo selective epoch 2 `level_fp=2`.
+
+The stopped selective Apollo run:
+
+- PID `2679123`, condition `stage2_v10sel_apollo_cont_20260703`.
+- Stopped after epoch 6 because same-basin level false positives
+  persisted. SIGINT did not exit; SIGTERM did.
+- Preserved epoch 6: sha256
+  `c418c40424492544768d78a770b2e40dfe8f259cd7c1fa1604e37f69d9b60d7d`.
+- Preserved last: sha256
+  `b73fac69d40568052f2ffde93f7e0c2fabf5ae3841a12512e5280d5834221be2`.
+- Log at stop: sha256
+  `d89a68bce487ba2839d55be647a13450e0f2cbd276ed9dd3a22aefc44c41ab20`.
+
+The active v10dynonly run is a new search-space condition, not another
+LR/epoch tweak:
+
+- Init checkpoint: `outcome_v8/last.pt`, sha256
+  `6e5a28f0d4039688b53fbc6d0cfa7de30452ed678bd5ea70b08fe5a5890ccc9e`.
+- Trainable prefixes only:
+  `dynamics click_plane_proj up1 up2 skip_gate head_next_frame`.
+- Frozen at v8: trunk, Goose policy/change heads, catch/control heads,
+  settle_conv/head_settle/head_level, inverse heads, action embeddings.
+- Launch verification before SSH became flaky:
+  train dataset `98250` transitions / `64882` unique frames;
+  val dataset `18406` transitions / `12330` unique frames;
+  init hash matched v8; trainable params `1,587,217/3,644,714`.
+
+Important access note: after launch verification, Apollo remained
+pingable and port 22 was open, but SSH began timing out during banner
+exchange on both LAN and tailnet routes. Do not infer job failure from
+that alone. Retry later with:
+
+    ssh -o BatchMode=yes apollo 'tail -n 120 /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_course_correction_20260703_train.log'
+
+When SSH recovers, first check whether epoch checkpoints exist, then
+copy the run back and gate all `epoch_*.pt` against the fixed v8 valset
+with `gate_eval_many.py`. No release or live scout before that gate.
+
+## 0-APOLLO PICKUP (2026-07-03 12:00 CDT) — TRAINING MOVED TO APOLLO
+
+Apollo is now the owner of the active v10 selective course-correction
+run. The local duplicate was intentionally stopped after epoch 6 with
+KeyboardInterrupt and is NOT the active lane.
+
+- Remote host/workspace:
+  `apollo:/home/frosty/megarexus_train_20260703`
+- Remote Python:
+  `/home/frosty/.local/share/mamba/envs/loom/bin/python`
+  (`torch 2.12.0+cu130`, CUDA true, RTX 4080).
+- Active remote PID at cutover: `2679123`.
+- Remote condition:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage2_v10sel_apollo_cont_20260703/CONDITION.json`
+  local sha256
+  `2521e43c0f8052ddf9df9247d27fbef8c36114db0ab151aecffe257474f82200`.
+- Remote run dir:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10sel_apollo_cont_20260703`.
+- Remote log:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10sel_apollo_cont_20260703_train.log`.
+
+This Apollo run is a **weights-only continuation** from the local
+selective epoch-1 checkpoint:
+
+- Init checkpoint:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10sel_course_correction_20260703/epoch_001.pt`,
+  sha256
+  `ad0e66f22e371336df8906a0f90ecb74eaf382a38db1a40ebdc2188a9c838c95`.
+- It restarts AdamW/cosine for 11 more epochs; it is not an optimizer
+  resume.
+- Reason for epoch-1 transfer point: local epoch 1 had
+  `bc=1.000`, `catch=0.953`, `level_tp=113/113`, `level_fp=0`,
+  `settle_iou=0.658`; later local epochs introduced level false
+  positives.
+
+Apollo handoff verification:
+
+- Train dataset: 98,250 transitions, 64,882 unique frames.
+- Val dataset: 18,406 transitions, 12,330 unique frames.
+- Trainable prefixes:
+  `dynamics click_plane_proj up1 up2 skip_gate head_next_frame settle_conv head_settle head_level`
+  with `1,964,563/3,644,714` params trainable.
+- First Apollo continuation epoch completed and wrote checkpoints:
+  `epoch_001.pt` sha256
+  `17dbd4bf713bceb3f1aae4ef797ac20df2926c1d57515b43ba216d5cdc0b19eb`,
+  `last.pt` sha256
+  `440fe1e071903b68964bf283099cf5f087823e24bd1de8580f91f1d8ec921700`,
+  log sha256
+  `15cf00439000b837a72257df87b6ce4ab9e4c10c19eadcc668a63f8071958cfe`.
+- First Apollo epoch metrics:
+  `bc=1.000`, `catch=0.953`, `level_tp=113/113`, `level_fp=1`,
+  `settle_iou=0.661`, `changed=0.996`, `ctl=0.999`.
+- Apollo GPU process verified with `nvidia-smi` using about 2.6 GB.
+
+Monitor:
+
+    ssh -o BatchMode=yes apollo 'tail -f /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10sel_apollo_cont_20260703_train.log'
+
+When Apollo finishes, copy the remote run dir and log back, then gate
+candidate checkpoints on the same v8 valset with `gate_eval_many.py`
+before any release decision or live scout. Do not treat the interrupted
+local `outcome_v10sel_course_correction_20260703` as release; its local
+log ended after epoch 6 with `KeyboardInterrupt`, sha256
+`d1e885a5d2a7da75f9f47574b059e9eb446826ce605cb3779e27125ea8e04a45`.
+
+## 0-CODEX PICKUP (2026-07-03 ~06:10 CDT) — STAGE 1A PASS, STAGE 1B FAIL, STAGE 2 CONDITION RECORDED
+
+This section supersedes the older "NEXT COMMANDS" language below.
+
+- Stage 1a local adapter-path gate on the v8 release is CLOSED PASS:
+  `runs/adapter_gate_v8last_20260703/adapter_gate.json`, sha256
+  `29a71b966ba8e9be70e12739fa15c2accbfb7e39434b7816e1b6b43249a932e6`.
+  Command used:
+  `/home/frosty40/miniconda3/bin/python3 -B synthesis_lab/orchestration/adapter_gate.py --ckpt synthesis_lab/experiments/megarexus_cnn/runs/outcome_v8/last.pt --out-dir synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v8last_20260703 --episodes 10`.
+  Result: model 10/10 passed, paired random 0/10 reached
+  `levels_completed>=2`; all model checks green (`levels_ge_2`,
+  `zero_policy_errors`, `no_frames_fallback`, `no_pour_loop`,
+  `pour_budget_respected`, `all_pours_confident`).
+- Stage 1b perturbation gate is now WRITTEN:
+  `synthesis_lab/orchestration/perturb_gate.py`, sha256
+  `8375de6eb1865d06bcc31706e3c16737e05f3dbe54d78bd6a17d2a7dcfa055f7`.
+  It replays reach+perturb actions into the paired random env and fails
+  closed on replay mismatch.
+- Stage 1b v8 release run is CLOSED FAIL/PARTIAL STOP:
+  `runs/perturb_gate_v8last_20260703/PARTIAL_STOP_AFTER_2_FAILS.json`,
+  sha256
+  `6cab49d5db50cb6c68ae222364518332590263ea222a861daa12fdc5c9fe5707`.
+  Episodes 20290101 and 20290102 passed (`levels_completed=2`, replay
+  matched, discipline checks green). Episodes 20290103 and 20290104
+  failed only `levels_ge_2` (`levels_completed=1`, actions=43, replay
+  matched, no policy errors, no frame fallback, no pour loop). After two
+  failures by episode 4, the 9/10 pass bar was unreachable, so the run
+  was interrupted during episode 20290105 planning rather than spending
+  more compute in the same representation class.
+- Review surface:
+  `runs/stage1_course_correction_review_20260703/index.html`, sha256
+  `e05dcda434722de07b8f5fcee74aa57b814af62125e30f4007a82c0216b4dec4`.
+- Stage 2 collector is now WRITTEN and import/CLI verified:
+  `synthesis_lab/orchestration/collect_course_correction.py`, sha256
+  `f2c202bf8f39f7fc2198949f5a3264d27b57e3a5dc284d92997e7b41fa713431`.
+  It writes standard `.pt` rollout shards; `dataset.py` derives level,
+  settle, catch, and control labels from recorded pixels/env fields.
+- Stage 2 condition is RECORDED but NOT LAUNCHED:
+  `runs/stage2_v10_course_correction_20260703/CONDITION.json`, sha256
+  `2c16054ba2f6782603976de1d5311b50d80374adeea8f230b1c4267e7d02a905`.
+  The condition isolates the new signal: v8 release shard list plus
+  `course_correction_v10_train.pt` / `course_correction_v10_val.pt`.
+  It deliberately does NOT fold in the v9 control-play retry because
+  that retry failed same-valset no-loss vs v8.
+- Stage 2 collector smoke was run on real local SP80 with
+  `--episodes 1 --seed 20290103 --policies null_pour --plans 1`.
+  Result: reached plumbing, wrote 77 steps and one catch record, final
+  `levels_completed=1` (expected null-pour negative). Artifacts:
+  `runs/stage2_v10_course_correction_20260703/smoke_null_pour.pt`
+  sha256
+  `91eaa488d866018bf68a573bc8436e7c796fb9e305be532d1db356bdaae3952d`,
+  and `smoke_null_pour.manifest.json` sha256
+  `692fdd96dc9e0636555a39bb7163484e66ba648d2edf906b0f3b29b6340f6a61`.
+- Current decision: DO NOT run a live scout. DO NOT train a long v10
+  run from an implicit recipe. The next valid step is to launch the
+  recorded Stage 2 train/val shard collection commands from the
+  condition JSON. Training stays blocked until both shards exist. Then
+  run the recorded fresh v10 train command and gate before any release
+  or live scout.
+
+## 0-TONIGHT (2026-07-03 ~00:25 CDT) — §0B STAGE 0 DONE, ROOT CAUSE PROVEN
+
+Read this first; the 22:40 block below is still-accurate background.
+All remaining Stage 1 work is LOCAL compute (bash + GPU) and needs no
+model in the loop — run the commands below by hand or under a cheap
+babysitter session.
+
+ROOT CAUSE OF THE LIVE FAILURE — FOUND AND PROVEN, NOT A HYPOTHESIS
+ANYMORE. `codexlab/arc_play_harness.py::grid_of` returns `frame[0]`,
+the FIRST animation frame; SP80 pours return 22 frames. So on the
+level-up pour the policy planned on the OLD level-0 scene (glove still
+present, `levels_completed` already 1). Proof: driving the unmodified
+`run_game` path offline reproduced the live failure byte-for-byte
+(same plan `[[0,1,0],[1,-1,0]]`, same score 26.4695, same glove-bbox
+roster `[24,16,43,19]`). Repro/validation script (promoted):
+`synthesis_lab/orchestration/verify_frame_convention.py`.
+
+STAGE 0 IMPLEMENTED AND VALIDATED (all uncommitted, working tree):
+
+- `codexlab/arc_suite_runner.py::run_game`: obs now carries `"frames"`
+  (full animation list) and `"resets"`; accepts `seed=` and a prebuilt
+  `policy=` instance. `obs["grid"]` unchanged (other policies/baselines
+  untouched). Live runner shares this path unchanged.
+- `synthesis_lab/orchestration/megarexus_live_policy.py`: rewritten
+  with the course-correction runtime — recorder frame convention
+  (cur=frames[-1], prev=frames[-2] on multi-frame actions); ONE pour
+  per plan with hindsight refutation (a failed pour excludes that plan
+  from the next build; memory survives resets); plan-confidence gate
+  (CONFIDENCE_MARGIN=3.0 on margin-vs-5th AND margin-vs-null,
+  calibrated: local settled-frame margins 16.9 (v9retry last) / 7.8
+  (best) vs 0.63 in the live OOD failure); safe no-op = background
+  click, never a desperation pour (the attempt-cap ACTION5 branch that
+  burned 408 live actions is GONE); budgets MAX_PLANS_PER_LEVEL=8,
+  MAX_POURS_PER_LEVEL=6; per-action frame capture via
+  MEGAREXUS_TRACE_DIR env var (npz + meta json).
+- VALIDATION (offline, v9retry last, same run_game path): levels=2 in
+  ONE life, resets=0, policy_errors=0; roster = bar `[20,36,39,39]` +
+  platforms `[28,24,39,27]`/`[8,16,19,19]`; found the demo-basin plan
+  (platform2 +2, platform1 +3, bar +1, bar last); margin_vs_5th 16.89,
+  null plan scored −42.88 (margin_vs_null 69.11). First end-to-end
+  adapter-path plumbing completion.
+- NEW gate script: `synthesis_lab/orchestration/adapter_gate.py`
+  (Stage 1a). Per-episode pass checks: levels>=2, zero policy errors,
+  zero frames-fallback, no pour loop (max 2 consecutive ACTION5),
+  pour budget respected, all pours confident. Paired random baseline
+  included. Prints one line per episode (flush) — tail the log to
+  babysit.
+
+SMOKE RESULT (v8last, seed 20280001, completed 00:32): **PASS, all six
+checks green** — levels=2, 119 actions, 1 reset, paired random 0.
+Artifacts: `runs/adapter_gate_smoke_v8last_20260703/` (report + frame
+captures). Detail worth reading: plumbing completed on ONE build/ONE
+pour (score +19.95, margins 23.5/41.2 — the v8 demo-basin plan). The
+episode then spent its remaining budget on the NEXT level (three-spout):
+8 builds, 5 confident-margin pours, 5 plans refuted, no-op holds on 2
+unconfident builds, zero pour loops — course correction behaving as
+designed on a level it has never trained on, failing SAFELY. OPEN
+OBSERVATION for a future session: all next-level plan scores were
+absolutely NEGATIVE (−0.2..−13) yet relative margins cleared 3.0, so 5
+pours were spent on plans the level head itself doesn't believe in.
+Consider an absolute-score floor (pour only if best score is in the
+level head's positive range) — measure first, don't hand-tune.
+
+NEXT COMMANDS (Stage 1a, run from repo root, ~40–60 min each on GPU):
+
+    nohup /home/frosty40/miniconda3/bin/python3 -B \
+      synthesis_lab/orchestration/adapter_gate.py \
+      --ckpt synthesis_lab/experiments/megarexus_cnn/runs/outcome_v8/last.pt \
+      --out-dir synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v8last_20260703 \
+      --episodes 10 \
+      > synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v8last_20260703.log 2>&1 &
+
+    # then the same with
+    #   --ckpt .../outcome_v9_retry_20260702/last.pt
+    #   --out-dir .../adapter_gate_v9retry_last_20260703
+    # verdict: grep '"gate_verdict"' <out-dir>/adapter_gate.json
+
+STAGE 1B (perturbation gate) — NOT YET WRITTEN. Spec for the next
+implementer: new `orchestration/perturb_gate.py` reusing the
+arrange_probe skeleton — reach plumbing with trained catch
+(`reach_next_level`), then a TEST-HARNESS perturber (seeded rng, 1–3
+rounds of `click_and_move` on random components, random axis, 1–3
+steps, never pours) creates the start state; then construct
+`MegarexusArcPolicy(ckpt)` fresh and drive it in a loop that mirrors
+run_game's obs contract (frames list + resets) until completion or
+budget; paired random executes one sampled plan + pour from the same
+perturbed state. Heldout seeds 20290101+. Honesty boundary: the
+perturber is harness authorship (test-state generator), never model
+capability, never labels. Pass bar: model completes with pour
+discipline on ~9/10 heldout perturbed states; random stays near the
+arrange-probe baseline. Run v8last FIRST — if v8+fixed adapter passes,
+NO training is needed (§0B Stage 1).
+
+Stage 2 training rules unchanged (§0B): only if Stage 1b fails; short
+sequences with gates between; no long run without validated
+improvement. Do NOT run a live scorecard before 1a+1b pass.
+
+## 0. CURRENT STATE HANDOFF (2026-07-02 22:40 CDT)
+
+Read this first. No training/gate/live-scorecard process is currently
+running. Handoff check:
+`pgrep -af 'arc_live_suite_runner.py|run_v9_retry_gates_20260702|arrange_probe.py|level_probe.py|gate_eval.py|train.py'`
+only matched the probe command itself at handoff time. Do NOT launch
+another live ARCPrize scorecard or new training run before the next local
+anti-reward-hack gates below exist and pass.
+
+Release state:
+
+- `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v8/last.pt`
+  remains the release checkpoint.
+- `outcome_v9_retry_20260702` trained cleanly to 40 epochs and is a useful
+  candidate/scout artifact, but it is NOT release. Same-valset no-loss
+  against v8 did not hold:
+  - v8last: `bc/action_type_acc=1.0`, `level=109 tp / 0 fp`,
+    `catch/acc=0.9563`, `control/acc=0.9995`, `settle/iou=0.6559`.
+  - v9retry last: `bc/action_type_acc=0.9878`, `level=108 tp / 0 fp`,
+    `catch/acc=0.9630`, `control/acc=0.9995`, `settle/iou=0.7219`.
+  - v9retry best: `bc/action_type_acc=0.9837`, `level=109 tp / 1 fp`,
+    `catch/acc=0.9613`, `control/acc=0.9998`, `settle/iou=0.6893`.
+- Behavioral probes were green for both v9retry checkpoints:
+  `level_probe` 20/20 model vs 5/20 random, and `arrange_probe
+  --search exhaustive-x` 10/10 model vs 1/10 random. Outputs are under
+  `synthesis_lab/experiments/megarexus_cnn/runs/
+  outcome_v9_retry_20260702_gates/`.
+
+Live ARCPrize scout:
+
+- A real live SP80 scorecard was run with the new `megarexus_cnn`
+  policy adapter, not Tufa/CONTRA mislabeled as Megarexus.
+- Result path:
+  `codexlab/runs/arc_live_sp80_megarexus_v9retry_last_20260702T2224/`.
+- Main evidence file: `result.json`; review file: `index.html`;
+  manifest: `report_manifest.json`.
+- Scorecard id: `e29a35b6-fdac-47d0-87e7-f7d3bc5925f7`.
+- Closed ARC SDK payload: score `4.761904761904762`, `1/6`
+  levels completed, 500 scorecard actions, 81 resets, 0 policy errors,
+  final state `GameState.GAME_OVER`.
+- Public HTTP probes at handoff returned `/api/v3/scorecards/<id>` 404
+  and `/api/models/scorecard/<id>` 500. Treat the closed SDK payload in
+  `result.json` as the current evidence.
+- Loaded checkpoint:
+  `synthesis_lab/experiments/megarexus_cnn/runs/
+  outcome_v9_retry_20260702/last.pt`, sha256
+  `da8cb8df1ee8c433d67056268101270e3d1751d3462cb65588e3dbd0994a9864`.
+
+Failure interpretation (post-mortem sharpened 2026-07-02 late session,
+from the `result.json` ledger):
+
+- This was exactly the reward-hack/generalization check. Local arrange
+  success did NOT transfer to the live adapter path.
+- The live policy completed level 0 in 5 clean actions, then entered
+  the plumbing stage and planned IMMEDIATELY on the first frame after
+  level-up. The roster it planned over was wrong: "movable 0" bbox
+  `[24,16,43,19]` is exactly the level-0 glove's final position and
+  glove geometry (20 wide), and "movable 1" `[40,56,43,59]` matches the
+  bottom-spout column (x40-43), not the bar/platforms. Leading
+  hypothesis: it planned on a level-TRANSITION/unsettled frame (offline
+  `step()` settles animations; live does not), with the 2-frame stack
+  also straddling the level boundary. Unproven without frame captures —
+  which is why Stage 0 below comes first.
+- The level head's plan scores were nearly flat (top5 26.47, 26.47,
+  25.841, 25.841, 25.841) vs the local decisive needle (+19.95 vs
+  +3.09 runner-up) — out-of-distribution input, everything looked
+  level-up-ish. Chosen plan: movable 0 right once, movable 1 left once
+  (`plan_score=26.4695`). It did not complete the plumbing stage.
+- After two failed pours it hit the attempt cap and emitted 408
+  consecutive `megarexus_arrange_attempt_cap` ACTION5s: every 5th pour
+  = game over, runner resets, live RESET keeps `levels_completed=1`, so
+  reset detection (needs levels to drop or the level-0 frame hash)
+  never fired and it never replanned. 495 of 500 scorecard actions were
+  burned on that one stage. Two distinct failures: planner fed input it
+  never trained on, AND zero recovery path. Do not describe v9retry as
+  a generalized planner.
+
+Code/artifact state:
+
+- New live adapter: `synthesis_lab/orchestration/megarexus_live_policy.py`.
+- Policy registration: `codexlab/arc_play_harness.py` adds
+  `megarexus_cnn`.
+- `codexlab/arc_suite_runner.py` was adjusted so live reports are labeled
+  as live scorecards in manifests/traces.
+- SDK/local loading touched
+  `environment_files/sp80/589a99af/metadata.json` by changing only
+  `date_downloaded`.
+- Existing run artifacts and checkpoint changes are dirty/untracked. Do
+  not revert them unless the user explicitly asks.
+
+## 0B. ACTIVE GOAL — "COURSE CORRECTION" TRAINING REGIME
+## (set by user 2026-07-02 after the live scout post-mortem)
+
+Organizing principle: the live failure was not "bad plan" alone — it
+was ZERO recovery. Stop optimizing one perfect plan executed from a
+clean settled state; train and gate the ability to correct course from
+off-nominal states (transition frames, perturbed layouts, failed
+plans). Stages are strictly ordered — do NOT skip ahead to training or
+a live scorecard. Honesty rules (§2) apply throughout: hindsight
+env-field + pixel labels only, paired random baselines, no answer-key
+states.
+
+- **Stage 0 — adapter integrity (no training).**
+  a. Full per-action frame capture (grids and/or PNGs, not just
+     hashes) in `megarexus_live_policy.export_trace` — this run's
+     transition-frame hypothesis could not be proven from hashes.
+  b. Frame-stability gating: never build a roster/plan until
+     consecutive frame hashes are stable for k steps after a level
+     change; never stack `prev` across a level boundary.
+  c. Recovery path: on attempt cap, clear arrange state and replan
+     from the now-settled frame instead of pouring; handle live RESET
+     semantics (`levels_completed` does NOT drop — detect the
+     level-restart frame instead). Pours are the scarce resource:
+     never emit ACTION5 without a currently-trusted plan.
+  d. Plan-confidence gate from the model's own head (honest by §2):
+     if the plan-score landscape is flat or the null plan is
+     competitive (local calibration: winner +19.95 vs runner-up
+     +3.09; live failure: 26.47 vs 25.84), do NOT pour — re-observe
+     and replan.
+  e. Docs hygiene: unify level naming to one convention
+     (levels_completed-based) across notes/probes so "level-2
+     completions 10/10" can never again read as three levels cleared.
+- **Stage 1 — perturbation arrange gate (measure BEFORE training).**
+  From legal post-L0 states apply controlled random pre-arrange
+  movements (seeded, paired). Run the SAME `megarexus_cnn` adapter
+  path (not just `arrange_probe.py`) on local SP80, raw frame stream
+  including transitions, vs paired random. Also gate: complete L0+L1,
+  zero policy errors, no capped-pour loop. Run this on the v8 release
+  first — if v8+fixed-adapter passes robustly on heldout
+  perturbations, NO new training is needed (loop directive: optimize
+  existing systems before adding new ones).
+- **Stage 2 — course-correction training (ONLY if Stage 1 fails).**
+  Collect a narrow v10 shard from the failed/perturbed states,
+  including mid-plan deviation states (execute k steps of a plan,
+  then relabel from there in hindsight). Train arrangement robustness
+  only — existing heads, no new head without evidence. Labels remain
+  pixels + environment fields only; no answer-key mechanics,
+  source-state labels, or hand-authored win model.
+- **Stage 3 — full gate stack before any release/claim.**
+  Same-valset no-loss vs `outcome_v8/last.pt` (all heads), level probe
+  20/20 vs 5/20 random, arrange probe 10/10 vs 1/10 random, Stage 1
+  perturbation gate on heldout perturbations, Stage 1 local
+  adapter-path gate.
+- **Stage 4 — one new live SP80 scout.** Success criterion: at least
+  `levels_completed >= 2`, zero policy errors, no capped-pour loop,
+  and complete per-action frame evidence.
+
+## 0A. EARLIER ACTIVE SESSION LOG (2026-07-02, ~12:45)
 
 Fresh session started mid-/loop for token efficiency (user's call).
 Sufficient context = this section + §2 (rules) + §4 (results) +
@@ -55,17 +1225,30 @@ release decision, docs, next element) is reserved for the main
 session: it resumes at "WHEN v9 LANDS" step 1 using the already-
 written outputs in `runs/outcome_v9_gates/` instead of re-running.
 
-**IN FLIGHT: outcome_v9 training** (current element, task #5 = pure
-object-control curriculum; collector `orchestration/
-collect_control_play.py`, shards verified: train 27,713 transitions /
-10,935 control samples both labels all four axes / 2,460 click rows).
-Launched 2026-07-02 ~12:20, 40 epochs, ETA ~15:45–16:15 (v8 took
-11,884s on less data). Recipe = v8 shard list + control_play_train/val
-(recoverable from `runs/outcome_v9/*.pt` → `ckpt["config"]`). Log
-(absolute, survives session change):
-`/tmp/claude-1000/-home-frosty40-megarexus/011566a1-0d5a-40de-b357-367afd13eb4b/tasks/b4jen916k.output`
-Done when `runs/outcome_v9/last.pt` exists and the log prints the
-final summary.
+**UPDATE 2026-07-02 16:59 — MAIN SESSION PICKUP.** Gate chain finished
+at 16:28:47 (`runs/outcome_v9_gates/DONE`). Adjudication result:
+`outcome_v9` is NOT a release. Reason: the recorded 40-epoch training
+log only reaches epoch 36 and has no final summary; same-valset no-loss
+vs v8 is also not clean (both v9 checkpoints drop `bc/action_type_acc`
+from 1.000 to 0.9878 and add one level false positive; `last.pt` also
+misses one old level positive). Behavioral probes did hold for both
+checkpoints: level 20/20 vs random 5/20; arrange 10/10 vs random 1/10.
+
+**IN FLIGHT: outcome_v9_retry_20260702 training** (same task #5 = pure
+object-control curriculum; same recorded v9 condition, new output dir
+so the partial `runs/outcome_v9` artifacts stay intact). Launched in
+tmux session `megarexus-v9-retry` at 2026-07-02 16:59 CDT. Command is
+the exact v9 recipe recovered from `runs/outcome_v9/last.pt` config:
+40 epochs, seed 0, stack_frames=2, batch 64, lr 3e-4, v8 shard list
+plus `control_play_train.pt`; val shards are v8 vals plus
+`control_play_val.pt`. Log:
+`synthesis_lab/experiments/megarexus_cnn/runs/outcome_v9_retry_20260702_train.log`.
+Run dir:
+`synthesis_lab/experiments/megarexus_cnn/runs/outcome_v9_retry_20260702`.
+Done when that log prints `[train] done...` and `last.pt` exists. Then
+gate the retry against `outcome_v8/last.pt` exactly as below, substituting
+`outcome_v9_retry_20260702` for `outcome_v9`. Until a retry passes,
+`outcome_v8/last.pt` remains the release checkpoint.
 
 **WHEN v9 LANDS — gate sequence (all commands verified this session):**
 
@@ -232,14 +1415,24 @@ in scout notes) → human-corpus mining → verified completion.
 
 ## 6. THE NEXT TASK
 
+**THE ACTIVE GOAL IS §0B — the "course correction" training regime**
+(user directive, 2026-07-02). Everything below in this section is
+historical context for how we got here.
+
 ~~Plumbing-play curriculum + outcome_v5 + planner~~ — **DONE 2026-07-02**
 (outcome_v8 + arrange_probe 10/10 vs 1/10; see §4 and RESEARCH_LOG for
 the v5→v8 saga: checkpoint policy, label leakage, coverage holes,
 selection-conditional control, last-mover state).
 
-Now: **pure object-control curriculum** (user-endorsed as the missed
-foundational concept), under the active /loop directive "one small
-element at a time, optimize existing systems before adding new ones":
+~~Pure object-control curriculum~~ — **RUN 2026-07-02, NOT RELEASED**:
+v9 and the exact v9retry both trained; behavioral probes held but
+same-valset no-loss vs v8 did not; `outcome_v8/last.pt` remains the
+release. The v9retry candidate then failed the live scout beyond level
+0 (§0), which is what triggered the §0B course-correction goal.
+
+Original element description (kept for reference), under the /loop
+directive "one small element at a time, optimize existing systems
+before adding new ones":
 
 1. Collector `orchestration/collect_control_play.py` — broad
    click/select/move coverage as its OWN curriculum, not a side effect
