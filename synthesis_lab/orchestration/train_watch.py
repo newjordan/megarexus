@@ -41,6 +41,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from synthesis_lab.orchestration.no_imitation_guard import (  # noqa: E402
+    find_banned_lineage,
+    format_violations,
+)
 
 ASSIST_ENV_PREFIXES = ("MEGAREXUS_ROUTE_",)
 ASSIST_ENV_EXACT = ("MEGAREXUS_GRAPH_DEMO_PLAN",)
@@ -60,6 +67,13 @@ def now() -> str:
 
 def preflight(cond: dict) -> list[str]:
     problems: list[str] = []
+
+    violations = find_banned_lineage(cond, context="condition")
+    if violations:
+        problems.append(
+            "no-imitation guard refused condition:\n"
+            + format_violations(violations)
+        )
 
     for rel, want in (cond.get("code_hashes") or {}).items():
         p = REPO / rel

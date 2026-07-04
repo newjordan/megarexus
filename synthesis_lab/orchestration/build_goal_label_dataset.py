@@ -44,6 +44,9 @@ from synthesis_lab.orchestration.extract_level0_goal_schema import (  # noqa: E4
     select_targets,
     sha256_file,
 )
+from synthesis_lab.orchestration.no_imitation_guard import (  # noqa: E402
+    assert_no_imitation_lineage,
+)
 
 
 SCHEMA = "synthesis_lab.megarexus.goal_label_dataset.v2"
@@ -500,9 +503,33 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--condition", type=Path, default=None)
     args = p.parse_args(argv)
 
+    explicit_inputs = {
+        "policy_frames_root": [str(p) for p in args.policy_frames_root],
+        "policy_frames_dir": [
+            {"label": label, "path": str(path)}
+            for label, path in args.policy_frames_dir
+        ],
+        "rollout_shard": [
+            {"label": label, "path": str(path)}
+            for label, path in args.rollout_shard
+        ],
+    }
+    assert_no_imitation_lineage(
+        explicit_inputs,
+        purpose="goal-label dataset input",
+    )
+
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
     policy_dirs = list(args.policy_frames_dir) + discover_policy_dirs(args.policy_frames_root)
+    discovered_inputs = [
+        {"label": label, "path": str(path)}
+        for label, path in policy_dirs
+    ]
+    assert_no_imitation_lineage(
+        discovered_inputs,
+        purpose="discovered policy-frame input",
+    )
     all_samples: list[dict[str, Any]] = []
     skipped = []
     inputs = []

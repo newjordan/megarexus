@@ -195,8 +195,11 @@ promote a checkpoint.
 
 ## What To Do Next
 
-The next valid engineering task is not to train immediately. It is to build a
-condition writer or dataset preflight that refuses banned lineage before
-`build_goal_label_dataset.py`, `train.py`, or `train_goal_head.py` can run.
-After that, collect a clean no-imitation interaction corpus and rebuild the
-goal-informer lane from scratch.
+The first enforcement task is now done in active code:
+`synthesis_lab/orchestration/no_imitation_guard.py` is wired into
+`train_watch.py`, `build_goal_label_dataset.py`, `dataset.py`, `train.py`, and
+`train_goal_head.py`.
+
+The next valid engineering task is to collect a clean no-imitation interaction
+corpus under a pre-registered condition, then rebuild the goal-informer lane
+from scratch from that corpus.

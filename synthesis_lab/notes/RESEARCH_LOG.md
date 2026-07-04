@@ -1,5 +1,43 @@
 # Research log
 
+## 2026-07-04 - No-imitation rule moved into executable training guards
+
+The no-imitation rule is now enforced in active code, not only notes.
+Added `synthesis_lab/orchestration/no_imitation_guard.py` and wired it into
+`train_watch.py`, `build_goal_label_dataset.py`, `dataset.py`, `train.py`,
+and `train_goal_head.py`.
+
+The guard refuses banned answer/imitation lineage markers in training
+conditions, dataset-builder inputs, rollout shard paths, goal-dataset
+manifests, and checkpoint config/manifest metadata. Banned markers include
+human/demo/route/replay/answer/graph-demo/live-scorecard lineage plus the
+known contaminated Stage25/26/33/34 artifacts.
+
+The active transition dataset now defaults to no human corpus and raises if
+human transitions are requested or found. `train.py` no longer trains or
+reports the old behavior-cloning objective; active CNN training is mechanics
+and interaction learning only.
+
+Verification:
+
+- `python3 -m py_compile synthesis_lab/orchestration/no_imitation_guard.py
+  synthesis_lab/orchestration/train_watch.py
+  synthesis_lab/orchestration/build_goal_label_dataset.py
+  synthesis_lab/experiments/megarexus_cnn/dataset.py
+  synthesis_lab/experiments/megarexus_cnn/train.py
+  synthesis_lab/experiments/megarexus_cnn/train_goal_head.py` passed.
+- `python3 synthesis_lab/orchestration/train_watch.py --condition
+  synthesis_lab/experiments/megarexus_cnn/runs/stage23_v13_level3_human_mined_20260704/CONDITION.json
+  --dry-run` refused before launch with the no-imitation guard leading the
+  failure list.
+- `python3 synthesis_lab/experiments/megarexus_cnn/train_goal_head.py
+  --goal-dataset
+  synthesis_lab/experiments/megarexus_cnn/runs/stage25_goal_label_dataset_20260704/goal_label_dataset.pt
+  --init-ckpt
+  synthesis_lab/experiments/megarexus_cnn/runs/outcome_v12_headlevel_perturb_recovery_20260703/best.pt
+  --out-dir /tmp/megarexus_no_imitation_guard_probe --epochs 0` refused
+  immediately on the known contaminated Stage25 dataset marker.
+
 ## 2026-07-04 - User ruling: no imitation training, ever
 
 The user explicitly ruled that imitation training is never authorized in this

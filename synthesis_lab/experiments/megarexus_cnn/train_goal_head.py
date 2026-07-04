@@ -25,6 +25,7 @@ sys.path.insert(0, str(_HERE.parents[1]))
 from dataset import GRID, NUM_COLORS, contra_planes  # noqa: E402
 from model import MegarexusCNN, MegarexusCNNConfig  # noqa: E402
 from train import apply_trainable_prefixes, load_model_state_compatible, sha256_file  # noqa: E402
+from orchestration.no_imitation_guard import assert_no_imitation_lineage  # noqa: E402
 
 
 CHANNELS = ("target_lock", "key_block", "paint_output")
@@ -54,6 +55,11 @@ PALETTE = np.array(
 class GoalLabelDataset(Dataset):
     def __init__(self, dataset_path: Path, split: str, *, stack_frames: int = 2) -> None:
         payload = torch.load(dataset_path, map_location="cpu", weights_only=False)
+        assert_no_imitation_lineage(
+            str(dataset_path),
+            payload.get("manifest") if isinstance(payload, dict) else None,
+            purpose="goal label dataset",
+        )
         self.dataset_path = dataset_path
         self.channels = tuple(payload["channels"])
         if self.channels != CHANNELS:
@@ -316,6 +322,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--threshold", type=float, default=0.5)
     args = p.parse_args(argv)
 
+    assert_no_imitation_lineage(
+        str(args.goal_dataset),
+        str(args.init_ckpt),
+        purpose="goal-head training inputs",
+    )
+
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -343,6 +355,11 @@ def main(argv: list[str] | None = None) -> int:
 
     model = MegarexusCNN(MegarexusCNNConfig(n_input_frames=args.stack_frames)).to(device)
     payload = torch.load(args.init_ckpt, map_location=device, weights_only=False)
+    assert_no_imitation_lineage(
+        payload.get("config") if isinstance(payload, dict) else None,
+        payload.get("manifest") if isinstance(payload, dict) else None,
+        purpose="goal-head init checkpoint metadata",
+    )
     init_stack = int(payload["config"].get("stack_frames", args.stack_frames))
     if init_stack != args.stack_frames:
         raise ValueError(f"init_ckpt stack_frames={init_stack} != --stack-frames={args.stack_frames}")

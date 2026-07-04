@@ -9,8 +9,6 @@ Objectives (all on real data, no synthetic answers):
 - Goose change objective (STOCHASTIC_GOOSE_RUNTIME): BCE on the taken
   action's change_logit vs. whether the frame actually changed — Goose's
   own self-supervised loss, ported verbatim.
-- behavior cloning (human corpus only): CE of policy_logits vs. the human
-  action index in the 4101-dim Goose head.
 - inverse dynamics (diagnostic): CE of action id from (s_t, s_{t+1}),
   plus click-cell CE when the action was ACTION6.
 
@@ -48,6 +46,7 @@ from model import (  # noqa: E402
     MegarexusCNN,
     MegarexusCNNConfig,
 )
+from orchestration.no_imitation_guard import assert_no_imitation_lineage  # noqa: E402
 
 CHANGED_CELL_WEIGHT = 20.0
 
@@ -143,10 +142,6 @@ def batch_losses(model: MegarexusCNN, batch: dict, device: str) -> dict[str, tor
             losses["change"] = F.binary_cross_entropy_with_logits(
                 taken_logit[has_goose], m["changed"][has_goose]
             )
-            # behavior cloning on human actions only
-            is_bc = has_goose & (m["is_human"] > 0)
-            if is_bc.any():
-                losses["bc"] = F.cross_entropy(out["policy_logits"][is_bc], idx[is_bc])
 
         # PORTBAND catch-play: will the pour touch the glove?
         has_catch = m["has_catch"] > 0
@@ -207,7 +202,6 @@ def evaluate(model: MegarexusCNN, loader: DataLoader, device: str) -> dict[str, 
     inv_total = inv_correct = 0
     click_total = click_hits = 0
     click_dist_sum = 0.0
-    bc_total = bc_action_correct = 0
     change_total = change_correct = 0
     catch_total = catch_correct = 0
     catch_labels = []
@@ -308,16 +302,6 @@ def evaluate(model: MegarexusCNN, loader: DataLoader, device: str) -> dict[str, 
             change_correct += int((change_pred == b["changed"][has_goose]).sum())
             changed_flags += b["changed"][has_goose].tolist()
 
-            is_bc = has_goose & (b["is_human"] > 0)
-            if is_bc.any():
-                # action-TYPE accuracy: collapse 4096 click cells to one type
-                pol = out["policy_logits"][is_bc]
-                pred_idx = pol.argmax(dim=1)
-                pred_type = torch.where(pred_idx < 5, pred_idx + 1,
-                                        torch.full_like(pred_idx, ARC_CLICK_ACTION_ID))
-                bc_total += int(is_bc.sum())
-                bc_action_correct += int((pred_type == b["action_id"][is_bc]).sum())
-
     majority = action_counter.most_common(1)[0][1] / max(inv_total, 1)
     change_rate = sum(changed_flags) / max(len(changed_flags), 1)
     catch_rate = sum(catch_labels) / max(len(catch_labels), 1)
@@ -350,7 +334,6 @@ def evaluate(model: MegarexusCNN, loader: DataLoader, device: str) -> dict[str, 
         "inv/click_mean_dist_px": click_dist_sum / max(click_total, 1),
         "goose/change_acc": change_correct / max(change_total, 1),
         "goose/change_base_rate": max(change_rate, 1 - change_rate),
-        "bc/action_type_acc": bc_action_correct / max(bc_total, 1),
     }
 
 
@@ -376,6 +359,13 @@ def main() -> None:
                    help="if set, freeze all parameters except these name prefixes")
     args = p.parse_args()
 
+    assert_no_imitation_lineage(
+        [str(path) for path in list(args.rollout_shards or [])],
+        [str(path) for path in list(args.val_rollout_shards or [])],
+        str(args.init_ckpt) if args.init_ckpt is not None else None,
+        purpose="train.py inputs",
+    )
+
     torch.manual_seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"[train] device={device}")
@@ -394,6 +384,11 @@ def main() -> None:
     if args.init_ckpt is not None:
         payload = torch.load(args.init_ckpt, map_location=device,
                              weights_only=False)
+        assert_no_imitation_lineage(
+            payload.get("config") if isinstance(payload, dict) else None,
+            payload.get("manifest") if isinstance(payload, dict) else None,
+            purpose="init checkpoint metadata",
+        )
         init_stack = int(payload["config"].get("stack_frames", args.stack_frames))
         if init_stack != args.stack_frames:
             raise ValueError(
@@ -451,7 +446,6 @@ def main() -> None:
             f"(maj={metrics['inv/majority_baseline']:.3f}) "
             f"click_d={metrics['inv/click_mean_dist_px']:.1f}px "
             f"chg={metrics['goose/change_acc']:.3f} "
-            f"bc={metrics['bc/action_type_acc']:.3f} "
             f"catch={metrics['catch/acc']:.3f}"
             f"(base={metrics['catch/base_rate']:.3f},n={metrics['catch/n']}) "
             f"level={metrics['level/acc']:.3f}"

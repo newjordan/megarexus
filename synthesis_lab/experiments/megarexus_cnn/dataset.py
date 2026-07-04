@@ -3,20 +3,13 @@
 Sources (ARC_SCORECARD_EVIDENCE stays untouched — this is training data,
 not evidence of solving anything):
 
-1. Human corpus recordings (corpus/s5i5_snake_modulo, corpus/sp80_liquid_pour):
-   PNG frames decoded via the canonical ARC palette + manifest.jsonl actions.
-   Verified alignment convention: row t's action transitions frame_t →
-   frame_{t+1} (checked against SP80's known directional display deltas —
-   see notes/megarexus_cnn_scout.md).
-2. Optional locally collected SP80 rollout shards (.pt written by
+1. Locally collected SP80 rollout shards (.pt written by
    orchestration/collect_sp80_rollouts.py) using the same convention.
 
 Transitions never cross episode boundaries, level changes, or
 non-consecutive frame indices. The validation split is held out at the
 episode/level granularity (no within-episode leakage):
 
-- sp80_liquid_pour episode_005 → val
-- s5i5_snake_modulo final level → val
 - rollout shards → train only
 
 Each item:
@@ -26,7 +19,7 @@ Each item:
 - ``action_id``, ``x``, ``y``: long scalars
 - ``goose_idx``:  long (index in the 4101 Goose head; -1 if action outside 1..6)
 - ``changed``:    float scalar (did the frame change?)
-- ``is_human``:   float scalar (behavior-cloning mask)
+- ``is_human``:   always 0 in active no-imitation training
 """
 
 from __future__ import annotations
@@ -47,6 +40,7 @@ if str(_LAB_ROOT) not in sys.path:
     sys.path.insert(0, str(_LAB_ROOT))
 
 from engine_adapters.contra_perception_adapter import N_PLANES, contra_planes  # noqa: E402
+from orchestration.no_imitation_guard import assert_no_imitation_lineage  # noqa: E402
 
 GRID = 64
 NUM_COLORS = 16
@@ -235,6 +229,10 @@ def load_rollout_transitions(
     """
     transitions: list[Transition] = []
     rng = np.random.default_rng(0)
+    assert_no_imitation_lineage(
+        [str(path) for path in shard_paths],
+        purpose=f"{split} rollout shard paths",
+    )
     for path in shard_paths:
         for traj in torch.load(path, weights_only=False):
             steps = traj["steps"]
@@ -317,11 +315,18 @@ class MegarexusTransitions(Dataset):
         rollout_shards: list[Path] | None = None,
         val_rollout_shards: list[Path] | None = None,
         n_input_frames: int = 1,
-        include_corpus: bool = True,
+        include_corpus: bool = False,
         verbose: bool = True,
     ) -> None:
         self.n_input_frames = n_input_frames
         corpus_root = corpus_root or (_REPO_ROOT / "corpus")
+        if include_corpus:
+            raise ValueError("no-imitation guard refused human corpus training")
+        assert_no_imitation_lineage(
+            [str(path) for path in list(rollout_shards or [])],
+            [str(path) for path in list(val_rollout_shards or [])],
+            purpose="MegarexusTransitions input shards",
+        )
         transitions = load_corpus_transitions(corpus_root) if include_corpus else []
 
         # frame cache: key → int8 grid; corpus keys are PNG paths,
@@ -344,6 +349,8 @@ class MegarexusTransitions(Dataset):
             transitions += load_rollout_transitions(val_rollout_shards, split="val")
 
         self.transitions = [t for t in transitions if t.split == split]
+        if any(t.is_human for t in self.transitions):
+            raise ValueError("no-imitation guard refused human transitions")
 
         # CONTRA_THINKING_ENGINE: precompute perception planes per unique frame
         self.planes: dict[str, np.ndarray] = {}
