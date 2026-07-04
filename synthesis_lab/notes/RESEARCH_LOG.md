@@ -1,5 +1,30 @@
 # Research log
 
+## 2026-07-04 - User ruling: no imitation training, ever
+
+The user explicitly ruled that imitation training is never authorized in this
+project. This is now a binding first principle for the CNN lane: no human
+demonstrations, human-mined states, route traces, route replays, same-level
+solved/eval states, answer files, or graph-demo plans may be used as training
+data for CNN-alone/autonomous claims.
+
+The corrected goal is causal model competence from interaction: learn
+dynamics, control, catch, settle, level-up, and visible objective perception
+from pre-registered non-imitation environment data, then evaluate on disjoint
+held-out gates. Training on answer states or routes is the failure mode.
+
+Immediate artifact ruling: Stage25/Stage33 goal-label datasets and
+Stage26/Stage34 goal-head checkpoints are historical diagnostics only for
+CNN-alone purposes, because the recorded Stage25 and Stage33 dataset-build
+commands included
+`level3_human_mined_inclusive_stage22b_20260704.pt`. They cannot be used as
+parents, training targets, gates, or live scorecard support for a clean
+CNN-alone lane. A clean goal-informer must be rebuilt from no-imitation
+sources.
+
+Durable regime document:
+`synthesis_lab/notes/CNN_TRAINING_REGIME_20260704_NO_IMITATION.md`.
+
 ## 2026-07-04 - Route-replay cheats quarantined and active route execution removed
 
 After explicit user authorization, the v16-v26 route-imitation checkpoints

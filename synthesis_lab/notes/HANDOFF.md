@@ -6,6 +6,36 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
+## 0B-BINDING USER RULING (2026-07-04 11:20 CDT) - NO IMITATION TRAINING, EVER
+
+The user explicitly ruled that imitation training is never authorized in this
+project. Treat this as a first-principles constraint, not a temporary
+preference:
+
+- No human demonstrations, human-mined states, route traces, route replays,
+  same-level solved/eval states, answer files, or graph-demo plans may be used
+  as training data for a CNN-alone/autonomous claim.
+- Such artifacts may be kept only as quarantined evidence, diagnostics, or
+  hypotheses. They cannot feed `train.py`, `train_goal_head.py`, a dataset
+  builder, a gate requirement, or a live policy path for any CNN-alone lane.
+- "Hindsight labels" are legal only when the underlying episode was generated
+  by the agent/environment under a pre-registered, non-imitation condition and
+  is split away from the evaluation surface. Hindsight over human/demo/eval
+  answer material is still answer training and is banned.
+- Stage25/Stage33 goal-label datasets and Stage26/Stage34 goal-head
+  checkpoints are now historical diagnostics only for CNN-alone purposes,
+  because the recorded dataset-build commands included
+  `level3_human_mined_inclusive_stage22b_20260704.pt`. Do not relaunch, extend,
+  or promote them. Rebuild the goal-informer lane from no-imitation sources
+  before any further CNN training claim.
+- The point of the work is causal model competence: predict mechanics from
+  interaction, read visible objectives from live pixels after the agent reaches
+  them, and pass disjoint held-out gates. Optimizing score artifacts by
+  training on answers is the failure mode.
+
+Current clean-regime document:
+`synthesis_lab/notes/CNN_TRAINING_REGIME_20260704_NO_IMITATION.md`.
+
 ## 0A-POST-AUTHORIZED CONTAINMENT (2026-07-04 11:01 CDT) - ROUTE CHEATS REMOVED FROM ACTIVE SURFACE
 
 The user explicitly authorized removing the route-replay cheats. This
