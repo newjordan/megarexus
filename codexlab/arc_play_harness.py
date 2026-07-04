@@ -656,6 +656,16 @@ def tufa_contra_policy(
     return policy
 
 
+def megarexus_cnn_policy():
+    """Run the synthesis_lab Megarexus CNN checkpoint through the ARC harness."""
+    root = Path(__file__).resolve().parents[1]
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+    from synthesis_lab.orchestration.megarexus_live_policy import megarexus_arc_policy
+
+    return megarexus_arc_policy()
+
+
 POLICIES = {
     "random": random_policy,
     "lfm": lfm_policy,
@@ -663,6 +673,7 @@ POLICIES = {
     "imagine": imagine_policy,
     "tufa_action": tufa_action_policy,
     "tufa_contra": tufa_contra_policy,
+    "megarexus_cnn": megarexus_cnn_policy,
 }
 
 def build_parser() -> argparse.ArgumentParser:

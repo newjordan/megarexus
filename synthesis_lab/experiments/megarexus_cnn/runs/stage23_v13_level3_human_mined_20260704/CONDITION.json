@@ -2,7 +2,7 @@
   "schema": "synthesis_lab.training_condition.v1",
   "condition_id": "stage23_v13_level3_human_mined_20260704",
   "created_at_local": "2026-07-03T21:46:00-05:00",
-  "status": "launch_interrupted_by_user_before_checkpoint",
+  "status": "blocked_resource_conflict_before_checkpoint",
   "run_label": "new_experiment",
   "purpose": "Train a v13 candidate from v12 best by adding the controlled Stage22b level-3 human-mined transition shard, so the CNN sees level-3 to level-4 dynamics/settle/level/control labels before another level-3 gate.",
   "truth_boundary": "Training condition only. Stage22b is controlled offline replay data, not model-selected or live evidence. v13 is not release evidence unless fixed-val and behavioral gates pass.",
@@ -108,6 +108,45 @@
     "out_dir_exists_after_stop": false,
     "checkpoint_status": "no v13 checkpoint or history.json was written",
     "post_stop_runtime_check": "2026-07-03T21:47:58-05:00 nvidia-smi showed no compute process and 0% GPU util"
+  },
+  "relaunch_attempt": {
+    "attempted_at_local": "2026-07-03T23:04:00-05:00",
+    "preflight_at_local": "2026-07-03T23:03:25-05:00",
+    "stopped_at_local": "2026-07-03T23:05:51-05:00",
+    "stop_reason": "resource conflict: unrelated llama-dspark-cache-probe appeared on the GB10 after preflight and held GPU memory/utilization before v13 wrote any checkpoint",
+    "processes_stopped": [2643869, 2643873, 2643874],
+    "conflicting_process": {
+      "pid": 2643087,
+      "command": "/home/frosty40/llama-nvfp4-dspark/build-dspark/bin/llama-dspark-cache-probe -m /home/frosty40/models/leanstral-nvfp4/artifacts/Leanstral-1.5-119B-A6B-NVFP4.gguf --out-dir /srv/models-hdd/models/leanstral-nvfp4/target-cache-runs/20260704T040321Z-llama-prompt-cache-dataset/probes --prompt-list /srv/models-hdd/models/leanstral-nvfp4/target-cache-runs/20260704T040321Z-llama-prompt-cache-dataset/prompt_list.txt --layers 2,10,18,26,34 -ngl 99 -t 8 -tb 8 -c 1024 -b 1024 -ub 512"
+    },
+    "log_path": "synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_20260704_train.log",
+    "log_bytes_after_stop": 40,
+    "last_log_lines": ["[train] device=cuda", "[train] device=cuda"],
+    "out_dir_exists_after_stop": false,
+    "checkpoint_status": "no v13 checkpoint or history.json was written",
+    "post_stop_runtime_check": "2026-07-03T23:05:51-05:00 nvidia-smi showed llama-dspark-cache-probe PID 2643087 as the only compute process"
+  },
+  "relaunch_attempt_2": {
+    "attempted_at_local": "2026-07-03T23:07:08-05:00",
+    "preflight_at_local": "2026-07-03T23:07:08-05:00",
+    "preflight_result": "no active Megarexus train.py; nvidia-smi showed no compute process and 0% GPU util; evidence server returned 200; condition, init checkpoint, train shards, and val shards hash-matched",
+    "wrapper_pid": 2647364,
+    "train_pid": 2647368,
+    "stopped_at_local": "2026-07-03T23:09:21-05:00",
+    "stop_reason": "resource conflict: unrelated DeepSpec Leanstral export appeared on the GB10 after preflight and held GPU memory/utilization before v13 wrote any checkpoint",
+    "processes_stopped": [2647364, 2647368, 2647369],
+    "conflicting_process": {
+      "pid": 2647359,
+      "command": "/home/frosty40/miniconda3/bin/python3 /home/frosty40/DeepSpec/scripts/leanstral/train_export_leanstral_qwen3_dspark_tiny.py --cache-dir /srv/models-hdd/models/leanstral-nvfp4/target-cache-runs/20260704T040321Z-llama-prompt-cache-dataset --target-config /srv/models-hdd/models/leanstral-nvfp4/hf-remap/20260704T011143Z-layers-1-global/hf_model --source-dir /srv/models-hdd/models/leanstral-nvfp4/upstream --output-root /srv/models-hdd/models/leanstral-nvfp4/qwen3-dspark-block7-regen40-r128-smokes --device cuda --dtype bf16 --seed 40704 --steps 96 --learning-rate 0.0006 --weight-decay 0.0 --num-draft-layers 1 --draft-intermediate-size 1024 --head-dim 128 --block-size 7 --num-anchors 7 --mask-token-id 0 --target-layer-ids 1,9,17,25,33 --markov-rank 128 --markov-head-type vanilla --confidence-head-alpha 0.0 --ce-loss-alpha 0.1 --l1-loss-alpha 0.9 --loss-decay-gamma 6.0 --rope-theta 10000 --rope-scaling-factor 128 --original-context-length 8192 --loss-tolerance 0.000001"
+    },
+    "log_path": "synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_20260704_train.log",
+    "log_bytes_after_stop": 60,
+    "last_log_lines": ["[train] device=cuda", "[train] device=cuda", "[train] device=cuda"],
+    "out_dir_exists_after_stop": false,
+    "checkpoint_status": "no v13 checkpoint or history.json was written",
+    "checkpoint_status_at_launch": "no v13 checkpoint or history.json yet; process in startup/data load",
+    "runtime_check": "2026-07-03T23:07:44-05:00 nvidia-smi showed no unrelated compute process",
+    "post_stop_runtime_check": "2026-07-03T23:09:21-05:00 nvidia-smi showed DeepSpec Leanstral export PID 2647359 as the only compute process"
   },
   "rollout_shards": [
     {"path": "synthesis_lab/experiments/megarexus_cnn/data/sp80_rollouts_v0.pt", "sha256": "909afd7564b873babb9df5a93162fa8a1709218f8d8a749e144c1282d9314bf5"},

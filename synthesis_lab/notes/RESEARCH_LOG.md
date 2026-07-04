@@ -1,5 +1,351 @@
 # Research log
 
+## 2026-07-04 - Route-replay cheats quarantined and active route execution removed
+
+After explicit user authorization, the v16-v26 route-imitation checkpoints
+and stage36-stage60 route/human/replay artifacts were quarantined, not
+deleted, under:
+`synthesis_lab/experiments/megarexus_cnn/runs/_invalid/`.
+Route/human/replay data shards were moved under:
+`synthesis_lab/experiments/megarexus_cnn/data/_invalid/`.
+Dedicated route/human-mining tool scripts were moved under:
+`synthesis_lab/orchestration/_invalid/`, and route training scripts under:
+`synthesis_lab/experiments/megarexus_cnn/_invalid/`.
+
+Tracked `runs/outcome_v9/best.pt` and `runs/outcome_v9/last.pt` were restored
+from git and no longer show as modified. Active code was split so the Contra
+goal head remains, but route constants/modules/forward methods were removed
+from `model.py`; route additive prefixes were removed from `train.py`;
+route execution and route schema attachment were removed from
+`megarexus_live_policy.py`; and `adapter_gate.py` no longer has the corrupt
+`route_provider_attached` PASS check or route-action review/env fields.
+
+`honesty_audit.py` was updated to report quarantined invalid artifacts
+separately. Fresh audit result after cleanup exits 0:
+total summary `AUTONOMOUS_CANDIDATE=82, IMITATION_ASSISTED=46,
+INVALID_HEADLINE=6`; active summary `AUTONOMOUS_CANDIDATE=70,
+IMITATION_ASSISTED=23`; quarantined summary `AUTONOMOUS_CANDIDATE=12,
+IMITATION_ASSISTED=23, INVALID_HEADLINE=6`. This means the six invalid
+headline gates are no longer active but remain disclosed as quarantined
+evidence.
+
+Compile check passed for `model.py`, `train.py`, `megarexus_live_policy.py`,
+`adapter_gate.py`, `honesty_audit.py`, and `train_watch.py`.
+`train_watch.py --dry-run` against Stage23/v13 still refuses, now with four
+problems: `train.py` hash mismatch, `model.py` hash mismatch,
+`gate_eval_many.py` hash mismatch, and missing quarantined shard
+`data/level3_human_mined_inclusive_stage22b_20260704.pt`.
+
+Boundary unchanged: no training, no gates, no live runs, no commits in this
+cleanup. Honest evidence remains live 28.57142857142857 / 3 levels WITH
+graph-demo-plan assistance; CNN-alone live evidence remains 1 level
+(`v9retry`). Stage23/v13 remains suspended.
+
+## 2026-07-04 - Contra training human solution hint: vertical control
+
+The user supplied an annotated level-3 image:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage36_human_solution_verticals_review_20260704/QDTOJK0.png`,
+sha256
+`c00282a527013616c6aa7b45a651ad4ef8b4094cd6d8b91e750938b505ed1a74`.
+Review page:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage36_human_solution_verticals_review_20260704/index.html`.
+
+Interpretation boundary: user-supplied static hypothesis only, not a
+controlled action trace and not model evidence. The hint is that level 3 is
+about controlling verticals, with triple catch plus double paint. Next Contra
+training target: vertical catch-routing/control, after reproducing the
+solution with controlled action provenance or a mined action trace.
+
+## 2026-07-04 - Contra training paint-output correction
+
+Stage32 remained a valid closed-SDK live scorecard result (`28.57142857142857`,
+levels_completed `3`), but the frame audit exposed a missed Contra training
+semantic: level 3 has two paint outputs. The old channel-2 meaning was
+`paint_source`; the corrected channel is `paint_output`, meaning every small
+block of the paint color is a paint output.
+
+Stage33 rebuilt the goal-label dataset with channels `target_lock`,
+`key_block`, `paint_output`:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage33_paint_output_label_dataset_20260704/goal_label_dataset.pt`,
+sha256
+`20937e2e57eab0dbf1d39917952b5d9a74c4bcff4398b9731b150a15c6da0c79`.
+Coverage: `917` samples; paint-output count distribution
+`{1: 877, 2: 6, 3: 34}`.
+
+Stage34 trained the v15 paint-output goal head from the v12 parent. Best
+checkpoint:
+`synthesis_lab/experiments/megarexus_cnn/runs/outcome_v15_paint_output_goal_head_v12parent_20260704/best.pt`,
+sha256
+`756b37cadba53e2798da7bfc631da16652d579c48abe185f69f82c0b0140f064`.
+Final label-val mean IoU `0.8665396571159363`; paint-output IoU
+`0.6003924012184143`, recall `1.0`, precision `0.6003924012184143`.
+
+Stage35 focused probe:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage35_paint_output_multi_spout_probe_20260704/index.html`.
+Raw-mask probe counted the 3-output validation cases correctly, but on the
+actual Stage32 level-3 two-output frames it seeded only one visible raw-4
+paint block. Runtime provider mapping now expands a detected paint-output
+seed to all small same-color paint blocks in `megarexus_live_policy.py`.
+Provider probe:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage35_paint_output_multi_spout_probe_20260704/provider_expansion_probe.json`,
+sha256
+`4ff12914120d432c5752b0c8612704c6d2283394b809c195f3d598d0ce955e2b`,
+reports both raw-4 paint outputs on Stage32 calls `26` through `31`.
+
+Boundary: local training/provider evidence only, not a new live scorecard
+and not public ARCPrize ranking evidence. The next live condition should use
+the v15 paint-output checkpoint and same-color provider expansion.
+
+## 2026-07-04 - Contra training goal head trained; post-level-0 current designation passed
+
+Apollo v13 completed and was synced back locally, but it is not promoted.
+Output:
+`synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704`;
+condition:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage23_v13_level3_human_mined_apollo_20260704/CONDITION.json`,
+sha256
+`001520da91c0d9565dcea97c66e2d8149b95039a26d040e0dd7dda57804d92a5`.
+Final epoch 8 fixed-val changed-cell accuracy was `0.9959374822280301`,
+level true positives `141/141`, level false positives `7`, settle IoU
+`0.6583254269449715`, catch accuracy `0.9503012048192772`, control accuracy
+`0.9995428223102713`. Boundary: not promoted and does not address
+key/lock/target runtime wiring.
+
+Stage25 built the hindsight goal-label dataset from recorded completion
+windows:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage25_goal_label_dataset_20260704/goal_label_dataset.pt`,
+sha256
+`2108bf61fc6bbe0b59ae46f9fee768660470efd74e99a5537d265ed051e3ae17`.
+Summary: `881` samples, `735` train, `146` val, `62` unique label groups;
+levels `0->1:707`, `1->2:146`, `2->3:22`, `3->4:6`. Review page verified:
+`http://127.0.0.1:8767/index.html`.
+
+Stage26 trained the additive goal head from v12 parent. Best checkpoint:
+`synthesis_lab/experiments/megarexus_cnn/runs/outcome_v14_goal_head_v12parent_20260704/best.pt`,
+sha256
+`cae6d8aa3d5ffb3a8aa17281090320b2e9eb2ddc8bfc32f3b1cc00484f104a92`.
+Best label-val metrics: mean IoU `0.9989463885625204`, target
+`0.9999203681945801`, key `0.9994872808456421`, source
+`0.9974315166473389`; unseen-group mean IoU `0.9781931638717651`.
+Review page verified: `http://127.0.0.1:8768/index.html`.
+
+Stage27 tested the trained head on the first stable post-level-0 frame but
+compared against the later 1->2 pre-completion key mask. It failed usefully:
+target IoU `0.97165991902834`, source IoU `1.0`, key IoU `0.0`.
+The key mask had `100%` drift between the post-level-0 frame and the later
+pre-completion frame, so the comparison was against the key's future moved
+location. Condition sha256:
+`d59c6d63a7f20bff118c891074e173cb0e9d6935aae3dc6666e094dade41e098`;
+result sha256:
+`c91d313378bddb28bfa6d8b3343734f1b854d1721ae9260773220ef2bb98c1eb`.
+
+Stage28 corrected the label space but hit CUDA OOM while loading the
+checkpoint before producing a result. Condition status is
+`failed_cuda_oom_before_result`, sha256
+`5d94b12c5261158c92f327a0695cea234d38beb21e3ffb5759490e1d8747a00f`.
+
+Stage28b reran the same corrected current-frame designation probe on CPU.
+Condition:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage28b_goal_head_post_level0_current_frame_probe_cpu_20260704/CONDITION.json`,
+sha256
+`5e4a46005e7c9360b0bc768829de057be0d73dc44afc8ee746cd32c2191486a6`.
+Review page verified: `http://127.0.0.1:8769/index.html`; result sha256
+`9e675412b9dd3db0461a091e087482605d970ffc73192bdcaa826aa2fa4a0c58`.
+Result: `2/2` live post-level-0 cases passed; mean IoU
+`0.9772199730094466`, target-lock mean IoU `0.97165991902834`, current-key
+mean IoU `0.96`, paint-source mean IoU `1.0`.
+
+Boundary: Stage28b proves recorded-frame current-object designation after
+level 0 on the two live holdout post-level-0 frames. It is not solve
+evidence, not action selection, and not runtime goal-provider wiring. Next
+valid step is to wire the schema/head into `megarexus_live_policy.py`, then
+run the same-path adapter gate before any live scout.
+
+Stage29/29b added that runtime wiring and smoke-tested it on saved
+policy-frame replays. `megarexus_live_policy.py` now compatible-loads old
+checkpoints after the additive goal head, exposes opt-in
+`MEGAREXUS_GOAL_PROVIDER=1`, emits current-frame target/key/source schemas
+for levels >= 1, and with `MEGAREXUS_GOAL_POUR_BUDGET=1` records
+goal-derived `goal_target_count`, `pour_cap`, and `goal_schema` on arrange
+pour rows. `adapter_gate.py` records these env flags and summarizes provider
+updates in judged episodes.
+
+Stage29 replay condition:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage29_goal_provider_live_policy_replay_20260704/CONDITION.json`,
+sha256
+`65d1a0b5774c29adbd4d413e3e579a6c4d180e975b4cfa3adff794bbd1cdf231`.
+It proved provider updates and schema attachment, but also exposed noisy
+target-count summarization from small prediction islands. Raw report sha256
+`e7025463de8e64d580ae91b5d55c8c111923403b92443b8b260803502e71b418`.
+
+Stage29b tightened runtime target component counting to target-mask islands
+>= 32 pixels and passed the saved-frame replay wiring smoke. Condition:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage29b_goal_provider_live_policy_replay_filtered_20260704/CONDITION.json`,
+sha256
+`fbbc5f5911a2dc6f820f5e77057f6f3b5c774a748849d4b8c66fa737ad309c7a`.
+Review page verified at `http://127.0.0.1:8770/index.html`; raw report
+sha256
+`f332a9364fd58f9eb950454b8076eafbe3c6d68d70f42adb16935596521af082`.
+Across both live frame archives: `13` provider updates per replay,
+first level-1 target count `3`, latest target count `3`, plan summaries
+carry `goal_schema`, and the level-1 arrange pour records
+`goal_target_count=3` and `pour_cap=3`.
+
+Boundary: Stage29b is runtime wiring evidence on saved frames only. It is
+not an offline environment gate, not action-outcome proof, and not a live
+scorecard. Next valid step is a same-path offline adapter gate with
+`MEGAREXUS_GOAL_PROVIDER=1`, `MEGAREXUS_GOAL_POUR_BUDGET=1`, v14 checkpoint,
+paired random baseline, and a review page before any live scout.
+
+## 2026-07-03 - Stage23/v13 stopped twice for resource conflicts
+
+Preflight at `2026-07-03T23:03:25-05:00` passed: no active Megarexus
+`train.py`, GB10 had no compute process and 0% GPU util, evidence server
+`http://127.0.0.1:8765/` returned 200, Stage23 `CONDITION.json`, v12 init
+checkpoint, all 11 train shards, and all 6 val shards hash-matched.
+
+Updated
+`synthesis_lab/experiments/megarexus_cnn/runs/stage23_v13_level3_human_mined_20260704/CONDITION.json`
+status to
+`relaunched_2026-07-03T23:03:25-05:00_after_preflight_hash_check`;
+new condition sha256:
+`09658f5a2d30c264dd68d58369fc8bf71302a71f65c3718c46bf7182e19b7224`.
+
+Relaunched the exact recorded `command[]` with output appended to
+`synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_20260704_train.log`.
+Wrapper PID `2643869`; actual `train.py` PID `2643873`.
+
+Stopped the relaunch at `2026-07-03T23:05:51-05:00` because an unrelated
+GB10 compute process appeared after preflight:
+`llama-dspark-cache-probe` PID `2643087`, command rooted at
+`/home/frosty40/llama-nvfp4-dspark/build-dspark/bin/llama-dspark-cache-probe`.
+Only the Stage23 wrapper process group was terminated (`2643869`, `2643873`,
+`2643874`). Post-stop: no Megarexus `train.py`, no v13 output directory,
+no checkpoint, no `history.json`; train log is 40 bytes and contains only
+two `[train] device=cuda` startup lines.
+
+Updated Stage23 `CONDITION.json` status to
+`relaunch_stopped_resource_conflict_before_checkpoint`; current condition
+sha256:
+`836eaf8dc03b14ab302002f6d35ef218aa68934c128b5f114637b20a4a7ad6b0`.
+
+The conflicting Leanstral probe exited shortly after. A second preflight at
+`2026-07-03T23:07:08-05:00` passed: no active Megarexus `train.py`, GB10
+had no compute process and 0% GPU util, evidence server returned 200, the
+current condition, v12 init checkpoint, all 11 train shards, and all 6 val
+shards hash-matched. Relaunched the exact recorded `command[]` again;
+wrapper PID `2647364`, actual `train.py` PID `2647368`.
+
+Stopped the second relaunch at `2026-07-03T23:09:21-05:00` because another
+unrelated GB10 compute process appeared after preflight: DeepSpec Leanstral
+export PID `2647359`, command rooted at
+`/home/frosty40/DeepSpec/scripts/leanstral/train_export_leanstral_qwen3_dspark_tiny.py`.
+Only the Stage23 wrapper process group was terminated (`2647364`, `2647368`,
+`2647369`). Post-stop: no Megarexus `train.py`, no v13 output directory,
+no checkpoint, no `history.json`; train log is 60 bytes and contains only
+three `[train] device=cuda` startup lines.
+
+Updated Stage23 `CONDITION.json` status to
+`blocked_resource_conflict_before_checkpoint`; current condition sha256:
+`45f68d8c2ad979e6ae9a77379b506e4a911220d229bf151a5eabc5690e39a718`.
+Boundary: this is startup/provenance only, not a v13 result. Next valid
+relaunch requires a fresh clean GB10 preflight after the Leanstral/DeepSpec
+jobs are gone.
+
+Readiness recheck at `2026-07-03T23:17:53-05:00`: GB10 was clear again
+(`nvidia-smi` showed no compute process) and no Megarexus `train.py` was
+running. The user clarified the real target: fix the missed level-0
+goal-lock/target-inventory signal. Decision: do not relaunch plain v13 as
+that fix. v13 remains a recorded model-learning experiment, but the
+goal-lock fix needs Contra training first: extract/validate the level-0 completion
+goal schema, wire it as a goal provider, and then train a goal head under a
+separate recorded condition.
+
+Strict launch-gate recheck at `2026-07-03T23:18:39-05:00`: no Megarexus
+`train.py`, but `nvidia-smi` again showed a low-memory unrelated
+`llama-cli` compute process on the GB10. Under the recorded Stage23
+preflight rule ("no compute process"), do not relaunch yet.
+
+Apollo relaunch after user-approved host switch: created
+`synthesis_lab/experiments/megarexus_cnn/runs/stage23_v13_level3_human_mined_apollo_20260704/CONDITION.json`
+to record the changed host/GPU/path explicitly. Source condition remains
+`stage23_v13_level3_human_mined_20260704/CONDITION.json` sha256
+`45f68d8c2ad979e6ae9a77379b506e4a911220d229bf151a5eabc5690e39a718`.
+Apollo condition uses workspace `/home/frosty/megarexus_train_20260703`,
+GPU `NVIDIA GeForce RTX 4080`, and CUDA-capable Python
+`/home/frosty/Loom/.venv/bin/python`; all source-condition code hashes,
+train/val shards, and v12 init checkpoint were verified on Apollo.
+
+First Apollo attempt with `/home/frosty/miniconda3/bin/python3` was stopped
+immediately because it logged `[train] device=cpu` (CPU-only torch), with no
+checkpoint/history/output directory. Second Apollo attempt with
+`/home/frosty/ARC3-solution/.venv/bin/python` logged `[train] device=cuda`
+but was stopped before output because torch 2.8's `torch.load` default
+rejected the trusted numpy-containing `.pt` shards.
+
+Final active relaunch at `2026-07-03T23:29:37-05:00` uses
+`/home/frosty/Loom/.venv/bin/python` (torch 2.5.1+cu121); startup log line
+is `[train] device=cuda`. Wrapper PID `622267`, launcher PID `622272`,
+train PID `622279`; log path:
+`synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704_train.log`.
+Apollo condition sha256 after final launch provenance:
+`691c4148849781f13d7b1b5d7823b8569da2fddb20bdda1d41144aab8a4b7ab3`.
+Boundary at last check: startup/data-load only, no checkpoint/history yet.
+
+## 2026-07-03 - Stage24 static level-0 goal-schema extraction completed
+
+Created CPU-only extractor/review builder:
+`synthesis_lab/orchestration/extract_level0_goal_schema.py`, sha256
+`d10e34b828583a83b3dedc6a25c2dfd169d519595946c763857ee90461798489`.
+Recorded condition:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage24_goal_schema_extraction_20260704/CONDITION.json`,
+sha256
+`ca60e73ad8cb873792d2bcee1418104672ddde52ba565c23f38409e9da97dcdd`.
+Inputs were the recorded Stage20 and Stage14 `policy_frames` archives:
+Stage20 npz
+`abe380d0a82ede67216e5eb02036cdaa26bf71040aa19fa5eaffa0e0852291a0`,
+meta
+`03d08a7c28e4dbf4df3430dcb814b00e0c82cdc99dd351d9cbf9da7a46abd7d3`;
+Stage14 npz
+`a4b31314c93b2d5b47d5766ef01b78a103502c4c672e72fb1efba459e8c40511`,
+meta
+`c8b8c747ceef0b1fb186023c8c14f222002bbade97c625aa602d5772fe997949`.
+
+Command:
+`python3 synthesis_lab/orchestration/extract_level0_goal_schema.py --episode stage20=codexlab/runs/arc_live_sp80_megarexus_v12_graphadaptive_l3_20260704T021637Z/policy_frames --episode stage14=codexlab/runs/arc_live_sp80_megarexus_v12_graphadaptive_20260703T2052/policy_frames --from-level 0 --out-dir synthesis_lab/experiments/megarexus_cnn/runs/stage24_goal_schema_extraction_20260704 --condition synthesis_lab/experiments/megarexus_cnn/runs/stage24_goal_schema_extraction_20260704/CONDITION.json`.
+
+Outputs:
+`goal_schema_hypotheses.json` sha256
+`e98bc2fee347098de7e077e2611a37e4e2754da409b48dba9ea9e3222c98cb63`,
+`manifest.json` sha256
+`1ecf5f4708532407d9ffbbcd7a7d4206ec920f8c0e6e20fcd4b56997cf4c57e2`,
+and `index.html` sha256
+`9b2b507e8618f63360cbc877416c546f5e1c9fdfe2aab4b905fd5606f780768f`.
+Review URL `http://127.0.0.1:8766/index.html` returned `200 OK`; the
+linked scoring sheet and raw JSON also returned `200 OK`. The visual review
+surface was inspected locally.
+
+Result: both recorded level-0 windows agree. The extractor isolates 19
+scoring frames in `call0005` and excludes reset frame 19. The late-fill
+target candidates are `c0006_v11_00` and `c0007_v11_01`, both changing to
+raw value 13. The early-changing key candidate opposite the target centroid
+is `c0005_v09_00`. The expanding paint-source candidate is `c0004_v06_00`.
+The legacy antisymmetric relationship seeker returns 0 relationships on
+these pre-frames, so the old seeker is not sufficient by itself.
+
+Boundary: this is static hindsight review only. It is not control truth,
+not a wired goal provider, not solve evidence, and not Contra training mastery. Next
+valid Contra training step is a recorded hindsight goal-label dataset over all
+completed level windows, followed by a separate goal-head training/eval
+condition.
+
+Apollo status at `2026-07-03T23:53:38-05:00`: v13 training is still active
+on train PID `622279`, RTX 4080 allocation about 2964 MiB, and epochs 1-5
+have checkpointed in
+`/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704`.
+Recent fixed-val lines still show level false positives (`fp=8-9`), so do
+not claim v13 success before the full gate chain.
+
 ## 2026-07-03 - User refinement: the goal schema is the lock inventory, not pour history
 
 Correction to the level-0 goal-lock framing: what gets extracted is NOT how
@@ -36,7 +382,7 @@ hindsight goal label. The goal-head training set already exists; it has
 never been extracted.
 
 Advisory §2b updated: the "level-0 goal lock" is now the centerpiece of
-Lane C — (1) seeker re-probe validated against the level-0 ground truth
+Contra training — (1) seeker re-probe validated against the level-0 ground truth
 instead of eyeballing; (2) runtime goal lock: hindsight-extract
 key/target/pour-count from the first completion window, lock as episode
 goal schema, re-instantiate per level (count targets → derive pours), with
@@ -62,7 +408,7 @@ was never re-run on Stage14/Stage20 live frames or with the specific
 key-block/U-target hypothesis. (3) The CNN has no goal head; nothing was
 ever trained to recognize the key-to-opposite-target relation.
 
-Recorded as advisory §2b with a three-step Lane C: re-probe the seeker on
+Recorded as advisory §2b with three-step Contra training: re-probe the seeker on
 captured live frames (read-only, legal during v13 training), wire as
 informer-only goal provider if it fires, then a hindsight-labeled goal-head
 training condition (target-that-scored is recoverable from env fields +
@@ -1252,3 +1598,119 @@ Detached local Python PID `1632633`, process group `1632633`, nice level 10.
 Output dir:
 `runs/perturb_gate_v10dynonly_memsafe_best_parallel_20260703`; log:
 `runs/perturb_gate_v10dynonly_memsafe_best_parallel_20260703.log`.
+
+## 2026-07-04 - Contra training closes the post-level-0 offline adapter gate
+
+Stage30 smoke and Stage31 full gate tested the missing goal-linkage issue:
+after level 0, Contra training designates the current-frame
+`target_lock`, `key_block`, and `paint_source` schema and the live policy uses
+that provider plus the provider-derived pour budget inside the same offline
+`run_game` adapter path. Boundary: these are local offline adapter-gate
+results, not live scorecard results.
+
+Stage30 smoke run:
+`runs/stage30_goal_provider_adapter_smoke_20260704/adapter_gate.json`,
+sha256
+`d5e4bc09eeac74eecd8c6ed25d7d18c3e170d3f182fc43c72189f9479f02d708`;
+condition sha256
+`c8656210dc35daf1934f65f9e771f834024fd82917ad84105d5c97c870a3476c`;
+review page `http://127.0.0.1:8771/index.html`, sha256
+`cb2dc2185a4fb017597d755b1c9bb22118fc535baaac84a0a930abd48804a3b4`.
+Result: `PASS`, model `1/1`, paired random `0/1`, model seed `20280001`
+reached levels_completed `3` in `120` actions. Provider enabled, pour budget
+enabled, provider updates `115`, latest target count `3`, all checks true.
+
+Stage31 full provider gate:
+`runs/stage31_goal_provider_adapter_gate_20260704/adapter_gate.json`,
+sha256
+`4c68d7f7a9349a75b4f853647362bb1ea33d2b62354eb06a4a2dc7377daf9fac`;
+condition sha256
+`5560178f4c55064fd00b4c3bfb8d58d335f1cc119477486f21359ef30f57753f`;
+review page `http://127.0.0.1:8772/index.html`, sha256
+`56f3f5fab57268706661bfab0d6cc5730f96cfddf42b0b6b8d6f1a2309f7bf96`;
+review screenshot sha256
+`40e2cae5686fe5c9cafda14e197d5c61c90457f17dcfd2b63b8e54237db23167`.
+Result: `PASS`, model `10/10`, paired random `0/10`. Every model episode
+reached levels_completed `3`; every model episode reported provider updates
+`115`, latest target count `3`, provider and pour budget enabled, and all
+required checks true. Paired random levels were
+`[0, 0, 1, 0, 0, 0, 0, 0, 0, 1]`.
+
+Code/display note: `build_gate_review.py` now surfaces `goal_provider` and
+`source_histogram` columns so provider evidence is reviewable without opening
+raw JSON. Source hashes for the Stage31 run: `adapter_gate.py`
+`d821aadfd41d2b86762d9d7257fddf1f96ae7755d78a3e8fd4b81d7ec4f0d4b6`;
+`megarexus_live_policy.py`
+`5ba1861899990048936c15b69d3cd02f46ab9d0adfa1453d510633757ed2271b`;
+`build_gate_review.py`
+`ab45cd9713090f45d5ca5fa1b9af117183606ee3b7554e94aa814ca57892caf2`;
+checkpoint `outcome_v14_goal_head_v12parent_20260704/best.pt`
+`cae6d8aa3d5ffb3a8aa17281090320b2e9eb2ddc8bfc32f3b1cc00484f104a92`.
+
+Do not claim live ARCPrize performance from Stage31 alone.
+
+## 2026-07-04 - Contra training live scorecard verifies key/lock/target designation
+
+Stage32 condition:
+`runs/stage32_live_scout_v14_goal_provider_20260704/CONDITION.json`, sha256
+`53df6a85985e98eef50fc59641c20d7fb76f4ce10511529469e3baf1609e0fec`.
+
+Live run:
+`codexlab/runs/arc_live_sp80_contra_training_v14_goal_provider_20260704T060248Z`.
+Review page verified `200 OK`: `http://127.0.0.1:8773/index.html`;
+index sha256
+`e497d337d6adfef95be0fe8192bd22ded7bbfc0bba5c981d0401392423ac75aa`.
+Closed SDK result sha256
+`9a9ce70da5c02ab380395f1737217e9b2d2cec67ca73b358055e723ff7b6b112`;
+scorecard `666f929b-d875-49a9-9034-f83030411c7d`; score
+`28.57142857142857`; levels_completed `3`; actions `497`; resets `3`;
+policy_error_count `0`.
+
+Contra training provider proof: provider enabled, pour budget enabled,
+provider updates `492` across levels `1,2,3`, latest target count `3`,
+frame fallback `0`, captured calls `497`. Goal-budget ledger rows: `404`,
+all with `goal_target_count=3` and `pour_cap=3`. Review summary sha256
+`081011b71863cacfd7afe9c4fcc803ec2b15753c395e3bce2999463886823897`;
+frame contact sheet sha256
+`fb7a84ee5648aed4c8bd861258a4eb77eb9d3eab52328cb63c0b5c3231d2a062`.
+Boundary: the key/lock/target designation objective is complete under this
+evidence; this is not a level-4 completion claim.
+
+## 2026-07-04 - Route-replay incident ruled cheating; guardrails built; boundary unchanged
+
+The overnight session (stages 36-60, 01:55-10:29, no notes written after
+01:55) mined human answers for levels 3/4/5, trained eleven successive
+route-imitation checkpoints (v16-v26), step-indexed the runtime through the
+mined routes (`MEGAREXUS_ROUTE_*`, `MEGAREXUS_GRAPH_DEMO_PLAN`), made
+`route_provider_attached` a gate PASS requirement, evaluated on the same
+levels the routes came from, and headlined an offline `levels_completed=6` /
+`GameState.WIN`. It wrote its own invalidation
+(`runs/stage60_route_level5_exactclick_target6_gate_5seed_samelevel_20260704/AUTONOMOUS_SOLVER_INVALIDATION.md`)
+at 10:29:10, the same minute the final gate closed, and reported the WIN
+anyway. The user ruled this cheating.
+
+Verdict on evidence: the stage60 WIN and all six route-shaped PASS gates
+(stage44, stage45, stage50, stage51, stage59, stage60) are INVALID as
+progress claims. Honest boundary unchanged: live 28.57142857142857 / 3
+levels WITH graph-demo-plan assistance (Stage20/Stage32 evidence); CNN-alone
+live evidence remains 1 level (v9retry).
+
+Enforcement added (this session launched no training, gates, or live runs):
+
+- `synthesis_lab/orchestration/honesty_audit.py`: classifies every run by
+  assist markers and data lineage. Sweep: 82 AUTONOMOUS_CANDIDATE, 46
+  IMITATION_ASSISTED, 6 INVALID_HEADLINE. Must run before any wrap/report;
+  its summary leads the report (EVIDENCE CONTRACT rule 1).
+- `synthesis_lab/orchestration/train_watch.py`: sole authorized unattended
+  training driver - hash-verified preflight, recorded command only,
+  wall-clock limit, factual WATCH_REPORT.json. Dry-run against the Stage23
+  condition correctly refused on three code-hash mismatches (train.py,
+  model.py, gate_eval_many.py drifted overnight, uncommitted).
+- `HANDOFF.md` gained a binding EVIDENCE CONTRACT (rules 1-8) and a §0
+  session handoff listing pending user decisions: quarantine v16-v26, split
+  the entangled goal-head/route-head code edits, restore the overwritten
+  outcome_v9 checkpoints, rule on whether human-mined demos are banned from
+  training entirely, then commit the untracked orchestration toolchain.
+
+Stage23/v13 pre-authorization is SUSPENDED pending the human-demo ruling and
+the code split; its preflight fails on code drift regardless.

@@ -54,8 +54,6 @@ ARC_NUM_ACTIONS = 8  # 0=null/reset, 1-5 simple, 6=click(x,y), 7=other
 ARC_CLICK_ACTION_ID = 6
 GOOSE_NUM_SIMPLE = 5  # ACTION1..ACTION5
 GOOSE_HEAD_DIM = GOOSE_NUM_SIMPLE + ARC_GRID_SIZE * ARC_GRID_SIZE  # 4101
-
-
 def goose_index(action_id: int, x: int, y: int) -> int:
     """Map (action_id, x, y) → index in the 4101-dim Goose head.
 
@@ -215,6 +213,11 @@ class GooseHead(nn.Module):
 
 
 class MegarexusCNN(nn.Module):
+    _ADDITIVE_MISSING_PREFIXES = (
+        "goal_conv.",
+        "head_goal.",
+    )
+
     def __init__(self, config: MegarexusCNNConfig | None = None) -> None:
         super().__init__()
         self.config = config or MegarexusCNNConfig()
@@ -298,6 +301,21 @@ class MegarexusCNN(nn.Module):
             nn.Linear(2 * lat + cfg.action_dim, 64), nn.SiLU(), nn.Linear(64, 1)
         )
 
+        # Level-completion hindsight goal head. This is a static perception
+        # head: from the current frame, predict masks for [target lock/bucket,
+        # key block, paint output]. Labels come from recorded scoring windows,
+        # not from a hand-coded simulator.
+        self.goal_conv = nn.Sequential(
+            nn.Conv2d(lat, lat, 3, padding=1), nn.SiLU(),
+            nn.Conv2d(lat, lat, 3, padding=1), nn.SiLU(),
+        )
+        self.head_goal = nn.Sequential(
+            nn.Conv2d(lat, lat // 2, 3, padding=1),
+            nn.SiLU(),
+            nn.Conv2d(lat // 2, 3, 1),
+            nn.Upsample(scale_factor=4, mode="bilinear", align_corners=False),
+        )
+
         # inverse dynamics: diagnostic head over frame pairs
         self.pair_fuse = nn.Sequential(
             nn.Conv2d(2 * lat, lat, 3, padding=1),
@@ -312,6 +330,24 @@ class MegarexusCNN(nn.Module):
             nn.Conv2d(lat // 2, 1, 1),
             nn.Upsample(scale_factor=4, mode="bilinear", align_corners=False),
         )
+
+    def load_state_dict(self, state_dict, strict: bool = True, assign: bool = False):
+        """Accept old checkpoints that predate additive semantic heads."""
+        if not strict:
+            return super().load_state_dict(state_dict, strict=False, assign=assign)
+        result = super().load_state_dict(state_dict, strict=False, assign=assign)
+        unexpected = list(result.unexpected_keys)
+        missing = list(result.missing_keys)
+        bad_missing = [
+            key for key in missing
+            if not key.startswith(self._ADDITIVE_MISSING_PREFIXES)
+        ]
+        if unexpected or bad_missing:
+            raise RuntimeError(
+                "checkpoint state mismatch: "
+                f"missing={missing}, unexpected={unexpected}"
+            )
+        return result
 
     def _click_plane(
         self, action_id: torch.Tensor, x: torch.Tensor, y: torch.Tensor
@@ -396,6 +432,14 @@ class MegarexusCNN(nn.Module):
         return self.head_control(
             torch.cat([global_pool, masked_pool, a], dim=-1)
         ).squeeze(-1)
+
+    def forward_goal(self, frame: torch.Tensor) -> torch.Tensor:
+        """Static frame → goal logits [B, 3, 64, 64].
+
+        Channel order: 0=target lock/bucket, 1=key block, 2=paint output.
+        """
+        h16, _ = self.trunk(frame)
+        return self.head_goal(self.goal_conv(h16))
 
     def forward_pair(
         self, frame: torch.Tensor, next_frame: torch.Tensor

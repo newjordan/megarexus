@@ -132,15 +132,20 @@ def run_game(
     solution_root: str | None,
     auto_reset: bool,
     include_perception: bool,
+    seed: int | None = None,
+    policy: Callable[..., tuple[int, int | None, int | None]] | None = None,
 ) -> dict[str, Any]:
     started_at = iso_utc_now()
+    is_live = os.environ.get("ARC_ALLOW_LIVE", "").strip().lower() in TRUE_VALUES
+    arc_mode = "live_scorecard" if is_live else "offline_local_environment_files"
+    arc_operation_mode = str(getattr(arc, "operation_mode", OperationMode.OFFLINE))
     result: dict[str, Any] = {
         "game_id": game_id,
         "policy": policy_name,
         "started_at_utc": started_at,
         "max_actions": int(max_actions),
-        "arc_mode": "offline_local_environment_files",
-        "arc_operation_mode": str(OperationMode.OFFLINE),
+        "arc_mode": arc_mode,
+        "arc_operation_mode": arc_operation_mode,
         "status": "not_started",
         "levels_completed": 0,
         "actions": 0,
@@ -157,8 +162,12 @@ def run_game(
     best_levels = 0
     final_state = ""
     try:
-        env = arc.make(game_id, scorecard_id=scorecard_id)
-        policy = build_policy(policy_name, game_id, solution_root)
+        make_kwargs: dict[str, Any] = {"scorecard_id": scorecard_id}
+        if seed is not None:
+            make_kwargs["seed"] = int(seed)
+        env = arc.make(game_id, **make_kwargs)
+        if policy is None:
+            policy = build_policy(policy_name, game_id, solution_root)
         frame = env.reset()
         first_hash: str | None = None
         for step_index in range(max(0, int(max_actions))):
@@ -171,8 +180,15 @@ def run_game(
                 frame = env.step(GameAction.RESET)
                 resets += 1
                 continue
+            raw_frames = frame.frame if isinstance(frame.frame, list) else [frame.frame]
             obs = {
                 "grid": grid,
+                # Full animation frame list for the current FrameData, in
+                # engine order. Policies trained on the recorder convention
+                # (cur = frames[-1], prev = frames[-2]) need these; obs["grid"]
+                # stays frames[0] so existing policies are untouched.
+                "frames": [np.asarray(f) for f in raw_frames],
+                "resets": int(resets),
                 "levels_completed": int(getattr(frame, "levels_completed", 0) or 0),
                 "state": state,
                 "available_actions": list(getattr(frame, "available_actions", []) or []),
@@ -371,6 +387,12 @@ def render_index(result: dict[str, Any], out_dir: Path) -> str:
 
 def write_trace(result: dict[str, Any], out_dir: Path) -> None:
     trace_path = out_dir / "report_trace.jsonl"
+    is_live = result.get("evidence_category") == "live_scorecard" or result.get("arc_mode") == "live_scorecard"
+    truth_boundary = (
+        "live_arc_scorecard_not_local_environment_files_proxy"
+        if is_live
+        else "local_offline_environment_files_scout_not_live_leaderboard_claim"
+    )
     with trace_path.open("w", encoding="utf-8") as handle:
         for idx, game in enumerate(result.get("games") or []):
             row = {
@@ -386,7 +408,7 @@ def write_trace(result: dict[str, Any], out_dir: Path) -> None:
                 "actions": game.get("actions"),
                 "resets": game.get("resets"),
                 "policy_error_count": game.get("policy_error_count"),
-                "truth_boundary": "local_offline_environment_files_scout_not_live_leaderboard_claim",
+                "truth_boundary": truth_boundary,
             }
             handle.write(json.dumps(row, sort_keys=True) + "\n")
 
@@ -451,12 +473,37 @@ def build_manifest(result: dict[str, Any], out_dir: Path) -> dict[str, Any]:
     result_path = out_dir / "result.json"
     trace_path = out_dir / "report_trace.jsonl"
     index_path = out_dir / "index.html"
-    source_paths = [CODEXLAB / "arc_suite_runner.py", CODEXLAB / "arc_play_harness.py"]
+    is_live = result.get("evidence_category") == "live_scorecard" or result.get("arc_mode") == "live_scorecard"
+    source_paths = [
+        CODEXLAB / "arc_suite_runner.py",
+        CODEXLAB / "arc_play_harness.py",
+        CODEXLAB / "arc_live_suite_runner.py",
+        ROOT / "synthesis_lab" / "orchestration" / "megarexus_live_policy.py",
+    ]
+    raw_inputs = (
+        [{"path": f"ARC live scorecard {result.get('scorecard_id')}", "sha256": "remote"}]
+        if is_live
+        else [{"path": repo_relative(LOCAL_ENV_DIR), "sha256": "directory"}]
+    )
+    boundaries = (
+        [
+            "Live ARC scorecard opened through the ARC SDK.",
+            "Not a local environment_files proxy.",
+            "Policy actions are recorded in per-game action traces and any exported policy_trace.",
+        ]
+        if is_live
+        else [
+            "Local offline scout over environment/environment_files.",
+            "Not a live ARC Prize scorecard or leaderboard claim.",
+            "Not a hidden answer, source-derived route, or replay route.",
+            "Not a full CONTRA gameplay report because per-action frames and packets are not recorded.",
+        ]
+    )
     return {
         "schema": MANIFEST_SCHEMA,
         "created_at_utc": result.get("created_at_utc"),
         "run_id": result.get("run_id"),
-        "report_status": "proxy",
+        "report_status": "live_scorecard" if is_live else "proxy",
         "condition": result.get("condition"),
         "working_directory": str(ROOT),
         "command": result.get("command"),
@@ -467,7 +514,7 @@ def build_manifest(result: dict[str, Any], out_dir: Path) -> dict[str, Any]:
             for path in source_paths
             if path.exists()
         ],
-        "raw_inputs": [{"path": repo_relative(LOCAL_ENV_DIR), "sha256": "directory"}],
+        "raw_inputs": raw_inputs,
         "raw_outputs": [
             {"path": repo_relative(result_path), "sha256": sha256_file(result_path)},
             {"path": repo_relative(trace_path), "sha256": sha256_file(trace_path)},
@@ -480,13 +527,9 @@ def build_manifest(result: dict[str, Any], out_dir: Path) -> dict[str, Any]:
             "result_json_exists": result_path.exists(),
             "trace_exists": trace_path.exists(),
             "offline_mode": result.get("arc_mode") == "offline_local_environment_files",
+            "live_scorecard": is_live,
         },
-        "boundaries": [
-            "Local offline scout over environment/environment_files.",
-            "Not a live ARC Prize scorecard or leaderboard claim.",
-            "Not a hidden answer, source-derived route, or replay route.",
-            "Not a full CONTRA gameplay report because per-action frames and packets are not recorded.",
-        ],
+        "boundaries": boundaries,
     }
 
 

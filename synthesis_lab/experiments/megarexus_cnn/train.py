@@ -27,6 +27,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 import time
@@ -61,6 +62,60 @@ def dynamics_loss(logits: torch.Tensor, target: torch.Tensor, frame: torch.Tenso
 
 SETTLE_POS_WEIGHT = 20.0  # settle masks are sparse (~1% of cells)
 LEVEL_POS_WEIGHT = 10.0  # level-up pours are ~2% of pours
+ADDITIVE_HEAD_PREFIXES = (
+    "goal_conv.",
+    "head_goal.",
+)
+
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def load_model_state_compatible(
+    model: MegarexusCNN, state: dict[str, torch.Tensor]
+) -> None:
+    """Load older checkpoints after additive semantic-head introductions."""
+    result = model.load_state_dict(state, strict=False)
+    unexpected = list(result.unexpected_keys)
+    missing = list(result.missing_keys)
+    bad_missing = [
+        key for key in missing
+        if not key.startswith(ADDITIVE_HEAD_PREFIXES)
+    ]
+    if unexpected or bad_missing:
+        raise RuntimeError(
+            "checkpoint state mismatch: "
+            f"missing={missing}, unexpected={unexpected}"
+        )
+    if missing:
+        print(f"[train] initialized new additive-head params: {missing}")
+
+
+def apply_trainable_prefixes(
+    model: MegarexusCNN, prefixes: list[str] | None
+) -> tuple[int, int]:
+    """Optionally freeze all params except module/name prefixes.
+
+    Prefixes are matched against ``named_parameters()`` names, so examples are
+    ``dynamics``, ``head_level``, or ``up1``. Returns
+    (trainable_params, total_params).
+    """
+    total = sum(p.numel() for p in model.parameters())
+    if not prefixes:
+        return total, total
+    normalized = tuple(prefixes)
+    trainable = 0
+    for name, param in model.named_parameters():
+        on = name.startswith(normalized)
+        param.requires_grad_(on)
+        if on:
+            trainable += param.numel()
+    return trainable, total
 
 
 def batch_losses(model: MegarexusCNN, batch: dict, device: str) -> dict[str, torch.Tensor]:
@@ -303,6 +358,8 @@ def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--epochs", type=int, default=40)
     p.add_argument("--batch-size", type=int, default=64)
+    p.add_argument("--num-workers", type=int, default=2,
+                   help="DataLoader workers; use 0 on memory-constrained rigs")
     p.add_argument("--lr", type=float, default=3e-4)
     p.add_argument("--rollout-shards", type=Path, nargs="*", default=None)
     p.add_argument("--val-rollout-shards", type=Path, nargs="*", default=None,
@@ -311,6 +368,12 @@ def main() -> None:
                    help="2 = stack the previous frame so paint velocity is visible")
     p.add_argument("--out-dir", type=Path, default=_HERE / "runs" / "scout_v0")
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--init-ckpt", type=Path, default=None,
+                   help="optional checkpoint to initialize model weights from")
+    p.add_argument("--save-every", type=int, default=0,
+                   help="save epoch_XXX.pt every N epochs (0 = only best/last)")
+    p.add_argument("--trainable-prefixes", nargs="*", default=None,
+                   help="if set, freeze all parameters except these name prefixes")
     args = p.parse_args()
 
     torch.manual_seed(args.seed)
@@ -322,13 +385,36 @@ def main() -> None:
     val_ds = MegarexusTransitions("val", val_rollout_shards=args.val_rollout_shards,
                                   n_input_frames=args.stack_frames)
     train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True,
-                              num_workers=2, drop_last=False)
-    val_loader = DataLoader(val_ds, batch_size=args.batch_size, num_workers=2)
+                              num_workers=args.num_workers, drop_last=False)
+    val_loader = DataLoader(val_ds, batch_size=args.batch_size,
+                            num_workers=args.num_workers)
+    print(f"[train] dataloader num_workers={args.num_workers}")
 
     model = MegarexusCNN(MegarexusCNNConfig(n_input_frames=args.stack_frames)).to(device)
+    if args.init_ckpt is not None:
+        payload = torch.load(args.init_ckpt, map_location=device,
+                             weights_only=False)
+        init_stack = int(payload["config"].get("stack_frames", args.stack_frames))
+        if init_stack != args.stack_frames:
+            raise ValueError(
+                f"--init-ckpt stack_frames={init_stack} does not match "
+                f"--stack-frames={args.stack_frames}"
+            )
+        load_model_state_compatible(model, payload["model"])
+        print(f"[train] init_ckpt={args.init_ckpt} sha256={sha256_file(args.init_ckpt)}")
     n_params = sum(t.numel() for t in model.parameters())
+    n_trainable, n_total = apply_trainable_prefixes(model, args.trainable_prefixes)
+    if n_trainable <= 0:
+        raise ValueError(f"no trainable parameters for prefixes={args.trainable_prefixes}")
     print(f"[train] MegarexusCNN params: {n_params / 1e6:.2f}M")
-    opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
+    if args.trainable_prefixes:
+        print(f"[train] trainable_prefixes={args.trainable_prefixes} "
+              f"trainable={n_trainable}/{n_total}")
+    opt = torch.optim.AdamW(
+        [p for p in model.parameters() if p.requires_grad],
+        lr=args.lr,
+        weight_decay=1e-4,
+    )
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=args.epochs)
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
@@ -341,11 +427,13 @@ def main() -> None:
         n_batches = 0
         for batch in train_loader:
             losses = batch_losses(model, batch, device)
-            loss = sum(losses.values())
-            opt.zero_grad(set_to_none=True)
-            loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-            opt.step()
+            trainable_losses = [v for v in losses.values() if v.requires_grad]
+            if trainable_losses:
+                loss = sum(trainable_losses)
+                opt.zero_grad(set_to_none=True)
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                opt.step()
             for k, v in losses.items():
                 sums[k] += float(v.detach())
             n_batches += 1
@@ -391,6 +479,11 @@ def main() -> None:
             {"model": model.state_dict(), "config": vars(args), "val": metrics},
             args.out_dir / "last.pt",
         )
+        if args.save_every and (epoch + 1) % args.save_every == 0:
+            torch.save(
+                {"model": model.state_dict(), "config": vars(args), "val": metrics},
+                args.out_dir / f"epoch_{epoch + 1:03d}.pt",
+            )
 
     (args.out_dir / "history.json").write_text(json.dumps(history, indent=2))
     print(f"[train] done in {time.time() - t0:.0f}s; best changed-cell acc "
