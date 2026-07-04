@@ -1,5 +1,32 @@
 # Research log
 
+## 2026-07-03 - User breakthrough: the goal is VISIBLE at level-0 completion; ghost should lock it in
+
+The user's follow-up on the lock/key direction: the objective is literally
+observable when level 0 completes — the scoring animation shows which block
+is the key, which U-shaped target scores, and how many pours it took. The
+ghost/imagination should LOCK IN the goal and paint routing from that
+observation; there is no excuse for the policy not knowing the objective,
+and how many targets there are, after level 0.
+
+Verified in artifacts: Stage20 `policy_frames_meta.json` record 5 is the
+levels 0→1 transition with a 20-frame scoring animation captured; records
+15 (1→2, 22 frames) and 26 (2→3, 25 frames) hold the later completions.
+Every level completion the system ever achieved is captured with its full
+animation window — and every completed level across the corpus (human
+demos to level 4+, both live runs, the 8 Stage22b trajectories) is a free
+hindsight goal label. The goal-head training set already exists; it has
+never been extracted.
+
+Advisory §2b updated: the "level-0 goal lock" is now the centerpiece of
+Lane C — (1) seeker re-probe validated against the level-0 ground truth
+instead of eyeballing; (2) runtime goal lock: hindsight-extract
+key/target/pour-count from the first completion window, lock as episode
+goal schema, re-instantiate per level (count targets → derive pours), with
+the ghost confirming by imagining the pour before committing; (3) goal-head
+training condition fed by the extracted hindsight labels (zero new
+collection). New open item: extract the hindsight goal-label dataset.
+
 ## 2026-07-03 - User direction: pours must be linked to the lock/key goal signal; audit says nothing is wired
 
 The user sharpened the level-3 direction: pour amounts must be directly

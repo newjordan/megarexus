@@ -105,27 +105,50 @@ Status audit (verified against code and logs, 2026-07-03):
 - **No trained head:** the CNN has no goal head. Nothing recognizes the
   key-to-opposite-target relation.
 
+**The level-0 goal lock (user, same day — this is the centerpiece):** the
+goal is VISIBLE at level-0 completion. The environment shows the objective
+when it scores. Verified in the artifacts: Stage20
+`policy_frames/policy_frames_meta.json` record 5 is the levels 0→1
+transition with the full 20-frame scoring animation captured (records 15
+and 26 hold the 1→2 and 2→3 completions, 22 and 25 frames). After that
+window the system has everything needed — which block is the key, which
+U-shaped target scored (the one opposite the key), and how many pours it
+took. The ghost/imagination should LOCK IN the goal and the paint routing
+from that observation. There is no excuse for the policy not knowing the
+objective, and how many targets there are, after level 0. This also means
+the goal-head training set already exists: every completed level in the
+corpus (human demos to level 4+, both live runs' transition records, the 8
+Stage22b trajectories) is a free hindsight goal label. Nobody has extracted
+it yet.
+
 Lane C (goal-signal linkage), in order of cost:
 
-1. **Re-probe (read-only, can run DURING v13 training — no GPU/resource
-   conflict):** run `antisymmetric_relationship_hypotheses` over the
-   captured live frames (Stage20 `policy_frames.npz`, 244 unique frames,
-   plus Stage14's), stratified by level. Question: does the key-block /
-   opposite-U-target relation surface, or does `component_asymmetry` still
-   give no confident facings? If the generic detector misses it, a more
+1. **Re-probe with ground truth (read-only, can run DURING v13 training —
+   no GPU/resource conflict):** run `antisymmetric_relationship_hypotheses`
+   over the captured live frames (Stage20 `policy_frames.npz`, plus
+   Stage14's), stratified by level. The level-0 completion window gives
+   GROUND TRUTH: the scored target is known from the animation, so the
+   seeker's hypotheses can be validated against it, not eyeballed. If the
+   generic `component_asymmetry` detector misses the relation, a more
    specific informer in the same family (singular-color-block vs U-shape,
    opposite-side scoring) is a legal Contra-role addition — informer-only,
    truth flags False.
-2. **Wire as goal provider (only if the probe fires):** the informer's
-   goal region enters planning — which stream/glove matters, and pour count
-   becomes derived from goal + imagined outcome instead of pour-to-cap.
-   This is Contra informing action selection, same boundary as the
-   graph-adaptive policy.
-3. **Train a goal head (hindsight-labeled, a proper future condition):**
-   when a level completes, which target actually scored is recoverable in
-   hindsight from env fields + pixels — a legal label source. A goal head
-   trained on that experience is the "trained head that recognizes the key"
-   the user is asking for. Record as its own CONDITION.json; full gate
+2. **Runtime level-0 goal lock (wire as goal provider):** after the first
+   level-up in an episode, run hindsight extraction over the completion
+   window (the captured n_frames animation of the scoring pour): key block,
+   scored target, pours used. Lock that as the episode goal schema. At each
+   subsequent level, re-instantiate — count keys/targets in the new layout,
+   derive needed pours, plan arrangement so streams reach targets, pour
+   exactly that many. The ghost confirms the lock: imagine the pour and
+   check predicted paint reaches the identified target before committing.
+   This is Contra informing action selection plus LeWM/Rex verification —
+   the same boundary as the graph-adaptive policy.
+3. **Train the goal head (hindsight-labeled, a proper future condition):**
+   extract the goal labels from every completed level already in the corpus
+   (env fields + pixels in hindsight — legal label source; zero new
+   collection needed) and train a head to recognize the key-to-opposite-
+   target relation from the pre-completion frame. This is the "trained head
+   that recognizes the key" — record as its own CONDITION.json; full gate
    stack applies.
 
 Role ownership: goal seeker = Contra/informer; pour-outcome prediction =
@@ -258,6 +281,14 @@ No live scorecard from training metrics alone, ever.
 - **Lane C step 1 is immediately actionable and free:** re-probe the
   lock/key seeker over the Stage20/Stage14 captured frames while v13
   trains (read-only, CPU). The 2026-07-01 0/80 negative is stale and was
-  not testing the specific key-block/U-target hypothesis.
+  not testing the specific key-block/U-target hypothesis. Validate against
+  the level-0 ground truth (Stage20 frame record 5, the 0→1 scoring
+  animation) rather than eyeballing.
+- **Extract the hindsight goal-label dataset:** walk every completed level
+  in the corpus (human demo episodes, live transition records — Stage20
+  records 5/15/26 — and the 8 Stage22b trajectories) and emit (pre-
+  completion frame, key block, scored target, pours used) tuples. This is
+  the training set for the Lane C goal head and it requires no new
+  collection.
 - Verify from the Stage22b captured frames whether the 8 kept human-mined
   trajectories use the wall-adjacent arrangement described in section 2.
