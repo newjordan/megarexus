@@ -6,6 +6,82 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
+## 0-PLAN OF RECORD (2026-07-05) — WORLD-MODEL ROADMAP IS BINDING
+
+`notes/ROADMAP_WORLD_MODEL_20260705.md` is the integration contract for all
+agents: Contra→world-model architecture map, frozen contracts (C1–C5), staged
+plan A–F with numeric gates and a decision tree. Execute the next stage it
+indicates (currently: Stage A — v37/v38 in flight on Apollo; on v38's
+`imagine_search_gate` result, follow the tree). Companion evidence:
+`notes/REPORT_CNN_DELIBERATION_20260705.md`, `notes/NIGHT_REGIME_20260705.md`.
+
+## 0-LIVE STATE (2026-07-05 ~09:40 CDT) — STAGE A IN FLIGHT (supersedes 07-04 block below)
+
+Scoreboard (roadmap C4). Headline (levels completed CNN-alone, fresh-from-0):
+still to be env-grounded (see head_rank_gate below). Gate = `imagine_search_gate`.
+- **v31 baseline (imagination):** L0 `fn=2, tp=0, imagined_wins=0`, real_wins=2/3
+  (winner in set, imagination misses it) — the pour-imagination wall.
+- **v37 (pour-outcome head, 3× L0 positives): DONE-ish.** Fresh-arrangement L0
+  ranking **AUC 0.87** (v36 was 0.79; roadmap Stage B ref >0.79). Saturation fixed.
+- **v38 (dynamics decoder on spill ticks): QUEUED** behind v37 (watcher on pid).
+  **STAGE A1 GATE (run on completion):** `imagine_search_gate --levels 0 --seeds 3`
+  → PASS iff `fn=0 & tp≥1`; secondary paint-mass ratio 0.8–1.2 (now reported).
+  fn>0 → Stage A2 (add `head_spill_ca` local neural-CA head). fn=0 → Stage B.
+
+Apollo GPU chain auto-advances via detached watchers (each waits on the prior
+train pid, launches next — no idle gap). Apollo workspace
+`/home/frosty/megarexus_train_20260703`, venv `/home/frosty/Loom/.venv/bin/python`.
+
+New tools this session (all honesty-guarded, env-graded; C5-compliant additions):
+`imagine_search_gate.py` (scoreboard + A1 secondary paint-mass), `tta_search_gate.py`
+(Stage D machinery, validated), `probe_pour_oracle.py`, `head_rank_gate.py`
+(L0 headline grounder: head RANKS real arrangements, top-K real pours, env grades —
+running now on v37), `collect_pour_outcomes.py`, `build_pour_shard.py`.
+Pending: Stage B (latent settle-predictor + win-probe), Stage C (portband-seeded
+CEM with relaxed geometric fitness — the L1 unlock).
+
+## 0-LIVE STATE (2026-07-04 15:52 CDT) — FRESH-FROM-ZERO TRAINING ON APOLLO (SUPERSEDED)
+
+User ruling this session (memory `megarexus-fromzero-training-ruling`): **no
+`on_set_level` farming; always a fresh run from 0 (random init); always be
+training; master the field.** Training runs on **Apollo** (RTX 4080, dedicated)
+— GB10 is shared with another agent's 119B `llama-perplexity` job.
+
+RUNNING NOW:
+- **stage62 fresh-from-0 mastery** on Apollo. Condition:
+  `runs/stage62_noimit_fromzero_mastery_apollo_20260704/CONDITION.json`
+  (init=none/random; 8 clean train + 5 val shards; corpus 68900 train / 12062
+  val, 0 human; 40 epochs, bs64, lr3e-4, stack2; venv
+  `/home/frosty/Loom/.venv/bin/python` torch 2.5.1+cu121). Out:
+  `runs/outcome_v28_noimit_fromzero_mastery_apollo_20260704`. Launched via
+  `train_watch.py --max-hours 10`. Apollo workspace
+  `/home/frosty/megarexus_train_20260703`; code+shards rsync'd from GB10 this
+  session (Apollo train.py now HAS the no-imitation guard).
+  Watch: `ssh apollo 'tail -f /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v28_noimit_fromzero_mastery_apollo_20260704_train.log'`
+- GB10 twin of stage62 (batch32) was STOPPED once Apollo confirmed CUDA (no
+  training gap). GB10 collection finished.
+
+INTELLIGENT LOOP (daemon, owns the chain) — running on Apollo:
+- `synthesis_lab/orchestration/intelligent_train_loop.py`, PID group under
+  1386602, state dir `runs/intelligent_loop_20260704/` (loop.log, loop.out,
+  loop_state.json). Attached to stage62; waits for its WATCH_REPORT.json, then
+  each cycle: GATE (score every head vs its baseline from history.json, val
+  FIXED) → DIAGNOSE weakest head → COLLECT only clean data for it
+  (control_play/catch_play/sp80_rollouts/edge_adjoin) → pre-register a
+  FRESH-FROM-0 condition (init=none) → guard+dry-run → train_watch → repeat.
+  `control_play_v2_train` is folded into the loop's base corpus.
+- HALTS fail-closed (writes `NEEDS_HUMAN_*.json` in the state dir) on: the
+  two-failure rule (a head twice with no improvement → representation change is
+  a HUMAN call), a weakness only injection/imitation could feed (e.g. level-2+
+  positives = the D3 bootstrap boundary), or any guard/dry-run refusal. On all
+  heads passing it writes `CONVERGED.json` (→ run the full gate stack + live scout).
+- Watch: `ssh apollo 'tail -f /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/intelligent_loop_20260704/loop.log'`
+- To stop the loop: kill the `intelligent_train_loop.py` PID (in-flight
+  train_watch/train.py continue; the loop just won't start the next cycle).
+
+Arrow: **clean-lane CNN-alone levels completed (from 1).** Legacy 28.57/3
+stays as the frozen assisted reference. Plan: `notes/REGIME_REVIEW_20260704_REKNOCK.md`.
+
 ## 0B-BINDING USER RULING (2026-07-04 11:20 CDT) - NO IMITATION TRAINING, EVER
 
 The user explicitly ruled that imitation training is never authorized in this

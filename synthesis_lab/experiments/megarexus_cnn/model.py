@@ -216,6 +216,10 @@ class MegarexusCNN(nn.Module):
     _ADDITIVE_MISSING_PREFIXES = (
         "goal_conv.",
         "head_goal.",
+        "spill_ca.",
+        "settle_predictor.",
+        "win_probe.",
+        "outcome_head.",
     )
 
     def __init__(self, config: MegarexusCNNConfig | None = None) -> None:
@@ -331,6 +335,74 @@ class MegarexusCNN(nn.Module):
             nn.Upsample(scale_factor=4, mode="bilinear", align_corners=False),
         )
 
+        # Roadmap Stage A2 — local Neural-CA spill head. The pour is a
+        # deterministic, LOCAL, discrete cellular automaton; the global-FiLM
+        # dynamics decoder has the wrong bias for it (rollout diverges). This head
+        # operates DIRECTLY on the 16-colour one-hot grid with a tight receptive
+        # field (two 3x3 convs = 5x5 RF), shared weights applied ITERATIVELY to
+        # roll out the spill. Level-invariant by construction. Additive: absent
+        # from old checkpoints, tolerated by load_state_dict below.
+        ca = 64
+        self.spill_ca = nn.Sequential(
+            nn.Conv2d(ARC_NUM_COLORS, ca, 3, padding=1), nn.SiLU(),
+            nn.Conv2d(ca, ca, 3, padding=1), nn.SiLU(),
+            nn.Conv2d(ca, ARC_NUM_COLORS, 1),
+        )
+        nn.init.zeros_(self.spill_ca[-1].weight)   # start as identity (delta=0)
+        nn.init.zeros_(self.spill_ca[-1].bias)
+
+        # Stage B (roadmap §Stage-B) — latent settle-predictor + win-probe.
+        # settle_predictor: pre-pour pooled latent -> predicted SETTLED pooled
+        # latent (JEPA-style, self-supervised on every pour, stop-grad target).
+        # win_probe: small MLP on the PREDICTED settled latent -> P(win). Amortizes
+        # the 40-tick rollout into one pass so Stage C can rank 10-100x candidates.
+        # Latents RANK; the geometric pixel check remains the decider (C4/Q4).
+        # Additive: absent from old checkpoints, tolerated by load_state_dict.
+        self.settle_predictor = nn.Sequential(
+            nn.Linear(lat, lat), nn.SiLU(),
+            nn.Linear(lat, lat), nn.SiLU(),
+            nn.Linear(lat, lat),
+        )
+        self.win_probe = nn.Sequential(
+            nn.Linear(lat, lat // 2), nn.SiLU(),
+            nn.Linear(lat // 2, 1),
+        )
+
+        # NIGHT FINDING 26-30 — SHAPE-preserving, LAVA-aware outcome head. Predicts the
+        # level-invariant pour objective (fill = fraction of targets satisfied; lava =
+        # wall/lava contact, the "floor is lava" NEGATIVE signal) from an arrangement.
+        # Conv-then-flatten KEEPS spatial layout (WHERE paint routes / hits walls) — unlike
+        # the pooled win_probe that memorised one board. Trained on RANDOMISED variant
+        # boards to force transferable routing skill. Additive: tolerated on old ckpts.
+        self.outcome_head = nn.Sequential(
+            nn.Conv2d(lat, 64, 3, padding=1), nn.GroupNorm(8, 64), nn.SiLU(),
+            nn.Conv2d(64, 64, 3, padding=1), nn.GroupNorm(8, 64), nn.SiLU(),
+            nn.Conv2d(64, 16, 3, padding=1), nn.SiLU(),
+            nn.Flatten(),
+            nn.Linear(16 * 16 * 16, 128), nn.SiLU(),
+            nn.Linear(128, 2),                       # [fill_logit, lava_logit]
+        )
+
+    def predict_outcome(self, frame: torch.Tensor) -> torch.Tensor:
+        """Arrangement frame stack -> [B,2] = (fill_logit, lava_logit). sigmoid(fill_logit)
+        ~ fraction of targets that settle satisfied; sigmoid(lava_logit) ~ normalised lava
+        contact. Win-score for ranking = sigmoid(fill) - lambda*sigmoid(lava)."""
+        h16, _ = self.trunk(frame)
+        return self.outcome_head(h16)
+
+    def encode_latent(self, frame: torch.Tensor) -> torch.Tensor:
+        """Pooled encoder embedding [B, latent] of a frame stack (Stage-B latent)."""
+        h16, _ = self.trunk(frame)
+        return h16.mean(dim=(2, 3))
+
+    def predict_settle_latent(self, frame: torch.Tensor) -> torch.Tensor:
+        """Predicted SETTLED pooled latent from a pre-pour frame stack (one pass)."""
+        return self.settle_predictor(self.encode_latent(frame))
+
+    def win_logit(self, frame: torch.Tensor) -> torch.Tensor:
+        """P(win) logit for an arrangement = win_probe(settle_predictor(enc(f)))."""
+        return self.win_probe(self.predict_settle_latent(frame)).squeeze(-1)
+
     def load_state_dict(self, state_dict, strict: bool = True, assign: bool = False):
         """Accept old checkpoints that predate additive semantic heads."""
         if not strict:
@@ -380,6 +452,14 @@ class MegarexusCNN(nn.Module):
         d64 = F.silu(self.up2(d32))
         d64 = d64 + torch.tanh(self.skip_gate) * h64
         return self.head_next_frame(d64)
+
+    def forward_spill_ca(self, grid_onehot: torch.Tensor) -> torch.Tensor:
+        """One spill tick as a LOCAL CA (roadmap A2). grid_onehot [B,16,64,64]
+        float one-hot -> next-grid logits [B,16,64,64]. Residual around the input
+        (identity default; the CA learns only the local change), so unchanged cells
+        stay stable across an iterated rollout. Shared weights each tick."""
+        delta = self.spill_ca(grid_onehot)
+        return grid_onehot * 6.0 + delta
 
     def forward_goose(self, frame: torch.Tensor) -> dict[str, torch.Tensor]:
         """frame → Goose policy/change logits, both [B, 4101]."""
