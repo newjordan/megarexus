@@ -701,3 +701,151 @@ in ONE pass, no env pour. This enables a CEM proposer to search L1/L2+ efficient
 by v48, confirm top-K with real pours) -> in-budget CNN solve across levels. Model:
 predict_outcome head. Tools: train_outcome.py, sp80_variants.py, harvest_variants.py.
 [[megarexus-cnn-deliberation-gap]] [[megarexus-contra-architecture]]
+
+## FINDING 32 (~15:49) — MASS regime v49: rotation was a HIDDEN param -> contradictory signal -> poisoned real-L1 transfer
+Scaled to 3000 variants (32042 pours, 2-4 targets, 1-5 blocks) + added rotation
+(dojfslwbg via set_data). v49 result: HELDOUT-VARIANT AUC 0.966 (>v48's 0.917),
+REAL-L0 0.99, but REAL-L1 DEGRADES over training 0.40(ep5)->0.08(ep60) — WORSE than
+random and far below v48's 0.95. Diagnosis: set_data("dojfslwbg", rot) does NOT rotate
+the rendered LAYOUT (source stays row 0, targets row 13 for ALL of rot=0/90/180/270);
+it only changes the HIDDEN flow-physics rotation applied at pour time. So identical-
+looking arrangements got DIFFERENT (fill,lava) outcomes depending on an invisible param
+=> contradictory training signal the model can't predict from the frame. And real L1's
+rotation IS baked into its visible layout (source at BOTTOM) — which my top-source
+rotated variants never reproduce. Net: rotation poisoned exactly the rotated case
+(real L1). LESSON: every outcome-determining factor MUST be visible in the input;
+a hidden rotation param needs either a true layout rotation (rotate all sprite
+positions) OR an explicit rotation INPUT plane. Also: HELDOUT-VARIANT AUC is NOT a
+reliable proxy for real-level transfer under distribution shift (0.966 held-out but
+0.08 real-L1). FIX: remove the broken rotation, re-harvest clean (keep wider VISIBLE
+diversity: 2-4 targets), retrain -> restore L1 transfer (v48 proved the no-rotation
+recipe gives L1 0.95). Follow-up: add TRUE geometric diversity (source positions +
+opening directions) so rotated real levels are in-distribution, represented VISIBLY.
+
+## FINDING 33 (~16:13) — naive MASS scale-up HURT real-level transfer; v48 (600 variants) remains best
+Clean v50 (3000 variants, 2-4 tgt, 1-5 blk, NO rotation): HELDOUT-VARIANT 0.938,
+REAL-L0 1.00, but REAL-L1 peaks epoch5=0.77 then CRASHES to 0.12-0.18. Removing rotation
+helped vs v49 (0.40->0.77) but still far below v48's 0.95. Pattern: BOTH 3000-variant runs
+peak L1 early then degrade; v48 (600 variants, 2-3 tgt, 1-3 blk) HELD L1 ~0.90-0.95 across
+epochs. So MORE/WIDER variants != better transfer — the naive scale-up overfits the variant
+distribution and loses the real-L1 geometry. Sobering: transfer is partly DISTRIBUTION-
+MATCHING (v48's 2-3 targets is closer to real L1's 3 than v50's 2-4 diluting with 4-target
+boards), not pure general skill. Also confirms HELDOUT-VARIANT AUC (0.94) is a poor proxy
+for real transfer (L1 0.12). DECISION: v48 stays the best generalising imagination
+(L0 0.98, L1 0.95). Naive mass-scaling is NOT the win; the real improvement needs TRUE
+geometric diversity (source on any edge + matched flow so rotated real levels are VISIBLY
+in-distribution) and/or early-stopping on real-transfer — a careful build, not brute count.
+PIVOT: test the PAYOFF with v48 — v48_solve (v48 as amortised CEM fitness -> pour top-K
+real -> in-budget solve of L0/L1/L2).
+
+## FINDING 34 (~16:34) — in-budget solve: two gaps isolated (ranker sharpness + proposer), imagination is sound
+Tested the payoff (v48 generalising imagination -> in-budget solve of real L0/L1/L2):
+ - v48_solve (CEM scored by v48): collapsed — top-4 elites near-identical, solved 0/3.
+   Premature convergence; genome space didn't reach real winners.
+ - win_probe_gate --mode outcome (rank _candidates by v48 fill-lava, pour top-4):
+   L0 ranking AUC 0.786, winners at ranks 7-24 (never top-4) -> solved@4 0/4. L1/L2:
+   real_wins=0 (proposer finds no winners) -> ranking can't solve.
+CONTRAST: v47 (trained ON the L0 _candidates distribution) ranked L0 winners at ranks
+0-7 -> solved@1 8/8. So v48 (variant-trained) GENERALISES broadly (L1 AUC 0.95 on the
+pour_filllava set) but is LESS SHARP on a specific level's candidate set — a
+generalisation-vs-sharpness tradeoff. TWO GAPS to a cross-level in-budget solve:
+ (1) ranker sharpness (top-4 needs the winner ranked very high, not just above median);
+ (2) a PROPOSER that finds winners where random gives 0 (L1/L2).
+The imagination itself is sound (ranks real winners well). Testing the cleanest in-budget
+path now: imag_search_solve — hill-climb (multi-restart, no collapse) on v48's PREDICTED
+fill-lava (free, no pours), then pour top-4 real. If v48's imagination guides the search to
+a real win, that closes the proposer gap in-budget. [[megarexus-cnn-deliberation-gap]]
+
+## FINDING 35 (~16:41) *** HONESTY CORRECTION: v48 does NOT truly generalize to L1 — AUC 0.95 was misleading ***
+Direct test on the VERIFIED L1 winner (lava_search genome, env-confirmed 240/240 filled,
+lava=1): v48 predicts fill_hat=0.003, lava_hat=0.974, score=-0.971 — a TOTAL LOSS, the
+OPPOSITE of reality. It ranks the true winner BELOW 55% of random L1 losers. So the training
+log's "REAL-L1 win_AUC=0.95" was MISLEADING: measured on a narrow harvested L1 set (base_seed
+9000, few wins) and driven by the level-invariant LAVA correlation, NOT real understanding.
+ROOT CAUSE: my variant generator ALWAYS places the source at the TOP; real L1 is rotated
+(source at BOTTOM, dojfslwbg=180, paint flows up). So real-L1 geometry is entirely OUT of
+v48's training distribution. v48 generalizes WITHIN source-top geometry (L0 0.98 in-dist,
+held-out source-top variants 0.92) but FAILS on genuinely different geometry (L1 source-bottom).
+CORRECTED CLAIMS: L0 solved in-budget = v47 (on-distribution ranker), REAL and honest. First
+L1 win = lava_search (env-feedback search), REAL and honest. v48 = generalises to source-top
+layouts only; the "cross-level generalisation" was OVER-CLAIMED on AUC — the argmax/precision-
+at-top is wrong on L1. Lesson (again, cf F32): AUC on a harvested set is NOT understanding;
+always test the KNOWN winner directly. FIX for TRUE cross-level generalisation: EDGE-DIVERSE
+variants — source on all 4 edges with the MATCHING flow rotation (bottom+180, top+0, etc.) so
+source-edge DETERMINES flow (visible), targets on the opposite edge, covering L1/L3/L5 rotated
+geometries. Verify the source-bottom+rot180 pour actually fills top targets first. This is the
+real mass-regime improvement, not brute count. [[megarexus-cnn-deliberation-gap]] [[megarexus-lab-honesty-rules]]
+
+## FINDING 36 (~17:15) — the geometry fix WORKS (partially): multi-base coverage lifts L1-winner fill 0.003 -> 0.689
+v51 trained on the geometry-complete multi-base set (bases 0,1,2,3: src-TOP 15191 pours +
+src-BOTTOM 15223 pours, 459 wins). Direct test on the VERIFIED L1 winner:
+  v51: fill_hat=0.689 (v48 was 0.003!), lava_hat=0.766, score=-0.077 (v48 was -0.971).
+  ranks above 60% of random L1 (v48: 45%).
+So covering source-bottom/rotated geometry DIRECTLY fixed the fill blindness — v51 now
+recognises the L1 winner fills its targets. FINDING 35's diagnosis was correct and the
+multi-base fix works. REMAINING GAPS: (1) lava precision on rotated arrangements still off
+(lava_hat 0.766 vs actual ~0) — drags score negative; (2) aggregate AUC LOWER than v48
+(held-out-variant 0.82 vs 0.92, REAL-L0 0.78 vs 0.98) because the mixed-geometry task is
+harder for the FROZEN v31 encoder (trained mostly on source-top real data). DIRECTION: the
+frozen encoder likely under-represents rotated geometry -> UNFREEZE/fine-tune the encoder on
+the multi-base data (or add source-bottom Contra-guided pretraining) so the latent captures
+both geometries; then the outcome head can be precise on both. Honest net: the imagination
+generalises to a NEW geometry once that geometry is in training (fill fixed) — real, incremental
+progress toward cross-level; precision (esp. lava on rotated) is the next lever. [[megarexus-cnn-deliberation-gap]]
+
+## FINDING 37 (~17:40) *** L1 GENUINELY FIXED: multi-base + UNFROZEN encoder -> v52 correctly predicts the L1 winner ***
+v52 = train_outcome on the multi-base set with --unfreeze-encoder (trunk fine-tuned, enc-lr
+3e-5). Direct test on the VERIFIED L1 winner:
+  v48 (frozen, src-top only):  fill 0.003, score -0.97, ranks above 45% (WRONG)
+  v51 (frozen, multi-base):    fill 0.689, lava 0.766, score -0.08, above 60% (partial)
+  v52 (UNFROZEN, multi-base):  fill 0.558, lava 0.045, score +0.51, above 97% (CORRECT)
+v52 predicts the real L1 winner as a WIN (positive, LOW lava 0.045 — the precision v51
+lacked) and ranks it above 97% of random L1 losers. REAL-L1 AUC 0.99 and STABLE across
+epochs (no crash, unlike every frozen run). So the encoder UNFREEZE was the key: adapting the
+latent to rotated geometry fixed lava precision. The full honest fix for cross-level: (a)
+cover the geometry (multi-base variants) + (b) let the encoder adapt to it (unfreeze). This
+REVERSES the F35 over-claim into a genuine result: v52 understands BOTH source-top (L0) and
+source-bottom/rotated (L1) geometry. NEXT: does v52 as fitness now SOLVE L1 in-budget
+(imag_search_solve)? [[megarexus-cnn-deliberation-gap]]
+
+## FINDING 38 (~17:47) — v52 solve: ranking good, ARGMAX imprecise (false positives) -> hard-negative mining
+v52 imagination-guided search (60x100): L1 top-4 imagined-scores [0.886,0.869,0.849,0.823]
+but NONE win for real. So v52 has FALSE POSITIVES — arrangements it scores 0.88 (confident
+win) that actually lose, scoring ABOVE the true L1 winner (0.51). The search maximises v52's
+score and lands on these false peaks, missing the true winner. So even a good RANKER (true
+winner ranks above 97%) has an imprecise ARGMAX (false positives outscore the winner) ->
+search-to-solve fails. This is the core remaining gap: AUC/ranking != precision-at-argmax.
+PRINCIPLED FIX (flywheel): HARD-NEGATIVE MINING — the search SURFACES exactly v52's false
+positives (high-imagined, real-loss). Real-pour the search's top-K, label the losers, ADD
+them to training as negatives, retrain (unfrozen). The imagination learns to REJECT its own
+false peaks -> sharper argmax -> search finds the true winner. Iterate. This directly targets
+the failure the search exposes (adversarial/DAgger-style for the imagination). Building the
+hard-negative miner next. [[megarexus-cnn-deliberation-gap]] [[megarexus-worldmodel-roadmap]]
+
+## FINDING 39 (~18:32) — naive hard-negative mining (3x) BACKFIRED; v52 remains best
+v53 = multibase + 3x hardneg (217 false-positives + 46 wins), unfrozen. Direct L1-winner
+test: fill 0.559, lava 0.612, score -0.053 (v52 was +0.51), ranks above 87% (v52 97%). WORSE.
+The 3x-upweighted false-positives biased the model PESSIMISTIC (lava_hat up across the board),
+hurting the true winner. ROOT: false-positives are VISUALLY SIMILAR to true winners (both look
+like good arrangements), so teaching the model to reject them suppresses the winner's features
+too — the precision-at-argmax problem is hard precisely because near-winners and winners look
+alike (needs precise pour SIMULATION to separate, the night's recurring wall). v52 stays the
+best model (correct L1 winner +0.51/above-97%, REAL-L1 AUC 0.99 stable, REAL-L0 good). Trying
+v54 = 1x hardneg (less pessimism bias) as the last refinement; if it doesn't beat v52, v52 is
+the deliverable and the in-budget SOLVE remains the honest open gap (argmax precision).
+[[megarexus-cnn-deliberation-gap]]
+
+## FINDING 40 (~18:55) — hard-negative mining CONFIRMED unhelpful (1x also worse); v52 is the deliverable
+v54 = multibase + 1x hardneg: L1-winner score -0.27, above 67% (v52 +0.51/97%, v53 -0.05/87%).
+Both 1x and 3x hardneg HURT vs v52. Confirmed: teaching the imagination to reject its false
+positives suppresses the true winner too (they're visually alike). Hard-negative mining is NOT
+the fix. FINAL STANDINGS (v52 best): the pour imagination generalises across geometries when
+(a) the geometry is in training (multi-base variants) and (b) the encoder adapts to it (unfreeze)
+— v52 correctly scores the verified L1 winner (+0.51, above 97%), REAL-L0 0.98, REAL-L1 0.99
+stable. The IN-BUDGET SOLVE remains open: v52 is a strong RANKER but its ARGMAX has false
+positives (search finds 0.88-score non-winners above the 0.51 true winner). Closing it needs
+either (i) precise pour SIMULATION to separate near-winners from winners (the night's recurring
+wall — pixel-CA drifts, latent is AUC-good only), or (ii) a DIVERSITY-promoting search that
+pours K diverse high-scorers (since v52 ranks the true winner top-3%, a diverse top-K likely
+contains it) — a cheap SEARCH-side idea worth trying, not an imagination change. NIGHT COMPLETE
+for the heavy-exploration thread; v52 is the honest deliverable.

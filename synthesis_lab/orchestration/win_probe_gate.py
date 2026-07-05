@@ -44,18 +44,24 @@ def auc(scores, labels):
 
 
 class Probe:
-    def __init__(self, ckpt, dev):
+    def __init__(self, ckpt, dev, mode="winprobe", lam=1.0):
         ck = torch.load(ckpt, map_location=dev, weights_only=False)
         self.stack = int(ck["config"].get("stack_frames", 2))
         self.m = MegarexusCNN(MegarexusCNNConfig(n_input_frames=self.stack)).to(dev).eval()
         self.m.load_state_dict(ck["model"])
         self.dev = dev
+        self.mode = mode      # "winprobe" (v47 win_logit) or "outcome" (v48 fill-lam*lava)
+        self.lam = lam
 
     @torch.no_grad()
     def score(self, arr):
         oh = encode(arr)
         t = torch.cat([oh, oh], 0) if self.stack == 2 else oh
-        return float(torch.sigmoid(self.m.win_logit(t.unsqueeze(0).to(self.dev)))[0])
+        x = t.unsqueeze(0).to(self.dev)
+        if self.mode == "outcome":
+            o = self.m.predict_outcome(x)[0]
+            return float(torch.sigmoid(o[0]) - self.lam * torch.sigmoid(o[1]))
+        return float(torch.sigmoid(self.m.win_logit(x))[0])
 
 
 def main():
@@ -68,10 +74,12 @@ def main():
     ap.add_argument("--max-comps", type=int, default=6)
     ap.add_argument("--topk", type=int, default=16)
     ap.add_argument("--device", default=None)
+    ap.add_argument("--mode", default="winprobe", choices=["winprobe", "outcome"])
+    ap.add_argument("--lam", type=float, default=1.0)
     a = ap.parse_args()
     dev = a.device or ("cuda" if torch.cuda.is_available() else "cpu")
     mags = (1, 2, 3)
-    pr = Probe(a.ckpt, dev)
+    pr = Probe(a.ckpt, dev, mode=a.mode, lam=a.lam)
     arcade = Arcade(arc_api_key="anonymous",
                     environments_dir=str((_REPO / "environment_files").resolve()),
                     operation_mode=OperationMode.OFFLINE)

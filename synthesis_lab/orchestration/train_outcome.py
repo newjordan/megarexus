@@ -39,7 +39,7 @@ def auc(scores, labels):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--init-ckpt", required=True)
-    ap.add_argument("--variants", required=True)
+    ap.add_argument("--variants", required=True, nargs="+")
     ap.add_argument("--real", default=None)
     ap.add_argument("--out", required=True)
     ap.add_argument("--epochs", type=int, default=60)
@@ -47,6 +47,8 @@ def main():
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--val-variant-frac", type=float, default=0.2)
     ap.add_argument("--lam", type=float, default=1.0)
+    ap.add_argument("--unfreeze-encoder", action="store_true")
+    ap.add_argument("--encoder-lr", type=float, default=3e-5)
     ap.add_argument("--device", default=None)
     a = ap.parse_args()
     dev = a.device or ("cuda" if torch.cuda.is_available() else "cpu")
@@ -54,9 +56,20 @@ def main():
     stack = int(ck["config"].get("stack_frames", ck["config"].get("n_input_frames", 2)))
     m = MegarexusCNN(MegarexusCNNConfig(n_input_frames=stack)).to(dev)
     m.load_state_dict(ck["model"]); m.eval()
+    # By default only the outcome head trains (C3). --unfreeze-encoder ALSO fine-tunes the
+    # trunk so the latent can represent BOTH source-top and source-bottom/rotated geometry
+    # (NIGHT FINDING 36: frozen v31 encoder under-represents rotated layouts, capping
+    # precision). The trunk gets a smaller LR (encoder-lr) to avoid wrecking its features.
+    trainable = ("outcome_head.", "trunk.") if a.unfreeze_encoder else ("outcome_head.",)
     for n, p in m.named_parameters():
-        p.requires_grad_(n.startswith("outcome_head."))
-    opt = torch.optim.Adam([p for p in m.parameters() if p.requires_grad], lr=a.lr)
+        p.requires_grad_(n.startswith(trainable))
+    if a.unfreeze_encoder:
+        head_p = [p for n, p in m.named_parameters() if p.requires_grad and n.startswith("outcome_head.")]
+        enc_p = [p for n, p in m.named_parameters() if p.requires_grad and n.startswith("trunk.")]
+        opt = torch.optim.Adam([{"params": head_p, "lr": a.lr},
+                                {"params": enc_p, "lr": a.encoder_lr}])
+    else:
+        opt = torch.optim.Adam([p for p in m.parameters() if p.requires_grad], lr=a.lr)
 
     def load(path):
         arrs, fill, lava, win, var = [], [], [], [], []
@@ -70,7 +83,16 @@ def main():
         return (np.stack(arrs), np.array(fill, np.float32), np.array(lava, np.float32),
                 np.array(win), np.array(var))
 
-    A, FILL, LAVA, WIN, VAR = load(a.variants)
+    # load one or more shards (e.g. multibase + hard-negatives); offset variant ids per
+    # shard so the variant-based val split never mixes shards.
+    As, Fs, Ls, Ws, Vs, off = [], [], [], [], [], 0
+    for path in a.variants:
+        A_, F_, L_, W_, V_ = load(path)
+        As.append(A_); Fs.append(F_); Ls.append(L_); Ws.append(W_)
+        Vs.append(V_ + off); off += int(V_.max()) + 1 if len(V_) else 0
+        print(f"[out]   shard {path}: {len(A_)} pours, {int(W_.sum())} wins", flush=True)
+    A = np.concatenate(As); FILL = np.concatenate(Fs); LAVA = np.concatenate(Ls)
+    WIN = np.concatenate(Ws); VAR = np.concatenate(Vs)
     print(f"[out] {len(A)} variant pours, {int(WIN.sum())} wins, {len(set(VAR.tolist()))} variants", flush=True)
     uniq = sorted(set(VAR.tolist()))
     rng = np.random.default_rng(0); rng.shuffle(uniq)
@@ -85,14 +107,17 @@ def main():
 
     def precompute_enc(arr_np):
         """[N,64,64] int8 -> [N,22,64,64] float16 CPU (single-frame encode incl. Contra
-        planes), computed ONCE (float16 to fit RAM; ~2.8GB for all). Epochs then avoid
-        recomputing connected-components per sample."""
-        encs = []
-        for i in range(len(arr_np)):
-            encs.append(encode(arr_np[i].astype(np.int8)).half())
-            if (i + 1) % 2000 == 0:
-                print(f"[out] precompute enc {i+1}/{len(arr_np)}", flush=True)
-        return torch.stack(encs)  # CPU float16
+        planes), computed ONCE. PREALLOCATE-and-fill (no list-then-stack 2x peak) so 30k+
+        pours fit in RAM. Epochs then avoid recomputing connected-components per sample."""
+        n = len(arr_np)
+        e0 = encode(arr_np[0].astype(np.int8)).half()
+        out = torch.empty((n,) + tuple(e0.shape), dtype=torch.float16)
+        out[0] = e0
+        for i in range(1, n):
+            out[i] = encode(arr_np[i].astype(np.int8)).half()
+            if (i + 1) % 4000 == 0:
+                print(f"[out] precompute enc {i+1}/{n}", flush=True)
+        return out  # CPU float16, single allocation
 
     ENC = precompute_enc(A)
     print(f"[out] precomputed encodings {tuple(ENC.shape)} {ENC.dtype}", flush=True)

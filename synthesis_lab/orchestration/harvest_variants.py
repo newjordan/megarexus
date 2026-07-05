@@ -43,16 +43,19 @@ def main():
     ap.add_argument("--variants", type=int, default=400)
     ap.add_argument("--arr-per", type=int, default=8)
     ap.add_argument("--base-seed", type=int, default=20000)
+    ap.add_argument("--base-levels", default="0", help="comma list of base geometries to cycle (0=src-top,1=src-bottom/rot180,...)")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
+    bases = [int(x) for x in a.base_levels.split(",") if x != ""]
     arc = Arcade(arc_api_key="anonymous",
                  environments_dir=str((_REPO / "environment_files").resolve()),
                  operation_mode=OperationMode.OFFLINE)
     recs, nwin, nvar = [], 0, 0
     for v in range(a.variants):
+        base = bases[v % len(bases)]   # cycle base geometries (rotation inherited from base)
         # per-variant deterministic rng so the outer scan and each per-pour rebuild
         # produce the SAME layout (make_env_variant consumes rng to place objects).
-        env, g = make_env_variant(arc, seed=a.base_seed + v, rng=np.random.default_rng(a.base_seed + v))
+        env, g = make_env_variant(arc, seed=a.base_seed + v, rng=np.random.default_rng(a.base_seed + v), base_level=base)
         if env is None:
             continue
         nvar += 1
@@ -63,7 +66,7 @@ def main():
         for arrangement in cands[:a.arr_per + 3]:
             try:
                 # fresh variant env per pour (rebuild the same layout deterministically)
-                env2, g2 = make_env_variant(arc, seed=a.base_seed + v, rng=np.random.default_rng(a.base_seed + v))
+                env2, g2 = make_env_variant(arc, seed=a.base_seed + v, rng=np.random.default_rng(a.base_seed + v), base_level=base)
                 if env2 is None:
                     break
                 fd = env2.step(ACTION_OF_ID[1]); cur = _grid(fd)

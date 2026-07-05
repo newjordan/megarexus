@@ -36,11 +36,14 @@ def _templates(level):
             "block": one(BLOCK_TAG), "redir": one(REDIR_TAG)}
 
 
-def make_env_variant(arc, seed, rng, n_targets=None, n_blocks=None, rotate=None):
-    """Build an env, replace level 0's sprites with a randomised valid layout, present it.
-    Returns (env, frame) or (None, None) if the layout renders degenerate."""
+def make_env_variant(arc, seed, rng, n_targets=None, n_blocks=None, rotate=None, base_level=0):
+    """Build an env, replace the BASE level's sprites with a randomised valid layout, present
+    it. base_level selects which real level's GEOMETRY/rotation to inherit (0=source-top,
+    1=source-bottom/rotated-180, etc.) — the honest way to cover rotated real-level geometries
+    (NIGHT FINDING 35). Returns (env, frame) or (None, None) if the layout renders degenerate.
+    Target/source placement follows the base's target row so the inherited flow reaches them."""
     env = arc.make(GAME_ID, seed=seed)
-    env.reset(); env._game.set_level(0)
+    env.reset(); env._game.set_level(int(base_level))
     game = env._game
     cl = game.current_level
     tpl = _templates(cl)
@@ -49,8 +52,12 @@ def make_env_variant(arc, seed, rng, n_targets=None, n_blocks=None, rotate=None)
     # remove every existing sprite, then add our randomised set
     for s in list(cl.get_sprites()):
         cl.remove_sprite(s)
-    nt = n_targets or int(rng.integers(2, 4))          # 2-3 targets
-    nb = n_blocks if n_blocks is not None else int(rng.integers(1, 4))  # 1-3 blocks
+    nt = n_targets or int(rng.integers(2, 5))          # 2-4 targets (VISIBLE diversity)
+    nb = n_blocks if n_blocks is not None else int(rng.integers(1, 6))  # 1-5 blocks
+    # NOTE: do NOT vary dojfslwbg (rotation) here — it does NOT rotate the rendered layout,
+    # only the HIDDEN pour-flow rotation, so it gives identical-looking arrangements
+    # different outcomes = contradictory training signal that poisoned real-L1 transfer
+    # (NIGHT FINDING 32). Every outcome-determining factor must be VISIBLE in the frame.
     # targets at bottom row y=13, non-overlapping columns (each ~3 wide on 16-grid)
     tgt_cols = sorted(rng.choice(range(1, 13), size=min(nt, 12), replace=False).tolist())
     tgt_cols = [c for i, c in enumerate(tgt_cols) if all(abs(c - p) >= 3 for p in tgt_cols[:i])]
