@@ -6,6 +6,200 @@ whole-program assessment, an authorized relaunch procedure, and a
 pre-committed decision tree. Read `HANDOFF.md` for standing rules; this file
 tells you what to do next and why.
 
+## 0. Resume execution update (2026-07-03 23:04 CDT)
+
+Stage23/v13 was relaunched twice after clean preflight checks, then stopped
+twice before checkpoint because unrelated GB10 jobs appeared after preflight.
+This is a runtime/provenance update only, not a training result.
+
+- Preflight at `2026-07-03T23:03:25-05:00`: no active Megarexus `train.py`,
+  GB10 had no compute process and 0% GPU util, evidence server
+  `http://127.0.0.1:8765/` returned 200, Stage23 `CONDITION.json`, v12 init
+  checkpoint, all 11 train shards, and all 6 val shards hash-matched.
+- First relaunch wrapper PID `2643869`; actual `train.py` PID `2643873`.
+- First relaunch stop at `2026-07-03T23:05:51-05:00`: `nvidia-smi` showed unrelated
+  `llama-dspark-cache-probe` PID `2643087` as the only compute process,
+  holding GB10 memory/utilization. The Stage23 wrapper process group was
+  terminated (`2643869`, `2643873`, `2643874`); no Megarexus `train.py`
+  remained after stop.
+- Second preflight at `2026-07-03T23:07:08-05:00`: no active Megarexus
+  `train.py`, GB10 had no compute process and 0% GPU util, evidence server
+  returned 200, Stage23 condition, v12 init checkpoint, all 11 train shards,
+  and all 6 val shards hash-matched.
+- Second relaunch wrapper PID: `2647364`; actual `train.py` PID: `2647368`.
+- Second relaunch stop at `2026-07-03T23:09:21-05:00`: `nvidia-smi` showed
+  unrelated DeepSpec Leanstral export PID `2647359` as the only compute
+  process, holding GB10 memory/utilization. The Stage23 wrapper process
+  group was terminated (`2647364`, `2647368`, `2647369`); no Megarexus
+  `train.py` remained after stop.
+- Stage23 `CONDITION.json` status is now
+  `blocked_resource_conflict_before_checkpoint`.
+- Current Stage23 condition sha256 after recording the second stop:
+  `45f68d8c2ad979e6ae9a77379b506e4a911220d229bf151a5eabc5690e39a718`.
+- Log path:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_20260704_train.log`.
+- Boundary: the log is 60 bytes and only has three `[train] device=cuda`
+  startup lines. No v13 output dir, checkpoint, or `history.json` exists.
+  Do not claim any v13 model result. Next valid relaunch requires a fresh
+  clean GB10 preflight after the Leanstral/DeepSpec jobs are gone.
+- Readiness recheck at `2026-07-03T23:17:53-05:00`: GB10 was clear again
+  (`nvidia-smi` showed no compute process) and no Megarexus `train.py` was
+  running. However, the user clarified the real target: fix the missed
+  level-0 goal-lock/target-inventory signal. Do not treat a plain v13
+  relaunch as that fix. v13 remains a recorded model-learning experiment;
+  the goal-lock fix requires Contra training first: extract/validate the level-0
+  completion goal schema, wire it as a goal provider, and only then train a
+  goal head under its own condition.
+- Strict launch-gate recheck at `2026-07-03T23:18:39-05:00`: no Megarexus
+  `train.py`, but `nvidia-smi` again showed a low-memory unrelated
+  `llama-cli` compute process on the GB10. Under the recorded Stage23
+  preflight rule ("no compute process"), do not relaunch yet.
+- Apollo relaunch (user-approved host switch) at `2026-07-03T23:26:18-05:00`:
+  created Apollo-specific condition
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage23_v13_level3_human_mined_apollo_20260704/CONDITION.json`.
+  It records the host/GPU/path change explicitly: Apollo RTX 4080, workspace
+  `/home/frosty/megarexus_train_20260703`, CUDA-capable Python
+  `/home/frosty/Loom/.venv/bin/python` (torch 2.5.1+cu121), same source
+  condition/data/checkpoint/settings otherwise. Condition sha256 after final
+  launch provenance:
+  `691c4148849781f13d7b1b5d7823b8569da2fddb20bdda1d41144aab8a4b7ab3`.
+- Apollo launch details: first Apollo attempt with base
+  `/home/frosty/miniconda3/bin/python3` was stopped immediately because it
+  logged `[train] device=cpu` (CPU-only torch, no checkpoint/history/output
+  dir). Second attempt with `/home/frosty/ARC3-solution/.venv/bin/python`
+  logged `[train] device=cuda` but was stopped before output because torch
+  2.8's `torch.load` default rejected the trusted numpy-containing `.pt`
+  shards. Final active launch uses `/home/frosty/Loom/.venv/bin/python`;
+  wrapper PID `622267`, launcher PID `622272`, train PID `622279`, log
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704_train.log`.
+  Boundary at last check: startup/data-load only, no checkpoint/history yet.
+- Apollo status at `2026-07-03T23:53:38-05:00`: v13 is still active on
+  Apollo train PID `622279`, RTX 4080 allocation about 2964 MiB, and epochs
+  1-5 have checkpointed. Recent fixed-val lines still show level false
+  positives (`fp=8-9`), so do not claim v13 success or key/lock/target
+  mastery before the full gate chain.
+- Stage24 Contra training static review completed while Apollo trained:
+  condition
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage24_goal_schema_extraction_20260704/CONDITION.json`,
+  sha256
+  `ca60e73ad8cb873792d2bcee1418104672ddde52ba565c23f38409e9da97dcdd`.
+  Review page verified at `http://127.0.0.1:8766/index.html` (`200 OK`);
+  raw packet
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage24_goal_schema_extraction_20260704/goal_schema_hypotheses.json`,
+  sha256
+  `e98bc2fee347098de7e077e2611a37e4e2754da409b48dba9ea9e3222c98cb63`.
+  The extractor isolated the reset-free level-0 scoring frames in both
+  Stage20 and Stage14 (`call0005`, 19 scoring frames, reset at frame 19).
+  Both windows agree on two late-filled target candidates
+  (`c0006_v11_00`, `c0007_v11_01`, both fill to raw value 13), one
+  early-changing key candidate opposite the target centroid
+  (`c0005_v09_00`), and one expanding paint-source candidate
+  (`c0004_v06_00`). Boundary: this is static hindsight review, not control
+  truth, not a wired goal provider, not solve evidence, and not Contra
+  training mastery.
+  Next valid Contra training step is to turn these completion-window hypotheses into
+  a recorded hindsight goal-label dataset across all completed levels, then
+  train/evaluate a goal head under its own condition before runtime use.
+
+## 0b. Contra training update (2026-07-04 00:31 CDT)
+
+Stage23/v13 on Apollo is complete and **not promoted**. Local sync:
+`synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704`;
+Apollo condition
+`synthesis_lab/experiments/megarexus_cnn/runs/stage23_v13_level3_human_mined_apollo_20260704/CONDITION.json`
+sha256
+`001520da91c0d9565dcea97c66e2d8149b95039a26d040e0dd7dda57804d92a5`.
+Final epoch 8 fixed-val changed-cell accuracy was `0.9959374822280301`
+with level `141/141` true positives but `7` false positives. Boundary:
+v13 does not solve the key/lock/target requirement and should not replace
+the v12/graph-adaptive live lane.
+
+Contra training has now closed the missing level-0 target-designation loop up to
+recorded-frame evidence:
+
+- **Stage25 goal-label dataset:** built from recorded completion windows,
+  not a simulator. Dataset:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage25_goal_label_dataset_20260704/goal_label_dataset.pt`,
+  sha256
+  `2108bf61fc6bbe0b59ae46f9fee768660470efd74e99a5537d265ed051e3ae17`.
+  Summary: `881` samples, `735` train, `146` val, `62` unique label
+  groups, levels `0->1:707`, `1->2:146`, `2->3:22`, `3->4:6`.
+  Review page verified at `http://127.0.0.1:8767/index.html`.
+- **Stage26 goal head:** additive Contra training head trained from v12 parent
+  `outcome_v14_goal_head_v12parent_20260704/best.pt`, sha256
+  `cae6d8aa3d5ffb3a8aa17281090320b2e9eb2ddc8bfc32f3b1cc00484f104a92`.
+  Best label-val metrics: mean IoU `0.9989463885625204`, target
+  `0.9999203681945801`, key `0.9994872808456421`, source
+  `0.9974315166473389`; unseen-group mean IoU
+  `0.9781931638717651`. Review page verified at
+  `http://127.0.0.1:8768/index.html`.
+- **Stage27 post-level-0 diagnostic:** initial comparison against the later
+  1→2 pre-completion key location failed by design: target IoU
+  `0.97165991902834`, source IoU `1.0`, but key IoU `0.0`. The key mask
+  had `100%` drift between the first stable post-level-0 frame and the
+  later pre-completion frame. Condition sha256
+  `d59c6d63a7f20bff118c891074e173cb0e9d6935aae3dc6666e094dade41e098`.
+  This was the right failure: it proved the current-frame key object cannot
+  be scored against its future moved position.
+- **Stage28b current-frame designation probe:** reran the same recorded live
+  holdout frames with the corrected label space: target locks stay spatial,
+  while key/source raw values are mapped back to their current components in
+  the post-level-0 frame. CPU fallback was used after Stage28 CUDA OOM before
+  result. Condition sha256
+  `5e4a46005e7c9360b0bc768829de057be0d73dc44afc8ee746cd32c2191486a6`.
+  Review page verified at `http://127.0.0.1:8769/index.html`; result
+  sha256
+  `9e675412b9dd3db0461a091e087482605d970ffc73192bdcaa826aa2fa4a0c58`.
+  Result: `2/2` live post-level-0 cases passed; mean IoU
+  `0.9772199730094466`, target-lock mean IoU `0.97165991902834`,
+  current-key mean IoU `0.96`, paint-source mean IoU `1.0`.
+
+Boundary after Stage28b: Contra training can designate the current-frame target
+locks, current key block, and source immediately after level 0 on the two
+recorded live holdout post-level-0 frames. This is **not** live solve
+evidence and **not** runtime wiring evidence. Next valid work is to wire
+the goal-head/schema provider into `megarexus_live_policy.py` so the action
+system consumes the target inventory before arranging/pouring, then run the
+same-path adapter gate. Do not call the project complete until that runtime
+provider is verified.
+
+Stage29/29b then added and smoke-tested the runtime provider path. Code
+changes:
+
+- `megarexus_live_policy.py` now compatible-loads old checkpoints after the
+  additive goal head and exposes opt-in `MEGAREXUS_GOAL_PROVIDER=1`.
+- With the provider enabled, each level >= 1 frame emits a current-frame
+  schema: target-lock components, current key component, paint source, mask
+  pixels, and threshold.
+- `MEGAREXUS_GOAL_POUR_BUDGET=1` derives the pour cap from the current
+  target count and records `goal_target_count`, `pour_cap`, and `goal_schema`
+  on arrange-pour ledger rows.
+- Generic arrange planning seeds the movable roster with the detected
+  current key component when the graph-template path is not taking over.
+  In the current graph-template path, the schema is still attached to plan
+  summaries and pour rows; the graph roster already includes the key-like
+  components in the replayed level-1 scene.
+
+Stage29 replay showed the wiring worked but the first target-count summary
+included small prediction islands. It is retained as a diagnostic:
+condition sha256
+`65d1a0b5774c29adbd4d413e3e579a6c4d180e975b4cfa3adff794bbd1cdf231`.
+Stage29b tightened target component counting to mask islands >= 32 pixels
+and passed the saved-frame replay wiring smoke. Condition sha256
+`fbbc5f5911a2dc6f820f5e77057f6f3b5c774a748849d4b8c66fa737ad309c7a`;
+review page verified at `http://127.0.0.1:8770/index.html`; raw report
+sha256
+`f332a9364fd58f9eb950454b8076eafbe3c6d68d70f42adb16935596521af082`.
+Result across both live frame archives: `13` provider updates per episode,
+first level-1 target count `3`, latest target count `3`, plan summaries
+carry `goal_schema`, and the level-1 arrange pour records
+`goal_target_count=3` and `pour_cap=3`.
+
+Boundary after Stage29b: runtime wiring is smoke-verified on saved frames,
+not environment-gated. Next valid step is a same-path offline adapter gate
+with `MEGAREXUS_GOAL_PROVIDER=1`, `MEGAREXUS_GOAL_POUR_BUDGET=1`, v14
+checkpoint, paired random baseline, and review page before any live scout.
+
 ## 1. Program state and trajectory
 
 Live evidence is genuinely monotonic across the program's three live scouts,
@@ -132,7 +326,7 @@ corpus (human demos to level 4+, both live runs' transition records, the 8
 Stage22b trajectories) is a free hindsight goal label. Nobody has extracted
 it yet.
 
-Lane C (goal-signal linkage), in order of cost:
+Contra training (goal-signal linkage), in order of cost:
 
 1. **Re-probe with ground truth (read-only, can run DURING v13 training —
    no GPU/resource conflict):** run `antisymmetric_relationship_hypotheses`
@@ -157,7 +351,7 @@ Lane C (goal-signal linkage), in order of cost:
    predicted paint reaches the identified lock. This is Contra informing
    action selection plus LeWM/Rex verification — the same boundary as the
    graph-adaptive policy.
-3. **Train the goal head (hindsight-labeled, a proper future condition):**
+3. **Train the Contra goal head (hindsight-labeled, a proper future condition):**
    extract the goal labels from every completed level already in the corpus
    (env fields + pixels in hindsight — legal label source; zero new
    collection needed) and train a head to recognize the key-to-opposite-
@@ -292,18 +486,146 @@ No live scorecard from training metrics alone, ever.
   score is achieved; gate on wasted-pour count, not only levels reached.
   Per section 2b, the pour count should ultimately be set by the lock/key
   goal signal, not by a heuristic stopping rule.
-- **Lane C step 1 is immediately actionable and free:** re-probe the
-  lock/key seeker over the Stage20/Stage14 captured frames while v13
-  trains (read-only, CPU). The 2026-07-01 0/80 negative is stale and was
-  not testing the specific key-block/U-target hypothesis. Validate against
-  the level-0 ground truth (Stage20 frame record 5, the 0→1 scoring
-  animation) rather than eyeballing.
-- **Extract the hindsight goal-label dataset:** walk every completed level
-  in the corpus (human demo episodes, live transition records — Stage20
-  records 5/15/26 — and the 8 Stage22b trajectories) and emit
-  (pre-completion frame → lock/target count and positions, scored target,
-  key block, paint sources) tuples. Lock inventory is the label that
-  matters; pour history is incidental. This is the training set for the
-  Lane C goal head and it requires no new collection.
+- **Contra training provider-enabled offline adapter gate is now closed:** Stage24/25/26/28b
+  closed the static extraction, dataset, trained goal head, and post-level-0
+  current-object designation probes; Stage29b smoke-verified runtime wiring
+  on saved frames; Stage30 smoke-verified the provider-enabled same-path
+  adapter gate; Stage31 passed the full 10-seed provider-enabled same-path
+  adapter gate. This is local offline evidence, not a live scorecard. The
+  next missing piece is a one-scorecard live scout with the provider enabled,
+  only after a fresh release/live condition is recorded.
 - Verify from the Stage22b captured frames whether the 8 kept human-mined
   trajectories use the wall-adjacent arrangement described in section 2.
+
+## 9. Stage30/31 update — Contra training after level 0 (2026-07-04)
+
+The missed critical element has been addressed in the current lane: level 0
+is treated as the target-solution reveal that defines the goal schema for
+subsequent levels. The trained additive goal head designates three channels
+from the current frame after level 0: `target_lock`, `key_block`, and
+`paint_source`. Runtime wiring exposes that schema through
+`megarexus_live_policy.py` with `MEGAREXUS_GOAL_PROVIDER=1`, and the adapter
+gate now records provider updates, target counts, frame provenance, and
+pour-budget checks.
+
+Stage30 smoke:
+
+- Run dir:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage30_goal_provider_adapter_smoke_20260704`
+- Review page: `http://127.0.0.1:8771/index.html` (verified `200 OK`,
+  browser screenshot saved as `review_screenshot.png`)
+- Result: `PASS`, model `1/1`, paired random `0/1`, target levels `2`
+- Model episode: seed `20280001`, levels_completed `3`, actions `120`,
+  provider enabled, pour budget enabled, provider updates `115`, latest
+  target count `3`, all adapter/provider checks true
+- Hashes: `adapter_gate.json`
+  `d5e4bc09eeac74eecd8c6ed25d7d18c3e170d3f182fc43c72189f9479f02d708`;
+  `CONDITION.json`
+  `c8656210dc35daf1934f65f9e771f834024fd82917ad84105d5c97c870a3476c`;
+  `index.html`
+  `cb2dc2185a4fb017597d755b1c9bb22118fc535baaac84a0a930abd48804a3b4`
+
+Stage31 full provider gate:
+
+- Run dir:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage31_goal_provider_adapter_gate_20260704`
+- Review page: `http://127.0.0.1:8772/index.html` (verified `200 OK`,
+  browser screenshot saved as `review_screenshot.png`)
+- Condition: local offline adapter gate through the same `run_game` path used
+  by the live scout; target `levels_completed >= 2`; provider enabled;
+  provider pour budget enabled; threshold `0.5`; `CUDA_VISIBLE_DEVICES=`;
+  paired random baseline; seeds `20280001..20280010`; `max_actions=120`
+- Result: `PASS`, model `10/10`, paired random `0/10`
+- Model evidence: every model episode reached levels_completed `3`; every
+  episode reported provider enabled, pour budget enabled, provider updates
+  `115`, latest target count `3`; every episode passed
+  `levels_ge_2`, `levels_ge_target`, `zero_policy_errors`,
+  `no_frames_fallback`, `no_pour_loop`, `pour_budget_respected`, and
+  `all_pours_confident`
+- Random baseline levels_completed were `[0, 0, 1, 0, 0, 0, 0, 0, 0, 1]`
+- Hashes: `adapter_gate.json`
+  `4c68d7f7a9349a75b4f853647362bb1ea33d2b62354eb06a4a2dc7377daf9fac`;
+  `CONDITION.json`
+  `5560178f4c55064fd00b4c3bfb8d58d335f1cc119477486f21359ef30f57753f`;
+  `index.html`
+  `56f3f5fab57268706661bfab0d6cc5730f96cfddf42b0b6b8d6f1a2309f7bf96`;
+  review screenshot
+  `40e2cae5686fe5c9cafda14e197d5c61c90457f17dcfd2b63b8e54237db23167`
+
+Boundary: Stage31 proves the Contra training provider can be used by the same-path
+offline adapter gate after level 0 to designate target/key/source information
+and constrain pours. It does not prove live ARCPrize scorecard performance,
+does not prove level-4 completion, and is not a release claim.
+
+Stage32 live scorecard is now complete from that recorded condition:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage32_live_scout_v14_goal_provider_20260704/CONDITION.json`,
+sha256
+`53df6a85985e98eef50fc59641c20d7fb76f4ce10511529469e3baf1609e0fec`.
+Run dir:
+`codexlab/runs/arc_live_sp80_contra_training_v14_goal_provider_20260704T060248Z`.
+Review page verified `200 OK`: `http://127.0.0.1:8773/index.html`.
+Closed SDK scorecard `666f929b-d875-49a9-9034-f83030411c7d`, score
+`28.57142857142857`, levels_completed `3`, actions `497`, resets `3`,
+policy_error_count `0`. Contra training provider enabled, provider updates
+`492` across levels `1,2,3`, latest target count `3`, frame fallback `0`,
+captured calls `497`, and all goal-budget ledger rows use
+`goal_target_count=3` / `pour_cap=3`.
+
+## 10. Minimal completion audit (2026-07-04)
+
+- Contra training is trained and offline-verified for key/lock/target after
+  level 0: Stage26 best checkpoint, Stage28b recorded-frame probe, and
+  Stage31 provider-enabled same-path adapter gate are the controlling
+  evidence.
+- Stage32 supplies the missing live scorecard evidence: the Contra training
+  provider was enabled and designated target/key/source after level 0 during
+  a controlled live run that reached levels_completed `3` with zero policy
+  errors.
+- The user goal for key/lock/target designation after level 0 is complete.
+  Boundary: this is not a level-4 completion claim and not a broader release
+  claim.
+- Keep this lane named **Contra training** in handoff/reporting.
+
+## 11. Paint-output correction (2026-07-04)
+
+Stage32 is still a legal closed-SDK live scorecard (`28.57142857142857`,
+levels_completed `3`), but it is not public/ranked ARCPrize submission
+evidence. Its frame audit exposed the missed critical element: the old
+provider treated channel 2 as one `paint_source`, while level 3 has two
+paint-color output blocks. From here, Contra training uses
+`paint_output`: every small block of the paint color is a paint output.
+
+- Stage33 rebuilt the goal-label dataset with channels
+  `target_lock`, `key_block`, `paint_output`. Dataset:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage33_paint_output_label_dataset_20260704/goal_label_dataset.pt`,
+  sha256
+  `20937e2e57eab0dbf1d39917952b5d9a74c4bcff4398b9731b150a15c6da0c79`.
+  Coverage: `917` samples; paint-output counts `{1: 877, 2: 6, 3: 34}`.
+- Stage34 trained the replacement goal head from the v12 parent. Best
+  checkpoint:
+  `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v15_paint_output_goal_head_v12parent_20260704/best.pt`,
+  sha256
+  `756b37cadba53e2798da7bfc631da16652d579c48abe185f69f82c0b0140f064`.
+  Label-val mean IoU `0.8665396571159363`; paint-output IoU
+  `0.6003924012184143`, recall `1.0`, precision `0.6003924012184143`.
+- Stage35 focused probe:
+  `synthesis_lab/experiments/megarexus_cnn/runs/stage35_paint_output_multi_spout_probe_20260704/index.html`.
+  The raw mask counted the 3-output validation cases correctly, but on the
+  actual Stage32 level-3 two-output frames it only seeded one visible raw-4
+  paint block. `megarexus_live_policy.py` now expands a detected
+  paint-output seed to all small same-color paint blocks. Provider probe
+  `provider_expansion_probe.json` sha256
+  `4ff12914120d432c5752b0c8612704c6d2283394b809c195f3d598d0ce955e2b`
+  reports both raw-4 outputs on Stage32 calls `26` through `31`.
+
+Boundary: Stage35 is local training/provider evidence, not a new live
+scorecard. The next live condition must use the v15 paint-output checkpoint
+and the same-color provider expansion.
+
+Stage36 human solution hint: the user supplied an annotated level-3 image:
+`synthesis_lab/experiments/megarexus_cnn/runs/stage36_human_solution_verticals_review_20260704/QDTOJK0.png`,
+sha256
+`c00282a527013616c6aa7b45a651ad4ef8b4094cd6d8b91e750938b505ed1a74`.
+Read it as a human-supplied hypothesis, not controlled action evidence:
+level 3 is about controlling verticals; the mechanism is triple catch plus
+double paint. Next Contra training target is vertical catch-routing/control.

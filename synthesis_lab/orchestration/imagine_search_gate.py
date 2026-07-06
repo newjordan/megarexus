@@ -205,7 +205,11 @@ def win_score(initial, settled):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--ckpt", required=True)
+    ap.add_argument("--ckpt", required=False)
+    ap.add_argument("--sim3d", action="store_true",
+                    help="S6: use the sim3d hydraulic pour simulator as the imaginer lane "
+                         "(hand-coded, no ckpt; the validated ranker) instead of the neural CNN")
+    ap.add_argument("--sim3d-lane", default="stream", choices=["stream", "particle"])
     ap.add_argument("--levels", default="0")
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--max-comps", type=int, default=3)
@@ -216,14 +220,25 @@ def main():
     ap.add_argument("--ca", action="store_true", help="roll out with the A2 Neural-CA spill head")
     ap.add_argument("--oneshot", action="store_true", help="A3/B one-shot settled prediction (no rollout)")
     a = ap.parse_args()
+    if not a.sim3d and not a.ckpt:
+        ap.error("--ckpt is required unless --sim3d is given")
     dev = a.device or ("cuda" if torch.cuda.is_available() else "cpu")
     mags = [int(x) for x in a.per_comp_moves.split(",") if x != ""]
-    im = Imaginer(a.ckpt, dev, ca=a.ca, oneshot=a.oneshot)
+    sim3d_pour = None
+    sim3d_render = None
+    if a.sim3d:
+        sys.path.insert(0, str(Path(__file__).resolve().parent / "sim3d"))
+        from pour3d import imagine_pour as sim3d_pour  # noqa: E402
+        from metrics import render_frames as sim3d_render  # noqa: E402
+        im = None
+    else:
+        im = Imaginer(a.ckpt, dev, ca=a.ca, oneshot=a.oneshot)
     arcade = Arcade(arc_api_key="anonymous",
                     environments_dir=str((_REPO / "environment_files").resolve()),
                     operation_mode=OperationMode.OFFLINE)
     levels = [int(x) for x in a.levels.split(",") if x != ""]
-    print(f"[isg] ckpt={a.ckpt} dev={dev} stack={im.stack}", flush=True)
+    tag = f"sim3d:{a.sim3d_lane}" if a.sim3d else f"ckpt={a.ckpt} stack={im.stack}"
+    print(f"[isg] imaginer={tag} dev={dev}", flush=True)
     for level in levels:
         pairs = []           # (imagined_win_bool, real_win_bool)
         pm_im, pm_re = [], []  # imagined / real settled paint mass (Stage-A1 secondary metric)
@@ -243,8 +258,15 @@ def main():
                 fdi, arr, arr_prev = _apply_real(env_i, fdi, curi, arrangement)
                 if not game_live(fdi):
                     continue
-                imagined = im.imagine_pour(arr, arr_prev)
-                iw = win_score(initial, imagined)["win"]
+                if a.sim3d:
+                    out = sim3d_pour(arr, lane=a.sim3d_lane)
+                    iw = out["margin"] > 0
+                    # rendered settled frame for the A1 paint-mass secondary metric
+                    rf = sim3d_render(out["scene"], out["result"]["snapshots"], per_cell=1.0)
+                    imagined = rf[-1] if len(rf) else arr
+                else:
+                    imagined = im.imagine_pour(arr, arr_prev)
+                    iw = win_score(initial, imagined)["win"]
                 # real outcome: reset, same arrangement, real pour
                 env_r = arcade.make(GAME_ID, seed=s)
                 fdr, curr = _present(env_r, level)

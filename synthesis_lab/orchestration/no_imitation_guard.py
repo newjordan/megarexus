@@ -32,6 +32,15 @@ KNOWN_CONTAMINATED_MARKERS = (
     "outcome_v15_paint_output_goal_head_v12parent_20260704",
 )
 
+# Reward-hack artifacts: hardcoded win conditions / privileged engine-state
+# solvers. Quarantined 2026-07-04; never a policy, planner, or label source.
+REWARD_HACK_MARKERS = (
+    "sp80_spill_model",
+    "spill_planner",
+    "spillplannerbrain",
+    "sp80_frame_spill_perception",
+)
+
 
 @dataclass(frozen=True)
 class LineageViolation:
@@ -62,7 +71,7 @@ def _iter_strings(value: Any, context: str) -> Iterable[tuple[str, str]]:
 
 
 def find_banned_lineage(*values: Any, context: str = "input") -> list[LineageViolation]:
-    markers = BANNED_LINEAGE_MARKERS + KNOWN_CONTAMINATED_MARKERS
+    markers = BANNED_LINEAGE_MARKERS + KNOWN_CONTAMINATED_MARKERS + REWARD_HACK_MARKERS
     violations: list[LineageViolation] = []
     for idx, value in enumerate(values):
         root = f"{context}[{idx}]" if len(values) > 1 else context
