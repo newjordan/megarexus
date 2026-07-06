@@ -141,7 +141,7 @@ def main():
     fd, c0 = _present(env, a.level)
     if a.genome_json:
         genome = [tuple(x) for x in json.load(open(a.genome_json))["genome"]]
-        centers = [(int(c["center_xy"][0]), int(c["center_xy"][1])) for c in frame_components(c0)[:8]]
+        centers = [(int(c["center_xy"][0]), int(c["center_xy"][1])) for c in frame_components(c0)[:10]]
         for (aid, x, y) in actions(genome, centers):
             if not game_live(fd):
                 break
