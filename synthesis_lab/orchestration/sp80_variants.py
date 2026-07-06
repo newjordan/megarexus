@@ -24,7 +24,13 @@ SRC_TAG = "sowlljgtjvn"      # source
 TGT_TAG = "repwkzbkhxl"      # U-target
 WALL_TAG = "waoewejnqzc"     # wall bar
 BLOCK_TAG = "plzwjbfyfli"    # movable split block
-REDIR_TAG = "liolfvkveqg"    # redirect block
+REDIR_TAG = "tuvkdkhdokr"    # redirect block (P1 fix 2026-07-06: was "liolfvkveqg", the PAINT
+                             # DROPLET — a mislabel; the real 90°-deflect redirect is
+                             # tuvkdkhdokr (game L787-803, memory megarexus-sp80-mechanic). Only
+                             # affects tpl["redir"], which the single-source path never places, so
+                             # single-source variants / S2 are unchanged; it is used only by the
+                             # new redirect family below.
+REDIR_LEVELS = (4, 5)        # base levels that actually carry a tuvkdkhdokr template
 
 
 def _templates(level):
@@ -36,12 +42,21 @@ def _templates(level):
             "block": one(BLOCK_TAG), "redir": one(REDIR_TAG)}
 
 
-def make_env_variant(arc, seed, rng, n_targets=None, n_blocks=None, rotate=None, base_level=0):
+def make_env_variant(arc, seed, rng, n_targets=None, n_blocks=None, rotate=None, base_level=0,
+                     n_sources=None, with_redirect=False):
     """Build an env, replace the BASE level's sprites with a randomised valid layout, present
     it. base_level selects which real level's GEOMETRY/rotation to inherit (0=source-top,
     1=source-bottom/rotated-180, etc.) — the honest way to cover rotated real-level geometries
     (NIGHT FINDING 35). Returns (env, frame) or (None, None) if the layout renders degenerate.
-    Target/source placement follows the base's target row so the inherited flow reaches them."""
+    Target/source placement follows the base's target row so the inherited flow reaches them.
+
+    P1 (2026-07-06) v2 families — the multi-source/redirect coverage v1 lacked (doc §1):
+      n_sources    : None (default) = the byte-identical single-source path (S2 unchanged);
+                     int >=2 = the MULTI-SOURCE family (2-3 spaced source blobs -> distinct
+                     spouts, L2/L4-like — the P0 overfit antidote).
+      with_redirect: True places one real redirect (tuvkdkhdokr) in the middle — the TRUE-
+                     REDIRECT family (base_level in REDIR_LEVELS so the template exists).
+    Both new branches draw from `rng` ONLY when engaged, so the default path is unchanged."""
     env = arc.make(GAME_ID, seed=seed)
     env.reset(); env._game.set_level(int(base_level))
     game = env._game
@@ -66,9 +81,28 @@ def make_env_variant(arc, seed, rng, n_targets=None, n_blocks=None, rotate=None,
         cl.add_sprite(tpl["tgt"].clone().set_position(int(c), 13))
         for dx in range(-1, 2):
             occupied.add((c + dx, 13))
-    # source at top row y=0, random column
-    sx = int(rng.integers(1, 15))
-    cl.add_sprite(tpl["src"].clone().set_position(sx, 0))
+    # source(s) at top row y=0. Single-source path (default) is byte-identical.
+    if n_sources is None:
+        sx = int(rng.integers(1, 15))
+        cl.add_sprite(tpl["src"].clone().set_position(sx, 0))
+    else:                                          # MULTI-SOURCE family (L2/L4-like)
+        # Anchor sources ABOVE target columns (one per target, small jitter) so boards are
+        # WINNABLE-but-routed: a straight/near-straight drop can fill each mouth, while blocks
+        # and arrangements create the flood/miss losses. Pure-random source columns give a
+        # 0% win rate (multi-source win is a needle, like real L2) -> no positive class to
+        # gate recall/precision on. Jitter spans easy(aligned)->routed(offset), covering the
+        # L2 geometry where sources sit 1-2 cols off their mouths.
+        ns = min(int(n_sources), len(tgt_cols))
+        pick = sorted(rng.choice(len(tgt_cols), size=ns, replace=False).tolist())
+        src_cols = []
+        for ti in pick:
+            c = int(min(14, max(1, tgt_cols[ti] + int(rng.integers(-1, 2)))))
+            if all(abs(c - u) >= 2 for u in src_cols):   # spacing -> distinct spouts
+                src_cols.append(c)
+            elif all(abs(tgt_cols[ti] - u) >= 2 for u in src_cols):
+                src_cols.append(int(tgt_cols[ti]))
+        for c in sorted(set(src_cols)):
+            cl.add_sprite(tpl["src"].clone().set_position(int(c), 0))
     # blocks scattered in the middle (rows 3..11), avoiding source column and target span
     if tpl["block"] is not None:
         placed = 0
@@ -80,6 +114,13 @@ def make_env_variant(arc, seed, rng, n_targets=None, n_blocks=None, rotate=None,
                 continue
             cl.add_sprite(tpl["block"].clone().set_position(bx, by))
             occupied.add((bx, by)); placed += 1
+    # TRUE-REDIRECT family: one real 90°-deflect block in the middle (game L787-803)
+    if with_redirect and tpl["redir"] is not None:
+        for _ in range(8):
+            rx, ry = int(rng.integers(1, 15)), int(rng.integers(3, 12))
+            if (rx, ry) not in occupied:
+                cl.add_sprite(tpl["redir"].clone().set_position(rx, ry))
+                occupied.add((rx, ry)); break
     cl.add_sprite(tpl["wall"].clone().set_position(0, 15))
     game.on_set_level(cl)
     fd = env.step(ACTION_OF_ID[1])

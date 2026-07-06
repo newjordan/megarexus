@@ -1,0 +1,44 @@
+{
+ "phase": "P1 — variants v2 + multi-source generalization gate (S2-MS)",
+ "date": "2026-07-06",
+ "regime_doc": "TRAINING_REGIME_20260706_L2_FRONTIER.md §2 P1 / §4",
+ "honesty_audit": "exit 0 — 97/46/6, active 85/23 (no new flags)",
+ "t0_five_untouched": true,
+ "s0_after_change": "PASS (stream) — single-source byte-identical (floor_spill_multisource affects len(spouts)>1 only)",
+ "changes": {
+  "sp80_variants.py": "REDIR_TAG liolfvkveqg->tuvkdkhdokr (was the paint droplet); added n_sources (multi-source family, sources anchored above target cols +/-1 jitter -> winnable-but-routed) and with_redirect (true-redirect family, tuvkdkhdokr). Single-source path byte-identical (new branches draw rng only when engaged).",
+  "raycast.py": "HydroParams.floor_spill_multisource=True (default): floor-gated ledge spill now runs on multi-source too — safe post-latch (fills credited on entry, not by pool drainage) — to model multi-source overshoot floods the sim was missing."
+ },
+ "corpus": {
+  "single_source_unchanged_check": "s2_ssverify_20260706.npz (post-edit) vs s2_p0verify_20260706.npz (pre-edit): pre-frames identical, sim_margin max|delta|=0, n=1187, wins=14, win_sign 0.994945, AUC 0.997442 — IDENTICAL.",
+  "multi_source": "s2ms_variants_ms2_20260706.npz (n_sources=2, 1439 pours) + s2ms_variants_ms3_20260706.npz (n_sources=3, 2566 pours) = 4005 multi-source pours, 189 env wins."
+ },
+ "GATE_P1_S2MS": {
+  "criterion": "on >=2000 multi-source variant pours: win-sign >=0.95, recall >=0.95, precision >=0.70, AND single-source S2 unchanged",
+  "n_pours": 4005,
+  "env_wins": 189,
+  "single_source_unchanged": "PASS (bit-identical, above)",
+  "with_floor_spill_multisource_TRUE_adopted": {
+   "win_sign": 0.977, "recall": 1.000, "precision": 0.675,
+   "confusion": "TP=189 FP=91 FN=0", "argmax_at1_boards": "note: measured pre-adopt at 57/63"
+  },
+  "without_floor_spill_multisource_baseline": {
+   "win_sign": 0.9668, "recall": 1.000, "precision": 0.587, "confusion": "TP=189 FP=133 FN=0"
+  },
+  "sub_gates": {"win_sign>=0.95": "PASS (0.977)", "recall>=0.95": "PASS (1.000)",
+                "precision>=0.70": "FAIL (0.675 — narrow miss)", "single_source_unchanged": "PASS"},
+  "VERDICT": "3 of 4 PASS; precision 0.675 narrowly below 0.70"
+ },
+ "diagnosis": {
+  "recall_1.0": "the multi-source sim NEVER discards a true winner — a perfect FILTER.",
+  "precision_gap": "129/133 (97%) of the false-positive wins are FLOODS: the env floods the floor (real_lava~254, whole strip) but the sim declares a clean win. True winners never flood (TP lava=0).",
+  "root_cause": "residual ~15% UNDER-EMISSION (P0 fix (c), not done): sim emits ~46 macro cells vs real ~54, so it under-produces the overflow that reaches the floor -> misses the flood -> false clean-win. floor_spill_multisource routes the overflow it DOES have (0.587->0.675) but can't invent the missing ~8 cells.",
+  "not_a_new_heuristic": "floor_spill_multisource re-applies the single-source-validated floor-gated spill, unblocked by the enclosed-entry latch. The remaining gap is emission VOLUME calibration, a distinct sub-cause — per the P0 stop-rule, written up and escalated rather than stacked."
+ },
+ "p0_gates_re_verified_with_flag_on": {
+  "S0": "PASS (single-source unaffected)", "P0.2_fill_agreement": "0.935 (unchanged)",
+  "P0.4_false_positive_wins_200arr": "0 (PASS)", "P0.3_tick_match": "12-14 on 6/6 (PASS)"
+ },
+ "next_decision_escalated": "precision bar not met. Either (a) EMISSION CALIBRATION (P0 fix c): measure real per-source emission on L2 pours, fix the sim's early emission stop so it emits ~54 and detects the floods -> should close 0.675->>=0.70; or (b) proceed to P2 treating the sim as a RECALL-1.0 filter (env grades top-K anyway; precision 0.675 ~1.5x candidates poured). User decision.",
+ "headline": "unchanged — 2 levels (L0 CNN-alone, L1 sim-guided SOLVED@1)."
+}

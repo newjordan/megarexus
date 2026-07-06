@@ -35,6 +35,14 @@ class HydroParams:
     max_ticks: int = 300
     settle_grace: int = 6          # quiet ticks (nothing moved) before stopping
     backpressure_cap: float = 2.0  # spout stacks past this*cap -> emission pauses (2.0 = validated)
+    floor_spill_multisource: bool = True  # P1 (2026-07-06): allow floor-gated ledge spill on
+                                   # MULTI-source too. It was single-source-only because pre-latch
+                                   # it suppressed mouth fills; the enclosed-entry latch now credits
+                                   # fills on entry (independent of pool drainage), so floor-spill
+                                   # can model multi-source overshoot floods without eating fills —
+                                   # the fix for the S2-MS precision FPs (129/133 = env floods the
+                                   # sim misses). Default True (S2-MS: precision 0.587->0.675,
+                                   # recall 1.0 unchanged; P0 multi-source gates re-verified intact).
     ledge_spill_floor: bool = True  # S1 iter2 (ADOPTED 2026-07-06): a bar-lip pool dribbles
                                    # over an open ledge AT REST *only when the straight drop
                                    # below reaches the FLOOR strip* (not a mouth). Targets the
@@ -69,7 +77,7 @@ class HydraulicSim:
         # levels (L2/L4) it cascades the combined flow to the wall too early (over-floods,
         # suppressing mouth fills). Gate it to single-source; multi-source keeps only the
         # basic settled-on-floor lava detection. Single-source path stays byte-identical.
-        floor_spill_active = p.ledge_spill_floor and len(spouts) == 1
+        floor_spill_active = p.ledge_spill_floor and (len(spouts) == 1 or p.floor_spill_multisource)
         floor_set = set(sc.floor_rows)
         # Enclosed-entry mouth fill (game source L775, multi-source fidelity fix 2026-07-06):
         # the game recolours the WHOLE target to 13 the tick a droplet ENTERS a mouth cell

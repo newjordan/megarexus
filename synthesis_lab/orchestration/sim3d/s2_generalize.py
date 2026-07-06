@@ -95,8 +95,19 @@ def main():
     ap.add_argument("--r", type=int, default=3)
     ap.add_argument("--ledge-spill-floor", action="store_true",
                     help="S1 iter2: HydroParams.ledge_spill_floor (floor-gated bar-lip cascade)")
+    ap.add_argument("--n-sources", type=int, default=None,
+                    help="P1 v2 MULTI-SOURCE family: >=2 spaced sources (default None = single-source)")
+    ap.add_argument("--with-redirect", action="store_true",
+                    help="P1 v2 TRUE-REDIRECT family: place a tuvkdkhdokr block (use --bases 4,5)")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
+
+    # v2 families draw from rng only when engaged, so single-source runs stay byte-identical.
+    vkw = {}
+    if a.n_sources is not None:
+        vkw["n_sources"] = a.n_sources
+    if a.with_redirect:
+        vkw["with_redirect"] = True
 
     from raycast import HydroParams
     sim_params = (HydroParams(ledge_spill_floor=True)
@@ -112,7 +123,7 @@ def main():
         base = bases[v % len(bases)]
         seed = a.base_seed + v
         env, g = make_env_variant(arc, seed=seed,
-                                  rng=np.random.default_rng(seed), base_level=base)
+                                  rng=np.random.default_rng(seed), base_level=base, **vkw)
         if env is None:
             continue
         nvar += 1
@@ -125,7 +136,7 @@ def main():
             arrangement = cands[int(ai)]
             try:
                 env2, g2 = make_env_variant(arc, seed=seed,
-                                            rng=np.random.default_rng(seed), base_level=base)
+                                            rng=np.random.default_rng(seed), base_level=base, **vkw)
                 if env2 is None:
                     break
                 fd = env2.step(ACTION_OF_ID[1]); cur = _grid(fd)
