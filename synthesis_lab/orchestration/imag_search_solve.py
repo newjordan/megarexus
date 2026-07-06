@@ -79,6 +79,7 @@ def main():
     ap.add_argument("--topk", type=int, default=4)        # real confirmation pours (budget)
     ap.add_argument("--lam", type=float, default=1.0)
     ap.add_argument("--max-genes", type=int, default=8)
+    ap.add_argument("--diverse", action="store_true", help="pour best-per-restart (diverse) instead of global top-K")
     ap.add_argument("--device", default=None)
     a = ap.parse_args()
     dev = a.device or ("cuda" if torch.cuda.is_available() else "cpu")
@@ -117,17 +118,29 @@ def main():
                 s = v.score_frame(cff)
                 if s > cs:
                     cur, cs = cand, s
-            found.append((cs, cur))
-        # distinct top-K by imagined score, pour for real
+            found.append((cs, cur, r))
         found.sort(key=lambda x: -x[0])
-        seen, topk = set(), []
-        for s, g in found:
-            key = tuple(sorted(g))
-            if key in seen:
-                continue
-            seen.add(key); topk.append((s, g))
-            if len(topk) >= a.topk:
-                break
+        if a.diverse:
+            # DIVERSITY: pour the best from DISTINCT restart regions (independent hill-climbs
+            # explore different basins) so the K real pours cover different arrangements — the
+            # true winner (ranked top-3% by v52) is likely among diverse high-scorers even if
+            # the global argmax is a false positive (NIGHT FINDING 40).
+            seen_r, topk = set(), []
+            for s, g, r in found:
+                if r in seen_r:
+                    continue
+                seen_r.add(r); topk.append((s, g))
+                if len(topk) >= a.topk:
+                    break
+        else:
+            seen, topk = set(), []
+            for s, g, r in found:
+                key = tuple(sorted(g))
+                if key in seen:
+                    continue
+                seen.add(key); topk.append((s, g))
+                if len(topk) >= a.topk:
+                    break
         solved_at = None
         for rank, (s, g) in enumerate(topk):
             if real_win(arc, a.seed, level, g, centers):

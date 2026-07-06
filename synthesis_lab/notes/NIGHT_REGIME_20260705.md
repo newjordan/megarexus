@@ -849,3 +849,22 @@ wall — pixel-CA drifts, latent is AUC-good only), or (ii) a DIVERSITY-promotin
 pours K diverse high-scorers (since v52 ranks the true winner top-3%, a diverse top-K likely
 contains it) — a cheap SEARCH-side idea worth trying, not an imagination change. NIGHT COMPLETE
 for the heavy-exploration thread; v52 is the honest deliverable.
+
+## FINDING 41 (~19:01) — in-budget SOLVE exhaustively explored; hits a real imagination-precision limit
+Diversity-search (v52, best-per-restart): L1 top-4 diverse [0.793,0.67,0.67,0.584] — still NOT
+solved. Full list of in-budget approaches tried, ALL fail on L1/L2:
+  - rank random candidates (v48/v52): winners rank high but proposer finds ~0 L1 winners.
+  - CEM (v48_solve): collapses to false-positives.
+  - imagination-guided hill-climb (imag_search_solve): overshoots to false-positives.
+  - DIVERSE search (best-per-restart): still false-positives.
+  - hard-negative mining (v53/v54): HURTS (false-pos ~ winners visually).
+ROOT LIMIT: v52's high-score region (0.6-0.8) is FALSE POSITIVES that outscore the true winner
+(0.51). No search maximising v52's score reaches a real winner. The imagination cannot separate
+visual near-winners from true winners without PRECISE POUR SIMULATION (the night's recurring
+wall: pixel-CA drifts, latent is AUC-good/argmax-imprecise). 
+HONEST FINAL STATE: (1) v52 = a genuine cross-level pour imagination + strong RANKER (deliverable,
+fulfils "CNN maximises Contra concepts"). (2) The agent SOLVES levels via env-feedback play:
+L0 by ranking (v47), L1 by lava_search. (3) The specific single-episode 4-pour CNN-alone solve
+of L1/L2 is NOT achieved — blocked by argmax precision, which needs a genuinely new capability
+(precise settled-state simulation or a per-target spatial win-check), a major direction beyond
+incremental training tweaks. Heavy-exploration thread COMPLETE. Runs v44-54 + searches.

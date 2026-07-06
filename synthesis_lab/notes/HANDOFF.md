@@ -6,6 +6,19 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
+## 0-LIVE STATE (2026-07-05 ~19:10 CDT) — READ `notes/HANDOFF_NIGHT_20260705.md` FIRST (supersedes all below)
+
+Night regime built a shape-based, LAVA-aware pour imagination. Deliverable = **v52**
+(`runs/outcome_v52_multibase_unfrozen_apollo_20260705/best.pt`): a Contra-informed CNN that
+imagines pour outcomes and GENERALISES across level geometries (REAL-L0 0.98, REAL-L1 0.99;
+correctly scores the verified L1 winner). Objective = fill (positive) − lava (negative,
+"floor is lava"). Key unlock: multi-base variants (inherit each level's geometry) +
+UNFREEZE encoder. NOT done: single-episode 4-pour CNN-alone SOLVE of L1/L2 (argmax precision
+wall — every search + hard-neg approach mapped and failed, F41). Full self-contained handoff
++ infra gotchas + the direct-winner verification test + next direction (per-target spatial
+predictor) in **`notes/HANDOFF_NIGHT_20260705.md`**. Full log: `notes/NIGHT_REGIME_20260705.md`
+F1-41. Code on branch `night-shape-lava-imagination-20260705`.
+
 ## 0-PLAN OF RECORD (2026-07-05) — WORLD-MODEL ROADMAP IS BINDING
 
 `notes/ROADMAP_WORLD_MODEL_20260705.md` is the integration contract for all
