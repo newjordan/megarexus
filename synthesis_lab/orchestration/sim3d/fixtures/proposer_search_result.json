@@ -1,0 +1,181 @@
+{
+ "L1": {
+  "solved_at": 1,
+  "topk": [
+   {
+    "rank": 1,
+    "fitness": 9.55,
+    "sim_margin": 1.0,
+    "genome": [
+     [
+      7,
+      4,
+      2
+     ],
+     [
+      5,
+      3,
+      2
+     ],
+     [
+      4,
+      3,
+      2
+     ]
+    ],
+    "env_win": true
+   }
+  ],
+  "evals": 10304,
+  "fitness": "sum-clean-fills+win-bonus (multi-source sim)"
+ },
+ "L2": {
+  "solved_at": null,
+  "topk": [
+   {
+    "rank": 1,
+    "fitness": 0.05,
+    "sim_margin": -1.0,
+    "genome": [
+     [
+      2,
+      1,
+      3
+     ],
+     [
+      4,
+      2,
+      2
+     ],
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      3,
+      1,
+      3
+     ],
+     [
+      2,
+      3,
+      1
+     ],
+     [
+      5,
+      3,
+      1
+     ]
+    ],
+    "env_win": false
+   },
+   {
+    "rank": 2,
+    "fitness": 0.05,
+    "sim_margin": -1.0,
+    "genome": [
+     [
+      3,
+      3,
+      1
+     ],
+     [
+      5,
+      3,
+      3
+     ],
+     [
+      7,
+      4,
+      2
+     ],
+     [
+      7,
+      1,
+      3
+     ],
+     [
+      1,
+      1,
+      3
+     ]
+    ],
+    "env_win": false
+   },
+   {
+    "rank": 3,
+    "fitness": 0.05,
+    "sim_margin": -1.0,
+    "genome": [
+     [
+      3,
+      3,
+      1
+     ],
+     [
+      0,
+      2,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      5,
+      3,
+      2
+     ]
+    ],
+    "env_win": false
+   },
+   {
+    "rank": 4,
+    "fitness": 0.05,
+    "sim_margin": -1.0,
+    "genome": [
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      2,
+      4,
+      3
+     ],
+     [
+      3,
+      3,
+      2
+     ],
+     [
+      5,
+      3,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      3,
+      1,
+      3
+     ]
+    ],
+    "env_win": false
+   }
+  ],
+  "evals": 10304,
+  "fitness": "sum-clean-fills+win-bonus (multi-source sim)"
+ }
+}

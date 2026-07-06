@@ -74,7 +74,8 @@ class Scene:
     g: np.ndarray                 # [16,16] canonical macro color grid
     solid: np.ndarray             # [16,16] bool static solids (incl. floor strip)
     floor_rows: list = field(default_factory=list)   # canonical macro rows of the lava strip
-    spout: tuple = (0, 0)         # (y, x) canonical macro cell where fluid enters the field
+    spout: tuple = (0, 0)         # (y, x) canonical macro cell where fluid enters (= spouts[0])
+    spouts: list = field(default_factory=list)  # ALL emitters (multi-source: L2=3, L4=2)
     emit_volume: float = 37.0     # macro cells of fluid one ACTION5 emits (calibrate.py)
     targets: list = field(default_factory=list)
     depth: int = 1                # slab depth in macro cells (3D extrusion)
@@ -124,13 +125,40 @@ def extract_scene(frame, depth=1, emit_volume=None):
     for r in floor_rows:
         solid[r, :] = True
 
-    # Emitter: fluid enters just below the paint reservoir (color 6 block under the
-    # source). If an arrangement shoved a bar right there, lift the spout back up.
+    # Emitter(s): fluid enters just below EACH paint reservoir (color 6 block under a
+    # source). Multi-source levels pour from every source at once (L2 has 3, L4 has 2);
+    # single-source levels (L0/L1) yield exactly one spout via the IDENTICAL old pixel
+    # computation below, so the S0/decisive path is byte-unchanged.
+    # Synthesized `sp80_variants` boards show the SOURCE housing (4) but no pre-charged
+    # color-6 reservoir; fall back to color-4. Real levels always carry color 6.
     p_ys, p_xs = np.nonzero(f == PAINT)
-    sy, sx = int(p_ys.max()) // CELL + 1, int(round(p_xs.mean())) // CELL
-    while sy > 0 and solid[sy, sx]:
-        sy -= 1
-    spout = (sy, sx)
+    src_color = PAINT
+    if len(p_ys) == 0:
+        p_ys, p_xs = np.nonzero(f == SOURCE); src_color = SOURCE
+        if len(p_ys) == 0:
+            raise ValueError("scene needs a source(4) or reservoir(6) to place the spout")
+
+    def _spout_of(ys, xs):
+        sy, sx = int(np.max(ys)) // CELL + 1, int(round(np.mean(xs))) // CELL
+        while sy > 0 and solid[sy, sx]:
+            sy -= 1
+        return (sy, sx)
+
+    blobs = _components(_macro_mask_any(f, (src_color,)))
+    if len(blobs) <= 1:
+        spouts = [_spout_of(p_ys, p_xs)]                 # single source: identical to before
+    else:
+        spouts = []
+        for cells in blobs:                              # one spout per source blob
+            ys, xs = [], []
+            for (my, mx) in cells:
+                blk = f[my*CELL:(my+1)*CELL, mx*CELL:(mx+1)*CELL]
+                yy, xx = np.nonzero(blk == src_color)
+                ys += (yy + my*CELL).tolist(); xs += (xx + mx*CELL).tolist()
+            if ys:
+                spouts.append(_spout_of(np.asarray(ys), np.asarray(xs)))
+        spouts = sorted(set(spouts)) or [_spout_of(p_ys, p_xs)]
+    spout = spouts[0]
 
     # Targets: decompose each U glyph into solid glyph cells + hollow MOUTH cells
     # (bbox interior cells that are open and reachable from the bbox's top row).
@@ -155,7 +183,7 @@ def extract_scene(frame, depth=1, emit_volume=None):
 
     vol = float(emit_volume) if emit_volume is not None else 37.0  # measured L0 (calibrate.py)
     return Scene(pre=pre, flipped=flipped, g=g, solid=solid, floor_rows=floor_rows,
-                 spout=spout, emit_volume=vol, targets=targets, depth=depth)
+                 spout=spout, spouts=spouts, emit_volume=vol, targets=targets, depth=depth)
 
 
 def solid_boxes(scene):

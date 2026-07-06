@@ -34,6 +34,20 @@ class HydroParams:
     stop_on_win: int = 4           # ticks after all mouths full before the pour ends
     max_ticks: int = 300
     settle_grace: int = 6          # quiet ticks (nothing moved) before stopping
+    backpressure_cap: float = 2.0  # spout stacks past this*cap -> emission pauses (2.0 = validated)
+    ledge_spill_floor: bool = True  # S1 iter2 (ADOPTED 2026-07-06): a bar-lip pool dribbles
+                                   # over an open ledge AT REST *only when the straight drop
+                                   # below reaches the FLOOR strip* (not a mouth). Targets the
+                                   # overshoot-flood path without accelerating mouth-fills.
+                                   # Full S2 (11,810 pours, both seed batches): precision
+                                   # 0.736->0.807, recall 0.992 unchanged, argmax nontrivial
+                                   # 0/2->1/1, S0 still PASS. (Contrast the reverted blanket
+                                   # ledge_spill: 0.736->0.447.) Set False for pre-iter2 behavior.
+    # NOTE (S1, 2026-07-05): a `ledge_spill` variant (bar-lip pools dribble over an open
+    # ledge even at rest) was tried to catch the S2 overshoot-FPs. It fixed 5/8 of board
+    # 336's FPs and kept S0 PASS, but REGRESSED the full S2 corpus (+17 FPs elsewhere,
+    # precision 0.559->0.447, argmax 8/9->6/9). Reverted. See SIM3D_S1_RESULT_20260705.md:
+    # the correct fix is a WIN-vs-FLOOD timing race, not a blanket spill.
 
     def to_json(self):
         return asdict(self)
@@ -49,8 +63,34 @@ class HydraulicSim:
         cap = p.cell_cap
         falling = np.zeros((M, M))
         settled = np.zeros((M, M))
-        remaining = float(sc.emit_volume)
+        spouts = sc.spouts if getattr(sc, "spouts", None) else [sc.spout]
+        remaining = {sp: float(sc.emit_volume) for sp in spouts}   # per-source volume
+        # ledge_spill_floor was calibrated on SINGLE-source S2 variants; on multi-source
+        # levels (L2/L4) it cascades the combined flow to the wall too early (over-floods,
+        # suppressing mouth fills). Gate it to single-source; multi-source keeps only the
+        # basic settled-on-floor lava detection. Single-source path stays byte-identical.
+        floor_spill_active = p.ledge_spill_floor and len(spouts) == 1
         floor_set = set(sc.floor_rows)
+        # Enclosed-entry mouth fill (game source L775, multi-source fidelity fix 2026-07-06):
+        # the game recolours the WHOLE target to 13 the tick a droplet ENTERS a mouth cell
+        # that is flanked by that target's own glyph in the flow-forward direction AND on
+        # both perpendicular sides (`owyqnbmyij is faksfmaezd is lxmalbxucn`) — a TRANSIENT
+        # entry event, permanent once set (added to `cevwbinfgl`), NOT settle-to-capacity.
+        # The single-source settled proxy misses this when multi-source routing delivers a
+        # droplet late (after the paint plateau -> _outcome_end trims it) or thin (below the
+        # 0.85 render threshold). GATED to multi-source: single-source (L0/L1) keeps its
+        # byte-identical settled path — single-cell enclosed mouths settle the tick the
+        # droplet lands, so the proxy is exact there and GATE P0.1 stays pristine.
+        enclosed_active = len(spouts) > 1
+        enclosed = []
+        for t in sc.targets:
+            cells = [(my, mx) for (my, mx) in t.mouth
+                     if my + 1 < M and t.glyph[my + 1, mx]
+                     and mx - 1 >= 0 and t.glyph[my, mx - 1]
+                     and mx + 1 < M and t.glyph[my, mx + 1]]
+            enclosed.append(cells)
+        latched = [False] * len(sc.targets)
+        latch_tick = [None] * len(sc.targets)
         snapshots = []
         lava_tick = None
         win_tick = None
@@ -60,17 +100,33 @@ class HydraulicSim:
         def open_cell(y, x):
             return 0 <= y < M and 0 <= x < M and not sc.solid[y, x]
 
+        def drops_to_floor(y_from, x):
+            """Straight drop from (y_from, x) downward: True iff the first solid it hits is
+            the floor strip (or it falls off the board). False if the path feeds a mouth or
+            hits a non-floor solid (a block it would pool on)."""
+            y = y_from
+            while y < M:
+                for t in sc.targets:
+                    if (y, x) in t.mouth:
+                        return False           # feeds a mouth -> legitimate fill, don't force
+                if sc.solid[y, x]:
+                    return (y in floor_set) or ((y - 1) in floor_set)
+                y += 1
+            return True                        # off the bottom = floor
+
         for tick in range(p.max_ticks):
             moved = False
             # 1) emit while volume remains and no fail flash yet. Backpressure pause
             #    at 2*cap, not cap: a pool cell AT the spout (bar right under the
             #    source, e.g. the real L0 win) hovers near cap while conducting flow
             #    away — only genuine dead-end backup stacks past 2*cap.
-            if remaining > 1e-9 and lava_tick is None and settled[sc.spout] < 2 * cap - 1e-9:
-                q = min(p.emit_per_tick, remaining)
-                falling[sc.spout] += q
-                remaining -= q
-                moved = True
+            if lava_tick is None:
+                for sp in spouts:              # emit from EACH source (multi-source levels)
+                    if remaining[sp] > 1e-9 and settled[sp] < p.backpressure_cap * cap - 1e-9:
+                        q = min(p.emit_per_tick, remaining[sp])
+                        falling[sp] += q
+                        remaining[sp] -= q
+                        moved = True
 
             # 2) falling volume descends; blocked volume joins the surface below it
             for _ in range(p.fall_per_tick):
@@ -124,6 +180,12 @@ class HydraulicSim:
                                 nx += dx
                             if open_cell(y_base, nx) and settled[y_base, nx] < cap - 1e-9:
                                 outs.append(nx)
+                        # S1 iter2: if a ledge out drains straight to the FLOOR (not a mouth),
+                        # a bar-lip pool dribbles over it even at rest -> the overshoot flood.
+                        if floor_spill_active and any(
+                                (open_cell(y_base + 1, nx) and settled[y_base + 1, nx] < cap - 1e-9
+                                 and drops_to_floor(y_base + 1, nx)) for nx in outs):
+                            avail = min(p.flow_per_tick, total)
                         if avail > 1e-9 and outs:
                             share = avail / len(outs)
                             for nx in outs:
@@ -149,7 +211,15 @@ class HydraulicSim:
                     if fy in floor_set or (fy + 1) in floor_set:
                         lava_tick = tick
                         break
-            occ, mouth_fill = self._occupancy(settled, falling)
+            # enclosed-entry latch (game L775): a droplet occupying an enclosed mouth cell
+            # credits the whole target now and forever (multi-source only; see run() head).
+            if enclosed_active:
+                for ti, cells in enumerate(enclosed):
+                    if not latched[ti] and any(settled[cy, cx] + falling[cy, cx] > 1e-9
+                                               for (cy, cx) in cells):
+                        latched[ti] = True
+                        latch_tick[ti] = tick
+            occ, mouth_fill = self._occupancy(settled, falling, latched)
             if win_tick is None and len(mouth_fill) and (mouth_fill > 0.999).all():
                 win_tick = tick
             if record_frames:
@@ -160,24 +230,35 @@ class HydraulicSim:
                 break
             if win_tick is not None and tick - win_tick >= p.stop_on_win:
                 break
-            if remaining <= 1e-9 and falling.sum() <= 1e-9 and quiet >= p.settle_grace:
+            if sum(remaining.values()) <= 1e-9 and falling.sum() <= 1e-9 and quiet >= p.settle_grace:
                 break
 
-        occ, mouth_fill = self._occupancy(settled, falling)
+        occ, mouth_fill = self._occupancy(settled, falling, latched)
         return {
-            "settled": settled, "ticks": tick + 1, "emitted": sc.emit_volume - remaining,
+            "settled": settled, "ticks": tick + 1,
+            "emitted": sc.emit_volume * len(spouts) - sum(remaining.values()),
             "occupancy": occ, "mouth_fill": mouth_fill,
             "lava_ticks": [] if lava_tick is None else [lava_tick],
             "lava": lava_tick is not None,
+            "lava_tick": lava_tick, "win_tick": win_tick,
+            "latch_tick": latch_tick,
             "snapshots": snapshots, "params": p.to_json(),
         }
 
-    def _occupancy(self, settled, falling):
+    def _occupancy(self, settled, falling, latched=None):
         occ = settled + falling
         fills = []
-        for t in self.sc.targets:
+        for ti, t in enumerate(self.sc.targets):
+            if latched is not None and latched[ti]:
+                fills.append(1.0); continue      # enclosed-entry latch (game L775)
             if not t.mouth:
                 fills.append(0.0); continue
+            # Settled-occupancy fill: the single-source proxy (exact for single-cell enclosed
+            # mouths, which settle the tick a droplet lands). Multi-source targets are handled
+            # ABOVE by the enclosed-entry latch — the faithful L775 rule — which fires on the
+            # transient entry BEFORE the settle, so a late/thin routed droplet is still credited
+            # (the reverted "count settled+falling everywhere" heuristic over-filled via pass-
+            # through and cost single-source AUC; the latch is precise: fp=0 on the L2 corpus).
             got = sum(float(settled[c]) for c in t.mouth)
             fills.append(min(1.0, got / max(t.capacity * self.p.cell_cap, 1e-9)))
         return occ, np.asarray(fills)
