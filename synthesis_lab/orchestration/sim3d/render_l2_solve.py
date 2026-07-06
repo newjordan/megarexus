@@ -35,13 +35,21 @@ def up(f):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--level", type=int, default=2)
+    ap.add_argument("--genome-json", default=str(FIXTURES / "p2_droplet_solve.json"))
+    ap.add_argument("--out", default=None)
+    a = ap.parse_args()
+    global OUT
+    OUT = a.out or str(FIXTURES / f"L{a.level}_solve.mp4")
     arc = Arcade(arc_api_key="anonymous",
                  environments_dir=str((LAB.parent / "environment_files").resolve()),
                  operation_mode=OperationMode.OFFLINE)
-    genome = [tuple(x) for x in json.load(open(FIXTURES / "p2_droplet_solve.json"))["genome"]]
+    genome = [tuple(x) for x in json.load(open(a.genome_json))["genome"]]
     env = arc.make(GAME_ID, seed=1234)
-    fd, c0 = _present(env, 2)
-    centers = [(int(c["center_xy"][0]), int(c["center_xy"][1])) for c in frame_components(c0)[:8]]
+    fd, c0 = _present(env, a.level)
+    centers = [(int(c["center_xy"][0]), int(c["center_xy"][1])) for c in frame_components(c0)[:10]]
     base = int(getattr(fd, "levels_completed", 0) or 0)
 
     seq = []                                   # list of (frame, n_hold)
