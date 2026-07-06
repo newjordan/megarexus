@@ -1,0 +1,41 @@
+{
+ "protocol": "DW Phase-4: gate-checked candidates, round-2 INDUCED kernel imagines, env decides top-K only; emit volume measured from observed corpus",
+ "config": {
+  "deflect": "none",
+  "spread": "lateral",
+  "mouth": "entry",
+  "edge": "dispose",
+  "cell_cap": 3.0
+ },
+ "emit_volume_measured": null,
+ "level": 0,
+ "seed": 101,
+ "solved_at": 1,
+ "topk": [
+  {
+   "rank": 1,
+   "fitness": 0.16216216216216217,
+   "imagined_win": false,
+   "genome": [
+    [
+     4,
+     1,
+     2
+    ],
+    [
+     4,
+     2,
+     3
+    ],
+    [
+     2,
+     4,
+     3
+    ]
+   ],
+   "env_win": true
+  }
+ ],
+ "kernel_evals": 1464,
+ "refused": 0
+}

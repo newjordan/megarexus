@@ -1,0 +1,43 @@
+{
+ "level": 1,
+ "seed": 1234,
+ "n_requested": 61,
+ "n_pours": 61,
+ "n_wins": 1,
+ "dead": 0,
+ "extra_genomes": [
+  [
+   [
+    3,
+    4,
+    2
+   ],
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    4,
+    1,
+    2
+   ],
+   [
+    2,
+    2,
+    3
+   ],
+   [
+    5,
+    1,
+    3
+   ],
+   [
+    7,
+    3,
+    2
+   ]
+  ]
+ ],
+ "provenance": "legal env interaction (random click-move arrangements + replay of legally-discovered genomes); observation data for dynamics validation only"
+}

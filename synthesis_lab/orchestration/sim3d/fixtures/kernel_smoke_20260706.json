@@ -1,0 +1,51 @@
+{
+ "seed": 1234,
+ "hypothesis": "gravity_fall (reference machinery only)",
+ "results": {
+  "trusted_path": {
+   "pass": true,
+   "gate_trusted": true,
+   "ticks": 50,
+   "terminal": "quiescent",
+   "emitted": 37,
+   "fills": [
+    0,
+    0
+   ],
+   "floor_touch": 37,
+   "disposed": 0,
+   "provenance": {
+    "source": "perception_gate",
+    "trusted": true,
+    "gate_failures": [],
+    "level": 0,
+    "seed": 1234
+   }
+  },
+  "provenance_refusal": {
+   "pass": true,
+   "l3_gate_failures": [
+    "targets",
+    "spouts",
+    "mouths",
+    "mouth_rays"
+   ]
+  },
+  "determinism": {
+   "pass": true,
+   "n_states": 51
+  },
+  "renderable": {
+   "pass": true,
+   "png": "/home/frosty40/megarexus/synthesis_lab/orchestration/sim3d/fixtures/kernel_smoke_rollout_20260706.png",
+   "grids_npy": "kernel_smoke_grids_20260706.npy",
+   "ray_count": 24,
+   "ray_networks": [
+    "adversarial",
+    "neutral",
+    "structural"
+   ]
+  }
+ },
+ "all_pass": true
+}

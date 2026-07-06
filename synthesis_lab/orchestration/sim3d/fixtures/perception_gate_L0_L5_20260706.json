@@ -1,0 +1,528 @@
+{
+ "seed": 1234,
+ "game_id": "sp80-589a99af",
+ "provenance": "observed offline-arcade frames vs scene.extract_scene; no engine internals (DW plan Phase 1)",
+ "results": {
+  "L0": {
+   "trusted": true,
+   "gate_failures": [],
+   "checks": {
+    "targets": {
+     "pass": true,
+     "pixel_components": 2,
+     "scene_targets": 2
+    },
+    "glyphs": {
+     "pass": true,
+     "exact_reconstruction": true,
+     "overlap_pixels": 0,
+     "missed_pixels": 0,
+     "phantom_pixels": 0
+    },
+    "spouts": {
+     "pass": true,
+     "housing_components": 1,
+     "scene_spouts": 1,
+     "aligned": 1,
+     "open": 1
+    },
+    "mouths": {
+     "pass": true,
+     "targets": [
+      {
+       "target": 0,
+       "mouth_cells": 1,
+       "solid_mouth_cells": 0,
+       "side_walls": true,
+       "floor_below": true
+      },
+      {
+       "target": 1,
+       "mouth_cells": 1,
+       "solid_mouth_cells": 0,
+       "side_walls": true,
+       "floor_below": true
+      }
+     ]
+    },
+    "mouth_rays": {
+     "pass": true,
+     "total": 2,
+     "exact": 2,
+     "mismatches": []
+    },
+    "floor": {
+     "pass": true,
+     "pixel_derived": [
+      "15"
+     ],
+     "scene_floor_rows": [
+      "15"
+     ]
+    },
+    "coverage": {
+     "pass": true,
+     "uncovered_macro_cells": 0
+    }
+   },
+   "diagnostics": {
+    "phantom_solid_cells": 0,
+    "spout_down_rays": [
+     {
+      "spout": [
+       2,
+       9
+      ],
+      "macro_hit": 15,
+      "pixel_hit": 15,
+      "agree": true
+     }
+    ]
+   }
+  },
+  "L1": {
+   "trusted": true,
+   "gate_failures": [],
+   "checks": {
+    "targets": {
+     "pass": true,
+     "pixel_components": 3,
+     "scene_targets": 3
+    },
+    "glyphs": {
+     "pass": true,
+     "exact_reconstruction": true,
+     "overlap_pixels": 0,
+     "missed_pixels": 0,
+     "phantom_pixels": 0
+    },
+    "spouts": {
+     "pass": true,
+     "housing_components": 1,
+     "scene_spouts": 1,
+     "aligned": 1,
+     "open": 1
+    },
+    "mouths": {
+     "pass": true,
+     "targets": [
+      {
+       "target": 0,
+       "mouth_cells": 1,
+       "solid_mouth_cells": 0,
+       "side_walls": true,
+       "floor_below": true
+      },
+      {
+       "target": 1,
+       "mouth_cells": 1,
+       "solid_mouth_cells": 0,
+       "side_walls": true,
+       "floor_below": true
+      },
+      {
+       "target": 2,
+       "mouth_cells": 1,
+       "solid_mouth_cells": 0,
+       "side_walls": true,
+       "floor_below": true
+      }
+     ]
+    },
+    "mouth_rays": {
+     "pass": true,
+     "total": 3,
+     "exact": 3,
+     "mismatches": []
+    },
+    "floor": {
+     "pass": true,
+     "pixel_derived": [
+      "15"
+     ],
+     "scene_floor_rows": [
+      "15"
+     ]
+    },
+    "coverage": {
+     "pass": true,
+     "uncovered_macro_cells": 0
+    }
+   },
+   "diagnostics": {
+    "phantom_solid_cells": 0,
+    "spout_down_rays": [
+     {
+      "spout": [
+       2,
+       10
+      ],
+      "macro_hit": 15,
+      "pixel_hit": 15,
+      "agree": true
+     }
+    ]
+   }
+  },
+  "L2": {
+   "trusted": true,
+   "gate_failures": [],
+   "checks": {
+    "targets": {
+     "pass": true,
+     "pixel_components": 3,
+     "scene_targets": 3
+    },
+    "glyphs": {
+     "pass": true,
+     "exact_reconstruction": true,
+     "overlap_pixels": 0,
+     "missed_pixels": 0,
+     "phantom_pixels": 0
+    },
+    "spouts": {
+     "pass": true,
+     "housing_components": 3,
+     "scene_spouts": 3,
+     "aligned": 3,
+     "open": 3
+    },
+    "mouths": {
+     "pass": true,
+     "targets": [
+      {
+       "target": 0,
+       "mouth_cells": 1,
+       "solid_mouth_cells": 0,
+       "side_walls": true,
+       "floor_below": true
+      },
+      {
+       "target": 1,
+       "mouth_cells": 1,
+       "solid_mouth_cells": 0,
+       "side_walls": true,
+       "floor_below": true
+      },
+      {
+       "target": 2,
+       "mouth_cells": 1,
+       "solid_mouth_cells": 0,
+       "side_walls": true,
+       "floor_below": true
+      }
+     ]
+    },
+    "mouth_rays": {
+     "pass": true,
+     "total": 3,
+     "exact": 3,
+     "mismatches": []
+    },
+    "floor": {
+     "pass": true,
+     "pixel_derived": [
+      "15"
+     ],
+     "scene_floor_rows": [
+      "15"
+     ]
+    },
+    "coverage": {
+     "pass": true,
+     "uncovered_macro_cells": 0
+    }
+   },
+   "diagnostics": {
+    "phantom_solid_cells": 0,
+    "spout_down_rays": [
+     {
+      "spout": [
+       2,
+       1
+      ],
+      "macro_hit": 13,
+      "pixel_hit": 13,
+      "agree": true
+     },
+     {
+      "spout": [
+       2,
+       9
+      ],
+      "macro_hit": 6,
+      "pixel_hit": 6,
+      "agree": true
+     },
+     {
+      "spout": [
+       2,
+       14
+      ],
+      "macro_hit": 6,
+      "pixel_hit": 6,
+      "agree": true
+     }
+    ]
+   }
+  },
+  "L3": {
+   "trusted": false,
+   "gate_failures": [
+    "targets",
+    "spouts",
+    "mouths",
+    "mouth_rays"
+   ],
+   "checks": {
+    "targets": {
+     "pass": false,
+     "pixel_components": 4,
+     "scene_targets": 2
+    },
+    "glyphs": {
+     "pass": true,
+     "exact_reconstruction": true,
+     "overlap_pixels": 0,
+     "missed_pixels": 0,
+     "phantom_pixels": 0
+    },
+    "spouts": {
+     "pass": false,
+     "housing_components": 2,
+     "scene_spouts": 1,
+     "aligned": 1,
+     "open": 1
+    },
+    "mouths": {
+     "pass": false,
+     "targets": [
+      {
+       "target": 0,
+       "mouth_cells": 0,
+       "fail": "empty_mouth"
+      },
+      {
+       "target": 1,
+       "mouth_cells": 0,
+       "fail": "empty_mouth"
+      }
+     ]
+    },
+    "mouth_rays": {
+     "pass": false,
+     "total": 0,
+     "exact": 0,
+     "mismatches": []
+    },
+    "floor": {
+     "pass": true,
+     "pixel_derived": [
+      "14",
+      "15"
+     ],
+     "scene_floor_rows": [
+      "14",
+      "15"
+     ]
+    },
+    "coverage": {
+     "pass": true,
+     "uncovered_macro_cells": 0
+    }
+   },
+   "diagnostics": {
+    "phantom_solid_cells": 0,
+    "spout_down_rays": [
+     {
+      "spout": [
+       2,
+       6
+      ],
+      "macro_hit": 3,
+      "pixel_hit": 3,
+      "agree": true
+     }
+    ]
+   }
+  },
+  "L4": {
+   "trusted": false,
+   "gate_failures": [
+    "targets",
+    "mouths",
+    "mouth_rays"
+   ],
+   "checks": {
+    "targets": {
+     "pass": false,
+     "pixel_components": 4,
+     "scene_targets": 3
+    },
+    "glyphs": {
+     "pass": true,
+     "exact_reconstruction": true,
+     "overlap_pixels": 0,
+     "missed_pixels": 0,
+     "phantom_pixels": 0
+    },
+    "spouts": {
+     "pass": true,
+     "housing_components": 2,
+     "scene_spouts": 2,
+     "aligned": 2,
+     "open": 2
+    },
+    "mouths": {
+     "pass": false,
+     "targets": [
+      {
+       "target": 0,
+       "mouth_cells": 0,
+       "fail": "empty_mouth"
+      },
+      {
+       "target": 1,
+       "mouth_cells": 0,
+       "fail": "empty_mouth"
+      },
+      {
+       "target": 2,
+       "mouth_cells": 0,
+       "fail": "empty_mouth"
+      }
+     ]
+    },
+    "mouth_rays": {
+     "pass": false,
+     "total": 0,
+     "exact": 0,
+     "mismatches": []
+    },
+    "floor": {
+     "pass": true,
+     "pixel_derived": [
+      "14",
+      "15"
+     ],
+     "scene_floor_rows": [
+      "14",
+      "15"
+     ]
+    },
+    "coverage": {
+     "pass": true,
+     "uncovered_macro_cells": 0
+    }
+   },
+   "diagnostics": {
+    "phantom_solid_cells": 0,
+    "spout_down_rays": [
+     {
+      "spout": [
+       2,
+       5
+      ],
+      "macro_hit": 7,
+      "pixel_hit": 7,
+      "agree": true
+     },
+     {
+      "spout": [
+       2,
+       11
+      ],
+      "macro_hit": 8,
+      "pixel_hit": 8,
+      "agree": true
+     }
+    ]
+   }
+  },
+  "L5": {
+   "trusted": false,
+   "gate_failures": [
+    "targets",
+    "spouts",
+    "mouths",
+    "mouth_rays"
+   ],
+   "checks": {
+    "targets": {
+     "pass": false,
+     "pixel_components": 4,
+     "scene_targets": 3
+    },
+    "glyphs": {
+     "pass": true,
+     "exact_reconstruction": true,
+     "overlap_pixels": 0,
+     "missed_pixels": 0,
+     "phantom_pixels": 0
+    },
+    "spouts": {
+     "pass": false,
+     "housing_components": 2,
+     "scene_spouts": 1,
+     "aligned": 1,
+     "open": 1
+    },
+    "mouths": {
+     "pass": false,
+     "targets": [
+      {
+       "target": 0,
+       "mouth_cells": 0,
+       "fail": "empty_mouth"
+      },
+      {
+       "target": 1,
+       "mouth_cells": 0,
+       "fail": "empty_mouth"
+      },
+      {
+       "target": 2,
+       "mouth_cells": 0,
+       "fail": "empty_mouth"
+      }
+     ]
+    },
+    "mouth_rays": {
+     "pass": false,
+     "total": 0,
+     "exact": 0,
+     "mismatches": []
+    },
+    "floor": {
+     "pass": true,
+     "pixel_derived": [
+      "14",
+      "15"
+     ],
+     "scene_floor_rows": [
+      "14",
+      "15"
+     ]
+    },
+    "coverage": {
+     "pass": true,
+     "uncovered_macro_cells": 0
+    }
+   },
+   "diagnostics": {
+    "phantom_solid_cells": 0,
+    "spout_down_rays": [
+     {
+      "spout": [
+       2,
+       7
+      ],
+      "macro_hit": 3,
+      "pixel_hit": 3,
+      "agree": true
+     }
+    ]
+   }
+  }
+ }
+}

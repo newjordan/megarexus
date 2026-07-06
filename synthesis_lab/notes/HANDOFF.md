@@ -6,7 +6,54 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
-## 0-LIVE STATE (2026-07-05 ~21:50 CDT) — PER-TARGET LANE DONE: clean NEGATIVE (supersedes below)
+## 0-LIVE STATE (2026-07-06 ~16:30 CDT) — DW ROUND-3: L0+L1 SOLVED@1 5/5 SEEDS, KERNEL CERTIFIES (supersedes all below)
+
+**READ `notes/DW_LAB_LOG_20260706.md` FIRST** (append-only lane log; plan =
+`DREAMWEAVER_INTEGRATION_PLAN_20260706.md`). Today's arc, in order:
+1. **Round-2 5-seed sweep = HONEST NEGATIVE** (L0 3/5, L1 1/5; fitness plateau —
+   kernel imagined lava 0.76–0.84 on real clean winners; single-seed SOLVED@1 was
+   plateau luck). Root cause: round-2's fit truncated rollouts at animation length,
+   hiding capacity-cap overflow that dw_solve's 200-tick rollouts exposed.
+2. **Round 3 (the flywheel):** replayed all 31 sweep candidates as observation data
+   (`sim3d/r3_flywheel.py`); real lava separates winners/losers 31/31; winner
+   animations terminate early. Family extended: `absorb ∈ {cap,unlimited}` +
+   horizon-independent `win_moment` semantics. Full-grid re-selection
+   (`sim3d/r3_fit.py` → `dynamics_round3_20260706.json`): **absorb=unlimited**
+   (mouths never back up), train+holdout outcome/lava 1.00.
+3. **Round-3 sweep (uncontaminated): 10/10 SOLVED@1** — L0 5/5 + L1 5/5, seeds
+   {1234,7,42,101,2026}, every rank-1 `imagined_win=True` env-confirmed. The
+   INDUCED kernel now CERTIFIES wins. One real pour per solve, zero search pours.
+   Fixtures `sim3d/fixtures/dw_solve_r3_L*_s*_20260706.json`.
+4. **L2: NOT solved** (default AND 6.6× budget, 9,664 evals — kernel never imagines
+   a clean 3-stream pour; top-4 tie ~0.946, all real pours lose). L2 work order
+   stands unchanged: `TRAINING_REGIME_20260706_L2_FRONTIER.md` (P0 multi-src
+   fidelity, P2 mechanic-aware proposer). L3–L5 extractor fix (pixels-only) also open.
+Nothing committed today — user decides when to stage the DW lane.
+
+## 0-LIVE STATE (2026-07-06 ~02:30 CDT) — SIM LANE DONE, L2 WALL DIAGNOSED, REGIME PIVOTED (superseded)
+
+**READ `notes/TRAINING_REGIME_20260706_L2_FRONTIER.md` FIRST — it is the pick-up
+work order.** Summary: the sim3d loop finished 5/6 stages
+(`SIM3D_LOOP_STATUS_20260706.md`); headline hardened at **2 levels in-budget
+(L0 CNN-alone, L1 sim-guided SOLVED@1, 5/5 seeds)**. L2 hit a wall that went
+through two corrections: NOT action-space-blocked (that claim was confounded) —
+the multi-source sim (L2 = 3 sources) under-reports fills because the game fills
+on ENCLOSED-droplet ENTRY (game source L775), not settled occupancy. L2
+solvability is UNKNOWN until multi-source fidelity lands. Game source fully read
+(4-pour/no-accumulation, win=all mouths entered enclosed + no wall-touch, real
+redirect = `tuvkdkhdokr`; `sp80_variants.py` REDIR_TAG is mislabeled → v1
+variants never had real redirects). New regime, in order: **P0** multi-source
+fill fidelity (gates: S0/S2 unchanged + ≥0.90 fill agreement on
+`sim3d/fixtures/proposer_l2.npz`) → **P1** variants v2 (fix REDIR_TAG,
+multi-source family, S2-MS gate) → **P2** mechanic-aware constructive proposer
+→ env L2 attempt (headline 3) → **P3** Stage-E/F training (amortize proposer,
+flywheel ranker heads; the only authorized CNN training — static outcome heads
+stay falsified/banned). Do NOT pick up: S1 iter3 polish, Lane P, random L2
+sweeps. Sim3d lane is uncommitted working-tree; committing it precedes any P3
+condition (contract rule 8). honesty_audit at handoff: exit 0, 97/46/6, active
+85/23/0.
+
+## 0-LIVE STATE (2026-07-05 ~21:50 CDT) — PER-TARGET LANE DONE: clean NEGATIVE (superseded)
 
 Ran `notes/STAGE_PT_SPEC_20260705.md` end-to-end (T0→T4). **Result: the per-target
 decomposition is FALSIFIED at the MODEL granularity — it does NOT move the headline to 2
@@ -24,9 +71,14 @@ levels.** Headline unchanged: v52 = ranker, 1 level CNN-alone, L1 only via env-f
   diagnostic: the head predicts NEAR-IDENTICAL (fill,lava) for winner vs FP (0.16/0.95 for both)
   — blind to the arrangement difference. **The separator is POUR DYNAMICS, not static per-target
   features → §6 confirmed: residual = the precise pour simulator. Per §8, STOP.**
-- **Next lever:** roadmap world-model rollout / precise settled-state simulation (NOT another
-  static predictor). New reusable tooling: `orchestration/{pertarget_labels,t0_label_test,
-  train_target_outcome,pt_gates}.py`, harvest `--per-target`. Full log: NIGHT_REGIME F42-47.
+- **Next lever:** a faithful pour SIMULATOR (NOT another static predictor) — user has an idea.
+  **READ `notes/HANDOFF_SIMULATOR_20260705.md`** (failures/problems/goals framed for the simulator
+  push) + drafted lane `notes/STAGE_CA_SPEC_20260705.md` (Neural-CA, CA0 baseline NOT yet run).
+  Decisive cheap test for any simulator idea: roll out the winner + 4 FP genomes (in
+  `runs/t0_pertarget_20260705.json`), read per-target (fill,lava) via `pertarget_labels`, check
+  winner `min_t(fill−lava)` is positive & above all FPs. New tooling: `orchestration/
+  {pertarget_labels,t0_label_test,train_target_outcome,pt_gates}.py`, harvest `--per-target`.
+  Full log: NIGHT_REGIME F42-47.
 
 ## 0-LIVE STATE (2026-07-05 ~19:10 CDT) — READ `notes/HANDOFF_NIGHT_20260705.md` FIRST (supersedes all below)
 
