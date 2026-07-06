@@ -76,25 +76,34 @@ def main():
             del g[int(rng.integers(len(g)))]
         return [tuple(x) for x in g]
 
-    best, bf, evals, win_g = None, (-1, -1, -99), 0, None
+    # Collect a POOL of distinct native-wins and ENV-VERIFY each (the CA is exact on ~100% of
+    # arrangements, so a native-win is almost always a real win; a rare redirect edge-case
+    # false-positive is filtered by verifying several and keeping one the engine confirms).
+    best, bf, evals, win_pool = None, (-1, -1, -99), 0, []
+    POOL = 25
     for r in range(a.restarts):
         cur = rand_g(); cr = ev(cur); evals += 1; cf = fit(cr)
         for _s in range(a.steps):
             cand = mutate(cur); rr = ev(cand); evals += 1
             if fit(rr) > cf:
                 cur, cf = cand, fit(rr)
-                if rr and rr["win"]:
-                    win_g = cur; break
+                if rr and rr["win"] and tuple(cur) not in {tuple(g) for g in win_pool}:
+                    win_pool.append(cur); break
         if cf > bf:
             bf, best = cf, cur
-        if win_g is not None:
+        if len(win_pool) >= POOL:
             break
         if (r + 1) % 20 == 0:
-            print(f"[l3] restart {r+1}: best fit={bf} evals={evals}", flush=True)
+            print(f"[l3] restart {r+1}: best fit={bf} native_wins={len(win_pool)} evals={evals}", flush=True)
 
-    chosen = win_g or best
+    chosen, env_ok = best, False
+    for cand in win_pool:                                  # verify native-wins against the engine
+        if real_win(arc, a.seed, a.level, list(cand), centers):
+            chosen, env_ok = cand, True; break
+    if not env_ok and win_pool:
+        chosen = win_pool[0]                               # report a native-win even if unverified
     rc = ev(chosen)
-    env_ok = real_win(arc, a.seed, a.level, list(chosen), centers) if chosen else False
+    print(f"[l3] native-wins found={len(win_pool)}, env-confirmed={env_ok}", flush=True)
     report = {"level": a.level, "evals": evals, "native": rc,
               "genome": [list(x) for x in chosen] if chosen else None,
               "native_win": bool(rc and rc["win"]), "env_win": bool(env_ok),
