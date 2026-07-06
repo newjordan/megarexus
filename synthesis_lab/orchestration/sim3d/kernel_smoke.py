@@ -56,18 +56,23 @@ def main():
         "provenance": kmap.provenance,
     }
 
-    # 2. provenance refusal (L3 is gate-failing per Phase-1 run)
-    env3 = arc.make(GAME_ID, seed=a.seed)
-    _, cur3 = _present(env3, 3)
-    sc3 = extract_scene(cur3)
-    v3 = gate_scene(cur3, sc3)
+    # 2. provenance refusal: a TAMPERED frame (one target's pixels split by an
+    #    erased stripe -> pixel components no longer match the scene's claim)
+    #    must be gate-failing and REFUSED by the kernel. (L3 was the original
+    #    specimen; the lattice-aware extractor made real L3 legitimately
+    #    trusted, so the smoke now manufactures its untrusted scene.)
+    cur_t = np.asarray(cur0, dtype=np.int8).copy()
+    sc_t = extract_scene(cur0)                                  # claims from CLEAN frame
+    tys, txs = np.nonzero(sc_t.targets[0].cells_px)             # ONE glyph's pixels
+    cur_t[tys.min():tys.max() + 1, int(np.median(txs))] = 12   # split that glyph
+    v_t = gate_scene(cur_t, sc_t)                               # checked vs TAMPERED frame
     try:
-        KnownMap.from_scene(sc3, v3, level=3, seed=a.seed)
+        KnownMap.from_scene(sc_t, v_t, level=0, seed=a.seed, tampered=True)
         refused = False
     except UntrustedSceneError:
         refused = True
-    results["provenance_refusal"] = {"pass": refused and not v3["trusted"],
-                                     "l3_gate_failures": v3["gate_failures"]}
+    results["provenance_refusal"] = {"pass": refused and not v_t["trusted"],
+                                     "tampered_gate_failures": v_t["gate_failures"]}
 
     # 3. determinism
     states_b = run(kmap, GravityFall(), max_ticks=a.ticks)

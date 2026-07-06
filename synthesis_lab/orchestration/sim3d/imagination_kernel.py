@@ -25,8 +25,6 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from scene import M
-
 EIGHT_DIRS = ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1))
 
 
@@ -36,8 +34,8 @@ class UntrustedSceneError(RuntimeError):
 
 @dataclass(frozen=True)
 class KnownMap:
-    """Explicit spatial cells + provenance (canonical macro coords, flow down)."""
-    solid: np.ndarray                      # [16,16] bool, static colliders incl. floor
+    """Explicit spatial cells + provenance (canonical lattice coords, flow down)."""
+    solid: np.ndarray                      # [gh,gw] bool, static colliders incl. floor
     floor_rows: tuple                      # lava strip rows (adversarial)
     spouts: tuple                          # ((y,x), ...) material entry cells
     mouths: tuple                          # per target: ((y,x), ...) goal cells
@@ -53,10 +51,18 @@ class KnownMap:
                 "scene rejected: perception gate failures "
                 f"{gate_verdict.get('gate_failures')} — fix the extractor and re-gate; "
                 "the kernel refuses unproven maps (Dream Kernel provenance rule)")
+        # Emit only from CHARGED spouts (housing with an observed reservoir).
+        # Uncharged housings (L3/L5 mid-board catch/redirect nodes) are geometry,
+        # not emitters — whether they re-emit is left to dynamics induction.
+        charged = list(scene.spout_charged) if getattr(scene, "spout_charged", None) else []
+        if len(charged) == len(scene.spouts) and any(charged):
+            emitters = [s for s, c in zip(scene.spouts, charged) if c]
+        else:
+            emitters = list(scene.spouts)
         return cls(
             solid=scene.solid.copy(),
             floor_rows=tuple(scene.floor_rows),
-            spouts=tuple((int(y), int(x)) for y, x in scene.spouts),
+            spouts=tuple((int(y), int(x)) for y, x in emitters),
             mouths=tuple(tuple((int(y), int(x)) for y, x in t.mouth) for t in scene.targets),
             glyph_cells=tuple(tuple((int(y), int(x)) for y, x in zip(*np.nonzero(t.glyph)))
                               for t in scene.targets),
@@ -75,7 +81,7 @@ class SimState:
     """Kernel state at one tick. The run() sequence is the renderable record."""
     kmap: KnownMap
     tick: int = 0
-    settled: np.ndarray = None             # [16,16] float, at-rest material
+    settled: np.ndarray = None             # [gh,gw] float, at-rest material
     moving: list = field(default_factory=list)   # [(y,x)] in-flight units
     emitted: int = 0
     fills: list = field(default_factory=list)    # per-target units in mouth
@@ -85,7 +91,7 @@ class SimState:
 
     def __post_init__(self):
         if self.settled is None:
-            self.settled = np.zeros((M, M), dtype=np.float32)
+            self.settled = np.zeros(self.kmap.solid.shape, dtype=np.float32)
         if not self.fills:
             self.fills = [0] * len(self.kmap.mouths)
 
@@ -128,6 +134,7 @@ class GravityFall(DynamicsHypothesis):
 
     def step(self, state: SimState) -> None:
         km = state.kmap
+        gh = km.solid.shape[0]
         owner = km.mouth_owner()
         # move first (stable order = deterministic); newly emitted units enter at
         # the spout and sit there until next tick — matches the observed animation
@@ -136,7 +143,7 @@ class GravityFall(DynamicsHypothesis):
         nxt = []
         for (y, x) in state.moving:
             ny = y + 1
-            if ny >= M:
+            if ny >= gh:
                 state.disposed += 1
                 continue
             if ny in km.floor_rows:
@@ -205,6 +212,7 @@ class FallingMaterial(DynamicsHypothesis):
 
     def step(self, state: SimState) -> None:
         km, p = state.kmap, self.params
+        gh, gw = km.solid.shape
         cap = p["cell_cap"]
         owner = km.mouth_owner()
         # move-then-emit: newly emitted units occupy the spout cell until the
@@ -213,9 +221,9 @@ class FallingMaterial(DynamicsHypothesis):
         for idx, (y, x) in enumerate(state.moving):
             placed = False
             for (ny, nx) in self._moves(y, x, idx):
-                if ny >= M:
+                if ny >= gh:
                     state.disposed += 1; placed = True; break
-                if not (0 <= nx < M):
+                if not (0 <= nx < gw):
                     if p["edge"] == "dispose":
                         state.disposed += 1; placed = True; break
                     continue                       # halt: this move blocked, try next
@@ -302,7 +310,7 @@ def cast_rays(state: SimState, dirs=EIGHT_DIRS):
             contact = None
             while True:
                 y += dy; x += dx; path += 1
-                if not (0 <= y < M and 0 <= x < M):
+                if not (0 <= y < km.solid.shape[0] and 0 <= x < km.solid.shape[1]):
                     contact = ("open", None); break
                 if (y, x) in owner:
                     contact = ("mouth", owner[(y, x)]); break
@@ -326,9 +334,9 @@ def cast_rays(state: SimState, dirs=EIGHT_DIRS):
 
 
 def render_state(state: SimState):
-    """SimState -> [16,16] int8 macro grid in SP80 palette colors (for viz)."""
+    """SimState -> [gh,gw] int8 lattice grid in SP80 palette colors (for viz)."""
     km = state.kmap
-    g = np.full((M, M), 12, dtype=np.int8)
+    g = np.full(km.solid.shape, 12, dtype=np.int8)
     g[km.solid] = 8
     for r in km.floor_rows:
         g[r, :] = 1

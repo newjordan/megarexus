@@ -58,30 +58,112 @@ def _macro_mask_any(frame, colors):
     return m.reshape(M, CELL, M, CELL).any(axis=(1, 3))
 
 
+def _lattice_majority(f, u):
+    """[H,W] frame (H,W multiples of u) -> [H/u,W/u] per-block majority color."""
+    h, w = f.shape[0] // u, f.shape[1] // u
+    blocks = f.reshape(h, u, w, u).transpose(0, 2, 1, 3).reshape(h, w, u * u)
+    out = np.zeros((h, w), dtype=np.int8)
+    for y in range(h):
+        for x in range(w):
+            vals, counts = np.unique(blocks[y, x], return_counts=True)
+            out[y, x] = vals[np.argmax(counts)]
+    return out
+
+
+def _lattice_any(f, colors, u):
+    """[H,W] frame -> [H/u,W/u] bool: block contains ANY pixel of the colors."""
+    m = np.isin(f, np.asarray(colors, dtype=f.dtype))
+    h, w = f.shape[0] // u, f.shape[1] // u
+    return m.reshape(h, u, w, u).any(axis=(1, 3))
+
+
+def _pixel_components(mask):
+    """4-connected components of a bool pixel mask -> list of (ys, xs) arrays."""
+    mask = np.asarray(mask, dtype=bool)
+    lab = np.full(mask.shape, -1, dtype=np.int32)
+    comps = []
+    for y, x in zip(*np.nonzero(mask)):
+        if lab[y, x] >= 0:
+            continue
+        stack, cells = [(y, x)], []
+        lab[y, x] = len(comps)
+        while stack:
+            cy, cx = stack.pop()
+            cells.append((cy, cx))
+            for ny, nx in ((cy-1, cx), (cy+1, cx), (cy, cx-1), (cy, cx+1)):
+                if (0 <= ny < mask.shape[0] and 0 <= nx < mask.shape[1]
+                        and mask[ny, nx] and lab[ny, nx] < 0):
+                    lab[ny, nx] = len(comps)
+                    stack.append((ny, nx))
+        ys = np.asarray([c[0] for c in cells]); xs = np.asarray([c[1] for c in cells])
+        comps.append((ys, xs))
+    return comps
+
+
+def detect_lattice(f):
+    """Native pixel lattice (unit, oy, ox) INDUCED from target-glyph runs.
+
+    The U glyphs are the finest reliable geometry in frame: wall thickness and
+    interior gap share the piece unit. unit = gcd of every horizontal+vertical
+    color-11 run length; origin = the modal run-start residue per axis.
+    L0-L2 measure (4, 0, 0) — the historical fixed macro grid. L3-L5 measure
+    (3, 2, 2), which the fixed grid could not represent (merged targets,
+    vanished mouths). Pixels only; degenerate frames fall back to (CELL, 0, 0)
+    and the perception gate passes judgement downstream.
+    """
+    from functools import reduce
+    from math import gcd
+    mask = (np.asarray(f) == TARGET)
+    lens, hstarts, vstarts = [], [], []
+    for arr, starts in ((mask, hstarts), (mask.T, vstarts)):
+        for row in arr:
+            idx = np.nonzero(row)[0]
+            if len(idx) == 0:
+                continue
+            for run in np.split(idx, np.nonzero(np.diff(idx) > 1)[0] + 1):
+                lens.append(len(run)); starts.append(int(run[0]))
+    if not lens:
+        return CELL, 0, 0
+    unit = reduce(gcd, lens)
+    if unit < 2:
+        return CELL, 0, 0
+    oy = int(np.bincount([s % unit for s in vstarts]).argmax()) if vstarts else 0
+    ox = int(np.bincount([s % unit for s in hstarts]).argmax()) if hstarts else 0
+    return int(unit), oy, ox
+
+
 @dataclass
 class Target:
-    """One U-target. Coordinates are CANONICAL macro-grid (flow = down)."""
+    """One U-target. Coordinates are CANONICAL lattice cells (flow = down)."""
     cells_px: np.ndarray          # [64,64] bool — the color-11 glyph, ORIGINAL frame coords
-    glyph: np.ndarray             # [16,16] bool — glyph cells, canonical macro
-    mouth: list                   # [(y,x)] canonical macro cells of the hollow interior
-    capacity: float = 0.0         # fluid volume (macro cells) the mouth holds
+    glyph: np.ndarray             # [gh,gw] bool — glyph cells, canonical lattice
+    mouth: list                   # [(y,x)] canonical lattice cells of the hollow interior
+    capacity: float = 0.0         # fluid volume (lattice cells) the mouth holds
+    opening: str = None           # single open side of the mouth: up/down/left/right
+                                  # (L4/L5 carry side-facing mouths; None = ambiguous,
+                                  # the perception gate fails such targets)
 
 
 @dataclass
 class Scene:
     pre: np.ndarray               # original 64x64 int8 frame (pre-pour arrangement)
     flipped: bool                 # vertical flip applied to canonicalize flow-down?
-    g: np.ndarray                 # [16,16] canonical macro color grid
-    solid: np.ndarray             # [16,16] bool static solids (incl. floor strip)
-    floor_rows: list = field(default_factory=list)   # canonical macro rows of the lava strip
-    spout: tuple = (0, 0)         # (y, x) canonical macro cell where fluid enters (= spouts[0])
-    spouts: list = field(default_factory=list)  # ALL emitters (multi-source: L2=3, L4=2)
-    emit_volume: float = 37.0     # macro cells of fluid one ACTION5 emits (calibrate.py)
+    g: np.ndarray                 # [gh,gw] canonical lattice color grid
+    solid: np.ndarray             # [gh,gw] bool static solids (incl. floor strip)
+    floor_rows: list = field(default_factory=list)   # canonical lattice rows of the lava strip
+    spout: tuple = (0, 0)         # (y, x) canonical lattice cell where fluid enters (= spouts[0])
+    spouts: list = field(default_factory=list)  # one per SOURCE housing (multi-source: L2=3)
+    emit_volume: float = 37.0     # lattice cells of fluid one ACTION5 emits (measured on L0's
+                                  # 4px lattice; other lattices need per-level calibration)
     targets: list = field(default_factory=list)
-    depth: int = 1                # slab depth in macro cells (3D extrusion)
+    depth: int = 1                # slab depth in lattice cells (3D extrusion)
+    cell: int = CELL              # native lattice pitch in pixels (induced; L0-L2=4, L3-L5=3)
+    pad: tuple = (0, 0)           # (pad_y, pad_x) top-left padding aligning lattice origin
+    spout_charged: list = field(default_factory=list)  # per spout: housing has a reservoir?
 
     def uncanon_rows(self, rows):
-        return [M - 1 - r for r in rows] if self.flipped else list(rows)
+        gh = self.solid.shape[0]
+        return [gh - 1 - r for r in rows] if self.flipped else list(rows)
 
 
 def _components(mask):
@@ -105,99 +187,134 @@ def _components(mask):
 
 
 def extract_scene(frame, depth=1, emit_volume=None):
-    """Pre-pour 64x64 frame -> Scene (canonical flow-down macro geometry)."""
+    """Pre-pour 64x64 frame -> Scene (canonical flow-down geometry on the
+    frame's NATIVE lattice).
+
+    The lattice (pitch + origin) is INDUCED from target-glyph pixel runs
+    (detect_lattice): L0-L2 sit on a 4px origin-0 lattice — identical to the
+    historical fixed macro grid, so those scenes are unchanged — while L3-L5
+    sit on a 3px origin-2 lattice the fixed grid could not represent (merged
+    targets, vanished mouths: the two perception-gate failure classes). The
+    canonical frame is padded top-left so the lattice origin coincides with
+    the array origin; all Scene coordinates are lattice cells of that padded
+    canonical frame. Target.cells_px stays in ORIGINAL frame pixels.
+    Pixels only — no engine internals.
+    """
     pre = np.asarray(frame, dtype=np.int8)
     src_rows = np.nonzero((pre == SOURCE).any(axis=1))[0]
     tgt_rows = np.nonzero((pre == TARGET).any(axis=1))[0]
     if len(src_rows) == 0 or len(tgt_rows) == 0:
         raise ValueError("scene needs a source(4) and targets(11)")
     flipped = bool(src_rows.mean() > tgt_rows.mean())   # source below targets -> pour flows UP
-    f = np.flipud(pre) if flipped else pre
+    f0 = np.flipud(pre) if flipped else pre
 
-    g = to_macro(f)
-    solid = _macro_mask_any(f, SOLID_COLORS)
+    u, oy, ox = detect_lattice(f0)
+    pad_y, pad_x = (u - oy) % u, (u - ox) % u
+    gh, gw = -(-(GRID + pad_y) // u), -(-(GRID + pad_x) // u)
+    f = np.full((gh * u, gw * u), OPEN, dtype=np.int8)
+    f[pad_y:pad_y + GRID, pad_x:pad_x + GRID] = f0
+
+    g = _lattice_majority(f, u)
+    solid = _lattice_any(f, SOLID_COLORS, u)
 
     # Lava strip = the color-1 boundary band BEHIND the targets (below them, canonical).
-    tgt_rows_c = np.nonzero((f == TARGET).any(axis=1))[0]
-    strip_px_rows = [r for r in np.nonzero((f == HUD).all(axis=1) | ((f == HUD).sum(axis=1) > GRID // 2))[0]
-                     if r > tgt_rows_c.max()]
-    floor_rows = sorted({r // CELL for r in strip_px_rows})
+    W = gw * u
+    tgt_px_rows = np.nonzero((f == TARGET).any(axis=1))[0]
+    strip_px_rows = [r for r in np.nonzero((f == HUD).all(axis=1)
+                                           | ((f == HUD).sum(axis=1) > W // 2))[0]
+                     if r > tgt_px_rows.max()]
+    floor_rows = sorted({r // u for r in strip_px_rows})
     for r in floor_rows:
         solid[r, :] = True
 
-    # Emitter(s): fluid enters just below EACH paint reservoir (color 6 block under a
-    # source). Multi-source levels pour from every source at once (L2 has 3, L4 has 2);
-    # single-source levels (L0/L1) yield exactly one spout via the IDENTICAL old pixel
-    # computation below, so the S0/decisive path is byte-unchanged.
-    # Synthesized `sp80_variants` boards show the SOURCE housing (4) but no pre-charged
-    # color-6 reservoir; fall back to color-4. Real levels always carry color 6.
-    p_ys, p_xs = np.nonzero(f == PAINT)
-    src_color = PAINT
-    if len(p_ys) == 0:
-        p_ys, p_xs = np.nonzero(f == SOURCE); src_color = SOURCE
-        if len(p_ys) == 0:
-            raise ValueError("scene needs a source(4) or reservoir(6) to place the spout")
-
+    # Emitter(s): one spout per SOURCE housing (color 4), positioned by the
+    # housing's paint reservoir (color 6) when it has one — `charged` — else by
+    # the housing itself (L3/L5 carry an uncharged mid-board catch/redirect
+    # housing; whether it re-emits is a DYNAMICS question left to observation).
+    # Single-source levels yield the identical old reservoir-pixel computation.
     def _spout_of(ys, xs):
-        sy, sx = int(np.max(ys)) // CELL + 1, int(round(np.mean(xs))) // CELL
+        sy, sx = int(np.max(ys)) // u + 1, int(round(float(np.mean(xs)))) // u
         while sy > 0 and solid[sy, sx]:
             sy -= 1
         return (sy, sx)
 
-    blobs = _components(_macro_mask_any(f, (src_color,)))
-    if len(blobs) <= 1:
-        spouts = [_spout_of(p_ys, p_xs)]                 # single source: identical to before
-    else:
-        spouts = []
-        for cells in blobs:                              # one spout per source blob
-            ys, xs = [], []
-            for (my, mx) in cells:
-                blk = f[my*CELL:(my+1)*CELL, mx*CELL:(mx+1)*CELL]
-                yy, xx = np.nonzero(blk == src_color)
-                ys += (yy + my*CELL).tolist(); xs += (xx + mx*CELL).tolist()
-            if ys:
-                spouts.append(_spout_of(np.asarray(ys), np.asarray(xs)))
-        spouts = sorted(set(spouts)) or [_spout_of(p_ys, p_xs)]
+    housings = _pixel_components(f == SOURCE)
+    pools = _pixel_components(f == PAINT)
+    pairs = []
+    if housings:
+        used = set()
+        for hys, hxs in housings:
+            res = next((j for j, (pys, pxs) in enumerate(pools)
+                        if j not in used
+                        and int(pxs.min()) <= int(hxs.max())
+                        and int(pxs.max()) >= int(hxs.min())), None)
+            if res is not None:
+                used.add(res)
+                pairs.append((_spout_of(*pools[res]), True))
+            else:
+                pairs.append((_spout_of(hys, hxs), False))
+    else:                                   # sp80_variants boards: reservoir only
+        pairs = [(_spout_of(pys, pxs), True) for pys, pxs in pools]
+    if not pairs:
+        raise ValueError("scene needs a source(4) or reservoir(6) to place the spout")
+    seen = {}
+    for s, c in pairs:
+        seen[s] = seen.get(s, False) or c
+    spouts = sorted(seen)
+    spout_charged = [seen[s] for s in spouts]
     spout = spouts[0]
 
-    # Targets: decompose each U glyph into solid glyph cells + hollow MOUTH cells
-    # (bbox interior cells that are open and reachable from the bbox's top row).
+    # Targets: one per color-11 PIXEL component (macro components merged
+    # adjacent L3-L5 targets). Mouth = open bbox-interior cells; the single
+    # open side of the mouth is recorded (L4/L5 mouths face sideways).
     targets = []
-    glyph_all = _macro_mask_any(f, (TARGET,))
-    for cells in _components(glyph_all):
-        ys = [c[0] for c in cells]; xs = [c[1] for c in cells]
-        y0, y1, x0, x1 = min(ys), max(ys), min(xs), max(xs)
-        gm = np.zeros((M, M), dtype=bool)
-        for c in cells:
+    for ys, xs in _pixel_components(f == TARGET):
+        cs = sorted({(int(y) // u, int(x) // u) for y, x in zip(ys, xs)})
+        gm = np.zeros((gh, gw), dtype=bool)
+        for c in cs:
             gm[c] = True
+        y0, y1 = min(c[0] for c in cs), max(c[0] for c in cs)
+        x0, x1 = min(c[1] for c in cs), max(c[1] for c in cs)
         mouth = [(y, x) for y in range(y0, y1 + 1) for x in range(x0, x1 + 1)
                  if not solid[y, x]]
-        cpx_canon = np.zeros((GRID, GRID), dtype=bool)
-        for (y, x) in cells:
-            blk = f[y*CELL:(y+1)*CELL, x*CELL:(x+1)*CELL]
-            cpx_canon[y*CELL:(y+1)*CELL, x*CELL:(x+1)*CELL] = (blk == TARGET)
-        cells_px = np.flipud(cpx_canon) if flipped else cpx_canon
+        mset = set(mouth)
+        opens = set()
+        for (my, mx) in mouth:
+            for dy, dx, name in ((-1, 0, "up"), (1, 0, "down"),
+                                 (0, -1, "left"), (0, 1, "right")):
+                ny, nx = my + dy, mx + dx
+                if (ny, nx) in mset:
+                    continue
+                if 0 <= ny < gh and 0 <= nx < gw and not solid[ny, nx]:
+                    opens.add(name)
+        opening = opens.pop() if len(opens) == 1 else None
+        cpx = np.zeros((gh * u, gw * u), dtype=bool)
+        cpx[ys, xs] = True
+        cpx = cpx[pad_y:pad_y + GRID, pad_x:pad_x + GRID]
+        cells_px = np.flipud(cpx) if flipped else cpx
         targets.append(Target(cells_px=cells_px, glyph=gm, mouth=mouth,
-                              capacity=float(len(mouth))))
+                              capacity=float(len(mouth)), opening=opening))
     targets.sort(key=lambda t: min(x for _, x in t.mouth) if t.mouth else 0)
 
     vol = float(emit_volume) if emit_volume is not None else 37.0  # measured L0 (calibrate.py)
     return Scene(pre=pre, flipped=flipped, g=g, solid=solid, floor_rows=floor_rows,
-                 spout=spout, spouts=spouts, emit_volume=vol, targets=targets, depth=depth)
+                 spout=spout, spouts=spouts, emit_volume=vol, targets=targets,
+                 depth=depth, cell=u, pad=(pad_y, pad_x), spout_charged=spout_charged)
 
 
 def solid_boxes(scene):
     """Static colliders as 3D AABBs [N,6] (y0,x0,z0,y1,x1,z1) in macro units,
     greedily merged along x then y for fewer boxes. z spans the slab depth."""
     solid = scene.solid.copy()
+    gh, gw = solid.shape
     boxes = []
-    for y in range(M):
+    for y in range(gh):
         x = 0
-        while x < M:
+        while x < gw:
             if not solid[y, x]:
                 x += 1; continue
             x1 = x
-            while x1 + 1 < M and solid[y, x1 + 1]:
+            while x1 + 1 < gw and solid[y, x1 + 1]:
                 x1 += 1
             boxes.append([y, x, 0, y + 1, x1 + 1, scene.depth])
             x = x1 + 1

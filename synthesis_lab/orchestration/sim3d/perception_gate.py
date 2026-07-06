@@ -8,84 +8,87 @@ trust signal ("prove the internal drawing matches the environment before the
 planner treats ray output as evidence").
 
 All checks compare Scene claims to FRAME PIXELS only — no engine internals.
+Checks run on the scene's NATIVE lattice (Scene.cell/pad, induced from glyph
+pixel runs): L0-L2 = 4px origin-0 (the historical fixed grid), L3-L5 = 3px
+origin-2. The padded canonical frame is rebuilt here INDEPENDENTLY from the
+raw frame, so a corrupted Scene cannot vouch for itself.
 
 Gate checks:
   targets    #4-connected color-11 pixel components == len(scene.targets)
-             (the L3 failure class: extractor found 2 of 4 targets)
+             (the L3 failure class: macro components merged 4 targets into 2)
   glyphs     union of target.cells_px == (frame==11) mask exactly, no overlap
-             (mis-sized glyphs from macro-vote at wrong native cell scale)
   spouts     #color-4 housing pixel components == len(scene.spouts); each spout
              open and column-aligned under a housing
              (the L2 failure class: 3 sources collapsed to 1 spout)
-  mouths     every mouth cell open; enclosed left/right/below (U-shape)
-  mouth_rays down-ray entering each mouth column first-contacts the mouth floor,
-             and macro-grid ray contact == pixel-level ray contact
+  mouths     every mouth cell open; the mouth boundary has EXACTLY ONE open
+             side, which matches the target's claimed `opening` direction
+             (generalized from up-only U-enclosure: L4/L5 mouths face sideways)
+  mouth_rays a ray entering each mouth line along its opening direction
+             first-contacts the mouth's far wall, at lattice AND pixel level
   floor      floor_rows re-derived from pixels == scene.floor_rows
-  coverage   every solid-color pixel lies inside a solid macro cell
+  coverage   every solid-color pixel lies inside a solid lattice cell
 
 Non-gating diagnostics: unexplained solid cells, spout down-ray macro/pixel
-divergence (partial-solid cells such as 62px wall-bar ends can legitimately
-diverge on a center-line pixel ray; reported, not gated).
+divergence, and UNMODELED COLORS present in frame (e.g. color 15 redirect
+blocks on L4/L5 — geometry the Scene does not yet claim physics for).
 """
 from __future__ import annotations
 
 import numpy as np
 
-from scene import (GRID, M, CELL, SOURCE, PAINT, HUD, TARGET, SOLID_COLORS)
+from scene import (GRID, OPEN, SOURCE, HUD, TARGET, SOLID_COLORS,
+                   _pixel_components)
 
-DOWN = (1, 0)
+# material ENTERS a mouth moving opposite to the side the mouth opens toward
+ENTRY = {"up": (1, 0), "down": (-1, 0), "left": (0, 1), "right": (0, -1)}
+KNOWN_COLORS = {0, 1, 4, 6, 8, 9, 11, 12, 13, 14}
 
 
-def _pixel_components(mask):
-    """4-connected components of a bool [64,64] pixel mask -> list of (ys, xs)."""
-    mask = np.asarray(mask, dtype=bool)
-    lab = np.full(mask.shape, -1, dtype=np.int32)
-    comps = []
-    for y, x in zip(*np.nonzero(mask)):
-        if lab[y, x] >= 0:
+def _cell_ray(solid, y0, x0, d, skip=()):
+    """First solid lattice cell from (y0,x0) along d (skipping `skip`), or None."""
+    gh, gw = solid.shape
+    y, x = y0, x0
+    while True:
+        y += d[0]; x += d[1]
+        if not (0 <= y < gh and 0 <= x < gw):
+            return None
+        if (y, x) in skip:
             continue
-        stack, cells = [(y, x)], []
-        lab[y, x] = len(comps)
-        while stack:
-            cy, cx = stack.pop()
-            cells.append((cy, cx))
-            for ny, nx in ((cy-1, cx), (cy+1, cx), (cy, cx-1), (cy, cx+1)):
-                if (0 <= ny < mask.shape[0] and 0 <= nx < mask.shape[1]
-                        and mask[ny, nx] and lab[ny, nx] < 0):
-                    lab[ny, nx] = len(comps)
-                    stack.append((ny, nx))
-        ys = np.asarray([c[0] for c in cells]); xs = np.asarray([c[1] for c in cells])
-        comps.append((ys, xs))
-    return comps
+        if solid[y, x]:
+            return (y, x)
 
 
-def _macro_ray_down(solid, y0, x):
-    """First solid macro row at/below y0 in column x, or M."""
-    y = max(y0, 0)
-    while y < M and not solid[y, x]:
-        y += 1
-    return y
-
-
-def _pixel_ray_down(psolid, py0, px):
-    """First solid pixel row at/below py0 in pixel column px, or GRID."""
-    y = max(py0, 0)
-    while y < GRID and not psolid[y, px]:
-        y += 1
-    return y
+def _pixel_ray(psolid, py, px, d):
+    """First solid pixel from (py,px) along d, or None."""
+    h, w = psolid.shape
+    y, x = py, px
+    while True:
+        y += d[0]; x += d[1]
+        if not (0 <= y < h and 0 <= x < w):
+            return None
+        if psolid[y, x]:
+            return (y, x)
 
 
 def gate_scene(frame, scene):
     """Scene-vs-frame trust gate. Returns V031-shaped verdict dict."""
     pre = np.asarray(frame, dtype=np.int8)
-    f = np.flipud(pre) if scene.flipped else pre          # canonical (flow down)
+    u = int(getattr(scene, "cell", 4))
+    pad_y, pad_x = (int(p) for p in getattr(scene, "pad", (0, 0)))
+    gh, gw = scene.solid.shape
     solid = scene.solid
+
+    # Rebuild the padded canonical frame from raw pixels (independent of Scene).
+    f0 = np.flipud(pre) if scene.flipped else pre
+    f = np.full((gh * u, gw * u), OPEN, dtype=np.int8)
+    f[pad_y:pad_y + GRID, pad_x:pad_x + GRID] = f0
+    W = gw * u
     checks = {}
 
-    # Pixel-level solid mask (canonical), incl. the lava strip inside floor rows.
+    # Pixel-level solid mask (padded canonical), incl. lava strip in floor rows.
     psolid = np.isin(f, np.asarray(SOLID_COLORS, dtype=f.dtype))
     for r in scene.floor_rows:
-        rows = slice(r * CELL, (r + 1) * CELL)
+        rows = slice(r * u, (r + 1) * u)
         psolid[rows, :] |= (f[rows, :] == HUD)
 
     # -- targets: pixel component count vs extracted target count (L3 class)
@@ -115,9 +118,9 @@ def gate_scene(frame, scene):
     housing = _pixel_components(f == SOURCE)
     aligned, open_ok = 0, 0
     for (sy, sx) in scene.spouts:
-        if 0 <= sy < M and not solid[sy, sx]:
+        if 0 <= sy < gh and not solid[sy, sx]:
             open_ok += 1
-        if any(int(xs.min()) // CELL <= sx <= int(xs.max()) // CELL for _, xs in housing):
+        if any(int(xs.min()) // u <= sx <= int(xs.max()) // u for _, xs in housing):
             aligned += 1
     checks["spouts"] = {
         "pass": (len(housing) == len(scene.spouts)
@@ -128,60 +131,73 @@ def gate_scene(frame, scene):
         "open": open_ok,
     }
 
-    # -- mouths: open + U-enclosure (left/right walls per row, floor per column)
+    # -- mouths: open cells + single-opening enclosure matching the claim
     mouth_ok, mouth_detail = True, []
     for i, t in enumerate(scene.targets):
         d = {"target": i, "mouth_cells": len(t.mouth)}
         if not t.mouth:
             d["fail"] = "empty_mouth"; mouth_ok = False; mouth_detail.append(d); continue
-        rows = sorted({y for y, _ in t.mouth}); cols = sorted({x for _, x in t.mouth})
+        mset = set(t.mouth)
         bad = [c for c in t.mouth if solid[c]]
-        side = all(
-            (x0 - 1 < 0 or solid[r, x0 - 1]) and (x1 + 1 >= M or solid[r, x1 + 1])
-            for r in rows
-            for x0, x1 in [(min(x for y, x in t.mouth if y == r),
-                            max(x for y, x in t.mouth if y == r))]
-        )
-        floor_ok = all(
-            (my + 1 >= M) or solid[my + 1, c]
-            for c in cols
-            for my in [max(y for y, x in t.mouth if x == c)]
-        )
-        d.update(solid_mouth_cells=len(bad), side_walls=side, floor_below=floor_ok)
-        if bad or not side or not floor_ok:
-            mouth_ok = False
+        open_dirs = set()
+        for (my, mx) in t.mouth:
+            for name, (dy, dx) in (("up", (-1, 0)), ("down", (1, 0)),
+                                   ("left", (0, -1)), ("right", (0, 1))):
+                ny, nx = my + dy, mx + dx
+                if (ny, nx) in mset:
+                    continue
+                if 0 <= ny < gh and 0 <= nx < gw and not solid[ny, nx]:
+                    open_dirs.add(name)
+        d.update(solid_mouth_cells=len(bad),
+                 open_sides=sorted(open_dirs),
+                 claimed_opening=t.opening)
+        if bad or len(open_dirs) != 1 or t.opening not in open_dirs:
+            d["fail"] = "enclosure"; mouth_ok = False
         mouth_detail.append(d)
     checks["mouths"] = {"pass": mouth_ok, "targets": mouth_detail}
 
-    # -- mouth_rays: macro down-ray first-contacts the mouth floor; pixel ray agrees
+    # -- mouth_rays: entry ray along the opening direction first-contacts the
+    #    mouth's far wall, at lattice AND pixel level
     ray_total, ray_exact, ray_detail = 0, 0, []
     for i, t in enumerate(scene.targets):
-        if not t.mouth:
+        if not t.mouth or t.opening not in ENTRY:
             continue
-        top = min(y for y, _ in t.mouth)
-        for c in sorted({x for _, x in t.mouth}):
-            col_rows = [y for y, x in t.mouth if x == c]
-            expect = max(col_rows) + 1                     # mouth floor (glyph bottom)
-            m_hit = _macro_ray_down(solid, top, c)
-            p_hit = _pixel_ray_down(psolid, top * CELL, c * CELL + CELL // 2) // CELL
+        dy, dx = ENTRY[t.opening]
+        mset = set(t.mouth)
+        # group mouth cells into entry lines (same column for vertical entry,
+        # same row for horizontal entry)
+        key = (lambda c: c[1]) if dy else (lambda c: c[0])
+        along = (lambda c: c[0]) if dy else (lambda c: c[1])
+        sgn = dy + dx                                     # +1 or -1 along the axis
+        for line in sorted({key(c) for c in mset}):
+            cells = sorted((c for c in mset if key(c) == line), key=along)
+            first = cells[0] if sgn > 0 else cells[-1]    # entry-most mouth cell
+            last = cells[-1] if sgn > 0 else cells[0]
+            expect = (last[0] + dy, last[1] + dx)         # far wall behind the mouth
+            m_hit = _cell_ray(solid, first[0] - dy, first[1] - dx, (dy, dx), skip=mset)
+            pc = (first[0] * u + u // 2, first[1] * u + u // 2)
+            p_hit = _pixel_ray(psolid, pc[0] - dy * u, pc[1] - dx * u, (dy, dx))
+            p_cell = (p_hit[0] // u, p_hit[1] // u) if p_hit else None
             ray_total += 1
-            ok = (m_hit == expect and p_hit == expect)
+            ok = (m_hit == expect and p_cell == expect)
             ray_exact += int(ok)
             if not ok:
-                ray_detail.append({"target": i, "col": c, "expect": expect,
-                                   "macro_hit": m_hit, "pixel_hit": p_hit})
+                ray_detail.append({"target": i, "line": int(line),
+                                   "expect": list(expect),
+                                   "macro_hit": list(m_hit) if m_hit else None,
+                                   "pixel_hit_cell": list(p_cell) if p_cell else None})
     checks["mouth_rays"] = {
         "pass": ray_total > 0 and ray_exact == ray_total,
         "total": ray_total, "exact": ray_exact, "mismatches": ray_detail,
     }
 
-    # -- floor: strip rows re-derived from pixels
+    # -- floor: strip rows re-derived from pixels (same induction as extractor)
     tgt_rows_c = np.nonzero((f == TARGET).any(axis=1))[0]
     if len(tgt_rows_c):
         strip = [r for r in np.nonzero((f == HUD).all(axis=1)
-                                       | ((f == HUD).sum(axis=1) > GRID // 2))[0]
+                                       | ((f == HUD).sum(axis=1) > W // 2))[0]
                  if r > tgt_rows_c.max()]
-        floor_px = sorted({r // CELL for r in strip})
+        floor_px = sorted({r // u for r in strip})
     else:
         floor_px = []
     checks["floor"] = {
@@ -189,14 +205,14 @@ def gate_scene(frame, scene):
         "pixel_derived": floor_px, "scene_floor_rows": sorted(scene.floor_rows),
     }
 
-    # -- coverage: every solid-color pixel sits inside a solid macro cell
+    # -- coverage: every solid-color pixel sits inside a solid lattice cell
     pix_any = np.isin(f, np.asarray(SOLID_COLORS, dtype=f.dtype))
-    blocks = pix_any.reshape(M, CELL, M, CELL).any(axis=(1, 3))
+    blocks = pix_any.reshape(gh, u, gw, u).any(axis=(1, 3))
     uncovered = int((blocks & ~solid).sum())
     checks["coverage"] = {"pass": uncovered == 0, "uncovered_macro_cells": uncovered}
 
     # -- diagnostics (reported, not gated)
-    explained = np.zeros((M, M), dtype=bool)
+    explained = np.zeros((gh, gw), dtype=bool)
     for t in scene.targets:
         explained |= t.glyph
     for r in scene.floor_rows:
@@ -204,11 +220,14 @@ def gate_scene(frame, scene):
     diag_unexplained = int((solid & ~explained & ~blocks).sum())
     spout_rays = []
     for (sy, sx) in scene.spouts:
-        m_hit = _macro_ray_down(solid, sy + 1, sx)
-        p_hit = _pixel_ray_down(psolid, (sy + 1) * CELL, sx * CELL + CELL // 2) // CELL
+        m_hit = _cell_ray(solid, sy, sx, (1, 0))
+        p_hit = _pixel_ray(psolid, (sy + 1) * u - 1, sx * u + u // 2, (1, 0))
+        m_row = m_hit[0] if m_hit else gh
+        p_row = (p_hit[0] // u) if p_hit else gh
         spout_rays.append({"spout": [int(sy), int(sx)],
-                           "macro_hit": int(m_hit), "pixel_hit": int(p_hit),
-                           "agree": bool(m_hit == p_hit)})
+                           "macro_hit": int(m_row), "pixel_hit": int(p_row),
+                           "agree": bool(m_row == p_row)})
+    unmodeled = sorted(int(c) for c in np.unique(pre) if int(c) not in KNOWN_COLORS)
 
     failures = [name for name, c in checks.items() if not c["pass"]]
     return {
@@ -218,5 +237,6 @@ def gate_scene(frame, scene):
         "diagnostics": {
             "phantom_solid_cells": diag_unexplained,
             "spout_down_rays": spout_rays,
+            "unmodeled_colors": unmodeled,
         },
     }

@@ -24,11 +24,9 @@
   },
   "provenance_refusal": {
    "pass": true,
-   "l3_gate_failures": [
+   "tampered_gate_failures": [
     "targets",
-    "spouts",
-    "mouths",
-    "mouth_rays"
+    "glyphs"
    ]
   },
   "determinism": {

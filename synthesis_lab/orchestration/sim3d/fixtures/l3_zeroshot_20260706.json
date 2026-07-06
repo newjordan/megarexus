@@ -1,0 +1,20 @@
+{
+ "protocol": "round-3 model zero-shot on lattice-trusted L3 scenes; corpus calib_l3_pours_20260706",
+ "cfg": {
+  "deflect": "none",
+  "spread": "lateral",
+  "mouth": "fill",
+  "edge": "dispose",
+  "cell_cap": 1.0,
+  "absorb": "unlimited"
+ },
+ "result": {
+  "n": 40,
+  "gate_skipped": 0,
+  "outcome_acc": 1.0,
+  "lava_acc": 0.0,
+  "mean_iou": 0.33280752751369275,
+  "median_first_div": 0.0,
+  "note": "all-loss corpus (outcome baseline 1.0 uninformative); zero-shot of round-3 cfg on 3px-lattice L3 scenes"
+ }
+}

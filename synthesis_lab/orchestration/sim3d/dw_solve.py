@@ -73,7 +73,7 @@ def kernel_score(frame, emit_volume, lam=1.0, max_ticks=200):
         v = gate_scene(frame, sc)
         if not v["trusted"]:
             return None
-        km = KnownMap.from_scene(sc, v)
+        km = KnownMap.from_scene(sc, v, cell=int(sc.cell), pad=list(sc.pad))
     except Exception:  # noqa: BLE001
         return None
     states = run(km, FallingMaterial(**MODEL_CFG), max_ticks=max_ticks)
@@ -102,10 +102,13 @@ def side_by_side(kmap, real_frames, out_png):
     import matplotlib.pyplot as plt
     from viz import frame_rgb
     states = run(kmap, FallingMaterial(**MODEL_CFG), max_ticks=len(real_frames))
+    u = int(kmap.provenance.get("cell", 4))
+    py, px = (int(p) for p in kmap.provenance.get("pad", (0, 0)))
     idxs = np.linspace(0, min(len(states), len(real_frames)) - 1, 6).astype(int)
     fig, axes = plt.subplots(2, len(idxs), figsize=(2.0 * len(idxs), 4.4))
     for j, i in enumerate(idxs):
-        g = np.kron(render_state(states[i]), np.ones((4, 4), dtype=np.int8))
+        g = np.kron(render_state(states[i]), np.ones((u, u), dtype=np.int8))
+        g = g[py:py + 64, px:px + 64]
         axes[0, j].imshow(frame_rgb(g)); axes[0, j].set_title(f"imagined t={i}", fontsize=7)
         rf = real_frames[i] if not states[0].kmap else real_frames[i]
         axes[1, j].imshow(frame_rgb(rf)); axes[1, j].set_title(f"real t={i}", fontsize=7)
