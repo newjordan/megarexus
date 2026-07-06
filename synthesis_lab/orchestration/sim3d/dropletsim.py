@@ -96,6 +96,81 @@ def pour_core(block, target, wall, tid, spouts, n_targets):
             "margin": float(margin)}
 
 
+def pour_core_v(block, target, wall, redir, tid, spouts, n_targets):
+    """Exact droplet CA WITH velocity + redirect (game L749-820, incl. tuvkdkhdokr 90-deflect
+    L787-803). Droplets carry velocity (dx,dy); state = (y,x,dx,dy). A block/target forks to the
+    two perpendicular cells keeping velocity; a redirect rotates velocity 90 deg toward its body;
+    a wall fails; off any edge disposes. Reduces to pour_core when there are no redirects (spouts
+    all start moving down). Grids [H,W] bool."""
+    H, W = block.shape
+
+    def kind(y, x):
+        if x < 0 or x >= W or y < 0 or y >= H:
+            return None
+        if block[y, x]:
+            return "block"
+        if target[y, x]:
+            return "target"
+        if wall[y, x]:
+            return "wall"
+        if redir[y, x]:
+            return "redir"
+        return None
+
+    def perp(dx, dy):
+        return [(-1, 0), (1, 0)] if dy != 0 else [(0, -1), (0, 1)]
+
+    filled, wall_hits = set(), set()
+    stack = [(int(sy), int(sx), 0, 1) for (sy, sx) in spouts]
+    seen = set()
+    while stack:
+        y, x, dx, dy = stack.pop()
+        if (y, x, dx, dy) in seen:
+            continue
+        seen.add((y, x, dx, dy))
+        if x < 0 or x >= W or y < 0 or y >= H:
+            continue
+        nx, ny = x + dx, y + dy
+        k = kind(ny, nx)
+        p = perp(dx, dy)
+        if k is None:
+            stack.append((ny, nx, dx, dy))                       # move
+        elif k == "wall":
+            wall_hits.add((ny, nx))
+        elif k == "block":
+            for (ox, oy) in p:
+                if kind(y + oy, x + ox) is None:
+                    stack.append((y + oy, x + ox, dx, dy))       # fork, keep velocity
+        elif k == "target":
+            (ax, ay), (bx, by) = p
+            a, b = kind(y + ay, x + ax), kind(y + by, x + bx)
+            if a == "target" and b == "target":
+                filled.add(int(tid[ny, nx]))
+            else:
+                for (ox, oy) in p:
+                    if kind(y + oy, x + ox) is None:
+                        stack.append((y + oy, x + ox, dx, dy))
+        elif k == "redir":
+            (ax, ay), (bx, by) = p                               # owyqnbmyij, faksfmaezd sides
+            a, b = kind(y + ay, x + ax), kind(y + by, x + bx)
+            if a == "redir" and b is None:
+                ndx, ndy = dy, -dx                               # 90-deflect toward side A
+                stack.append((y + ndy, x + ndx, ndx, ndy))
+            elif b == "redir" and a is None:
+                ndx, ndy = -dy, dx
+                stack.append((y + ndy, x + ndx, ndx, ndy))
+            else:
+                for (ox, oy) in p:
+                    if kind(y + oy, x + ox) is None:
+                        stack.append((y + oy, x + ox, dx, dy))
+    filled.discard(-1)
+    fail = len(wall_hits) > 0
+    win = (not fail) and n_targets > 0 and len(filled) >= n_targets
+    margin = (1.0 if win else (len(filled) / max(n_targets, 1)) - min(1.0, 0.1 * len(wall_hits)))
+    return {"filled": sorted(filled), "n_filled": len(filled), "fail": bool(fail),
+            "n_wall": len(wall_hits), "win": bool(win), "n_targets": n_targets, "margin": float(margin)}
+
+
 def droplet_pour(frame, scene=None):
     """Exact droplet-CA outcome for one pour (no-redirect levels: all motion is DOWN)."""
     sc = scene if scene is not None else extract_scene(frame)

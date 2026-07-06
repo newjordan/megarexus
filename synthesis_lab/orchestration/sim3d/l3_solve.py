@@ -16,7 +16,7 @@ from imagine_search_gate import _present, _apply_real, GAME_ID, ACTION_OF_ID, ga
 from imag_search_solve import actions, real_win, MOVES  # noqa: E402
 from engine_adapters.portband_glove_adapter import frame_components  # noqa: E402
 from native_scene import native_grid  # noqa: E402
-from dropletsim import pour_core  # noqa: E402
+from dropletsim import pour_core_v  # noqa: E402
 from arc_agi import Arcade  # noqa: E402
 from arc_agi.base import OperationMode  # noqa: E402
 
@@ -49,7 +49,8 @@ def main():
         r = None
         if game_live(fd):
             ng = native_grid(e._game)
-            r = pour_core(ng["block"], ng["target"], ng["wall"], ng["tid"], ng["spouts"], ng["n_targets"])
+            r = pour_core_v(ng["block"], ng["target"], ng["wall"], ng["redir"], ng["tid"],
+                            ng["spouts"], ng["n_targets"])
         cache[g] = r
         return r
 

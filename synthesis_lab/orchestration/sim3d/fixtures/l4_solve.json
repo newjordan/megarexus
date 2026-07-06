@@ -1,0 +1,63 @@
+{
+ "level": 4,
+ "evals": 28665,
+ "native": {
+  "filled": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "n_filled": 4,
+  "fail": false,
+  "n_wall": 0,
+  "win": true,
+  "n_targets": 4,
+  "margin": 1.0
+ },
+ "genome": [
+  [
+   6,
+   4,
+   7
+  ],
+  [
+   5,
+   2,
+   7
+  ],
+  [
+   6,
+   3,
+   2
+  ],
+  [
+   3,
+   3,
+   1
+  ],
+  [
+   6,
+   2,
+   5
+  ],
+  [
+   6,
+   2,
+   4
+  ],
+  [
+   6,
+   3,
+   5
+  ],
+  [
+   5,
+   3,
+   5
+  ]
+ ],
+ "native_win": true,
+ "env_win": false,
+ "verdict": "native-win but env-REJECTED (native fidelity gap)"
+}
