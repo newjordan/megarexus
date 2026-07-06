@@ -151,15 +151,20 @@ def pour_core_v(block, target, wall, redir, tid, spouts, n_targets):
                     if kind(y + oy, x + ox) is None:
                         stack.append((y + oy, x + ox, dx, dy))
         elif k == "redir":
-            (ax, ay), (bx, by) = p                               # owyqnbmyij, faksfmaezd sides
+            # Faithful to game L787-811: TWO separate ifs, and the `else` (split) attaches to the
+            # SECOND if — so side-A deflect has NO continue and FALLS THROUGH to a split unless
+            # side-B also deflects. Net: a clean 90-deflect happens only when an ADJOINING piece
+            # walls off the opposite side (user's rule); otherwise the redirect deflects AND splits
+            # (spreading paint that then reaches the floor). This is the L4 false-positive fix.
+            (ax, ay), (bx, by) = p                               # side A (owyqnbmyij), side B (faksfmaezd)
             a, b = kind(y + ay, x + ax), kind(y + by, x + bx)
-            if a == "redir" and b is None:
-                ndx, ndy = dy, -dx                               # 90-deflect toward side A
-                stack.append((y + ndy, x + ndx, ndx, ndy))
-            elif b == "redir" and a is None:
-                ndx, ndy = -dy, dx
-                stack.append((y + ndy, x + ndx, ndx, ndy))
-            else:
+            did_a = (a == "redir" and b is None)                 # A: side-A is the redirect, B empty
+            did_b = (b == "redir" and a is None)                 # B: side-B is the redirect, A empty
+            if did_a:                                            # deflect toward A (L790, no continue)
+                stack.append((y - dx, x + dy, dy, -dx))
+            if did_b:                                            # deflect toward B (L797)
+                stack.append((y + dx, x - dy, -dy, dx))
+            else:                                                # else binds to the did_b if (L804)
                 for (ox, oy) in p:
                     if kind(y + oy, x + ox) is None:
                         stack.append((y + oy, x + ox, dx, dy))
