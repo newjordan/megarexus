@@ -220,6 +220,7 @@ class MegarexusCNN(nn.Module):
         "settle_predictor.",
         "win_probe.",
         "outcome_head.",
+        "head_target_outcome.",
     )
 
     def __init__(self, config: MegarexusCNNConfig | None = None) -> None:
@@ -383,6 +384,18 @@ class MegarexusCNN(nn.Module):
             nn.Linear(128, 2),                       # [fill_logit, lava_logit]
         )
 
+        # STAGE_PT §4 — PER-TARGET outcome head. The aggregate (fill, lava) scalar hides
+        # WHERE a near-winner fails; this head predicts (fill_t, lava_t) for ONE target U at
+        # a time from features localized to that target (masked pool inside the target, its
+        # dilated ring, and the global context). Arrangement score = min_t(sig(fill_t) -
+        # sig(lava_t)) — a loss is rejected for the SPECIFIC U it misses, which the aggregate
+        # min cannot do. Additive: absent from old ckpts, tolerated by load_state_dict.
+        self.head_target_outcome = nn.Sequential(
+            nn.Linear(3 * lat, 256), nn.SiLU(),
+            nn.Linear(256, 64), nn.SiLU(),
+            nn.Linear(64, 2),                        # [fill_logit_t, lava_logit_t]
+        )
+
     def predict_outcome(self, frame: torch.Tensor) -> torch.Tensor:
         """Arrangement frame stack -> [B,2] = (fill_logit, lava_logit). sigmoid(fill_logit)
         ~ fraction of targets that settle satisfied; sigmoid(lava_logit) ~ normalised lava
@@ -394,6 +407,40 @@ class MegarexusCNN(nn.Module):
         """Pooled encoder embedding [B, latent] of a frame stack (Stage-B latent)."""
         h16, _ = self.trunk(frame)
         return h16.mean(dim=(2, 3))
+
+    @staticmethod
+    def _downsample_mask(mask64: torch.Tensor) -> torch.Tensor:
+        """[B, T, 64, 64] binary -> [B, T, 16, 16] via 4x max-pool (STAGE_PT §4)."""
+        b, t = mask64.shape[0], mask64.shape[1]
+        m = F.max_pool2d(mask64.reshape(b * t, 1, 64, 64).float(), 4)
+        return m.reshape(b, t, 16, 16)
+
+    def target_outcome_from_h16(self, h16: torch.Tensor, tmask16: torch.Tensor,
+                                rmask16: torch.Tensor) -> torch.Tensor:
+        """Core per-target head over a precomputed latent map. h16 [B, lat, 16, 16];
+        tmask16/rmask16 [B, T, 16, 16] (target mask, ring mask). Returns [B, T, 2] =
+        (fill_logit_t, lava_logit_t). One forward per target (loop; <=4 targets, cheap)."""
+        gpool = h16.mean(dim=(2, 3))                       # [B, lat] global context
+        t = tmask16.shape[1]
+        outs = []
+        for i in range(t):
+            tm = tmask16[:, i:i + 1]                        # [B, 1, 16, 16]
+            rm = rmask16[:, i:i + 1]
+            tpool = (h16 * tm).sum(dim=(2, 3)) / tm.sum(dim=(2, 3)).clamp(min=1e-6)
+            rpool = (h16 * rm).sum(dim=(2, 3)) / rm.sum(dim=(2, 3)).clamp(min=1e-6)
+            feat = torch.cat([tpool, rpool, gpool], dim=1)  # [B, 3*lat]
+            outs.append(self.head_target_outcome(feat))     # [B, 2]
+        return torch.stack(outs, dim=1)                     # [B, T, 2]
+
+    def predict_target_outcome(self, frame: torch.Tensor, target_masks: torch.Tensor,
+                               ring_masks: torch.Tensor) -> torch.Tensor:
+        """Per-target (fill_logit, lava_logit) from a pre-pour frame stack and 64x64 binary
+        target/ring masks [B, T, 64, 64] -> [B, T, 2] (STAGE_PT §4). Arrangement score =
+        min_t(sigmoid(fill_t) - sigmoid(lava_t))."""
+        h16, _ = self.trunk(frame)
+        tm16 = self._downsample_mask(target_masks)
+        rm16 = self._downsample_mask(ring_masks)
+        return self.target_outcome_from_h16(h16, tm16, rm16)
 
     def predict_settle_latent(self, frame: torch.Tensor) -> torch.Tensor:
         """Predicted SETTLED pooled latent from a pre-pour frame stack (one pass)."""

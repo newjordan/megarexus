@@ -1,0 +1,17 @@
+{
+  "shard": "synthesis_lab/experiments/megarexus_cnn/data/pour_variants_pertarget_20260705.pt",
+  "evidence_class": "autonomous_candidate",
+  "source_module": "harvest_variants.py",
+  "board_builder": "sp80_variants.make_env_variant",
+  "command": "python3 synthesis_lab/orchestration/harvest_variants.py --variants 600 --arr-per 8 --base-levels 0,1,2,3 --per-target --base-seed 70000 --out synthesis_lab/experiments/megarexus_cnn/data/pour_variants_pertarget_20260705.pt",
+  "base_levels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "base_seed_range": "70000-70599 (fresh; NOT 20000-series used for v52 shards)",
+  "labels": "STAGE_PT_SPEC_3_per_target_fill_lavan_plus_aggregate; DEVIATION-1 applied",
+  "real_levels_in_training": false,
+  "purpose": "T1 per-target outcome head training shard"
+}

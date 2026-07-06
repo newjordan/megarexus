@@ -868,3 +868,96 @@ L0 by ranking (v47), L1 by lava_search. (3) The specific single-episode 4-pour C
 of L1/L2 is NOT achieved — blocked by argmax precision, which needs a genuinely new capability
 (precise settled-state simulation or a per-target spatial win-check), a major direction beyond
 incremental training tweaks. Heavy-exploration thread COMPLETE. Runs v44-54 + searches.
+
+---
+
+# STAGE PT — Per-Target Spatial Win Predictor (F42–F47, 2026-07-05 night)
+
+Executed `notes/STAGE_PT_SPEC_20260705.md` (pre-registered lane T0→T4). Honesty-audit
+FIRST ACTION exit 0 (`AUTONOMOUS_CANDIDATE=82, IMITATION_ASSISTED=23` active). Every shard/
+condition passed `no_imitation_guard`. Real levels EVAL-ONLY, never trained. All work on the
+local GB10 (v52 rsync'd from Apollo; GB10 free + faster, so Apollo not needed for T2).
+
+**HEADLINE: the per-target decomposition is FALSIFIED at the MODEL granularity, not the label
+granularity. It does NOT move the headline to 2 levels. Clean, evidenced negative result —
+exactly the §6 "residual separator is sequence dynamics" outcome. Headline stays: v52 = ranker;
+1 level CNN-alone; L1 solved only with env-feedback play. Deliverable of this lane = the
+falsification + the reusable per-target label/head/gate tooling.**
+
+## FINDING 42 — DEVIATION-1: the pre-registered fill/lava window was self-inconsistent (caught at T0)
+The §3.2 label (3-consecutive-frame sustained fill; lava = max over ALL frames) scores the
+ENV-CONFIRMED L1 winner (240/240) as fill=0 on 2 of its 3 targets and lava=36. Root cause
+(frame-by-frame evidence, `runs/T0_DEVIATION_label_window.md`): the win→reset transient holds
+the all-filled state for only **2 frames** (frames 19-20 of a 22-frame pour) before the level
+resets (13→11, paint cleared, wall-14 win-flash 27→64 at frame 21). The 3-frame window can't
+see a 2-frame hold; the flash inflates lava. The spec's OWN sanity check (`sum(sus_t)≈240`)
+fails with the literal formula — internally contradictory. This is the F16-class post-reset bug
+the spec elsewhere mandates `pour_settle` for. Corrected: fill = 2-frame sustained over the
+PRE-RESET outcome frames; lava = peak over the same. Strict 3-window (`sus_strict3`) and
+harvest-literal lava (`lava_harvest`) still recorded — fully auditable, reversible, neutral to
+the hypothesis. Flagged for human review.
+
+## FINDING 43 — T0 PASS: the per-target GROUND TRUTH cleanly separates winner from FPs
+(`runs/t0_pertarget_20260705.json`) On real L1 (seed 1234): the verified winner reads
+fill=1.0 / lavan=0.0 on all 3 targets (`sum(sus_t)=240`, honest global lava=0 vs lava_harvest=36
+— DEVIATION-1 vindicated). v52's top-4 false positives (scores 0.75/0.734/0.732/0.651, all
+env-losses) are ALL lava-saturated (lavan=1.0 on every target); FP#2/#3 also miss fill on U1,
+FP#4 on U0. Every FP violates the winner-predicate on ≥1 SPECIFIC target — separation the
+aggregate min-scalar provably cannot make. **The decomposition is alive AT THE LABELS.** The
+dominant separator is per-target local lava (the "no local lava" half of the §0 hypothesis).
+
+## FINDING 44 — T1 harvest: per-target labels are self-consistent with env truth
+(`data/pour_variants_pertarget_20260705.pt`, guarded, fresh seeds 70000-70599, bases 0-3)
+6479 pours / 600 variants / 94 wins / 11706 targets. **All 94 env-wins have EVERY target reading
+clean** (fill≥0.95 & lavan≤0.2) — exact per-target↔env correspondence. Label variance present:
+27% of targets fully fill, 9.3% low-lava, 499 fully-clean targets. Lava is heavily skewed (91%
+saturated) — matches the true L1 structure (any overshoot → lava; only precise routing → clean).
+
+## FINDING 45 — T2: both variants train to ~0.93 held-out-variant win-AUC (unstable, best-ckpt saved)
+Additive `head_target_outcome` (C5 clean; v52 loads fine). (A) frozen v52 trunk, head-only:
+best HELDOUT win_AUC(arr_score)=0.929. (B) `--unfreeze-encoder` enc-lr 3e-5: best 0.932. BOTH
+oscillated hard (later epochs 0.6-0.8); per-target component AUCs stayed WEAK throughout
+(fill_AUC~0.60, lava_AUC~0.56-0.66). The min-aggregation lifts weak components to 0.93 win-AUC,
+but the components themselves barely discriminate. Runs v55/v56 (CONDITION.json each).
+
+## FINDING 46 — G1 FAILS ON BOTH VARIANTS — but flips the ordering; the failure mode is decisive
+G1 (winner arr_score POSITIVE and strictly above all 4 T0 FPs on real L1):
+  - **v55 (frozen):** winner arr_score = **−0.583**, ABOVE all 4 FPs (−0.588/−0.605/−0.601/−0.589).
+  - **v56 (unfrozen):** winner arr_score = **−0.789**, ABOVE all 4 FPs (−0.792/−0.798/−0.796/−0.792).
+Both FLIP v52's inverted ordering (v52 put the winner +0.51 *below* FPs) — the winner is now
+ranked **#1**, "the entire point" per G1's own note. But both FAIL the POSITIVE requirement, by
+a **noise-thin** margin (~0.003). Per §5.T3/§8 → STOP.
+
+**WHY (the decisive diagnostic, `runs/outcome_v56.../g1_result.json` + per-target probe):** the
+head's per-target predictions for the WINNER and an FP are **near-identical to 3 decimals**:
+```
+            WINNER (GT fill=1, lavan=0)      FP#1 (GT fill=1, lavan=1)
+   U0   fill_hat 0.163  lava_hat 0.952     fill_hat 0.163  lava_hat 0.955
+   U1   fill_hat 0.173  lava_hat 0.956     fill_hat 0.173  lava_hat 0.960
+   U2   fill_hat 0.295  lava_hat 0.927     fill_hat 0.298  lava_hat 0.932
+```
+The head predicts ≈marginal, position-driven values (~0.16-0.30 fill, ~0.95 lava) for EVERY
+target and is essentially **blind to the arrangement difference** that flips lavan 0↔1 in the
+ground truth. The tiny margin that ranks the winner #1 is effectively noise.
+
+## FINDING 47 — CONCLUSION: separation lives in POUR DYNAMICS, not static per-target features
+The winner and the FP have near-identical STATIC pre-pour arrangements *around each target*; what
+differs is how the paint STREAMS ROUTE during the pour (clean fill vs overshoot into the wall).
+That signal is absent from the static pre-pour pooled latent (target + ring + global), so no
+head reading those features — frozen or unfrozen — can separate them. T0 proved the LABELS carry
+the signal; T2/T3 prove a static-feature head CANNOT LEARN to predict it. This confirms §6's
+pre-registered prediction: **the residual separator is SEQUENCE DYNAMICS — the precise pour
+simulator (the night's recurring wall).** Per-target decomposition is not the precision unlock.
+Next lever is the roadmap's world-model rollout / precise settled-state simulation, NOT another
+static predictor. Untested (spec-forbidden here, flag for next lane): class-imbalance-robust
+loss might sharpen the collapsed lava head, but the identical winner/FP predictions point to
+feature-insufficiency over an optimization artifact. Banned dead-ends respected: no hard-neg
+mining, no rotation-via-set_data, no steps[-1], no variant C / new labels / new objective.
+
+**G2 (no-regression, no headline weight since G1 failed): ALSO FAILS.** On the SAME fresh real
+eval set: REAL-L0 pt arr_score AUC=**0.756** vs v52 aggregate AUC=**0.916** (n=1830, 175 wins) —
+a −0.16 regression (tol −0.02). REAL-L1 undefined (the random proposer found **0 wins in 2010**
+arrangements — L1's winner is too precise for random sampling; a standalone note on proposer
+difficulty). So the per-target head is not only mis-calibrated on the winner margin (G1) but a
+strictly WORSE RANKER than v52 on real levels — consistent with the marginal-collapse in F46/F47.
+The aggregate v52 head remains the better ranker; per-target decomposition regressed it.

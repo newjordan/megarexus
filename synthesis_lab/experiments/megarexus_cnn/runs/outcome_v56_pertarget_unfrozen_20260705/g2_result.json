@@ -1,0 +1,23 @@
+{
+  "ckpt": "synthesis_lab/experiments/megarexus_cnn/runs/outcome_v56_pertarget_unfrozen_20260705/best.pt",
+  "G2": {
+    "gate": "G2",
+    "levels": {
+      "L0": {
+        "n": 1830,
+        "wins": 175,
+        "pt_arr_auc": 0.7555943029779888,
+        "v52_agg_auc": 0.9163159257660768,
+        "pass": false
+      },
+      "L1": {
+        "n": 2010,
+        "wins": 0,
+        "pt_arr_auc": NaN,
+        "v52_agg_auc": NaN,
+        "pass": false
+      }
+    },
+    "passed": false
+  }
+}

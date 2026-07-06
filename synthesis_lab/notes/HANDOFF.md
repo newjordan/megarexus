@@ -6,6 +6,28 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
+## 0-LIVE STATE (2026-07-05 ~21:50 CDT) — PER-TARGET LANE DONE: clean NEGATIVE (supersedes below)
+
+Ran `notes/STAGE_PT_SPEC_20260705.md` end-to-end (T0→T4). **Result: the per-target
+decomposition is FALSIFIED at the MODEL granularity — it does NOT move the headline to 2
+levels.** Headline unchanged: v52 = ranker, 1 level CNN-alone, L1 only via env-feedback play.
+- **T0 PASS:** per-target GROUND TRUTH cleanly separates the verified L1 winner (all targets
+  fill=1/lava=0) from v52's 4 FPs (all lava-saturated). Decomposition is real AT THE LABELS.
+  (Caught+fixed DEVIATION-1: the pre-registered 3-frame fill window scored the confirmed winner
+  as fill=0 — win holds only 2 frames pre-reset; see `runs/T0_DEVIATION_label_window.md`.)
+- **T1:** `data/pour_variants_pertarget_20260705.pt` (6479 pours, 94 wins; all 94 wins have every
+  target clean — exact per-target↔env correspondence).
+- **T2:** additive `head_target_outcome` (C5-clean). v55 frozen + v56 unfrozen, both ~0.93
+  held-out win-AUC but WEAK per-target components (fill_AUC~0.6, lava_AUC~0.6).
+- **G1 FAILS BOTH** (v55 winner −0.583, v56 −0.789) — yet both FLIP v52's ordering (winner now
+  ranked #1 above all FPs), failing only the POSITIVE bar by a ~0.003 noise margin. Decisive
+  diagnostic: the head predicts NEAR-IDENTICAL (fill,lava) for winner vs FP (0.16/0.95 for both)
+  — blind to the arrangement difference. **The separator is POUR DYNAMICS, not static per-target
+  features → §6 confirmed: residual = the precise pour simulator. Per §8, STOP.**
+- **Next lever:** roadmap world-model rollout / precise settled-state simulation (NOT another
+  static predictor). New reusable tooling: `orchestration/{pertarget_labels,t0_label_test,
+  train_target_outcome,pt_gates}.py`, harvest `--per-target`. Full log: NIGHT_REGIME F42-47.
+
 ## 0-LIVE STATE (2026-07-05 ~19:10 CDT) — READ `notes/HANDOFF_NIGHT_20260705.md` FIRST (supersedes all below)
 
 Night regime built a shape-based, LAVA-aware pour imagination. Deliverable = **v52**
@@ -18,6 +40,8 @@ wall — every search + hard-neg approach mapped and failed, F41). Full self-con
 + infra gotchas + the direct-winner verification test + next direction (per-target spatial
 predictor) in **`notes/HANDOFF_NIGHT_20260705.md`**. Full log: `notes/NIGHT_REGIME_20260705.md`
 F1-41. Code on branch `night-shape-lava-imagination-20260705`.
+The per-target lane is now an agent-executable spec: **`notes/STAGE_PT_SPEC_20260705.md`**
+(pre-registered labels/model/gates, stages T0-T4, stop rules, banned dead-ends; run T0 first).
 
 ## 0-PLAN OF RECORD (2026-07-05) — WORLD-MODEL ROADMAP IS BINDING
 

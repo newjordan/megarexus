@@ -19,11 +19,14 @@ for p in (_LAB / "orchestration", _LAB / "experiments" / "megarexus_cnn"):
     sys.path.insert(0, str(p))
 from imagine_search_gate import _candidates, _apply_real, _grid, ACTION_OF_ID, game_live  # noqa: E402
 from sp80_variants import make_env_variant, SRC_TAG  # noqa: E402
+from pertarget_labels import pertarget_labels  # noqa: E402
 from arc_agi import Arcade  # noqa: E402
 from arc_agi.base import OperationMode  # noqa: E402
 
 
 def pour_record(env, cur, base_wall, ntarg):
+    """Aggregate pour outcome (existing fields, UNCHANGED). Also returns the raw
+    frame list so callers can compute §3 per-target labels without a second pour."""
     fd = env.step(ACTION_OF_ID[5])
     if fd is None:
         return None
@@ -35,7 +38,7 @@ def pour_record(env, cur, base_wall, ntarg):
     for i in range(len(n13) - 2):
         sus = max(sus, min(n13[i:i + 3]))
     lava = max(int((x == 14).sum()) for x in frames) - base_wall
-    return sus / max(ntarg, 1), int(lava), bool(won)
+    return sus / max(ntarg, 1), int(lava), bool(won), frames
 
 
 def main():
@@ -44,6 +47,8 @@ def main():
     ap.add_argument("--arr-per", type=int, default=8)
     ap.add_argument("--base-seed", type=int, default=20000)
     ap.add_argument("--base-levels", default="0", help="comma list of base geometries to cycle (0=src-top,1=src-bottom/rot180,...)")
+    ap.add_argument("--per-target", action="store_true", help="also emit §3 per-target (fill_t, lavan_t) labels + pre-pour frame")
+    ap.add_argument("--r", type=int, default=3, help="§3 per-target lava dilation radius")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     bases = [int(x) for x in a.base_levels.split(",") if x != ""]
@@ -79,9 +84,16 @@ def main():
                 continue  # degenerate variant (e.g. pour exceeds frame budget) -> skip
             if out is None:
                 continue
-            fill, lava, won = out
-            recs.append({"arrangement": arr, "fill": float(fill), "lava": int(lava),
-                         "env_win": bool(won), "n_targets": ntarg, "variant": v})
+            fill, lava, won, frames = out
+            rec = {"arrangement": arr, "fill": float(fill), "lava": int(lava),
+                   "env_win": bool(won), "n_targets": ntarg, "variant": v}
+            if a.per_target:
+                # §3 per-target labels off the SAME pour (arr = pre-pour frame for masks).
+                lab = pertarget_labels(arr, frames, r=a.r)
+                rec["pt"] = [[float(t["fill"]), float(t["lavan"])] for t in lab["targets"]]
+                rec["pt_n_targets"] = int(lab["n_targets"])
+                rec["global_honest"] = {"sus": lab["global"]["sus"], "lava": lab["global"]["lava"]}
+            recs.append(rec)
             nwin += int(won)
         if (v + 1) % 50 == 0:
             print(f"[var] {v+1}/{a.variants} variants ({nvar} valid): {len(recs)} pours, {nwin} wins", flush=True)
