@@ -1,0 +1,934 @@
+{
+ "protocol": "H4: palette-manifest-only machinery on sp80_variants boards; from-scratch full-grid dynamics re-selection on variant pours (disjoint from all prior fit corpora); redirect family excluded (source-derived tag; unmodeled physics)",
+ "families": {
+  "single": {
+   "boards": 12,
+   "degenerate": 0,
+   "extract_error": 0,
+   "trusted": 12,
+   "untrusted": 0,
+   "gate_failures": {},
+   "poured": 12,
+   "wins": 0
+  },
+  "rotated": {
+   "boards": 12,
+   "degenerate": 0,
+   "extract_error": 0,
+   "trusted": 12,
+   "untrusted": 0,
+   "gate_failures": {},
+   "poured": 12,
+   "wins": 0
+  },
+  "multi2": {
+   "boards": 12,
+   "degenerate": 0,
+   "extract_error": 0,
+   "trusted": 12,
+   "untrusted": 0,
+   "gate_failures": {},
+   "poured": 12,
+   "wins": 1
+  },
+  "multi3": {
+   "boards": 12,
+   "degenerate": 0,
+   "extract_error": 0,
+   "trusted": 12,
+   "untrusted": 0,
+   "gate_failures": {},
+   "poured": 12,
+   "wins": 1
+  }
+ },
+ "determinism_failures": 0,
+ "fit": {
+  "n_pours": 48,
+  "gate_skipped": 0,
+  "n_wins": 2
+ },
+ "r3_selected": {
+  "cfg": {
+   "deflect": "none",
+   "spread": "lateral",
+   "mouth": "fill",
+   "edge": "dispose",
+   "cell_cap": 1.0,
+   "absorb": "unlimited"
+  },
+  "rule": "fill_cap",
+  "stop": "volume"
+ },
+ "from_scratch_argmax": {
+  "cfg": {
+   "deflect": "none",
+   "spread": "lateral",
+   "mouth": "fill",
+   "edge": "dispose",
+   "cell_cap": 1.0,
+   "absorb": "unlimited"
+  },
+  "rule": "fill_cap",
+  "stop": "volume"
+ },
+ "top_tie_block_size": 24,
+ "r3_member_in_top_tie_block": true,
+ "holdout": {
+  "outcome_acc": 1.0,
+  "lava_acc": 1.0,
+  "mean_iou": 0.5708856889591924,
+  "median_first_div": 0.0,
+  "win_side_acc": null,
+  "n": 12,
+  "n_wins": 0
+ },
+ "table_top40": [
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5803017476613512,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5803017476613512,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5803017476613512,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5803017476613512,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5803017476613512,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5803017476613512,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "halt",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "halt",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "halt",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "halt",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "halt",
+    "cell_cap": 3.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "both",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "halt",
+    "cell_cap": 3.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "volume",
+   "train": {
+    "outcome_acc": 1.0,
+    "lava_acc": 1.0,
+    "mean_iou": 0.5630242570518212,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "cap"
+   },
+   "rule": "fill_cap",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5858918576746578,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "cap"
+   },
+   "rule": "entered",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5858918576746578,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "cap"
+   },
+   "rule": "fill_cap",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5856903001088919,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "cap"
+   },
+   "rule": "entered",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5856903001088919,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "cap"
+   },
+   "rule": "fill_cap",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5853653713026016,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "cap"
+   },
+   "rule": "entered",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5853653713026016,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "cap"
+   },
+   "rule": "fill_cap",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5851098095451462,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "cap"
+   },
+   "rule": "entered",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5851098095451462,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "cap"
+   },
+   "rule": "fill_cap",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5850904669029519,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "entry",
+    "edge": "dispose",
+    "cell_cap": 3.0,
+    "absorb": "cap"
+   },
+   "rule": "entered",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5850904669029519,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "cap"
+   },
+   "rule": "fill_cap",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5847573100550266,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "cap"
+   },
+   "rule": "entered",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5847573100550266,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 1.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "fill_cap",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  },
+  {
+   "cfg": {
+    "deflect": "none",
+    "spread": "lateral",
+    "mouth": "fill",
+    "edge": "dispose",
+    "cell_cap": 2.0,
+    "absorb": "unlimited"
+   },
+   "rule": "entered",
+   "stop": "win",
+   "train": {
+    "outcome_acc": 0.9722222222222222,
+    "lava_acc": 0.9722222222222222,
+    "mean_iou": 0.5839857619545565,
+    "median_first_div": 0.0,
+    "win_side_acc": 1.0,
+    "n": 36,
+    "n_wins": 2
+   }
+  }
+ ],
+ "gates": {
+  "r3_member_in_top_tie_block": true,
+  "holdout_outcome": true,
+  "holdout_win_side": true
+ },
+ "pass": true
+}

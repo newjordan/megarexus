@@ -31,9 +31,22 @@ GRID = 64
 M = 16                    # macro-grid side
 CELL = GRID // M          # 4 px per macro cell
 
-SOURCE, PAINT, HUD, OPEN = 4, 6, 1, 12
-TARGET, FILLED, WALL = 11, 13, 14
-MOVABLE, SELECTED = 8, 9
+# ---- PALETTE MANIFEST — the ONLY game-specific input to this machinery ----
+# H4 contract (DREAMWEAVER_INTEGRATION_PLAN §2): everything below this block is
+# game-agnostic. Each role↔color binding was made and is continually verified
+# from OBSERVED frames + env outcomes (perception gate per frame; pour fits per
+# dynamics claim). On a different game, this manifest is the single thing that
+# must be re-induced; the machinery is unchanged.
+PALETTE = {
+    "open": 12, "boundary": 1,            # background / HUD boundary band
+    "source": 4, "paint": 6,              # emitter housing / fluid
+    "target": 11, "filled": 13,           # U-glyph / filled indication
+    "wall": 14, "movable": 8, "selected": 9,
+}
+SOURCE, PAINT, HUD, OPEN = (PALETTE["source"], PALETTE["paint"],
+                            PALETTE["boundary"], PALETTE["open"])
+TARGET, FILLED, WALL = PALETTE["target"], PALETTE["filled"], PALETTE["wall"]
+MOVABLE, SELECTED = PALETTE["movable"], PALETTE["selected"]
 SOLID_COLORS = (SOURCE, TARGET, FILLED, WALL, MOVABLE, SELECTED)
 
 

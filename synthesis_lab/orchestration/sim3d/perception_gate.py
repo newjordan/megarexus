@@ -36,12 +36,12 @@ from __future__ import annotations
 
 import numpy as np
 
-from scene import (GRID, OPEN, SOURCE, HUD, TARGET, SOLID_COLORS,
+from scene import (GRID, OPEN, SOURCE, HUD, TARGET, SOLID_COLORS, PALETTE,
                    _pixel_components)
 
 # material ENTERS a mouth moving opposite to the side the mouth opens toward
 ENTRY = {"up": (1, 0), "down": (-1, 0), "left": (0, 1), "right": (0, -1)}
-KNOWN_COLORS = {0, 1, 4, 6, 8, 9, 11, 12, 13, 14}
+KNOWN_COLORS = set(PALETTE.values()) | {0}     # 0 = score digits / black chrome
 
 
 def _cell_ray(solid, y0, x0, d, skip=()):

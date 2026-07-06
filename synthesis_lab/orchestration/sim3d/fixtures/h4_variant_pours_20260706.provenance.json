@@ -1,0 +1,45 @@
+{
+ "provenance": "sp80_variants boards (env-synthesized problems, no answers) poured once each in the real env; observation data for the H4 from-scratch dynamics re-selection",
+ "families": {
+  "single": {
+   "boards": 12,
+   "degenerate": 0,
+   "extract_error": 0,
+   "trusted": 12,
+   "untrusted": 0,
+   "gate_failures": {},
+   "poured": 12,
+   "wins": 0
+  },
+  "rotated": {
+   "boards": 12,
+   "degenerate": 0,
+   "extract_error": 0,
+   "trusted": 12,
+   "untrusted": 0,
+   "gate_failures": {},
+   "poured": 12,
+   "wins": 0
+  },
+  "multi2": {
+   "boards": 12,
+   "degenerate": 0,
+   "extract_error": 0,
+   "trusted": 12,
+   "untrusted": 0,
+   "gate_failures": {},
+   "poured": 12,
+   "wins": 1
+  },
+  "multi3": {
+   "boards": 12,
+   "degenerate": 0,
+   "extract_error": 0,
+   "trusted": 12,
+   "untrusted": 0,
+   "gate_failures": {},
+   "poured": 12,
+   "wins": 1
+  }
+ }
+}
