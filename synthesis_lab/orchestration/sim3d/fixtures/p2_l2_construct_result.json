@@ -1,0 +1,159 @@
+{
+ "level": 2,
+ "imagined_evals": 4033,
+ "best_sim": {
+  "margin": 0.0,
+  "winner_ok": false,
+  "n_clean": 1,
+  "fills": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "lavs": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "sum_clean": 1.0,
+  "flood": 0.0
+ },
+ "n_margin_positive": 0,
+ "n_clean_multifill_sim": 0,
+ "solved_at": null,
+ "real_pours": [
+  {
+   "rank": 1,
+   "genome": [
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ]
+   ],
+   "sim": {
+    "margin": 0.0,
+    "winner_ok": false,
+    "n_clean": 1,
+    "fills": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "lavs": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sum_clean": 1.0,
+    "flood": 0.0
+   },
+   "env_win": false
+  },
+  {
+   "rank": 2,
+   "genome": [
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     1,
+     2,
+     2
+    ]
+   ],
+   "sim": {
+    "margin": 0.0,
+    "winner_ok": false,
+    "n_clean": 1,
+    "fills": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "lavs": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sum_clean": 1.0,
+    "flood": 0.0
+   },
+   "env_win": false
+  },
+  {
+   "rank": 3,
+   "genome": [
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     1,
+     2,
+     3
+    ]
+   ],
+   "sim": {
+    "margin": 0.0,
+    "winner_ok": false,
+    "n_clean": 1,
+    "fills": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "lavs": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sum_clean": 1.0,
+    "flood": 0.0
+   },
+   "env_win": false
+  },
+  {
+   "rank": 4,
+   "genome": [
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     1,
+     2,
+     4
+    ]
+   ],
+   "sim": {
+    "margin": 0.0,
+    "winner_ok": false,
+    "n_clean": 1,
+    "fills": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "lavs": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sum_clean": 1.0,
+    "flood": 0.0
+   },
+   "env_win": false
+  }
+ ],
+ "decision_branch": "NEGATIVE: no sim margin>0 arrangement over the constructive sweep -> evidence L2 is not arrange-and-pour solvable (every reachable pour floods); escalate intended-mechanic"
+}
