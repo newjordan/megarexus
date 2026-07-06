@@ -1,0 +1,99 @@
+"""Faithful droplet-CA pour (the user's "ball that splits into two orthogonal directions and
+falls off the side of a wall" — 2026-07-06). A direct port of the GAME's droplet stepping
+(sp80.py L749-820), NOT the hydraulic pooling model. The key mechanic the hydraulic lane
+missed: paint is DROPLETS that split around blocks and continue down, and any droplet that
+runs off the LEFT/RIGHT board edge is DISPOSED (the fail sensor `waoewejnqzc` is only the
+BOTTOM wall — the sides are open), so excess paint is shed off the sides, not flooded.
+
+On levels with NO redirect (L2), every droplet moves straight DOWN and a block forks it to
+x-1/x+1 (both still down). The pour outcome (which mouths fill, whether the bottom wall is
+touched) is therefore a DETERMINISTIC reachability graph — volume is irrelevant (one droplet
+fills a mouth enclosed; one droplet touching the wall fails). We compute it exactly with a BFS
+over (row,col) down-moving droplet states. Microseconds, exact.
+
+Contract mirrors the game: fill a target when a droplet ENTERS its enclosed mouth cell (glyph
+below + both perpendicular sides, L775); FAIL when a droplet's next cell is the bottom wall
+(L815); dispose a droplet that leaves the x-edges. WIN = all targets filled AND no wall touch.
+
+    from dropletsim import droplet_pour
+    out = droplet_pour(frame)   # {'filled', 'fail', 'win', 'n_targets', 'margin'}
+"""
+from __future__ import annotations
+
+import numpy as np
+
+import _paths  # noqa: F401
+from scene import extract_scene, M, MOVABLE, SELECTED, TARGET, WALL
+
+
+def _typed(scene):
+    """Per-cell type masks on the canonical macro grid (flow = down)."""
+    g = scene.g
+    block = np.isin(g, (MOVABLE, SELECTED))            # movable split blocks (8/9)
+    target = (g == TARGET)                             # U-glyph (11)
+    wall = (g == WALL)                                 # wall/flash (14)
+    for r in scene.floor_rows:                         # the bottom lava/wall strip
+        wall[r, :] = True
+    tid = -np.ones((M, M), dtype=int)
+    for i, t in enumerate(scene.targets):
+        for (yy, xx) in zip(*np.nonzero(t.glyph)):
+            tid[yy, xx] = i
+    return block, target, wall, tid
+
+
+def pour_core(block, target, wall, tid, spouts, n_targets):
+    """Exact droplet-CA outcome on typed macro grids (no-redirect: all motion DOWN). Grids are
+    [M,M] bool; tid = [M,M] int target id per glyph cell (-1 elsewhere); spouts = [(y,x)]. This
+    is the hot path for grid-level search (no env frame build)."""
+    def kind(y, x):
+        if x < 0 or x >= M or y < 0 or y >= M:
+            return None
+        if block[y, x]:
+            return "block"
+        if target[y, x]:
+            return "target"
+        if wall[y, x]:
+            return "wall"
+        return None
+
+    filled, wall_hits = set(), set()
+    stack = [(int(sy), int(sx)) for (sy, sx) in spouts]
+    seen = set()
+    while stack:
+        y, x = stack.pop()
+        if (y, x) in seen:
+            continue
+        seen.add((y, x))
+        if x < 0 or x >= M or y < 0 or y >= M:
+            continue
+        nxt = kind(y + 1, x)
+        if nxt is None:
+            stack.append((y + 1, x))
+        elif nxt == "wall":
+            wall_hits.add((y + 1, x))
+        elif nxt == "block":
+            for nx in (x - 1, x + 1):
+                if kind(y, nx) is None:
+                    stack.append((y, nx))
+        elif nxt == "target":
+            le, ri = kind(y, x - 1), kind(y, x + 1)
+            if le == "target" and ri == "target":
+                filled.add(int(tid[y + 1, x]))
+            else:
+                for nx in (x - 1, x + 1):
+                    if kind(y, nx) is None:
+                        stack.append((y, nx))
+    filled.discard(-1)
+    fail = len(wall_hits) > 0
+    win = (not fail) and n_targets > 0 and len(filled) >= n_targets
+    margin = (1.0 if win else (len(filled) / max(n_targets, 1)) - min(1.0, 0.1 * len(wall_hits)))
+    return {"filled": sorted(filled), "n_filled": len(filled), "fail": bool(fail),
+            "n_wall": len(wall_hits), "win": bool(win), "n_targets": n_targets,
+            "margin": float(margin)}
+
+
+def droplet_pour(frame, scene=None):
+    """Exact droplet-CA outcome for one pour (no-redirect levels: all motion is DOWN)."""
+    sc = scene if scene is not None else extract_scene(frame)
+    block, target, wall, tid = _typed(sc)
+    return pour_core(block, target, wall, tid, list(sc.spouts or [sc.spout]), len(sc.targets))
