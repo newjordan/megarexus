@@ -37,11 +37,15 @@ class KnownMap:
     """Explicit spatial cells + provenance (canonical lattice coords, flow down)."""
     solid: np.ndarray                      # [gh,gw] bool, static colliders incl. floor
     floor_rows: tuple                      # lava strip rows (adversarial)
-    spouts: tuple                          # ((y,x), ...) material entry cells
+    spouts: tuple                          # ((y,x), ...) CHARGED material entry cells
     mouths: tuple                          # per target: ((y,x), ...) goal cells
     glyph_cells: tuple                     # per target: ((y,x), ...) structural cells
     capacities: tuple                      # per target: mouth capacity (cells)
     emit_volume: float                     # material units one pour emits
+    all_spouts: tuple = ()                 # every housing spout, charged or not
+    spout_charged: tuple = ()              # per all_spouts entry: has a reservoir?
+    hud: np.ndarray = None                 # [gh,gw] bool boundary/HUD cells (non-solid
+                                           # walls for film flow; FallingMaterial ignores)
     provenance: dict = field(default_factory=dict, hash=False, compare=False)
 
     @classmethod
@@ -59,6 +63,9 @@ class KnownMap:
             emitters = [s for s, c in zip(scene.spouts, charged) if c]
         else:
             emitters = list(scene.spouts)
+            charged = [True] * len(scene.spouts)
+        from scene import PALETTE
+        hud = (np.asarray(scene.g) == PALETTE["boundary"]) & ~scene.solid
         return cls(
             solid=scene.solid.copy(),
             floor_rows=tuple(scene.floor_rows),
@@ -68,6 +75,9 @@ class KnownMap:
                               for t in scene.targets),
             capacities=tuple(float(t.capacity) for t in scene.targets),
             emit_volume=float(scene.emit_volume),
+            all_spouts=tuple((int(y), int(x)) for y, x in scene.spouts),
+            spout_charged=tuple(bool(c) for c in charged),
+            hud=hud,
             provenance={"source": "perception_gate", "trusted": True,
                         "gate_failures": [], **meta},
         )
@@ -256,6 +266,163 @@ class FallingMaterial(DynamicsHypothesis):
             state.terminal = "quiescent"
 
 
+class FlowTrail(DynamicsHypothesis):
+    """Round-4 GENERIC liquid-film / trail-flow family (induced from the L3
+    corpus observations, DW_LAB_LOG r4 Phase A — falling-sand piling cannot
+    express the observed spread-and-split behavior).
+
+    Fixed rules (all directly observed on the L3 corpus):
+      - each emitter starts ONE stream; a stream tip advances 1 cell/tick and
+        leaves a PERSISTENT painted trail (visible paint never drains)
+      - a tip blocked below becomes a lateral run BOTH ways along its row,
+        1 cell/side/tick, descending at the first open-below cell on each side
+        (streams SPLIT at both overhang edges)
+      - painted cells block flow like solids (merging streams die, no double
+        paint); HUD/boundary cells block laterally and are never painted
+      - mouth cells absorb on ENTRY: the tip becomes a FEED, +1 fill/tick up
+        to the mouth capacity (fill cells painted bottom-up)
+      - floor rows are adversarial: attempted entry = floor_touch, tip dies
+
+    Knobs (selected ONLY by observation, r4_fit.py):
+      emitters 'charged' | 'all'          do uncharged housings emit?
+      phase    'sync' | 'uncharged_lead'  charged streams spend 1 tick draining
+                                          through the housing (uncharged lead —
+                                          the observed frame-0 mid stream);
+                                          sync = all streams paint at tick 1
+      mouth    'feed_die' | 'feed_overflow'  full mouth: stream ends quietly vs
+                                          remaining volume spills (floor_touch)
+      volume   None | float               unlimited (flow to saturation) vs
+                                          total trail budget measured per level
+      merge    'split' | 'die'            a falling tip landing on an EXISTING
+                                          painted column splits like on solid vs
+                                          merges into the stream (dies quietly)
+
+    Tick-alignment convention (declared, uniform across corpora): FlowTrail
+    rollouts compare obs[t] <-> state[t+1] — frame 0 is captured after the
+    first flow tick (uncharged streams already 1 cell long there).
+    """
+    name = "flow_trail"
+
+    def __init__(self, emitters="all", phase="uncharged_lead",
+                 mouth="feed_die", volume=None, merge="split"):
+        self.params = {"emitters": emitters, "phase": phase, "mouth": mouth,
+                       "volume": None if volume is None else float(volume),
+                       "merge": merge}
+
+    def _paint(self, state, y, x):
+        state.settled[y, x] = 1.0
+        state.emitted += 1
+
+    def _budget_left(self, state):
+        v = self.params["volume"]
+        return True if v is None else state.emitted < v
+
+    def step(self, state: SimState) -> None:
+        km, p = state.kmap, self.params
+        gh, gw = km.solid.shape
+        hud = km.hud if km.hud is not None else np.zeros_like(km.solid)
+        owner = km.mouth_owner()
+
+        def open_cell(y, x):
+            return (0 <= y < gh and 0 <= x < gw and not km.solid[y, x]
+                    and not hud[y, x] and state.settled[y, x] < 1.0)
+
+        if not self._budget_left(state):
+            state.moving = []
+
+        def enter_mouth(y, x, nxt):
+            t = owner[(y, x)]
+            state.fills[t] += 1
+            state.emitted += 1
+            if state.settled[y, x] < 1.0:
+                state.settled[y, x] = 1.0
+            nxt.append((y, x, "f"))
+
+        def lateral_step(y, x, mode, nxt):
+            """One lateral move for a run tip at (y,x); appends the survivor."""
+            d = -1 if mode == "l" else 1
+            nx = x + d
+            if not (0 <= nx < gw):
+                state.disposed += 1
+                return
+            if (y, nx) in owner:                              # side-facing mouth
+                enter_mouth(y, nx, nxt)
+                return
+            if not open_cell(y, nx):                          # wall/merge: die
+                return
+            self._paint(state, y, nx)
+            below = (y + 1, nx)
+            if (below[0] >= gh or below[0] in km.floor_rows
+                    or below in owner or open_cell(*below)):
+                nxt.append((y, nx, "d"))                      # descend here
+            else:
+                nxt.append((y, nx, mode))
+
+        nxt = []
+        for tip in state.moving:
+            if not self._budget_left(state):
+                break
+            y, x, mode = tip
+            if mode == "f":                                   # feeding a mouth
+                t = owner.get((y, x))
+                if t is None or state.fills[t] >= km.capacities[t]:
+                    if p["mouth"] == "feed_overflow" and self._budget_left(state):
+                        state.floor_touch += 1                # excess spills
+                    continue
+                state.fills[t] += 1
+                state.emitted += 1
+                for (my, mx) in sorted(km.mouths[t], key=lambda c: (-c[0], c[1])):
+                    if state.settled[my, mx] < 1.0:
+                        state.settled[my, mx] = 1.0
+                        break
+                nxt.append((y, x, "f"))
+                continue
+            if mode == "d":                                   # falling
+                ny = y + 1
+                if ny >= gh:
+                    state.disposed += 1
+                    continue
+                if ny in km.floor_rows:
+                    state.floor_touch += 1
+                    continue
+                if (ny, x) in owner:                          # mouth entry
+                    enter_mouth(ny, x, nxt)
+                    continue
+                if open_cell(ny, x):
+                    self._paint(state, ny, x)
+                    nxt.append((ny, x, "d"))
+                    continue
+                if (p["merge"] == "die" and not km.solid[ny, x]
+                        and not hud[ny, x] and state.settled[ny, x] >= 1.0):
+                    continue                                  # merge into the stream
+                lateral_step(y, x, "l", nxt)                  # split: run both ways
+                lateral_step(y, x, "r", nxt)                  # (same-tick, observed)
+                continue
+            lateral_step(y, x, mode, nxt)                     # lateral run
+        state.moving = nxt
+
+        # move-then-spawn (same convention as FallingMaterial): a stream's
+        # first cell appears at its spawn tick and advances the NEXT tick.
+        # Streams start at tick 1; charged emitters idle 1 tick when
+        # phase='uncharged_lead' (drain-through), painting at tick 2.
+        if state.tick in (1, 2):
+            spouts = (list(zip(km.all_spouts, km.spout_charged))
+                      if p["emitters"] == "all" and km.all_spouts
+                      else [(s, True) for s in km.spouts])
+            for (sy, sx), ch in spouts:
+                lead = p["phase"] == "uncharged_lead"
+                due = (2 if (ch and lead) else 1)
+                if state.tick != due or not self._budget_left(state):
+                    continue
+                if open_cell(sy, sx):
+                    self._paint(state, sy, sx)
+                    state.moving.append((sy, sx, "d"))
+
+        started = state.tick >= (2 if p["phase"] == "uncharged_lead" else 1)
+        if started and not state.moving:
+            state.terminal = "quiescent"
+
+
 def run(kmap: KnownMap, hyp: DynamicsHypothesis, max_ticks: int = 200):
     """Deterministic rollout -> list of SimState (tick 0 .. terminal/max)."""
     states = [SimState(kmap=kmap)]
@@ -345,8 +512,8 @@ def render_state(state: SimState):
         for (y, x) in cells:
             g[y, x] = col
     g[state.settled >= 0.5] = 6
-    for (y, x) in state.moving:
-        g[y, x] = 6
+    for tip in state.moving:
+        g[tip[0], tip[1]] = 6
     for (sy, sx) in km.spouts:
         if g[sy, sx] == 12:
             g[sy, sx] = 4

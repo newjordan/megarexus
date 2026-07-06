@@ -49,8 +49,8 @@ def rollout_eval(cfg, pour):
     for t in range(n):
         s = states[t]
         m = (s.settled > 0).copy()
-        for (y, x) in s.moving:
-            m[y, x] = True
+        for tip in s.moving:
+            m[tip[0], tip[1]] = True
         b = pour["obs_masks"][t]
         inter, union = int((m & b).sum()), int((m | b).sum())
         tick_iou.append(inter / union if union else 1.0)

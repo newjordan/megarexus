@@ -1,0 +1,45 @@
+{
+ "protocol": "r4 L3 realization: feasibility placement driven by legal clicks, empirically-measured dir map, closed-loop landing checks, kernel certification, single env pour",
+ "seed": 1234,
+ "win_index": -1,
+ "target_offsets": [
+  [
+   -1,
+   2
+  ],
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   0
+  ],
+  [
+   -3,
+   -5
+  ],
+  [
+   0,
+   -12
+  ]
+ ],
+ "actions_used": 30,
+ "kernel_verdict": {
+  "fills": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "floor": 1,
+  "win": false
+ },
+ "env_win": false,
+ "env_flash": true,
+ "n_anim_frames": 35
+}

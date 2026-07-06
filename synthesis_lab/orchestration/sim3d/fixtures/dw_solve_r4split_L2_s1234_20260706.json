@@ -1,0 +1,70 @@
+{
+ "protocol": "DW Phase-4: gate-checked candidates, r4 INDUCED kernel imagines (win-bonus fitness), env decides top-K only",
+ "config": {
+  "family": "flow_trail",
+  "cfg": {
+   "emitters": "all",
+   "phase": "uncharged_lead",
+   "mouth": "feed_die",
+   "volume": "unlimited"
+  },
+  "rule": "fill_cap",
+  "stop": "volume"
+ },
+ "emit_volume_measured": null,
+ "level": 2,
+ "seed": 1234,
+ "solved_at": 1,
+ "topk": [
+  {
+   "rank": 1,
+   "fitness": 2.0,
+   "imagined_win": true,
+   "genome": [
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     7,
+     1,
+     1
+    ],
+    [
+     6,
+     3,
+     3
+    ],
+    [
+     7,
+     4,
+     1
+    ],
+    [
+     5,
+     3,
+     2
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     1,
+     4,
+     1
+    ]
+   ],
+   "env_win": true
+  }
+ ],
+ "kernel_evals": 9664,
+ "refused": 0
+}

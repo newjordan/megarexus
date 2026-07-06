@@ -2,10 +2,11 @@
 
 Search scaffold mirrors s3_solve (hill-climb over reachable click-move genomes,
 candidate frames realized with clean env resets, ZERO search pours), but the
-imaginer is the LEGITIMATELY-INDUCED round-3 kernel model
-(dynamics_round3_20260706.json: unlimited mouth absorption, selected on
-L0+L1 calib + solve-time flywheel corpora), and every candidate scene must
-pass the perception gate before the kernel will imagine it (provenance rule).
+imaginer is the LEGITIMATELY-INDUCED kernel model selected by --model
+(default r4 = FlowTrail film flow from dynamics_round4_20260706.json, gated on
+L0+L1+solvetime+L3 corpora; r3 = the FallingMaterial member kept for
+comparison), and every candidate scene must pass the perception gate before
+the kernel will imagine it (provenance rule).
 
 Per-level emit volume is MEASURED from the observed pour corpora (paint-pixel
 growth), never assumed. Env pours happen only for the final top-K (game
@@ -29,20 +30,34 @@ from imag_search_solve import frame_of, MOVES  # noqa: E402
 from engine_adapters.portband_glove_adapter import frame_components  # noqa: E402
 from scene import extract_scene, PAINT  # noqa: E402
 from perception_gate import gate_scene  # noqa: E402
-from imagination_kernel import (KnownMap, FallingMaterial, run, render_state,  # noqa: E402
-                                win_moment)
+from imagination_kernel import (KnownMap, FallingMaterial, FlowTrail, run,  # noqa: E402
+                                render_state, win_moment)
 from harvest_pours import pour_once  # noqa: E402
 from arc_agi import Arcade  # noqa: E402
 from arc_agi.base import OperationMode  # noqa: E402
 
-# Round-3 induced model: selected cfg + outcome semantics (rule/stop) from the
-# pre-registered fit on L0+L1 calib + solve-time flywheel corpora.
-_R3 = json.loads((FIXTURES / "dynamics_round3_20260706.json").read_text())
-MODEL_CFG = _R3["selected"]["cfg"]
-MODEL_RULE = _R3["selected"]["rule"]
-MODEL_STOP = _R3["selected"]["stop"]
+# Induced model registry: --model picks the round fixture. Round 4 selected the
+# FlowTrail family (film flow: trails, spread-and-split, all housings emit) on
+# L0+L1+solvetime+L3 corpora with per-corpus holdout gates; round 3 remains
+# loadable for comparison runs.
+MODEL_FIXTURES = {"r3": "dynamics_round3_20260706.json",
+                  "r4": "dynamics_round4_20260706.json"}
 CORPORA = {0: "calib_l0_pours.npz", 1: "calib_l1_pours_20260706.npz",
-           2: "calib_l2_pours_20260706.npz"}
+           2: "calib_l2_pours_20260706.npz", 3: "calib_l3_pours_20260706.npz"}
+MODEL = {}   # populated in main() from --model
+
+
+def build_hyp(level=None):
+    """The selected round's hypothesis, volume resolved per level if measured."""
+    if MODEL.get("family", "falling_material") == "flow_trail":
+        cfg = dict(MODEL["cfg"])
+        if cfg.get("volume") == "measured":
+            key = {0: "l0_calib", 1: "l1_calib", 3: "l3_calib"}.get(level)
+            cfg["volume"] = MODEL.get("measured_volumes", {}).get(key)
+        else:
+            cfg["volume"] = None
+        return FlowTrail(**cfg)
+    return FallingMaterial(**MODEL["cfg"])
 
 
 def measured_emit_volume(level):
@@ -60,11 +75,11 @@ def measured_emit_volume(level):
     return float(np.median(vols))
 
 
-def kernel_score(frame, emit_volume, lam=1.0, max_ticks=200):
-    """Gate -> KnownMap -> round-3 induced-model rollout -> (fitness, detail).
+def kernel_score(frame, emit_volume, lam=1.0, max_ticks=200, level=None):
+    """Gate -> KnownMap -> selected induced-model rollout -> (fitness, detail).
     Untrusted candidate scenes are REFUSED (None), not guessed at.
 
-    Win per the SELECTED round-3 semantics (horizon-honest: quiescence
+    Win per the SELECTED round's semantics (horizon-honest: quiescence
     end-state or win-moment, whichever the fit chose); fitness adds a +1 win
     bonus on top of the graded fill/lava terms so clean imagined winners rank
     strictly above the old plateau of tied non-winners."""
@@ -76,32 +91,33 @@ def kernel_score(frame, emit_volume, lam=1.0, max_ticks=200):
         km = KnownMap.from_scene(sc, v, cell=int(sc.cell), pad=list(sc.pad))
     except Exception:  # noqa: BLE001
         return None
-    states = run(km, FallingMaterial(**MODEL_CFG), max_ticks=max_ticks)
+    states = run(km, build_hyp(level), max_ticks=max_ticks)
     end = states[-1]
     fill = float(np.mean([min(f / c, 1.0) for f, c in zip(end.fills, km.capacities)
                           if c > 0])) if km.capacities else 0.0
-    if MODEL_STOP == "win":
-        tick, floor_at = win_moment(states, km.capacities, rule=MODEL_RULE)
+    lava_norm = max(float(end.emitted), float(km.emit_volume), 1.0)
+    if MODEL["stop"] == "win":
+        tick, floor_at = win_moment(states, km.capacities, rule=MODEL["rule"])
         win = tick is not None and floor_at == 0
-        lava = floor_at / max(km.emit_volume, 1.0)
+        lava = floor_at / lava_norm
     else:
-        req = (km.capacities if MODEL_RULE == "fill_cap"
+        req = (km.capacities if MODEL["rule"] == "fill_cap"
                else [1.0] * len(km.capacities))
         win = (len(km.capacities) > 0
                and all(f >= r for f, r in zip(end.fills, req))
                and end.floor_touch == 0)
-        lava = end.floor_touch / max(km.emit_volume, 1.0)
+        lava = end.floor_touch / lava_norm
     return {"fitness": fill - lam * lava + (1.0 if win else 0.0),
             "fill": fill, "lava": lava, "imagined_win": bool(win), "kmap": km}
 
 
-def side_by_side(kmap, real_frames, out_png):
+def side_by_side(kmap, real_frames, out_png, level=None):
     """Imagination-vs-real contact sheet for the poured winner."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from viz import frame_rgb
-    states = run(kmap, FallingMaterial(**MODEL_CFG), max_ticks=len(real_frames))
+    states = run(kmap, build_hyp(level), max_ticks=len(real_frames))
     u = int(kmap.provenance.get("cell", 4))
     py, px = (int(p) for p in kmap.provenance.get("pad", (0, 0)))
     idxs = np.linspace(0, min(len(states), len(real_frames)) - 1, 6).astype(int)
@@ -126,7 +142,16 @@ def main():
     ap.add_argument("--topk", type=int, default=4)
     ap.add_argument("--max-genes", type=int, default=8)
     ap.add_argument("--lam", type=float, default=1.0)
+    ap.add_argument("--model", default="r4", choices=sorted(MODEL_FIXTURES))
     a = ap.parse_args()
+
+    fx = json.loads((FIXTURES / MODEL_FIXTURES[a.model]).read_text())
+    MODEL.update(family=fx["selected"].get("family", "falling_material"),
+                 cfg=fx["selected"]["cfg"], rule=fx["selected"]["rule"],
+                 stop=fx["selected"]["stop"],
+                 measured_volumes=fx.get("measured_volumes", {}))
+    print(f"[dw] model={a.model} {MODEL['family']} {MODEL['cfg']} "
+          f"rule={MODEL['rule']} stop={MODEL['stop']}", flush=True)
 
     # Volume convention: the round-2 model was FIT-VALIDATED with the scene
     # default emit budget (37 units; 37/cap3 ~= the 13-14 peak cells observed).
@@ -168,7 +193,7 @@ def main():
     for r in range(a.restarts):
         cur = rand_g()
         cf = frame_of(arc, a.seed, a.level, cur, centers)
-        sc = kernel_score(cf, vol, a.lam) if cf is not None else None
+        sc = kernel_score(cf, vol, a.lam, level=a.level) if cf is not None else None
         if sc is None:
             refused += 1
             continue
@@ -177,7 +202,7 @@ def main():
         for _ in range(a.steps):
             cand = mutate(best[2])
             cff = frame_of(arc, a.seed, a.level, cand, centers)
-            s2 = kernel_score(cff, vol, a.lam) if cff is not None else None
+            s2 = kernel_score(cff, vol, a.lam, level=a.level) if cff is not None else None
             if s2 is None:
                 refused += 1
                 continue
@@ -207,9 +232,10 @@ def main():
                        "genome": [list(x) for x in g], "env_win": won})
         if won:
             solved_at = rank + 1
-            png = FIXTURES / f"dw_r3_L{a.level}_s{a.seed}_win_side_by_side_20260706.png"
+            png = FIXTURES / (f"dw_{a.model}_L{a.level}_s{a.seed}"
+                              f"_win_side_by_side_20260706.png")
             try:
-                side_by_side(sc["kmap"], r[1], png)
+                side_by_side(sc["kmap"], r[1], png, level=a.level)
                 print(f"[dw] render -> {png}", flush=True)
             except Exception as e:  # noqa: BLE001
                 print(f"[dw] render failed: {type(e).__name__}: {e}", flush=True)
@@ -218,11 +244,12 @@ def main():
     verdict = f"SOLVED@{solved_at}" if solved_at else "NOT solved"
     print(f"[dw] L{a.level}: {verdict} in-budget (<= {a.topk} real pours) | "
           f"{evals} kernel evals, {refused} refused/dead, 0 search pours", flush=True)
-    out = FIXTURES / f"dw_solve_r3_L{a.level}_s{a.seed}_20260706.json"
+    out = FIXTURES / f"dw_solve_{a.model}_L{a.level}_s{a.seed}_20260706.json"
     out.write_text(json.dumps({
-        "protocol": "DW Phase-4: gate-checked candidates, round-3 INDUCED kernel "
+        "protocol": f"DW Phase-4: gate-checked candidates, {a.model} INDUCED kernel "
                     "imagines (win-bonus fitness), env decides top-K only",
-        "config": {"cfg": MODEL_CFG, "rule": MODEL_RULE, "stop": MODEL_STOP},
+        "config": {"family": MODEL["family"], "cfg": MODEL["cfg"],
+                   "rule": MODEL["rule"], "stop": MODEL["stop"]},
         "emit_volume_measured": vol, "level": a.level, "seed": a.seed,
         "solved_at": solved_at, "topk": poured, "kernel_evals": evals,
         "refused": refused}, indent=1, default=str))

@@ -6,7 +6,39 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
-## 0-LIVE STATE (2026-07-06 ~16:30 CDT) — DW ROUND-3: L0+L1 SOLVED@1 5/5 SEEDS, KERNEL CERTIFIES (supersedes all below)
+## 0-LIVE STATE (2026-07-06 ~22:30 CDT) — DW ROUND-4: FILM-FLOW KERNEL, L2 FRONTIER BROKEN (L0+L1+L2 SOLVED@1), L3 = SEALED NEGATIVE + ESCALATION (supersedes all below)
+
+**READ `notes/DW_LAB_LOG_20260706.md` round-4 entries FIRST.** Round-4 arc:
+1. **Phase A (L3 corpus observation):** the flow is a liquid-film TRAIL (persistent
+   trails, spread-and-split at obstacle tops, ALL housings emit — "charged-only"
+   falsified; the old L3 zero-shot lava_acc 0.00 was a threshold artifact, fixed by
+   the row-flash rule after exact regression on all 4px corpora).
+2. **Phase B/C:** lattice-aware `load_pours` (gate: byte-identical masks + labels on
+   4px corpora) + generic `FlowTrail` family (5 knobs incl. merge ∈ {split,die}) →
+   `r4_fit.py` over L0+L1+solvetime+L3, per-corpus holdouts ALL PASS; FlowTrail
+   sweeps FallingMaterial (IoU 0.96/fdiv 25 vs 0.68/6); **L2 zero-shot exam: outcome
+   1.00 / lava 1.00 / IoU 0.96 / fdiv 25** (round-3 was fdiv 5 — Correction B's
+   multi-source infidelity is gone). Fixture `dynamics_round4_20260706.json`.
+3. **Phase D:** dw_solve --model r4: **L0 5/5 + L1 5/5 SOLVED@1 (default budget);
+   L2 SOLVED@1 kernel-certified (imagined clean win → env win, 1 real pour/seed,
+   0 search pours) — 5/5 under the merge=split member, 3/5 under the IoU-tie-broken
+   merge=die selected member (both gate-certified; fixtures record their member;
+   split runs preserved as `dw_solve_r4split_*`).** The r3-era "L2 at 6.6× budget
+   never imagines a clean 3-stream pour" is broken at the same 9,664-eval budget.
+4. **L3: pre-registered NEGATIVE, sealed** (`r4_l3_feasibility.py` ~500k+ kernel-space
+   placement evals with env-probed TRUE movables → min floor=1; structural cause:
+   mouth pair (14,18) is 4 apart, only the STATIC 3-wide wings could split 4-apart;
+   NEW OBSERVED FACTS: fills reset every pour, 4-pour budget, 5th pour = GAME_OVER;
+   two diagnostic pours at the frontier: env flashed exactly as the kernel imagined,
+   incl. a PERFECTLY realized floor-1 optimum via `r4_l3_realize.py`). **ESCALATED:
+   the intended-L3-mechanic question is with the user.** L4/L5 still need a color-15
+   hypothesis (unchanged).
+5. Queued next: round-5 flywheel refit (fold this session's env-graded solve/diagnostic
+   pours in; win-side data may break the split/die IoU tie), then L4/L5 recon.
+honesty_audit at wrap: exit 0 — total 97/46/6, active 85/23/0 (no new flags).
+Round-4 lane committed this session (sim3d code + fixtures + notes).
+
+## 0-LIVE STATE (2026-07-06 ~16:30 CDT) — DW ROUND-3: L0+L1 SOLVED@1 5/5 SEEDS, KERNEL CERTIFIES (superseded)
 
 **READ `notes/DW_LAB_LOG_20260706.md` FIRST** (append-only lane log; plan =
 `DREAMWEAVER_INTEGRATION_PLAN_20260706.md`). Today's arc, in order:

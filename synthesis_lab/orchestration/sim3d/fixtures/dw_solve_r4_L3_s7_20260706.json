@@ -1,0 +1,174 @@
+{
+ "protocol": "DW Phase-4: gate-checked candidates, r4 INDUCED kernel imagines (win-bonus fitness), env decides top-K only",
+ "config": {
+  "family": "flow_trail",
+  "cfg": {
+   "emitters": "all",
+   "phase": "uncharged_lead",
+   "mouth": "feed_die",
+   "volume": "unlimited"
+  },
+  "rule": "fill_cap",
+  "stop": "volume"
+ },
+ "emit_volume_measured": null,
+ "level": 3,
+ "seed": 7,
+ "solved_at": null,
+ "topk": [
+  {
+   "rank": 1,
+   "fitness": 0.7180851063829787,
+   "imagined_win": false,
+   "genome": [
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     7,
+     3,
+     2
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     7,
+     3,
+     2
+    ],
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     3,
+     1,
+     3
+    ],
+    [
+     0,
+     1,
+     2
+    ]
+   ],
+   "env_win": false
+  },
+  {
+   "rank": 2,
+   "fitness": 0.7172131147540983,
+   "imagined_win": false,
+   "genome": [
+    [
+     4,
+     1,
+     1
+    ],
+    [
+     5,
+     4,
+     1
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     7,
+     1,
+     3
+    ]
+   ],
+   "env_win": false
+  },
+  {
+   "rank": 3,
+   "fitness": 0.7166666666666667,
+   "imagined_win": false,
+   "genome": [
+    [
+     7,
+     4,
+     2
+    ],
+    [
+     1,
+     3,
+     3
+    ],
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     2,
+     1,
+     3
+    ]
+   ],
+   "env_win": false
+  },
+  {
+   "rank": 4,
+   "fitness": 0.7162921348314607,
+   "imagined_win": false,
+   "genome": [
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     0,
+     4,
+     2
+    ],
+    [
+     1,
+     1,
+     3
+    ],
+    [
+     7,
+     1,
+     3
+    ],
+    [
+     5,
+     1,
+     3
+    ],
+    [
+     1,
+     4,
+     1
+    ],
+    [
+     3,
+     4,
+     1
+    ]
+   ],
+   "env_win": false
+  }
+ ],
+ "kernel_evals": 1464,
+ "refused": 0
+}

@@ -14,10 +14,15 @@ Pre-registered protocol (DREAMWEAVER_INTEGRATION_PLAN_20260706.md §2 H2, §3.P3
     widen the family by peeking at anything but observations)
 
 Observed conventions (verified empirically, see DW_LAB_LOG):
-  - 1 macro cell of paint appears per animation frame -> tick alignment 1:1
-  - material mask = (frame == 6) per macro cell (ANY), minus the pre-pour
-    reservoir cells (constant color-6 housing fluid)
-  - lava = px14 count exceeding the pre-frame baseline by > 200 (strip flash)
+  - 1 LATTICE cell of paint appears per animation frame per stream tip -> tick
+    alignment 1:1 (holds on both the 4px and 3px native lattices)
+  - material mask = (frame == 6) per lattice cell (ANY) on the scene's padded
+    canonical lattice, minus the pre-pour reservoir cells
+  - lava = some pixel row NEWLY majority-14 (the strip flashes as a near-full-
+    width band: 253-256 px on 4px levels, 179-180 px on L3's 3px strip — the
+    old fixed >200 delta misread L3 as no-lava on all 40 flashing pours;
+    round-4 Phase B replaced it after verifying label identity on every 4px
+    corpus, see r4_phaseb fixture)
   - fill = any color-13 pixel inside a target's glyph region
 
     python3 dynamics_fit.py [--caps 1,2,3] [--out fixtures/dynamics_fit_l0_20260706.json]
@@ -34,17 +39,30 @@ import numpy as np
 import _paths  # noqa: F401
 from _paths import FIXTURES
 
-from scene import extract_scene, M, CELL
+from scene import extract_scene, M, CELL, GRID, OPEN, PAINT, WALL, _lattice_any
 from perception_gate import gate_scene
 from imagination_kernel import KnownMap, FallingMaterial, run
 
-LAVA_DELTA = 200
 GATE_OUTCOME = 0.90
 GATE_FIRSTDIV = 10
 
 
 def macro_any(mask64):
     return mask64.reshape(M, CELL, M, CELL).any(axis=(1, 3))
+
+
+def row_flash(pre, frames):
+    """Lava = >= 2 pixel rows NEWLY majority-WALL(14) in one frame (the strip
+    flashes as a multi-row band: 4 rows on 4px levels, 3 on L3's 3px strip).
+    Exactly 1 new row is the WIN/level-transition recolor of the outer HUD
+    border row (final frame of winning animations) — separation is exact on
+    all five corpora (r4 Phase B: lava pours 3-4 rows, win artifact 0-1)."""
+    pre_rows = (np.asarray(pre) == WALL).mean(axis=1) > 0.5
+    for f in frames:
+        rows = (np.asarray(f) == WALL).mean(axis=1) > 0.5
+        if int((rows & ~pre_rows).sum()) >= 2:
+            return True
+    return False
 
 
 def load_pours(path):
@@ -59,13 +77,18 @@ def load_pours(path):
             skipped.append({"pour": i, "gate_failures": v["gate_failures"]})
             continue
         kmap = KnownMap.from_scene(sc, v, pour=i)
-        fr = [np.flipud(f) if sc.flipped else f for f in frames]
-        reservoir = macro_any((np.flipud(pre[i]) if sc.flipped else pre[i]) == 6)
-        base14 = int((pre[i] == 14).sum())
-        obs_masks = [macro_any(f == 6) & ~reservoir for f in fr]
-        obs_lava = any(int((f == 14).sum()) > base14 + LAVA_DELTA for f in frames)
+        u, (py, px) = sc.cell, sc.pad
+        gh, gw = sc.solid.shape
+
+        def canon(f64):
+            f = np.full((gh * u, gw * u), OPEN, dtype=np.int8)
+            f[py:py + GRID, px:px + GRID] = np.flipud(f64) if sc.flipped else f64
+            return f
+
+        reservoir = _lattice_any(canon(pre[i]), [PAINT], u)
+        obs_masks = [_lattice_any(canon(f), [PAINT], u) & ~reservoir for f in frames]
         pours.append({"i": i, "kmap": kmap, "obs_masks": obs_masks,
-                      "obs_win": bool(wins[i]), "obs_lava": obs_lava,
+                      "obs_win": bool(wins[i]), "obs_lava": row_flash(pre[i], frames),
                       "n_ticks": int(lens[i])})
     return pours, skipped
 
@@ -77,8 +100,8 @@ def sim_masks(kmap, hyp, n_ticks):
     masks, finals = [], states[-1]
     for s in states[:n_ticks]:
         m = (s.settled > 0)
-        for (y, x) in s.moving:
-            m = m.copy(); m[y, x] = True
+        for tip in s.moving:
+            m = m.copy(); m[tip[0], tip[1]] = True
         masks.append(m)
     while len(masks) < n_ticks:
         masks.append(masks[-1] if masks else np.zeros((M, M), dtype=bool))
