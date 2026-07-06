@@ -58,14 +58,25 @@ def native_grid(game):
     for s in walls:
         for (r, c) in sprite_cells(s):
             wall[r, c] = True
-    # spouts: a droplet spawns just BELOW each source pixel that is unobstructed (game L647-650)
+    # spouts: a droplet spawns just BELOW each color-4 SOURCE pixel that is unobstructed
+    # (game L644-650). A "source" sprite is often a wide bar whose pixels are mostly block
+    # (color 8) with a SINGLE color-4 emitter embedded (e.g. L3: [8 8 8 4 8 8 8] -> emits only
+    # its col-4 pixel); the block-colored cells are solid, not emitters. Filter to color 4.
     spouts = []
     occ = block | target | wall | redir
     for s in srcs:
+        px = np.asarray(s.pixels)
+        for yy in range(px.shape[0]):
+            for xx in range(px.shape[1]):
+                if int(px[yy, xx]) == 4:
+                    r, c = s.y + yy, s.x + xx
+                    br = r + 1
+                    if br < H and not occ[br, c]:
+                        spouts.append((br, c))
+        # the wide source bar's non-emitter cells are solid (a movable block co-located with it)
         for (r, c) in sprite_cells(s):
-            br = r + 1
-            if br < H and not occ[br, c]:
-                spouts.append((br, c))
+            if not target[r, c] and not wall[r, c]:
+                block[r, c] = True
     spouts = sorted(set(spouts))
     return {"block": block, "target": target, "wall": wall, "redir": redir, "tid": tid,
             "spouts": spouts, "n_targets": len(tgts), "H": H, "W": W}
