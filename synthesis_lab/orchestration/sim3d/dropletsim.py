@@ -42,11 +42,15 @@ def _typed(scene):
 
 
 def pour_core(block, target, wall, tid, spouts, n_targets):
-    """Exact droplet-CA outcome on typed macro grids (no-redirect: all motion DOWN). Grids are
-    [M,M] bool; tid = [M,M] int target id per glyph cell (-1 elsewhere); spouts = [(y,x)]. This
-    is the hot path for grid-level search (no env frame build)."""
+    """Exact droplet-CA outcome on typed grids (no-redirect: all motion DOWN). Grids are [H,W]
+    bool of ANY size (frame-macro 16x16 OR native sprite coords); tid = [H,W] int target id per
+    glyph cell (-1 elsewhere); spouts = [(y,x)]. Off the L/R x-edges = disposed. sp80 mechanic:
+    a bucket is 'painted' the tick a droplet enters it enclosed; touching the floor fails;
+    LEFTOVER paint is irrelevant (win = every bucket painted AND floor never touched)."""
+    H, W = block.shape
+
     def kind(y, x):
-        if x < 0 or x >= M or y < 0 or y >= M:
+        if x < 0 or x >= W or y < 0 or y >= H:
             return None
         if block[y, x]:
             return "block"
@@ -64,7 +68,7 @@ def pour_core(block, target, wall, tid, spouts, n_targets):
         if (y, x) in seen:
             continue
         seen.add((y, x))
-        if x < 0 or x >= M or y < 0 or y >= M:
+        if x < 0 or x >= W or y < 0 or y >= H:
             continue
         nxt = kind(y + 1, x)
         if nxt is None:
