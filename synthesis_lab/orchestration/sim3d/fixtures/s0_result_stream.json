@@ -1,0 +1,13 @@
+[
+ {
+  "lane": "stream",
+  "margins": {
+   "winner": 1.0,
+   "fp0": -1.0,
+   "fp1": -1.0,
+   "fp2": -1.0,
+   "fp3": -1.0
+  },
+  "pass": true
+ }
+]
