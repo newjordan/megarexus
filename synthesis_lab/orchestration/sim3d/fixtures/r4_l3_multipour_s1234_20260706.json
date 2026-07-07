@@ -48,10 +48,10 @@
     "fills": [
      0,
      1,
-     0,
-     1
+     1,
+     0
     ],
-    "floor": 2,
+    "floor": 0,
     "gate_trusted": true,
     "n_targets": 4
    },
@@ -61,7 +61,7 @@
     90,
     0
    ],
-   "flash": true,
+   "flash": false,
    "levels_completed": 0,
    "state": "GameState.NOT_FINISHED",
    "env_win": false

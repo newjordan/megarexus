@@ -30,27 +30,32 @@ from arc_agi import Arcade  # noqa: E402
 from arc_agi.base import OperationMode  # noqa: E402
 
 
-def drive(env, cur, bars0, offsets, dir_map, counter):
-    """Move each bar from wherever it is to bars0+offset (closed loop)."""
+def drive(env, cur, bars0, offsets, dir_map, counter, current=None):
+    """Move each PHYSICAL bar to bars0[i]+offsets[i], tracking bars by IDENTITY.
+
+    `current[i]` is bar i's current cell set (exact match against frame comps;
+    the selection mask is the fallback when same-color comps fuse). The old
+    nearest-to-target matcher SWAPPED same-size bars mid-plan (r4_kmdiff
+    forensics) — identity tracking makes that impossible. Returns updated
+    (cur, counter, landed_all, current) so multi-step plans keep the ledger."""
+    if current is None:
+        current = [sorted(b) for b in bars0]
     targets = [sorted((y + dy, x + dx) for (y, x) in bars0[i])
                for i, (dy, dx) in enumerate(offsets)]
     order = sorted(range(len(bars0)),
                    key=lambda i: -abs(offsets[i][0]) - abs(offsets[i][1]))
     landed_all = True
     for i in order:
+        if current[i] == targets[i]:
+            continue
         for attempt in range(4):
             sc, bars = bars_of(cur)
-            cands = [b for b in bars if len(b) == len(bars0[i])]
-            if not cands:
-                # comps fused (adjacent same-color bars): the driven bar stays
-                # SELECTED (color 9) and remains trackable through that mask
+            cells = next((sorted(b) for b in bars if sorted(b) == current[i]), None)
+            if cells is None:
                 sel, _ = selected_of(cur)
-                if sel and len(sel) == len(bars0[i]):
-                    cands = [sel]
-                else:
-                    break
-            cells = min(cands, key=lambda b: abs(b[0][0] - targets[i][0][0])
-                        + abs(b[0][1] - targets[i][0][1]))
+                cells = sel if (sel and len(sel) == len(current[i])) else None
+            if cells is None:
+                break
             dy = targets[i][0][0] - cells[0][0]
             dx = targets[i][0][1] - cells[0][1]
             if (dy, dx) == (0, 0):
@@ -65,12 +70,12 @@ def drive(env, cur, bars0, offsets, dir_map, counter):
                     fd = env.step(ACTION_OF_ID[dir_map[key]])
                     counter += 1
                     cur = frame_np(fd)
-        _, bars = bars_of(cur)
-        sel, _ = selected_of(cur)
-        ok = (any(sorted(b) == targets[i] for b in bars)
-              or (sel is not None and sel == targets[i]))
+            sel, _ = selected_of(cur)
+            if sel and len(sel) == len(current[i]):
+                current[i] = sel                    # the driven bar is selected
+        ok = current[i] == targets[i]
         landed_all &= ok or offsets[i] == (0, 0)
-    return cur, counter, landed_all
+    return cur, counter, landed_all, current
 
 
 def kernel_check(frame, targets):
@@ -131,13 +136,20 @@ def main():
                        "pours in sequence; persistence/flash/level observed; "
                        "env decides", "seed": a.seed, "steps": []}
     won = False
+    current = None
     for si, st in enumerate(steps):
-        cur, counter, landed = drive(env, cur, bars0, st["offsets"], dir_map, counter)
+        cur, counter, landed, current = drive(env, cur, bars0, st["offsets"],
+                                              dir_map, counter, current)
         chk = kernel_check(cur, st["targets"])
         pre13 = int((cur == FILLED).sum())
         pre_rows = (cur == WALL).mean(axis=1) > 0.5
         print(f"[mp] step {si} ({st['fixture']}): landed={landed} kernel={chk} "
               f"pre13={pre13}", flush=True)
+        expect = st.get("kernel_expect") or {}
+        certified = (chk.get("fills") == expect.get("fills")
+                     and chk.get("floor") == expect.get("floor"))
+        if certified:
+            landed = True                 # kernel certification outranks ledger
         if not landed:
             log["steps"].append({"step": si, **st, "landed": False,
                                  "kernel_on_frame": chk, "aborted": "not landed",
