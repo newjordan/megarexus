@@ -1,0 +1,71 @@
+{
+ "protocol": "multi-pour probe (user two-spout hint): clean partial pours in sequence; persistence/flash/level observed; env decides",
+ "seed": 1234,
+ "steps": [
+  {
+   "step": 0,
+   "fixture": "r4_l3_feas_t2_20260706.json",
+   "targets": [
+    2
+   ],
+   "offsets": [
+    [
+     -1,
+     2
+    ],
+    [
+     8,
+     -8
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     -5,
+     -5
+    ],
+    [
+     1,
+     -12
+    ]
+   ],
+   "kernel_expect": {
+    "fills": [
+     0,
+     1,
+     1,
+     0
+    ],
+    "floor": 0
+   },
+   "landed": true,
+   "kernel_on_frame": {
+    "fills": [
+     0,
+     1,
+     0,
+     1
+    ],
+    "floor": 2,
+    "gate_trusted": true,
+    "n_targets": 4
+   },
+   "pre13": 0,
+   "n13_first_max_last": [
+    0,
+    90,
+    0
+   ],
+   "flash": true,
+   "levels_completed": 0,
+   "state": "GameState.NOT_FINISHED",
+   "env_win": false
+  }
+ ],
+ "env_win": false
+}

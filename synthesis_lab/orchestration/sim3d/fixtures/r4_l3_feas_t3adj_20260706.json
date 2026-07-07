@@ -1,0 +1,96 @@
+{
+ "protocol": "kernel-space placement feasibility (no env, no reachability): translate movable bars, r4 FlowTrail scores; decision-branch evidence for the L3 lane",
+ "targets": [
+  3
+ ],
+ "n_bars": 6,
+ "bar_sizes": [
+  5,
+  5,
+  3,
+  3,
+  4,
+  4
+ ],
+ "restarts": 120,
+ "steps": 250,
+ "wins_found": 1,
+ "win_examples": [
+  {
+   "offsets": [
+    [
+     8,
+     -5
+    ],
+    [
+     8,
+     -7
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     3,
+     -4
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "fitness": 2.0,
+   "fill": 1.0,
+   "floor": 0,
+   "fills": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "win": true
+  }
+ ],
+ "best": {
+  "offsets": [
+   [
+    8,
+    -5
+   ],
+   [
+    8,
+    -7
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    3,
+    -4
+   ],
+   [
+    1,
+    1
+   ]
+  ],
+  "fitness": 2.0,
+  "fill": 1.0,
+  "floor": 0,
+  "fills": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "win": true
+ }
+}

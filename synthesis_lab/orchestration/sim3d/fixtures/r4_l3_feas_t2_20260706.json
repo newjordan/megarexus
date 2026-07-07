@@ -1,0 +1,172 @@
+{
+ "protocol": "kernel-space placement feasibility (no env, no reachability): translate movable bars, r4 FlowTrail scores; decision-branch evidence for the L3 lane",
+ "targets": [
+  2
+ ],
+ "n_bars": 6,
+ "bar_sizes": [
+  5,
+  5,
+  3,
+  3,
+  4,
+  4
+ ],
+ "restarts": 150,
+ "steps": 250,
+ "wins_found": 3,
+ "win_examples": [
+  {
+   "offsets": [
+    [
+     -1,
+     2
+    ],
+    [
+     8,
+     -8
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     -5,
+     -5
+    ],
+    [
+     1,
+     -12
+    ]
+   ],
+   "fitness": 2.0,
+   "fill": 1.0,
+   "floor": 0,
+   "fills": [
+    0,
+    1,
+    1,
+    0
+   ],
+   "win": true
+  },
+  {
+   "offsets": [
+    [
+     9,
+     -1
+    ],
+    [
+     -5,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     2,
+     -14
+    ],
+    [
+     -2,
+     -3
+    ]
+   ],
+   "fitness": 2.0,
+   "fill": 1.0,
+   "floor": 0,
+   "fills": [
+    0,
+    1,
+    1,
+    0
+   ],
+   "win": true
+  },
+  {
+   "offsets": [
+    [
+     -4,
+     9
+    ],
+    [
+     8,
+     -4
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     4,
+     -10
+    ],
+    [
+     -2,
+     -12
+    ]
+   ],
+   "fitness": 2.0,
+   "fill": 1.0,
+   "floor": 0,
+   "fills": [
+    1,
+    0,
+    1,
+    0
+   ],
+   "win": true
+  }
+ ],
+ "best": {
+  "offsets": [
+   [
+    -1,
+    2
+   ],
+   [
+    8,
+    -8
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    -5,
+    -5
+   ],
+   [
+    1,
+    -12
+   ]
+  ],
+  "fitness": 2.0,
+  "fill": 1.0,
+  "floor": 0,
+  "fills": [
+   0,
+   1,
+   1,
+   0
+  ],
+  "win": true
+ }
+}

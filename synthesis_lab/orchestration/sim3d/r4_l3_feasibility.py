@@ -31,6 +31,8 @@ from perception_gate import gate_scene  # noqa: E402
 from imagination_kernel import KnownMap, FlowTrail, run  # noqa: E402
 
 MAX_ROW = None
+TARGETS = None
+ALLOW_ADJ = False
 R4_CFG = {"emitters": "all", "phase": "uncharged_lead",
           "mouth": "feed_die", "volume": None, "merge": "die"}
 
@@ -61,7 +63,9 @@ def build_solid(km, bars, offsets):
             bar_mask[y, x] = True
     static = km.solid & ~bar_mask
     solid = static.copy()
+    placed = []                     # per-bar translated cell sets
     for cells, (dy, dx) in zip(bars, offsets):
+        cur = set()
         for (y, x) in cells:
             ny, nx = y + dy, x + dx
             if not (0 <= ny < gh and 0 <= nx < gw):
@@ -72,6 +76,20 @@ def build_solid(km, bars, offsets):
             if MAX_ROW is not None and ny > MAX_ROW:
                 return None
             solid[ny, nx] = True
+            cur.add((ny, nx))
+        placed.append(cur)
+    # bars must stay 4-separated from each other (else same-color comps fuse
+    # in the frame and closed-loop tracking/selection breaks at realization)
+    if ALLOW_ADJ:
+        return solid
+    for i, ci in enumerate(placed):
+        for j, cj in enumerate(placed):
+            if i >= j:
+                continue
+            for (y, x) in ci:
+                if any((y + dy, x + dx) in cj
+                       for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+                    return None
     return solid
 
 
@@ -83,9 +101,11 @@ def score(km, solid):
                    hud=km.hud, provenance={"derived": "placement_search"})
     states = run(km2, FlowTrail(**R4_CFG), max_ticks=200)
     end = states[-1]
-    fill = float(np.mean([min(f / c, 1.0) for f, c in zip(end.fills, km.capacities)]))
+    idx = TARGETS if TARGETS is not None else range(len(km.capacities))
+    fill = float(np.mean([min(end.fills[i] / km.capacities[i], 1.0) for i in idx]))
     lava = end.floor_touch / max(float(end.emitted), 1.0)
-    win = all(f >= c for f, c in zip(end.fills, km.capacities)) and end.floor_touch == 0
+    win = (all(end.fills[i] >= km.capacities[i] for i in idx)
+           and end.floor_touch == 0)
     return {"fitness": fill - lava + (1.0 if win else 0.0), "fill": fill,
             "floor": int(end.floor_touch), "fills": list(map(int, end.fills)),
             "win": bool(win)}
@@ -99,12 +119,22 @@ def main():
     ap.add_argument("--freeze", default="",
                     help="comma-separated bar indices that must stay at (0,0) "
                          "(e.g. env-probed unselectable comps)")
+    ap.add_argument("--allow-adjacent", action="store_true",
+                    help="skip the bar-separation constraint (realization must "
+                         "then keep the adjacent bar SELECTED to stay trackable)")
+    ap.add_argument("--targets", default=None,
+                    help="comma-separated target indices: win = THESE mouths filled "
+                         "with floor 0 (clean PARTIAL pour, multi-pour planning)")
+    ap.add_argument("--out", default="r4_l3_feasibility_20260706.json")
     ap.add_argument("--max-row", type=int, default=None,
                     help="reject placements with any bar cell below this row "
                          "(realization recon: rows 16-17 proved env-unreachable)")
     a = ap.parse_args()
-    global MAX_ROW
+    global MAX_ROW, TARGETS, ALLOW_ADJ
+    ALLOW_ADJ = a.allow_adjacent
     MAX_ROW = a.max_row
+    TARGETS = (None if a.targets is None
+               else sorted(int(t) for t in a.targets.split(",")))
     km, bars = base_map()
     frozen = {int(i) for i in a.freeze.split(",") if i != ""}
     free = [i for i in range(len(bars)) if i not in frozen]
@@ -144,12 +174,12 @@ def main():
             print(f"[l3feas] {r+1}/{a.restarts} restarts, wins {len(wins)}, "
                   f"best {best_overall[0]}", flush=True)
 
-    out = FIXTURES / "r4_l3_feasibility_20260706.json"
+    out = FIXTURES / a.out
     out.write_text(json.dumps({
         "protocol": "kernel-space placement feasibility (no env, no reachability): "
                     "translate movable bars, r4 FlowTrail scores; decision-branch "
                     "evidence for the L3 lane",
-        "n_bars": len(bars), "bar_sizes": [len(b) for b in bars],
+        "targets": TARGETS, "n_bars": len(bars), "bar_sizes": [len(b) for b in bars],
         "restarts": a.restarts, "steps": a.steps,
         "wins_found": len(wins), "win_examples": wins[:10],
         "best": {"offsets": [list(o) for o in best_overall[1]], **best_overall[0]},
