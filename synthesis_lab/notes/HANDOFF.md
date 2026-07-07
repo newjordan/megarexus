@@ -6,7 +6,32 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
-## 0-NEXT (2026-07-07): RANKED RUN — build the continuous-episode runner
+## 0-NEXT (2026-07-06 ~21:45, supersedes the block below): SOLVE L4 LOCALLY FIRST — round-5 lane is ACTIVE
+USER RULING: "fix level 4 now locally before the ranked run, figure out
+orthogonal flow." The ranked run now WAITS for L4. Read the round-5 Phase-A
+entry at the bottom of `notes/DW_LAB_LOG_20260706.md` — it has tonight's L4
+findings (flow RISES; win/fail mirrored — lava = TOP-wall growth; color-15 =
+MOVABLE blocker, blocks + splits streams like a static obstacle; selected it
+renders 9, unselected 15) and the 6-step work order:
+(1) verify contact semantics on the other 15 contact pours (scanner:
+`sim3d/r5_l4_observe.py --level 4`; deep-read: `--pour N --ticks ... --window ...`),
+(2) Phase-A read of the L5 corpus, (3) FlowTrail generic extension
+(gravity-direction knob INFERRED not hardcoded + color-15 contact-knob family
+{block, turn-L, turn-R, split, pass} — observation selects), (4) palette
+manifest + perception gate for 15 (de-grey protocol), (5) virtual_arranger
+movables {8,9}→{8,9,15} (selected-15 renders 9 — cold parse ambiguous,
+continuity resolves) + arranger_gate L4/L5 rows, (6) r5 full-grid fit
+(holdouts + L0-L3 no-regression) then dw_solve L4 sweeps, env decides.
+Also this session: VIRTUAL ARRANGER GATE-CERTIFIED (see UPDATE in the block
+below) — the ranked-run enabler is done, runner build resumes after L4.
+Program report (network-viewable): `synthesis_lab/reports/
+program_report_20260706.html` on the 8766 evidence server
+(http://100.124.153.1:8766/... via Tailscale). Its Q1/Q2/Q4 decision points
+(L2 split-vs-die member, ranked budget policy, L3 s2026 retry) are STILL
+OPEN — Q3 is answered by the ruling above (ranked run waits for L4).
+honesty_audit at wrap: exit 0 — total 97/46/6, active 85/23/0.
+
+## 0-PREV (2026-07-07): RANKED RUN — build the continuous-episode runner
 Mission line: observation-induced kernel now solves L0-L3 per-episode (L3 4/5 after
 the user's hints exposed the starved search — see round-4b/L3-retraction log entries).
 Non-ranked smoke on fresh seed 555 launched at wrap (results in scratchpad smoke555.txt

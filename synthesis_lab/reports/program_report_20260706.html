@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megarexus program report — 2026-07-06 21:15 CDT</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1a1a1a; --mut:#666; --line:#d8d8d8; --ok:#0a7d33; --warn:#b06000; --bad:#b3261e; --card:#f6f6f4; --acc:#2a5db0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#141416; --fg:#e8e8e6; --mut:#9a9a97; --line:#3a3a3e; --ok:#54c47a; --warn:#e0a44a; --bad:#ef7b72; --card:#1e1e21; --acc:#7fa7e8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:2rem 1.25rem 4rem; background:var(--bg); color:var(--fg);
+         font:15px/1.55 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 62rem; margin:0 auto; }
+  h1 { font-size:1.45rem; margin:0 0 .25rem; }
+  h2 { font-size:1.1rem; margin:2.2rem 0 .6rem; border-bottom:1px solid var(--line); padding-bottom:.3rem; }
+  .sub { color:var(--mut); margin-bottom:1.4rem; }
+  .audit { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--acc);
+           padding:.7rem 1rem; border-radius:6px; font-size:.92rem; }
+  table { border-collapse:collapse; width:100%; margin:.6rem 0 1rem; font-size:.92rem; }
+  .tablewrap { overflow-x:auto; }
+  th, td { border:1px solid var(--line); padding:.35rem .6rem; text-align:left; white-space:nowrap; }
+  th { background:var(--card); font-weight:600; }
+  td.ok { color:var(--ok); font-weight:600; }
+  td.miss { color:var(--bad); font-weight:600; }
+  td.na { color:var(--mut); }
+  .ok { color:var(--ok); } .warn { color:var(--warn); } .bad { color:var(--bad); }
+  code { background:var(--card); border:1px solid var(--line); border-radius:4px; padding:0 .3em; font-size:.88em; }
+  ul { padding-left:1.3rem; } li { margin:.3rem 0; }
+  .q { background:var(--card); border:1px solid var(--line); border-radius:6px; padding: .8rem 1rem; margin: .8rem 0; }
+  .q b.qt { color:var(--acc); }
+  .small { font-size:.85rem; color:var(--mut); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Megarexus / SP80 — program report</h1>
+<div class="sub">2026-07-06 ~21:15 CDT · branch <code>night-shape-lava-imagination-20260705</code> · pushed through <code>b393aff</code> · written for user review &amp; direction</div>
+
+<div class="audit">
+<b>Honesty audit (leads every report):</b> exit 0 — total <b>AUTONOMOUS_CANDIDATE 97 / IMITATION_ASSISTED 46 / INVALID_HEADLINE 6</b>;
+active <b>85 / 23 / 0</b> (all invalid headlines quarantined &amp; disclosed, none active).
+Everything below in the DW lane is <b>observation-induced, env-confirmed, per-episode OFFLINE</b> evidence —
+no route/human/demo lineage. The live ranked boundary is still the old one:
+28.57 / 3 levels <i>with graph-plan assistance</i>; CNN-alone live = 1 level. No new ranked run has been made yet — that is the point of the current mission.
+</div>
+
+<h2>Direct answer: where are we?</h2>
+<p><b>L3 is solved, per-episode — we are past it.</b> The observation-induced FlowTrail kernel + widened generic search solves L3 at rank-1 on 5 of 6 seeds tried (only s2026 missed at default budget). The current frontier is threefold:
+(1) <b>the ranked run</b> — the continuous-episode runner is the one remaining build item, and its enabling piece (the virtual arranger) was gate-certified tonight;
+(2) <b>L2 robustness</b> — a kernel-member tie (split vs die) makes L2 seed-sensitive under the currently-selected member;
+(3) <b>L4/L5</b> — round-5 induction lane open (color-15 “orthogonal blocking” hypothesis, corpora already harvested), not yet started on the fitting side.</p>
+
+<h2>Solve matrix (r4 film-flow kernel, env-confirmed, SOLVED@1 = rank-1 candidate wins with one real pour, zero search pours)</h2>
+<div class="tablewrap">
+<table>
+<tr><th>Level</th><th>s7</th><th>s42</th><th>s101</th><th>s555</th><th>s1234</th><th>s2026</th><th>Total</th></tr>
+<tr><td><b>L0</b> (die member)</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">6/6</td></tr>
+<tr><td><b>L1</b> (die member)</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">6/6</td></tr>
+<tr><td><b>L2</b> — die member (selected)</td><td class="ok">@1</td><td class="miss">miss</td><td class="ok">@1</td><td class="miss">miss</td><td class="ok">@1</td><td class="miss">miss</td><td class="warn"><b>3/6</b></td></tr>
+<tr><td><b>L2</b> — split member</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="na">—</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">5/5</td></tr>
+<tr><td><b>L3</b> (die member)</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="ok">@1</td><td class="miss">miss</td><td class="ok"><b>5/6</b></td></tr>
+<tr><td><b>L4 / L5</b></td><td colspan="6" class="na">not attempted — round-5 induction lane open, 40-pour observation corpora harvested for each</td><td class="na">—</td></tr>
+</table>
+</div>
+<p class="small">Fixtures: <code>sim3d/fixtures/dw_solve_r4_L*_s*_20260706.json</code> (die) and <code>dw_solve_r4split_*</code> (split). s555 row is the fresh-seed smoke from tonight’s wrap (commit <code>09f11ed</code>). “Die member” = the r4 fit’s IoU-tie-broken selection; “split member” = the co-fit alternative (streams split at obstacle tops instead of dying). Both passed all per-corpus holdouts — the observation data genuinely ties them; only L2 behavior separates them so far.</p>
+
+<h2>What happened tonight (cutoff recovery)</h2>
+<ul>
+<li>The cutoff hit mid-lane: <code>virtual_arranger.py</code> had just been rewritten from six env probes, but its pre-registered gate never re-ran. No training was lost (nothing was training).</li>
+<li>Recovered and finished the lane: two more gate rounds, each failure properly diagnosed, two <b>new induced mechanics</b> along the way (all observation-legal — frame diffs + constructed probes; game source ban intact):
+  <ul>
+  <li><b>Units are exactly one lattice cell tall.</b> Touching units cold-parse as one blob → band-split fixed all post-pour re-plan mismatches.</li>
+  <li><b>Overlap click hit-test = smallest footprint wins; ties → latest in original scan order.</b> 8/8 evidence rows + a 4-case constructed tie probe proving selection state and left/right placement irrelevant.</li>
+  </ul></li>
+<li><b>Final gate: PASS — 480/480 pre-pour byte-match (modulo budget gauge), 72/72 kernel-fitness equivalence, 48/48 post-pour re-plan, 0 refusals</b> (L0–L3 × seeds 555/1234/42 × 40 genomes). Fixture: <code>sim3d/fixtures/arranger_gate_20260706.json</code>. Committed+pushed <code>b393aff</code>.</li>
+<li>Meaning: dw_solve’s search can now realize arrangement candidates from the <b>live</b> frame with zero env interaction — the ranked run’s no-reset constraint is satisfied. This was the blocker.</li>
+</ul>
+
+<h2>Mission path (per handoff §0-NEXT)</h2>
+<ul>
+<li><b>Build:</b> continuous-episode runner — propose→imagine→pour re-pointed at the live frame after each level win; no <code>_present</code> per level; global action budget; refusal-safe. <span class="ok">Enabler certified tonight; runner itself not started.</span></li>
+<li><b>Rehearse:</b> offline full-game run (fresh seed, one episode, L0→as far as it gets).</li>
+<li><b>Ship:</b> ranked ARC-AGI-3 scorecard (closed SDK payload = controlling evidence).</li>
+<li><b>Parallel:</b> round-5 L4/L5 color-15 induction (pre-registered protocol committed <code>5c5c677</code>, corpora <code>a5d2a8c</code>).</li>
+</ul>
+
+<h2>Decision points — your advice requested</h2>
+
+<div class="q"><b class="qt">Q1 — L2 kernel member for the ranked run.</b>
+Die member: L3 5/6 but L2 3/6. Split member: L2 5/5 but zero L3 fixtures (never swept there).
+Options: (a) <b>round-5 flywheel refit first</b> — fold tonight’s env-graded win-side pours in; win data may break the split/die tie cleanly (my recommendation: it’s cheap and the data is already on disk);
+(b) sweep the split member on L3 to fill its evidence gap (~30 min of kernel evals);
+(c) make the runner <b>member-agnostic</b>: imagine under both members, pour a candidate when either certifies a clean win (costs 2× kernel evals, no new fitting).</div>
+
+<div class="q"><b class="qt">Q2 — budget policy inside the one ranked episode.</b>
+Default search budget solved L0/L1 everywhere; L2/L3 needed up to 6.6× in earlier rounds, and s2026-L3 missed even at default. The runner has one <b>global</b> action budget across all levels. Greedy (spend until solved, then move on) vs reserved (cap per level, bank the rest)? Also: is one ranked scorecard the goal, or do we burn several (the scorecard API allows repeat runs) and report the set honestly?</div>
+
+<div class="q"><b class="qt">Q3 — does the ranked run wait for L4/L5?</b>
+Handoff says no (L0–L3 capability ships first, round-5 continues in parallel). Confirm, or hold the ranked run until the color-15 lane produces an L4 solve so a single episode can go deeper?</div>
+
+<div class="q"><b class="qt">Q4 — L3 s2026.</b>
+Retry at higher budget in-lane (would make L3 6/6 or produce a documented negative), or accept 5/6 — the ranked episode is one fresh seed anyway, so per-seed variance is what it is?</div>
+
+<h2>Evidence links (this server)</h2>
+<ul class="small">
+<li><a href="/synthesis_lab/notes/DW_LAB_LOG_20260706.md">DW_LAB_LOG_20260706.md</a> — append-only lane log (tonight’s arranger entry at the bottom)</li>
+<li><a href="/synthesis_lab/notes/HANDOFF.md">HANDOFF.md</a> — §0-NEXT ranked-run mission block (updated tonight)</li>
+<li><a href="/synthesis_lab/orchestration/sim3d/fixtures/arranger_gate_20260706.json">arranger_gate_20260706.json</a> — the PASS fixture</li>
+<li><a href="/synthesis_lab/notes/DREAMWEAVER_INTEGRATION_PLAN_20260706.md">DREAMWEAVER_INTEGRATION_PLAN_20260706.md</a> — lane plan + legality contract</li>
+<li><a href="/synthesis_lab/notes/DW_SYSTEMS_DEGRAY_20260706.md">DW_SYSTEMS_DEGRAY_20260706.md</a> — machinery vs induced knowledge vs grey residue</li>
+</ul>
+
+<p class="small">Prepared by the recovery session, 2026-07-06. All DW-lane claims are offline per-episode evidence under the evidence contract; nothing here is a ranked/live claim.</p>
+
+</main>
+</body>
+</html>
