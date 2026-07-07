@@ -6,7 +6,8 @@
    "emitters": "all",
    "phase": "uncharged_lead",
    "mouth": "feed_die",
-   "volume": "unlimited"
+   "volume": "unlimited",
+   "merge": "die"
   },
   "rule": "fill_cap",
   "stop": "volume"
@@ -14,141 +15,57 @@
  "emit_volume_measured": null,
  "level": 3,
  "seed": 101,
- "solved_at": null,
+ "solved_at": 1,
  "topk": [
   {
    "rank": 1,
-   "fitness": 0.720873786407767,
-   "imagined_win": false,
+   "fitness": 2.0,
+   "imagined_win": true,
    "genome": [
     [
-     6,
-     3,
+     5,
+     4,
      3
     ],
     [
-     0,
-     4,
-     2
-    ],
-    [
-     5,
-     1,
-     1
-    ],
-    [
-     7,
-     4,
-     1
-    ]
-   ],
-   "env_win": false
-  },
-  {
-   "rank": 2,
-   "fitness": 0.7205882352941176,
-   "imagined_win": false,
-   "genome": [
-    [
-     3,
-     4,
-     2
-    ],
-    [
-     5,
-     1,
-     2
-    ],
-    [
-     6,
-     3,
-     2
-    ],
-    [
-     3,
-     4,
-     1
-    ],
-    [
-     7,
-     3,
-     3
-    ],
-    [
-     3,
-     1,
-     1
-    ],
-    [
      1,
      3,
-     2
-    ]
-   ],
-   "env_win": false
-  },
-  {
-   "rank": 3,
-   "fitness": 0.7190721649484536,
-   "imagined_win": false,
-   "genome": [
-    [
-     4,
-     1,
-     2
+     4
     ],
     [
      3,
-     4,
-     2
-    ],
-    [
-     7,
      3,
-     2
+     4
     ],
     [
      2,
      1,
-     1
+     5
     ],
     [
-     6,
+     9,
      4,
-     3
-    ]
-   ],
-   "env_win": false
-  },
-  {
-   "rank": 4,
-   "fitness": 0.71875,
-   "imagined_win": false,
-   "genome": [
-    [
-     7,
-     4,
-     1
+     8
     ],
     [
-     1,
      3,
-     3
+     2,
+     6
     ],
     [
      6,
      1,
-     3
+     2
     ],
     [
-     1,
+     8,
      3,
-     3
+     4
     ]
    ],
-   "env_win": false
+   "env_win": true
   }
  ],
- "kernel_evals": 1464,
- "refused": 0
+ "kernel_evals": 9642,
+ "refused": 22
 }

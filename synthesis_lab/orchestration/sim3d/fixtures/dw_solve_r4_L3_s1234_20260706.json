@@ -6,7 +6,8 @@
    "emitters": "all",
    "phase": "uncharged_lead",
    "mouth": "feed_die",
-   "volume": "unlimited"
+   "volume": "unlimited",
+   "merge": "die"
   },
   "rule": "fill_cap",
   "stop": "volume"
@@ -14,161 +15,57 @@
  "emit_volume_measured": null,
  "level": 3,
  "seed": 1234,
- "solved_at": null,
+ "solved_at": 1,
  "topk": [
   {
    "rank": 1,
-   "fitness": 0.9666666666666667,
-   "imagined_win": false,
+   "fitness": 2.0,
+   "imagined_win": true,
    "genome": [
     [
-     6,
+     2,
      3,
+     1
+    ],
+    [
+     4,
+     2,
+     3
+    ],
+    [
+     8,
+     2,
      3
     ],
     [
      4,
+     2,
+     3
+    ],
+    [
+     4,
+     4,
+     8
+    ],
+    [
+     8,
      1,
-     1
-    ],
-    [
-     7,
-     3,
-     3
-    ],
-    [
-     5,
-     3,
-     3
-    ],
-    [
-     7,
-     3,
-     1
-    ],
-    [
-     0,
-     4,
      2
     ],
     [
+     6,
+     3,
+     8
+    ],
+    [
      4,
      1,
-     1
+     4
     ]
    ],
-   "env_win": false
-  },
-  {
-   "rank": 2,
-   "fitness": 0.962962962962963,
-   "imagined_win": false,
-   "genome": [
-    [
-     4,
-     2,
-     3
-    ],
-    [
-     5,
-     2,
-     2
-    ],
-    [
-     3,
-     2,
-     3
-    ],
-    [
-     7,
-     3,
-     2
-    ],
-    [
-     3,
-     2,
-     3
-    ]
-   ],
-   "env_win": false
-  },
-  {
-   "rank": 3,
-   "fitness": 0.9512195121951219,
-   "imagined_win": false,
-   "genome": [
-    [
-     5,
-     2,
-     3
-    ],
-    [
-     2,
-     2,
-     3
-    ],
-    [
-     4,
-     2,
-     2
-    ],
-    [
-     6,
-     3,
-     3
-    ],
-    [
-     0,
-     3,
-     2
-    ]
-   ],
-   "env_win": false
-  },
-  {
-   "rank": 4,
-   "fitness": 0.7239130434782609,
-   "imagined_win": false,
-   "genome": [
-    [
-     6,
-     4,
-     2
-    ],
-    [
-     6,
-     3,
-     3
-    ],
-    [
-     7,
-     3,
-     2
-    ],
-    [
-     1,
-     3,
-     2
-    ],
-    [
-     6,
-     1,
-     3
-    ],
-    [
-     0,
-     1,
-     1
-    ],
-    [
-     4,
-     4,
-     1
-    ]
-   ],
-   "env_win": false
+   "env_win": true
   }
  ],
- "kernel_evals": 9664,
- "refused": 0
+ "kernel_evals": 9657,
+ "refused": 7
 }

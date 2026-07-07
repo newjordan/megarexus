@@ -167,13 +167,13 @@ def main():
     env0 = arc.make(GAME_ID, seed=a.seed)
     _, c0 = _present(env0, a.level)
     centers = [(int(c["center_xy"][0]), int(c["center_xy"][1]))
-               for c in frame_components(c0)[:8]]
+               for c in frame_components(c0)[:10]]
     rng = np.random.default_rng(a.seed + 100 + a.level)
 
     def rand_g():
         k = int(rng.integers(1, a.max_genes + 1))
         return [(int(rng.integers(len(centers))), int(rng.choice(MOVES)),
-                 int(rng.integers(1, 4))) for _ in range(k)]
+                 int(rng.integers(1, 9))) for _ in range(k)]
 
     def mutate(g):
         g = [list(x) for x in g]
@@ -181,10 +181,10 @@ def main():
         if op == 0 and g:
             i = rng.integers(len(g)); g[i][1] = int(rng.choice(MOVES))
         elif op == 1 and g:
-            i = rng.integers(len(g)); g[i][2] = int(rng.integers(1, 4))
+            i = rng.integers(len(g)); g[i][2] = int(rng.integers(1, 9))
         elif op == 2 and len(g) < a.max_genes:
             g.append([int(rng.integers(len(centers))), int(rng.choice(MOVES)),
-                      int(rng.integers(1, 4))])
+                      int(rng.integers(1, 9))])
         elif g and len(g) > 1:
             del g[int(rng.integers(len(g)))]
         return [tuple(x) for x in g]
