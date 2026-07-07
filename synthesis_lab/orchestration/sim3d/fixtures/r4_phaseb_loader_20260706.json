@@ -1,5 +1,5 @@
 {
- "protocol": "round-4 Phase B gate: lattice-aware load_pours + row-flash lava rule; regression = byte-identical masks + identical lava labels on all 4px corpora; L3 loads 0-skip, all-40 lava, native-lattice mask shapes",
+ "protocol": "round-4 Phase B gate: lattice-aware load_pours + row-flash lava rule; regression = byte-identical masks + identical lava labels on all 4px corpora; r5 row_or_column flash must exactly preserve the old rows-only labels on all five pre-r5 corpora; L3 loads 0-skip, all-40 lava, native-lattice mask shapes",
  "corpora": {
   "calib_l0_pours.npz": {
    "n": 55,
@@ -7,6 +7,8 @@
    "masks_identical": true,
    "lava_identical": true,
    "lava_diff_pours": [],
+   "rows_only_lava_identical": true,
+   "rows_only_lava_diff_pours": [],
    "pass": true
   },
   "calib_l1_pours_20260706.npz": {
@@ -15,6 +17,8 @@
    "masks_identical": true,
    "lava_identical": true,
    "lava_diff_pours": [],
+   "rows_only_lava_identical": true,
+   "rows_only_lava_diff_pours": [],
    "pass": true
   },
   "calib_l2_pours_20260706.npz": {
@@ -23,6 +27,8 @@
    "masks_identical": true,
    "lava_identical": true,
    "lava_diff_pours": [],
+   "rows_only_lava_identical": true,
+   "rows_only_lava_diff_pours": [],
    "pass": true
   },
   "r3_solvetime_pours_20260706.npz": {
@@ -31,12 +37,16 @@
    "masks_identical": true,
    "lava_identical": true,
    "lava_diff_pours": [],
+   "rows_only_lava_identical": true,
+   "rows_only_lava_diff_pours": [],
    "pass": true
   },
   "calib_l3_pours_20260706.npz": {
    "n": 40,
    "skipped": 0,
    "all_lava": true,
+   "rows_only_lava_identical": true,
+   "rows_only_lava_diff_pours": [],
    "mask_shape": [
     22,
     22
@@ -44,5 +54,15 @@
    "pass": true
   }
  },
- "pass": true
+ "pass": true,
+ "rows_only_label_regression": {
+  "corpora": [
+   "calib_l0_pours.npz",
+   "calib_l1_pours_20260706.npz",
+   "calib_l2_pours_20260706.npz",
+   "r3_solvetime_pours_20260706.npz",
+   "calib_l3_pours_20260706.npz"
+  ],
+  "pass": true
+ }
 }

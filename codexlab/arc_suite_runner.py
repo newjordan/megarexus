@@ -13,6 +13,7 @@ import hashlib
 import html
 import json
 import os
+import shutil
 import shlex
 import subprocess
 import sys
@@ -97,6 +98,40 @@ def discover_game_ids(env_dir: Path = LOCAL_ENV_DIR) -> list[str]:
     return game_ids
 
 
+def materialize_env_dirs(env_dirs: list[Path], target_dir: Path) -> tuple[Path, list[dict[str, Any]]]:
+    """Build a run-local environment_files copy from one or more source roots."""
+    target_dir.mkdir(parents=True, exist_ok=False)
+    manifest: list[dict[str, Any]] = []
+    seen: dict[str, Path] = {}
+    for source in env_dirs:
+        source = source.expanduser().resolve()
+        if not source.exists():
+            raise FileNotFoundError(f"environment directory does not exist: {source}")
+        for prefix_dir in sorted(p for p in source.iterdir() if p.is_dir()):
+            for ident_dir in sorted(p for p in prefix_dir.iterdir() if p.is_dir()):
+                if not any(ident_dir.glob("*.py")):
+                    continue
+                game_id = f"{prefix_dir.name}-{ident_dir.name}"
+                if game_id in seen:
+                    prior = seen[game_id]
+                    if prior.resolve() != ident_dir.resolve():
+                        raise RuntimeError(
+                            f"duplicate local game id {game_id}: {prior} vs {ident_dir}"
+                        )
+                    continue
+                dest = target_dir / prefix_dir.name / ident_dir.name
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copytree(ident_dir, dest, symlinks=True)
+                seen[game_id] = ident_dir.resolve()
+                manifest.append({
+                    "game_id": game_id,
+                    "source_dir": repo_relative(ident_dir),
+                    "runtime_dir": repo_relative(dest),
+                    "link_kind": "copytree",
+                })
+    return target_dir, manifest
+
+
 def frame_sha256(grid: np.ndarray) -> str:
     arr = np.asarray(grid, dtype=np.int16)
     return hashlib.sha256(arr.tobytes()).hexdigest()
@@ -114,6 +149,12 @@ def build_policy(policy_name: str, game_id: str, solution_root: str | None) -> C
         return tufa_action_policy(solution_root=solution_root, game_id=game_id)
     if policy_name == "tufa_contra":
         return POLICIES[policy_name](solution_root=solution_root, game_id=game_id)
+    if policy_name == "ft09_glyph":
+        return POLICIES[policy_name](game_id=game_id)
+    if policy_name == "ls20_corridor":
+        return POLICIES[policy_name](game_id=game_id)
+    if policy_name == "arcade_portfolio_v1":
+        return POLICIES[policy_name](game_id=game_id)
     factory = POLICIES[policy_name]
     return factory()
 
@@ -133,6 +174,7 @@ def run_game(
     auto_reset: bool,
     include_perception: bool,
     seed: int | None = None,
+    local_env_dir: Path | None = None,
     policy: Callable[..., tuple[int, int | None, int | None]] | None = None,
 ) -> dict[str, Any]:
     started_at = iso_utc_now()
@@ -156,6 +198,10 @@ def run_game(
         "first_frame_sha256": None,
         "last_frame_sha256": None,
     }
+    if local_env_dir is not None:
+        result["local_env_dir"] = repo_relative(local_env_dir)
+    if seed is not None:
+        result["seed"] = int(seed)
     history: list[dict[str, Any]] = []
     policy_errors: list[dict[str, Any]] = []
     resets = 0
@@ -378,7 +424,7 @@ def render_index(result: dict[str, Any], out_dir: Path) -> str:
     <h2>Command</h2>
     <pre>{command}</pre>
     <h2>Boundary</h2>
-    <p>This is a local offline scout over copied environment files. It is not a live ARC Prize submission, public leaderboard result, hidden answer route, replay route, or full CONTRA gameplay report.</p>
+    <p>This is a local offline scout over copied environment files. It is not a live ARC Prize submission, public leaderboard result, hidden answer route, source-derived route, or full CONTRA gameplay report. Policy-specific replay status is recorded in each policy_trace.</p>
   </main>
 </body>
 </html>
@@ -422,6 +468,9 @@ def write_partial_result(
     all_games: list[str],
     scorecard_id: Any,
     command: str,
+    env_dir: Path,
+    env_source_dirs: list[Path],
+    env_merge_manifest: list[dict[str, Any]],
 ) -> None:
     """Write a crash-resumable snapshot before scorecard close is available."""
     ranked_games = sorted(
@@ -442,6 +491,10 @@ def write_partial_result(
         "max_actions_per_game": int(args.max_actions),
         "game_count": len(games),
         "requested_game_ids": all_games,
+        "local_env_dir": repo_relative(env_dir),
+        "env_source_dirs": [repo_relative(path) for path in env_source_dirs],
+        "env_merge_manifest": env_merge_manifest,
+        "seed": None if args.seed is None else int(args.seed),
         "arc_mode": "offline_local_environment_files",
         "arc_operation_mode": str(OperationMode.OFFLINE),
         "scorecard_id": str(scorecard_id),
@@ -479,12 +532,20 @@ def build_manifest(result: dict[str, Any], out_dir: Path) -> dict[str, Any]:
         CODEXLAB / "arc_play_harness.py",
         CODEXLAB / "arc_live_suite_runner.py",
         ROOT / "synthesis_lab" / "orchestration" / "megarexus_live_policy.py",
+        ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "dw_solve.py",
+        ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "virtual_arranger.py",
+        ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "imagination_kernel.py",
+        ROOT / "synthesis_lab" / "experiments" / "other_games" / "ft09_glyph_solver.py",
+        ROOT / "synthesis_lab" / "experiments" / "other_games" / "ls20_corridor_probe.py",
     ]
-    raw_inputs = (
-        [{"path": f"ARC live scorecard {result.get('scorecard_id')}", "sha256": "remote"}]
-        if is_live
-        else [{"path": repo_relative(LOCAL_ENV_DIR), "sha256": "directory"}]
-    )
+    local_env_dir = str(result.get("local_env_dir") or repo_relative(LOCAL_ENV_DIR))
+    if is_live:
+        raw_inputs = [{"path": f"ARC live scorecard {result.get('scorecard_id')}", "sha256": "remote"}]
+    else:
+        raw_inputs = [{"path": local_env_dir, "sha256": "directory"}]
+        for source_dir in result.get("env_source_dirs") or []:
+            if source_dir != local_env_dir:
+                raw_inputs.append({"path": source_dir, "sha256": "directory"})
     boundaries = (
         [
             "Live ARC scorecard opened through the ARC SDK.",
@@ -495,7 +556,8 @@ def build_manifest(result: dict[str, Any], out_dir: Path) -> dict[str, Any]:
         else [
             "Local offline scout over environment/environment_files.",
             "Not a live ARC Prize scorecard or leaderboard claim.",
-            "Not a hidden answer, source-derived route, or replay route.",
+            "Not a hidden answer or source-derived route.",
+            "Policy-specific route/replay status is recorded in policy_trace.",
             "Not a full CONTRA gameplay report because per-action frames and packets are not recorded.",
         ]
     )
@@ -538,6 +600,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--policy", choices=sorted(POLICIES), default="tufa_action")
     parser.add_argument("--max-actions", type=int, default=250)
     parser.add_argument("--games", nargs="*", default=None, help="Game IDs such as sp80-589a99af. Defaults to all local IDs.")
+    parser.add_argument("--env-dir", type=Path, default=LOCAL_ENV_DIR, help="Local environment_files directory.")
+    parser.add_argument(
+        "--extra-env-dir",
+        action="append",
+        type=Path,
+        default=[],
+        help="Additional local environment_files roots merged into a run-local view.",
+    )
+    parser.add_argument("--seed", type=int, default=None, help="Optional SDK seed for each local game run.")
     parser.add_argument("--limit", type=int, default=None, help="Limit discovered game list for smoke runs.")
     parser.add_argument("--out-dir", type=Path, default=None)
     parser.add_argument("--run-id", default=None)
@@ -552,12 +623,6 @@ def main() -> int:
     if os.environ.get("ARC_ALLOW_LIVE", "").strip().lower() in TRUE_VALUES:
         print("refusing suite run with ARC_ALLOW_LIVE set; this runner is offline-only", file=sys.stderr)
         return 2
-    all_games = list(args.games) if args.games else discover_game_ids()
-    if args.limit is not None:
-        all_games = all_games[: max(0, int(args.limit))]
-    if not all_games:
-        print(f"no local games found under {LOCAL_ENV_DIR}", file=sys.stderr)
-        return 2
 
     stamp = utc_stamp()
     policy_slug = "tufa" if args.policy == "tufa_action" else str(args.policy)
@@ -568,8 +633,22 @@ def main() -> int:
         return 2
     out_dir.mkdir(parents=True, exist_ok=False)
 
+    primary_env_dir = Path(args.env_dir).expanduser().resolve()
+    env_source_dirs = [primary_env_dir] + [Path(p).expanduser().resolve() for p in args.extra_env_dir]
+    env_merge_manifest: list[dict[str, Any]] = []
+    env_dir = primary_env_dir
+    if args.extra_env_dir:
+        env_dir, env_merge_manifest = materialize_env_dirs(env_source_dirs, out_dir / "merged_environment_files")
+
+    all_games = list(args.games) if args.games else discover_game_ids(env_dir)
+    if args.limit is not None:
+        all_games = all_games[: max(0, int(args.limit))]
+    if not all_games:
+        print(f"no local games found under {env_dir}", file=sys.stderr)
+        return 2
+
     command = " ".join(shlex.quote(part) for part in sys.argv)
-    arc = Arcade(arc_api_key="anonymous", environments_dir=str(LOCAL_ENV_DIR), operation_mode=OperationMode.OFFLINE)
+    arc = Arcade(arc_api_key="anonymous", environments_dir=str(env_dir), operation_mode=OperationMode.OFFLINE)
     scorecard_id = arc.open_scorecard()
     games: list[dict[str, Any]] = []
     scorecard_close: dict[str, Any] = {}
@@ -584,6 +663,8 @@ def main() -> int:
                 solution_root=args.solution_root,
                 auto_reset=not bool(args.no_auto_reset),
                 include_perception=not bool(args.no_perception),
+                seed=args.seed,
+                local_env_dir=env_dir,
             )
             games.append(game_result)
             write_partial_result(
@@ -594,6 +675,9 @@ def main() -> int:
                 all_games=all_games,
                 scorecard_id=scorecard_id,
                 command=command,
+                env_dir=env_dir,
+                env_source_dirs=env_source_dirs,
+                env_merge_manifest=env_merge_manifest,
             )
     finally:
         try:
@@ -626,6 +710,10 @@ def main() -> int:
         "max_actions_per_game": int(args.max_actions),
         "game_count": len(games),
         "requested_game_ids": all_games,
+        "local_env_dir": repo_relative(env_dir),
+        "env_source_dirs": [repo_relative(path) for path in env_source_dirs],
+        "env_merge_manifest": env_merge_manifest,
+        "seed": None if args.seed is None else int(args.seed),
         "arc_mode": "offline_local_environment_files",
         "arc_operation_mode": str(OperationMode.OFFLINE),
         "scorecard_id": str(scorecard_id),
@@ -652,8 +740,32 @@ def main() -> int:
         "source_paths": [
             {"path": repo_relative(CODEXLAB / "arc_suite_runner.py"), "sha256": sha256_file(CODEXLAB / "arc_suite_runner.py")},
             {"path": repo_relative(CODEXLAB / "arc_play_harness.py"), "sha256": sha256_file(CODEXLAB / "arc_play_harness.py")},
+            {
+                "path": repo_relative(ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "dw_solve.py"),
+                "sha256": sha256_file(ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "dw_solve.py"),
+            },
+            {
+                "path": repo_relative(ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "virtual_arranger.py"),
+                "sha256": sha256_file(ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "virtual_arranger.py"),
+            },
+            {
+                "path": repo_relative(ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "imagination_kernel.py"),
+                "sha256": sha256_file(ROOT / "synthesis_lab" / "orchestration" / "sim3d" / "imagination_kernel.py"),
+            },
+            {
+                "path": repo_relative(ROOT / "synthesis_lab" / "experiments" / "other_games" / "ft09_glyph_solver.py"),
+                "sha256": sha256_file(ROOT / "synthesis_lab" / "experiments" / "other_games" / "ft09_glyph_solver.py"),
+            },
+            {
+                "path": repo_relative(ROOT / "synthesis_lab" / "experiments" / "other_games" / "ls20_corridor_probe.py"),
+                "sha256": sha256_file(ROOT / "synthesis_lab" / "experiments" / "other_games" / "ls20_corridor_probe.py"),
+            },
         ],
-        "random_seed": "tufa_action_internal_time_hash_seed_not_exposed" if args.policy == "tufa_action" else "policy_default",
+        "random_seed": (
+            "tufa_action_internal_time_hash_seed_not_exposed"
+            if args.policy == "tufa_action"
+            else (None if args.seed is None else int(args.seed))
+        ),
     }
 
     result_path = out_dir / "result.json"

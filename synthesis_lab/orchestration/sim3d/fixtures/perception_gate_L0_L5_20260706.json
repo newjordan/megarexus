@@ -504,9 +504,7 @@
       "agree": true
      }
     ],
-    "unmodeled_colors": [
-     15
-    ]
+    "unmodeled_colors": []
    }
   },
   "L5": {
@@ -617,9 +615,7 @@
       "agree": true
      }
     ],
-    "unmodeled_colors": [
-     15
-    ]
+    "unmodeled_colors": []
    }
   }
  }

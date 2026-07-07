@@ -12,7 +12,10 @@ Protocol (pre-registered):
   3. kernel-equivalence subsample: r4 kernel_score fitness on real vs virtual
      candidate frames must agree (the search must rank identically)
   4. post-pour phase: arrange + failed pour, then a SECOND genome from the
-     observed post-pour live frame, real-vs-virtual (re-plan states)
+     observed post-pour live frame, real-vs-virtual (re-plan states). For L5
+     overlap states, the virtual board carries unit-mask continuity from the
+     pre-pour arrangement and rebases on the live frame; hidden 8/15 cells are
+     not cold-parseable from pixels alone.
 PASS = zero mismatches (refusals are allowed and counted).
 
     python3 arranger_gate.py --levels 0,1,2,3 --seeds 555,1234,42 --n 40
@@ -30,7 +33,7 @@ from _paths import FIXTURES, LAB
 from imagine_search_gate import _present, _grid, _apply_real, GAME_ID, ACTION_OF_ID, game_live  # noqa: E402
 from imag_search_solve import actions  # noqa: E402
 from engine_adapters.portband_glove_adapter import frame_components  # noqa: E402
-from virtual_arranger import realize_virtual, frames_equal, gauge_mask  # noqa: E402
+from virtual_arranger import VirtualBoard, realize_virtual, frames_equal, gauge_mask  # noqa: E402
 from arc_agi import Arcade  # noqa: E402
 from arc_agi.base import OperationMode  # noqa: E402
 
@@ -91,7 +94,8 @@ def main():
             stats = {"n": 0, "match": 0, "mismatch": 0, "virt_refused": 0,
                      "real_dead": 0, "kernel_agree": 0, "kernel_disagree": 0,
                      "postpour_match": 0, "postpour_mismatch": 0,
-                     "postpour_refused": 0, "mismatch_examples": []}
+                     "postpour_refused": 0, "mismatch_examples": [],
+                     "postpour_mismatch_examples": []}
             for i in range(a.n):
                 g = rand_genome(rng, len(centers), budget=act_budget)
                 seq = actions(g, centers)
@@ -131,6 +135,12 @@ def main():
                 env = arc.make(GAME_ID, seed=seed)
                 fd, cur = _present(env, level)
                 base = int(getattr(fd, "levels_completed", 0) or 0)
+                vpre = VirtualBoard.parse(cur)
+                if vpre is not None:
+                    try:
+                        vpre.apply(actions(g1, centers))
+                    except Exception:  # noqa: BLE001
+                        vpre = None
                 fd, cur, _ = _apply_real(env, fd, cur, actions(g1, centers))
                 if not game_live(fd):
                     continue
@@ -147,12 +157,22 @@ def main():
                 fd, cur, _ = _apply_real(env, fd, live, seq2)
                 if not game_live(fd):
                     continue
-                virt = realize_virtual(live, seq2)
+                vbase = vpre.rebase(live) if (level >= 5 and vpre is not None) else live
+                virt = realize_virtual(vbase, seq2)
                 if virt is None:
                     stats["postpour_refused"] += 1
                     continue
                 key = "postpour_match" if frames_equal(cur, virt) else "postpour_mismatch"
                 stats[key] += 1
+                if key == "postpour_mismatch" and len(stats["postpour_mismatch_examples"]) < 5:
+                    keep = ~(gauge_mask(cur) | gauge_mask(virt))
+                    diff = int((np.asarray(cur)[keep]
+                                != np.asarray(virt)[keep]).sum())
+                    stats["postpour_mismatch_examples"].append({
+                        "pre_pour_genome": [list(x) for x in g1],
+                        "replan_genome": [list(x) for x in g2],
+                        "diff_cells": diff,
+                    })
 
             total_mm += stats["mismatch"] + stats["postpour_mismatch"] + stats["kernel_disagree"]
             report["results"][f"L{level}_s{seed}"] = stats

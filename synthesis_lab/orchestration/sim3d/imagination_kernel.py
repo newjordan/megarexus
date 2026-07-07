@@ -42,6 +42,7 @@ class KnownMap:
     glyph_cells: tuple                     # per target: ((y,x), ...) structural cells
     capacities: tuple                      # per target: mouth capacity (cells)
     emit_volume: float                     # material units one pour emits
+    mouth_openings: tuple = ()             # per target: up/down/left/right/None
     all_spouts: tuple = ()                 # every housing spout, charged or not
     spout_charged: tuple = ()              # per all_spouts entry: has a reservoir?
     hud: np.ndarray = None                 # [gh,gw] bool boundary/HUD cells (non-solid
@@ -79,6 +80,7 @@ class KnownMap:
             glyph_cells=tuple(tuple((int(y), int(x)) for y, x in zip(*np.nonzero(t.glyph)))
                               for t in scene.targets),
             capacities=tuple(float(t.capacity) for t in scene.targets),
+            mouth_openings=tuple(getattr(t, "opening", None) for t in scene.targets),
             emit_volume=float(scene.emit_volume),
             all_spouts=tuple((int(y), int(x)) for y, x in scene.spouts),
             spout_charged=tuple(bool(c) for c in charged),
@@ -318,6 +320,20 @@ class FlowTrail(DynamicsHypothesis):
                          lateral runs TUNNEL through blocker cells sideways
                'pass'    fully permeable (blocker invisible to flow)
                Levels without blocker cells are invariant to this knob.
+      wrap     'immediate' | 'run_to_end'
+                                          lateral film at an obstacle edge
+                                          either descends immediately through
+                                          the first open-below cell (r4 rule) or
+                                          continues laterally until a row event;
+                                          r5 L4 pours 9/12 vs 25 discriminate.
+      side_mouth
+               'lateral_only' | 'adjacent_feed'
+                                          side-facing mouths are fed only by
+                                          lateral tips (old r4/r5 behavior) or
+                                          by a falling tip adjacent to the
+                                          mouth's open side. The latter captures
+                                          L4 side-mouth fills seen in real
+                                          env replay without affecting up-mouths.
 
     GRAVITY is not a knob here by design: scene extraction canonicalizes every
     board so flow is DOWN (extract_scene flips when sources sit below targets
@@ -331,10 +347,12 @@ class FlowTrail(DynamicsHypothesis):
 
     def __init__(self, emitters="all", phase="uncharged_lead",
                  mouth="feed_die", volume=None, merge="split",
-                 blocker_contact="block"):
+                 blocker_contact="block", wrap="immediate",
+                 side_mouth="lateral_only"):
         self.params = {"emitters": emitters, "phase": phase, "mouth": mouth,
                        "volume": None if volume is None else float(volume),
-                       "merge": merge, "blocker_contact": blocker_contact}
+                       "merge": merge, "blocker_contact": blocker_contact,
+                       "wrap": wrap, "side_mouth": side_mouth}
 
     def _paint(self, state, y, x):
         state.settled[y, x] = 1.0
@@ -351,6 +369,7 @@ class FlowTrail(DynamicsHypothesis):
         blk = km.blocker if km.blocker is not None else np.zeros_like(km.solid)
         bc = p["blocker_contact"]
         owner = km.mouth_owner()
+        openings = tuple(km.mouth_openings or ())
 
         def open_cell(y, x):
             return (0 <= y < gh and 0 <= x < gw and not km.solid[y, x]
@@ -367,6 +386,19 @@ class FlowTrail(DynamicsHypothesis):
             if state.settled[y, x] < 1.0:
                 state.settled[y, x] = 1.0
             nxt.append((y, x, "f"))
+
+        def adjacent_side_mouth(y, x):
+            if p.get("side_mouth", "lateral_only") != "adjacent_feed":
+                return None
+            for dy, dx, need_open in ((0, -1, "right"), (0, 1, "left")):
+                c = (y + dy, x + dx)
+                t = owner.get(c)
+                if t is None:
+                    continue
+                opening = openings[t] if t < len(openings) else None
+                if opening == need_open:
+                    return c
+            return None
 
         def lateral_step(y, x, mode, nxt):
             """One lateral move for a run tip at (y,x); appends the survivor."""
@@ -385,8 +417,9 @@ class FlowTrail(DynamicsHypothesis):
                 return
             self._paint(state, y, nx)
             below = (y + 1, nx)
-            if (below[0] >= gh or below[0] in km.floor_rows
-                    or below in owner or open_cell(*below)):
+            wraps_now = (below[0] >= gh or below[0] in km.floor_rows
+                         or below in owner or open_cell(*below))
+            if wraps_now and p["wrap"] == "immediate":
                 nxt.append((y, nx, "d"))                      # descend here
             else:
                 nxt.append((y, nx, mode))
@@ -411,6 +444,10 @@ class FlowTrail(DynamicsHypothesis):
                 nxt.append((y, x, "f"))
                 continue
             if mode == "d":                                   # falling
+                side = adjacent_side_mouth(y, x)
+                if side is not None:
+                    enter_mouth(side[0], side[1], nxt)
+                    continue
                 ny = y + 1
                 if ny >= gh:
                     state.disposed += 1

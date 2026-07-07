@@ -1,0 +1,277 @@
+{
+ "protocol": "DW Phase-4: gate-checked candidates, r5 INDUCED kernel imagines (win-bonus fitness), env decides top-K only; direct-delta seeds are external proposals only when explicitly supplied",
+ "config": {
+  "family": "flow_trail",
+  "cfg": {
+   "emitters": "all",
+   "phase": "uncharged_lead",
+   "mouth": "feed_die",
+   "volume": "unlimited",
+   "merge": "die",
+   "blocker_contact": "block",
+   "wrap": "immediate",
+   "side_mouth": "adjacent_feed"
+  },
+  "rule": "fill_cap",
+  "stop": "volume"
+ },
+ "direct_seed_sources": [],
+ "direct_grid": {
+  "type": "direct_grid_l5_four_mouth",
+  "available": 6561,
+  "scored": 6561,
+  "refused": 0,
+  "imagined_wins": 0,
+  "limit": 25000,
+  "stop_wins": 32,
+  "ranker": "geometry_priority"
+ },
+ "emit_volume_measured": null,
+ "level": 5,
+ "seed": 101,
+ "solved_at": 1,
+ "topk": [
+  {
+   "rank": 1,
+   "fitness": 0.21363636363636362,
+   "imagined_win": false,
+   "candidate": {
+    "kind": "direct_grid",
+    "grid_type": "direct_grid_l5_four_mouth",
+    "deltas": [
+     [
+      6,
+      2
+     ],
+     [
+      4,
+      -12
+     ],
+     [
+      -8,
+      0
+     ],
+     [
+      -3,
+      -3
+     ]
+    ],
+    "actions": [
+     [
+      6,
+      31,
+      17
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      6,
+      45,
+      19
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      6,
+      30,
+      33
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      6,
+      32,
+      47
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ]
+    ]
+   },
+   "env_win": true
+  }
+ ],
+ "kernel_evals": 6561,
+ "refused": 0
+}

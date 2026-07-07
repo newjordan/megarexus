@@ -51,16 +51,23 @@ def macro_any(mask64):
     return mask64.reshape(M, CELL, M, CELL).any(axis=(1, 3))
 
 
+def _new_majority_lines(pre, frame, axis):
+    pre_lines = (np.asarray(pre) == WALL).mean(axis=axis) > 0.5
+    lines = (np.asarray(frame) == WALL).mean(axis=axis) > 0.5
+    return int((lines & ~pre_lines).sum())
+
+
 def row_flash(pre, frames):
-    """Lava = >= 2 pixel rows NEWLY majority-WALL(14) in one frame (the strip
-    flashes as a multi-row band: 4 rows on 4px levels, 3 on L3's 3px strip).
-    Exactly 1 new row is the WIN/level-transition recolor of the outer HUD
-    border row (final frame of winning animations) — separation is exact on
-    all five corpora (r4 Phase B: lava pours 3-4 rows, win artifact 0-1)."""
-    pre_rows = (np.asarray(pre) == WALL).mean(axis=1) > 0.5
+    """Lava = >= 2 pixel wall-band lines NEWLY majority-WALL(14) in one
+    frame. L0-L4 flash as row bands; L5 side-wall failures expose the same
+    mechanic as column bands. Exactly 1 new line is the WIN/level-transition
+    recolor of the outer HUD border row (final frame of winning animations);
+    separation is regression-checked against the old rows-only detector on all
+    five pre-r5 corpora."""
     for f in frames:
-        rows = (np.asarray(f) == WALL).mean(axis=1) > 0.5
-        if int((rows & ~pre_rows).sum()) >= 2:
+        new_rows = _new_majority_lines(pre, f, axis=1)
+        new_cols = _new_majority_lines(pre, f, axis=0)
+        if new_rows >= 2 or new_cols >= 2:
             return True
     return False
 

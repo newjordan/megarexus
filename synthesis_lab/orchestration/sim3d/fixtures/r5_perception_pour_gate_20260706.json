@@ -1,0 +1,20 @@
+{
+ "protocol": "r5 corpus perception gate: every harvested L4/L5 pre-pour frame must pass extract_scene/gate_scene and carry no unmodeled_colors after the color-15 palette extension",
+ "corpora": {
+  "calib_l4_pours_20260706.npz": {
+   "n": 40,
+   "trusted": 40,
+   "unmodeled_colors": [],
+   "failures": [],
+   "pass": true
+  },
+  "calib_l5_pours_20260706.npz": {
+   "n": 40,
+   "trusted": 40,
+   "unmodeled_colors": [],
+   "failures": [],
+   "pass": true
+  }
+ },
+ "pass": true
+}
