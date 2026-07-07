@@ -19,6 +19,17 @@ evidence). Round-5 induction lane (L4/L5 color-15 "orthogonal blocking", corpora
 harvested) proceeds in parallel — ranked run does not wait for L4/L5.
 honesty_audit at wrap: active 85/23/0. Branch pushed through a5d2a8c.
 
+UPDATE 2026-07-06 ~21:00 (cutoff recovery session): the runner's enabling piece is
+DONE and CERTIFIED — `sim3d/virtual_arranger.py` realizes arrangement candidates
+from the LIVE frame with zero env interaction; `sim3d/arranger_gate.py` PASS:
+480/480 pre-pour byte-match, 72/72 kernel-fitness equivalence, 48/48 post-pour
+re-plan, 0 refusals (L0-L3 × seeds 555/1234/42 × 40 genomes,
+`fixtures/arranger_gate_20260706.json`). Two induced mechanics landed on the way
+(see DW_LAB_LOG round entry): units are 1 lattice cell tall (stacked touching
+blobs band-split); overlap click hit-test = smallest footprint wins, ties to
+latest scan order. Remaining build: the runner loop itself, then rehearsal, then
+the ranked scorecard.
+
 ## 0-LIVE STATE (2026-07-06 ~22:30 CDT) — DW ROUND-4: FILM-FLOW KERNEL, L2 FRONTIER BROKEN (L0+L1+L2 SOLVED@1), L3 = SEALED NEGATIVE + ESCALATION (supersedes all below)
 
 **READ `notes/DW_LAB_LOG_20260706.md` round-4 entries FIRST.** Round-4 arc:

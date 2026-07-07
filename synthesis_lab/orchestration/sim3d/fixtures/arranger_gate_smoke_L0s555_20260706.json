@@ -1,0 +1,20 @@
+{
+ "protocol": "Protocol (pre-registered):\n  1. per (level, seed): present frame, centers[:10] (dw_solve convention);\n     N random genomes from dw_solve's search distribution, action-cost-capped\n     so real realization survives the level's action budget\n  2. realize each genome REAL (fresh env, offline validation lane \u2014 resets are\n     legal here, this is observation) and VIRTUAL (virtual_arranger from the\n     same present frame); compare all non-ring cells\n  3. kernel-equivalence subsample: r4 kernel_score fitness on real vs virtual\n     candidate frames must agree (the search must rank identically)\n  4. post-pour phase: arrange + failed pour, then a SECOND genome from the\n     observed post-pour live frame, real-vs-virtual (re-plan states)\nPASS = zero mismatches (refusals are allowed and counted).",
+ "cells_compared": "all except budget-gauge border sides",
+ "results": {
+  "L0_s555": {
+   "n": 12,
+   "match": 12,
+   "mismatch": 0,
+   "virt_refused": 0,
+   "real_dead": 0,
+   "kernel_agree": 6,
+   "kernel_disagree": 0,
+   "postpour_match": 4,
+   "postpour_mismatch": 0,
+   "postpour_refused": 0,
+   "mismatch_examples": []
+  }
+ },
+ "verdict": "PASS"
+}
