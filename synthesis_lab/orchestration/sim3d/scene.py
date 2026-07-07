@@ -42,11 +42,23 @@ PALETTE = {
     "source": 4, "paint": 6,              # emitter housing / fluid
     "target": 11, "filled": 13,           # U-glyph / filled indication
     "wall": 14, "movable": 8, "selected": 9,
+    # blocker: r5 Phase-A live extension (de-grey protocol). Induced from
+    # frames+outcomes only: 16 L4 + 40 L5 contact pours, trail NEVER enters a
+    # 15 cell (no pass/absorb/turn observed); the structure is MOVABLE
+    # (arranged positions vary; SELECTED it renders 9 over its footprint,
+    # unselected stays 15, not 8). Its flow semantics are NOT fixed here —
+    # FlowTrail's blocker_contact knob family decides by observation
+    # (r5 fit). Evidence: DW_LAB_LOG_20260706 round-5 step-1/step-2 entries.
+    "blocker": 15,
 }
 SOURCE, PAINT, HUD, OPEN = (PALETTE["source"], PALETTE["paint"],
                             PALETTE["boundary"], PALETTE["open"])
 TARGET, FILLED, WALL = PALETTE["target"], PALETTE["filled"], PALETTE["wall"]
 MOVABLE, SELECTED = PALETTE["movable"], PALETTE["selected"]
+BLOCKER = PALETTE["blocker"]
+# BLOCKER is deliberately NOT in SOLID_COLORS: its collision semantics are a
+# dynamics KNOB (FlowTrail.blocker_contact), not a settled fact. Scene carries
+# it as a separate mask; coverage checks account for it explicitly.
 SOLID_COLORS = (SOURCE, TARGET, FILLED, WALL, MOVABLE, SELECTED)
 
 
@@ -173,6 +185,8 @@ class Scene:
     cell: int = CELL              # native lattice pitch in pixels (induced; L0-L2=4, L3-L5=3)
     pad: tuple = (0, 0)           # (pad_y, pad_x) top-left padding aligning lattice origin
     spout_charged: list = field(default_factory=list)  # per spout: housing has a reservoir?
+    blocker: np.ndarray = None    # [gh,gw] bool movable-blocker (color 15) cells; collision
+                                  # semantics decided by FlowTrail.blocker_contact (r5 knob)
 
     def uncanon_rows(self, rows):
         gh = self.solid.shape[0]
@@ -229,6 +243,7 @@ def extract_scene(frame, depth=1, emit_volume=None):
 
     g = _lattice_majority(f, u)
     solid = _lattice_any(f, SOLID_COLORS, u)
+    blocker = _lattice_any(f, [BLOCKER], u)
 
     # Lava strip = the color-1 boundary band BEHIND the targets (below them, canonical).
     W = gw * u
@@ -312,7 +327,8 @@ def extract_scene(frame, depth=1, emit_volume=None):
     vol = float(emit_volume) if emit_volume is not None else 37.0  # measured L0 (calibrate.py)
     return Scene(pre=pre, flipped=flipped, g=g, solid=solid, floor_rows=floor_rows,
                  spout=spout, spouts=spouts, emit_volume=vol, targets=targets,
-                 depth=depth, cell=u, pad=(pad_y, pad_x), spout_charged=spout_charged)
+                 depth=depth, cell=u, pad=(pad_y, pad_x), spout_charged=spout_charged,
+                 blocker=blocker)
 
 
 def solid_boxes(scene):

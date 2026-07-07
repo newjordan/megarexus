@@ -46,6 +46,9 @@ class KnownMap:
     spout_charged: tuple = ()              # per all_spouts entry: has a reservoir?
     hud: np.ndarray = None                 # [gh,gw] bool boundary/HUD cells (non-solid
                                            # walls for film flow; FallingMaterial ignores)
+    blocker: np.ndarray = None             # [gh,gw] bool movable-blocker (color 15) cells;
+                                           # semantics = FlowTrail.blocker_contact knob
+                                           # (FallingMaterial treats them as solid)
     provenance: dict = field(default_factory=dict, hash=False, compare=False)
 
     @classmethod
@@ -66,6 +69,8 @@ class KnownMap:
             charged = [True] * len(scene.spouts)
         from scene import PALETTE
         hud = (np.asarray(scene.g) == PALETTE["boundary"]) & ~scene.solid
+        blk = (scene.blocker.copy() if getattr(scene, "blocker", None) is not None
+               else np.zeros_like(scene.solid))
         return cls(
             solid=scene.solid.copy(),
             floor_rows=tuple(scene.floor_rows),
@@ -78,6 +83,7 @@ class KnownMap:
             all_spouts=tuple((int(y), int(x)) for y, x in scene.spouts),
             spout_charged=tuple(bool(c) for c in charged),
             hud=hud,
+            blocker=blk,
             provenance={"source": "perception_gate", "trusted": True,
                         "gate_failures": [], **meta},
         )
@@ -159,7 +165,8 @@ class GravityFall(DynamicsHypothesis):
             if ny in km.floor_rows:
                 state.floor_touch += 1
                 continue
-            if km.solid[ny, x] or state.settled[ny, x] >= 1.0:
+            blocked = km.solid[ny, x] or (km.blocker is not None and km.blocker[ny, x])
+            if blocked or state.settled[ny, x] >= 1.0:
                 state.settled[y, x] += 1.0
                 if (y, x) in owner:
                     state.fills[owner[(y, x)]] += 1
@@ -225,6 +232,9 @@ class FallingMaterial(DynamicsHypothesis):
         gh, gw = km.solid.shape
         cap = p["cell_cap"]
         owner = km.mouth_owner()
+        # blocker cells (color 15) are plain solids for this family — the
+        # contact-knob alternatives are film-flow semantics (FlowTrail only)
+        solid = km.solid if km.blocker is None else (km.solid | km.blocker)
         # move-then-emit: newly emitted units occupy the spout cell until the
         # next tick (matches observed animation convention; DW_LAB_LOG).
         nxt = []
@@ -239,7 +249,7 @@ class FallingMaterial(DynamicsHypothesis):
                     continue                       # halt: this move blocked, try next
                 if ny in km.floor_rows:
                     state.floor_touch += 1; placed = True; break
-                if km.solid[ny, nx] or state.settled[ny, nx] >= cap:
+                if solid[ny, nx] or state.settled[ny, nx] >= cap:
                     continue
                 if p["mouth"] == "entry" and (ny, nx) in owner:
                     state.fills[owner[(ny, nx)]] += 1
@@ -259,7 +269,7 @@ class FallingMaterial(DynamicsHypothesis):
             for (sy, sx) in km.spouts:
                 if state.emitted >= km.emit_volume:
                     break
-                if not km.solid[sy, sx]:
+                if not solid[sy, sx]:
                     state.moving.append((sy, sx))
                     state.emitted += 1
         if state.emitted >= km.emit_volume and not state.moving:
@@ -296,6 +306,22 @@ class FlowTrail(DynamicsHypothesis):
       merge    'split' | 'die'            a falling tip landing on an EXISTING
                                           painted column splits like on solid vs
                                           merges into the stream (dies quietly)
+      blocker_contact                     collision semantics of movable-blocker
+                                          (color 15) cells — the r5 contact-knob
+                                          family; observation selects (r5 fit):
+               'block'   solid-like in every direction (falling tip splits on
+                         top of it; lateral runs stop at its face)
+               'turn_l'  falling contact deflects into a single LEFT run;
+                         lateral contact stops (solid-like sideways)
+               'turn_r'  mirror of turn_l
+               'split'   falling contact splits (solid-like from above) but
+                         lateral runs TUNNEL through blocker cells sideways
+               'pass'    fully permeable (blocker invisible to flow)
+               Levels without blocker cells are invariant to this knob.
+
+    GRAVITY is not a knob here by design: scene extraction canonicalizes every
+    board so flow is DOWN (extract_scene flips when sources sit below targets
+    — inference from source/target geometry, verified on L1-rot and L4-rise).
 
     Tick-alignment convention (declared, uniform across corpora): FlowTrail
     rollouts compare obs[t] <-> state[t+1] — frame 0 is captured after the
@@ -304,10 +330,11 @@ class FlowTrail(DynamicsHypothesis):
     name = "flow_trail"
 
     def __init__(self, emitters="all", phase="uncharged_lead",
-                 mouth="feed_die", volume=None, merge="split"):
+                 mouth="feed_die", volume=None, merge="split",
+                 blocker_contact="block"):
         self.params = {"emitters": emitters, "phase": phase, "mouth": mouth,
                        "volume": None if volume is None else float(volume),
-                       "merge": merge}
+                       "merge": merge, "blocker_contact": blocker_contact}
 
     def _paint(self, state, y, x):
         state.settled[y, x] = 1.0
@@ -321,11 +348,14 @@ class FlowTrail(DynamicsHypothesis):
         km, p = state.kmap, self.params
         gh, gw = km.solid.shape
         hud = km.hud if km.hud is not None else np.zeros_like(km.solid)
+        blk = km.blocker if km.blocker is not None else np.zeros_like(km.solid)
+        bc = p["blocker_contact"]
         owner = km.mouth_owner()
 
         def open_cell(y, x):
             return (0 <= y < gh and 0 <= x < gw and not km.solid[y, x]
-                    and not hud[y, x] and state.settled[y, x] < 1.0)
+                    and not hud[y, x] and not (bc != "pass" and blk[y, x])
+                    and state.settled[y, x] < 1.0)
 
         if not self._budget_left(state):
             state.moving = []
@@ -342,6 +372,9 @@ class FlowTrail(DynamicsHypothesis):
             """One lateral move for a run tip at (y,x); appends the survivor."""
             d = -1 if mode == "l" else 1
             nx = x + d
+            if bc == "split":                                 # tunnel sideways
+                while 0 <= nx < gw and blk[y, nx]:
+                    nx += d
             if not (0 <= nx < gw):
                 state.disposed += 1
                 return
@@ -393,8 +426,15 @@ class FlowTrail(DynamicsHypothesis):
                     nxt.append((ny, x, "d"))
                     continue
                 if (p["merge"] == "die" and not km.solid[ny, x]
+                        and not (bc != "pass" and blk[ny, x])
                         and not hud[ny, x] and state.settled[ny, x] >= 1.0):
                     continue                                  # merge into the stream
+                if blk[ny, x] and bc == "turn_l":             # blocker deflects
+                    lateral_step(y, x, "l", nxt)
+                    continue
+                if blk[ny, x] and bc == "turn_r":
+                    lateral_step(y, x, "r", nxt)
+                    continue
                 lateral_step(y, x, "l", nxt)                  # split: run both ways
                 lateral_step(y, x, "r", nxt)                  # (same-tick, observed)
                 continue
@@ -465,6 +505,8 @@ def cast_rays(state: SimState, dirs=EIGHT_DIRS):
     """
     km = state.kmap
     blocked = km.solid | (state.settled >= 1.0)
+    if km.blocker is not None:
+        blocked = blocked | km.blocker
     owner = km.mouth_owner()
     glyph_owner = {c: i for i, cells in enumerate(km.glyph_cells) for c in cells}
     anchors = [("spout", s) for s in km.spouts]
@@ -505,6 +547,8 @@ def render_state(state: SimState):
     km = state.kmap
     g = np.full(km.solid.shape, 12, dtype=np.int8)
     g[km.solid] = 8
+    if km.blocker is not None:
+        g[km.blocker] = 15
     for r in km.floor_rows:
         g[r, :] = 1
     for i, cells in enumerate(km.glyph_cells):

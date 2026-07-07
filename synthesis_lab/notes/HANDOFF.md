@@ -6,7 +6,50 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
-## 0-NEXT (2026-07-06 ~21:45, supersedes the block below): SOLVE L4 LOCALLY FIRST — round-5 lane is ACTIVE
+## 0-NOW (2026-07-06 late, supersedes 0-NEXT below): ROUND-5 MID-LANE HANDOFF — steps 1-2 DONE, step 3 kernel LANDED, resume at row_flash
+Read the FOUR new DW_LAB_LOG_20260706.md entries at the bottom (decisions
+ruled / step-1 / step-2 / step-3-partial). State:
+- **All program-report decisions RULED by the user** (see 0-NEXT block below
+  for the full text): Q1 flywheel-refit-first decides L2 split/die; Q2a greedy
+  spend-all + no-idle rule; Q2b ≤3 ranked scorecards, report all; Q3 ranked
+  run waits for L4; Q4 retry L3 s2026 at higher budget after the L4 lane.
+- **Step 1 DONE:** color-15 contact semantics verified on ALL 16 L4 contact
+  pours (entered_15=False everywhere → BLOCK; side contact seals edge-spill
+  columns; top-adjacent bands pass over; L-notch = one-sided deflection).
+  NEW: fail = wall-14 growth at ANY touched wall (pour 25, left wall).
+  OPEN physics: wrap-rule asymmetry (pours 9/12 rise at obstacle ends;
+  pour 25's band ran to the wall without rising) — must be a fit knob.
+  Tool promoted: `sim3d/r5_l4_contact_verify.py`.
+- **Step 2 DONE:** L5 Phase-A read — flow FALLS (gravity is per-level);
+  2 sources (top charged + mid-board UNcharged embedded in a movable 8-bar);
+  side-facing wall mouths + bottom cup; two L-shaped 15 blockers (block
+  semantics hold, 0 entries across 40 pours); top row y0 = budget GAUGE;
+  fail = SIDE-wall COLUMN 14-flash (row_flash MISSES it — see next-work);
+  first VERTICAL movable (1×4-cell 8-bar) challenges the arranger's
+  1-cell-tall band-split assumption.
+- **Step 3 LANDED (kernel+scene), regression-verified:** PALETTE blocker=15
+  (de-grey documented); Scene/KnownMap `blocker` mask; FlowTrail
+  `blocker_contact ∈ {block, turn_l, turn_r, split, pass}`; gravity needs NO
+  new knob (extract_scene flip canonicalization already infers direction —
+  L4 flipped=True, L5 flipped=False, perception gate trusted on both).
+  Exact regression: r4 member reproduces fixture holdouts to 10 decimals.
+  L4 smoke: 40/40 pours load; knob members differentiate (block leads).
+RESUME ORDER: (1) generalize `dynamics_fit.row_flash` to wall-band flash on
+rows OR columns + EXACT label regression on all 5 old corpora; (2) add the
+wrap-rule knob family (immediate vs run-to-end) to FlowTrail; (3) perception
+gate re-run over ALL L4/L5 pours (should be clean now); (4) step 5 arranger
+{8,9,15} + L5 vertical-unit parse + arranger_gate L4/L5; (5) `r5_fit.py`
+full grid (r4 corpora + l4_calib + l5_calib; holdouts; L0-L3 no-regression;
+fold env-graded win pours per Q1) ; (6) dw_solve L4 sweeps, env decides.
+SIDE LANE (user-requested, subagent, done): OTHER ARC GAMES unlocked — 25-game
+catalog downloadable WITHOUT scorecard; ls20+ft09 obtained & observed offline
+(ft09 win mechanic CONFIRMED by env grading, levels 0→2). Read
+`notes/OTHER_GAMES_RECON_20260706.md`; tools in
+`synthesis_lab/experiments/other_games/`. Honest, observation-only lane.
+honesty_audit at handoff: exit 0 — total 97/46/6, active 85/23/0.
+Working tree has the sim3d edits + notes UNCOMMITTED (user decides staging).
+
+## 0-NEXT (2026-07-06 ~21:45, superseded by 0-NOW above): SOLVE L4 LOCALLY FIRST — round-5 lane is ACTIVE
 USER RULING: "fix level 4 now locally before the ranked run, figure out
 orthogonal flow." The ranked run now WAITS for L4. Read the round-5 Phase-A
 entry at the bottom of `notes/DW_LAB_LOG_20260706.md` — it has tonight's L4
@@ -26,9 +69,21 @@ Also this session: VIRTUAL ARRANGER GATE-CERTIFIED (see UPDATE in the block
 below) — the ranked-run enabler is done, runner build resumes after L4.
 Program report (network-viewable): `synthesis_lab/reports/
 program_report_20260706.html` on the 8766 evidence server
-(http://100.124.153.1:8766/... via Tailscale). Its Q1/Q2/Q4 decision points
-(L2 split-vs-die member, ranked budget policy, L3 s2026 retry) are STILL
-OPEN — Q3 is answered by the ruling above (ranked run waits for L4).
+(http://100.124.153.1:8766/... via Tailscale). ALL FOUR decision points are
+now RULED (user, 2026-07-06 session pickup):
+  Q1 (L2 split-vs-die member) = flywheel refit FIRST — fold the env-graded
+      win-side pours into the r5 fit and let real data break the tie; only if
+      the refit still ties do we revisit (options b/c not taken).
+  Q2a (ranked budget policy) = GREEDY spend-all: levels are sequential, spend
+      until the current level falls; NO-IDLE rule — if the kernel can't
+      certify, pour best-imagined candidates anyway, never burn the budget on
+      fail-closed no-ops (the old live runs wasted ~400 actions no-op'ing).
+  Q2b (scorecards) = SMALL SET, report all: up to ~3 ranked scorecards, every
+      run disclosed per lab honesty rules (set shows seed variance; best
+      single AND full set both reported).
+  Q3 = ranked run WAITS for L4 (user ruling above).
+  Q4 (L3 s2026) = RETRY at higher budget, in-lane after the L4 work order —
+      either L3 goes 6/6 or a documented negative.
 honesty_audit at wrap: exit 0 — total 97/46/6, active 85/23/0.
 
 ## 0-PREV (2026-07-07): RANKED RUN — build the continuous-episode runner
