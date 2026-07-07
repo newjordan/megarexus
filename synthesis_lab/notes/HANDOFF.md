@@ -6,6 +6,19 @@ before touching anything. The two notes files are the ground truth:
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
 `~/.claude/projects/-home-frosty40-megarexus/memory/`.
 
+## 0-NEXT (2026-07-07): RANKED RUN — build the continuous-episode runner
+Mission line: observation-induced kernel now solves L0-L3 per-episode (L3 4/5 after
+the user's hints exposed the starved search — see round-4b/L3-retraction log entries).
+Non-ranked smoke on fresh seed 555 launched at wrap (results in scratchpad smoke555.txt
+or rerun: dw_solve per level, 6.6x budget for L2/L3). THE ONE BUILD ITEM before the
+ranked scorecard: a CONTINUOUS-EPISODE runner — dw_solve's propose->imagine->pour loop
+re-pointed at the live frame after each level win (no _present per level, no resets
+mid-episode), global action budget respected, refusal-safe. Then: offline full-game
+rehearsal, then the ranked ARC-AGI-3 scorecard (closed SDK payload = controlling
+evidence). Round-5 induction lane (L4/L5 color-15 "orthogonal blocking", corpora
+harvested) proceeds in parallel — ranked run does not wait for L4/L5.
+honesty_audit at wrap: active 85/23/0. Branch pushed through a5d2a8c.
+
 ## 0-LIVE STATE (2026-07-06 ~22:30 CDT) — DW ROUND-4: FILM-FLOW KERNEL, L2 FRONTIER BROKEN (L0+L1+L2 SOLVED@1), L3 = SEALED NEGATIVE + ESCALATION (supersedes all below)
 
 **READ `notes/DW_LAB_LOG_20260706.md` round-4 entries FIRST.** Round-4 arc:
