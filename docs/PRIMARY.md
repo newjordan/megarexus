@@ -11,6 +11,7 @@
 | **Status / pad** | `synthesis_lab/orchestration/rdl/brain/STATUS.md` |
 | **Train flywheel** | `python -u -B synthesis_lab/orchestration/rdl/brain/train_flywheel.py` |
 | **Smoke all seeds** | `python -B synthesis_lab/orchestration/rdl/brain/smoke_all_ideas.py` |
+| **Math of world capture** | [`docs/MATHEMATICS_OF_WORLD_CAPTURE.md`](MATHEMATICS_OF_WORLD_CAPTURE.md) (for mathematicians) |
 
 ## Doctrine
 
