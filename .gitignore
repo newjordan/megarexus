@@ -13,7 +13,6 @@ venv/
 .idea/
 .vscode/
 *.swp
-.claude/scheduled_tasks.lock
 
 # ── Run artifacts (never commit) ──
 **/runs/
@@ -63,3 +62,17 @@ experiments/
 **/_invalid/
 **/*QUARANTINED*
 **/sp80_spill_model.py
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.arc_api_key
+**/.arc_api_key
+
+# Agent local state
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/*.lock

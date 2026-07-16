@@ -1,7 +1,7 @@
 # CONTRA Charter — The Frame-Building Substrate
 
 > Durable north star. If a decision contradicts this doc, stop and reconcile before proceeding.
-> Last set: 2026-05-28. Owner: human (newjordan). Drafted with Claude, reviewed with Codex.
+> Last set: 2026-05-28. Owner: human. Drafted with Claude, reviewed with Codex.
 > Coordination contract: `claudelab/CODEX_CLAUDE_COMMS.md`.
 
 ## 1. The Goal (read this first, every time)

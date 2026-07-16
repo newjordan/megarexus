@@ -72,7 +72,7 @@ Wired into `OP_FAMILIES` → 16-D slots → central LoRA pad.
 ## Smoke
 
 ```bash
-CUDA_VISIBLE_DEVICES= /home/frosty40/miniconda3/bin/python3 -B \
+CUDA_VISIBLE_DEVICES= python3 -B \
   synthesis_lab/orchestration/rdl/brain/smoke_all_ideas.py
 ```
 

@@ -4,13 +4,13 @@
 # level_probe + arrange_probe on v9 last.pt (and best.pt if it differs).
 # Judgment (head-by-head compare, release decision, docs) stays with the agent.
 set -u
-PY=/home/frosty40/miniconda3/bin/python3
-REPO=/home/frosty40/megarexus
+REPO="${REPO:-$(cd "$(dirname "$0")/../.." && pwd)}"
+PY="${PY:-python3}"
 D=$REPO/synthesis_lab/experiments/megarexus_cnn
 V9=$D/runs/outcome_v9
 V8=$D/runs/outcome_v8
 GATES=$D/runs/outcome_v9_gates
-TRAINLOG=/tmp/claude-1000/-home-frosty40-megarexus/011566a1-0d5a-40de-b357-367afd13eb4b/tasks/b4jen916k.output
+TRAINLOG="${TRAINLOG:-$V9/train.log}"
 mkdir -p "$GATES"
 cd "$REPO"
 

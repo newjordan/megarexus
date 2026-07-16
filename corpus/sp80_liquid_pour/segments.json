@@ -5,7 +5,7 @@
     {
       "segment_id": "night_srt_001",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 1,
       "start_s": 0.0,
@@ -15,7 +15,7 @@
     {
       "segment_id": "night_srt_002",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 2,
       "start_s": 19.92,
@@ -25,7 +25,7 @@
     {
       "segment_id": "night_srt_003",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 3,
       "start_s": 39.88,
@@ -35,7 +35,7 @@
     {
       "segment_id": "night_srt_004",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 4,
       "start_s": 48.72,
@@ -45,7 +45,7 @@
     {
       "segment_id": "night_srt_005",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 5,
       "start_s": 68.84,
@@ -55,7 +55,7 @@
     {
       "segment_id": "night_srt_006",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 6,
       "start_s": 87.24,
@@ -65,7 +65,7 @@
     {
       "segment_id": "night_srt_007",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 7,
       "start_s": 113.48,
@@ -75,7 +75,7 @@
     {
       "segment_id": "night_srt_008",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 8,
       "start_s": 143.48,
@@ -85,7 +85,7 @@
     {
       "segment_id": "night_srt_009",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 9,
       "start_s": 172.16,
@@ -95,7 +95,7 @@
     {
       "segment_id": "night_srt_010",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 10,
       "start_s": 199.6,
@@ -105,7 +105,7 @@
     {
       "segment_id": "night_srt_011",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 11,
       "start_s": 225.08,
@@ -115,7 +115,7 @@
     {
       "segment_id": "night_srt_012",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 12,
       "start_s": 242.04,
@@ -125,7 +125,7 @@
     {
       "segment_id": "night_srt_013",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 13,
       "start_s": 268.08,
@@ -135,7 +135,7 @@
     {
       "segment_id": "night_srt_014",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 14,
       "start_s": 297.04,
@@ -145,7 +145,7 @@
     {
       "segment_id": "night_srt_015",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 15,
       "start_s": 317.52,
@@ -155,7 +155,7 @@
     {
       "segment_id": "night_srt_016",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 16,
       "start_s": 342.2,
@@ -165,7 +165,7 @@
     {
       "segment_id": "night_srt_017",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 17,
       "start_s": 355.72,
@@ -175,7 +175,7 @@
     {
       "segment_id": "night_srt_018",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 18,
       "start_s": 367.72,
@@ -185,7 +185,7 @@
     {
       "segment_id": "night_srt_019",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 19,
       "start_s": 397.72,
@@ -195,7 +195,7 @@
     {
       "segment_id": "night_srt_020",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 20,
       "start_s": 425.72,
@@ -205,7 +205,7 @@
     {
       "segment_id": "night_srt_021",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 21,
       "start_s": 445.72,
@@ -215,7 +215,7 @@
     {
       "segment_id": "night_srt_022",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 22,
       "start_s": 475.72,
@@ -225,7 +225,7 @@
     {
       "segment_id": "night_srt_023",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 23,
       "start_s": 491.72,
@@ -235,7 +235,7 @@
     {
       "segment_id": "night_srt_024",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 24,
       "start_s": 515.72,
@@ -245,7 +245,7 @@
     {
       "segment_id": "night_srt_025",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 25,
       "start_s": 529.72,
@@ -255,7 +255,7 @@
     {
       "segment_id": "night_srt_026",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 26,
       "start_s": 549.72,
@@ -265,7 +265,7 @@
     {
       "segment_id": "night_srt_027",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 27,
       "start_s": 563.72,
@@ -275,7 +275,7 @@
     {
       "segment_id": "night_srt_028",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 28,
       "start_s": 577.72,
@@ -285,7 +285,7 @@
     {
       "segment_id": "night_srt_029",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 29,
       "start_s": 605.72,
@@ -295,7 +295,7 @@
     {
       "segment_id": "night_srt_030",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 30,
       "start_s": 625.72,
@@ -305,7 +305,7 @@
     {
       "segment_id": "night_srt_031",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 31,
       "start_s": 649.72,
@@ -315,7 +315,7 @@
     {
       "segment_id": "night_srt_032",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 32,
       "start_s": 679.72,
@@ -325,7 +325,7 @@
     {
       "segment_id": "night_srt_033",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 33,
       "start_s": 703.72,
@@ -335,7 +335,7 @@
     {
       "segment_id": "night_srt_034",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 34,
       "start_s": 731.72,
@@ -345,7 +345,7 @@
     {
       "segment_id": "night_srt_035",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 35,
       "start_s": 755.72,
@@ -355,7 +355,7 @@
     {
       "segment_id": "night_srt_036",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 36,
       "start_s": 775.72,
@@ -365,7 +365,7 @@
     {
       "segment_id": "night_srt_037",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 37,
       "start_s": 795.72,
@@ -375,7 +375,7 @@
     {
       "segment_id": "night_srt_038",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 38,
       "start_s": 815.72,
@@ -385,7 +385,7 @@
     {
       "segment_id": "night_srt_039",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 39,
       "start_s": 835.72,
@@ -395,7 +395,7 @@
     {
       "segment_id": "night_srt_040",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 40,
       "start_s": 855.72,
@@ -405,7 +405,7 @@
     {
       "segment_id": "night_srt_041",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 41,
       "start_s": 885.72,
@@ -415,7 +415,7 @@
     {
       "segment_id": "night_srt_042",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 42,
       "start_s": 909.72,
@@ -425,7 +425,7 @@
     {
       "segment_id": "night_srt_043",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 43,
       "start_s": 933.72,
@@ -435,7 +435,7 @@
     {
       "segment_id": "night_srt_044",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 44,
       "start_s": 953.72,
@@ -445,7 +445,7 @@
     {
       "segment_id": "night_srt_045",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 45,
       "start_s": 981.72,
@@ -455,7 +455,7 @@
     {
       "segment_id": "night_srt_046",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 46,
       "start_s": 1009.72,
@@ -465,7 +465,7 @@
     {
       "segment_id": "night_srt_047",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 47,
       "start_s": 1029.72,
@@ -475,7 +475,7 @@
     {
       "segment_id": "night_srt_048",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 48,
       "start_s": 1049.72,
@@ -485,7 +485,7 @@
     {
       "segment_id": "night_srt_049",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 49,
       "start_s": 1069.72,
@@ -495,7 +495,7 @@
     {
       "segment_id": "night_srt_050",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 50,
       "start_s": 1089.72,
@@ -505,7 +505,7 @@
     {
       "segment_id": "night_srt_051",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 51,
       "start_s": 1109.72,
@@ -515,7 +515,7 @@
     {
       "segment_id": "night_srt_052",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 52,
       "start_s": 1129.72,
@@ -525,7 +525,7 @@
     {
       "segment_id": "night_srt_053",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 53,
       "start_s": 1149.72,
@@ -535,7 +535,7 @@
     {
       "segment_id": "night_srt_054",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 54,
       "start_s": 1179.72,
@@ -545,7 +545,7 @@
     {
       "segment_id": "night_srt_055",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 55,
       "start_s": 1199.72,
@@ -555,7 +555,7 @@
     {
       "segment_id": "night_srt_056",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 56,
       "start_s": 1227.72,
@@ -565,7 +565,7 @@
     {
       "segment_id": "night_srt_057",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 57,
       "start_s": 1251.72,
@@ -575,7 +575,7 @@
     {
       "segment_id": "night_srt_058",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 58,
       "start_s": 1281.72,
@@ -585,7 +585,7 @@
     {
       "segment_id": "night_srt_059",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 59,
       "start_s": 1301.72,
@@ -595,7 +595,7 @@
     {
       "segment_id": "night_srt_060",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 60,
       "start_s": 1321.72,
@@ -605,7 +605,7 @@
     {
       "segment_id": "night_srt_061",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 61,
       "start_s": 1345.72,
@@ -615,7 +615,7 @@
     {
       "segment_id": "night_srt_062",
       "session_id": "night_liquid_pour_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
+      "source_path": "$REPO/human/human_goal_discovery_calculus_2026-05-19/transcript_027_sp80.srt",
       "source_kind": "srt",
       "source_index": 62,
       "start_s": 1375.72,
@@ -625,7 +625,7 @@
     {
       "segment_id": "morning_json_000",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 0,
       "start_s": 0.0,
@@ -635,7 +635,7 @@
     {
       "segment_id": "morning_json_001",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 1,
       "start_s": 9.0,
@@ -645,7 +645,7 @@
     {
       "segment_id": "morning_json_002",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 2,
       "start_s": 13.0,
@@ -655,7 +655,7 @@
     {
       "segment_id": "morning_json_003",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 3,
       "start_s": 16.0,
@@ -665,7 +665,7 @@
     {
       "segment_id": "morning_json_004",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 4,
       "start_s": 46.0,
@@ -675,7 +675,7 @@
     {
       "segment_id": "morning_json_005",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 5,
       "start_s": 70.0,
@@ -685,7 +685,7 @@
     {
       "segment_id": "morning_json_006",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 6,
       "start_s": 98.0,
@@ -695,7 +695,7 @@
     {
       "segment_id": "morning_json_007",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 7,
       "start_s": 106.0,
@@ -705,7 +705,7 @@
     {
       "segment_id": "morning_json_008",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 8,
       "start_s": 118.0,
@@ -715,7 +715,7 @@
     {
       "segment_id": "morning_json_009",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 9,
       "start_s": 122.0,
@@ -725,7 +725,7 @@
     {
       "segment_id": "morning_json_010",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 10,
       "start_s": 131.0,
@@ -735,7 +735,7 @@
     {
       "segment_id": "morning_json_011",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 11,
       "start_s": 140.0,
@@ -745,7 +745,7 @@
     {
       "segment_id": "morning_json_012",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 12,
       "start_s": 146.0,
@@ -755,7 +755,7 @@
     {
       "segment_id": "morning_json_013",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 13,
       "start_s": 154.0,
@@ -765,7 +765,7 @@
     {
       "segment_id": "morning_json_014",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 14,
       "start_s": 163.0,
@@ -775,7 +775,7 @@
     {
       "segment_id": "morning_json_015",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 15,
       "start_s": 170.0,
@@ -785,7 +785,7 @@
     {
       "segment_id": "morning_json_016",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 16,
       "start_s": 178.0,
@@ -795,7 +795,7 @@
     {
       "segment_id": "morning_json_017",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 17,
       "start_s": 197.0,
@@ -805,7 +805,7 @@
     {
       "segment_id": "morning_json_018",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 18,
       "start_s": 227.0,
@@ -815,7 +815,7 @@
     {
       "segment_id": "morning_json_019",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 19,
       "start_s": 247.0,
@@ -825,7 +825,7 @@
     {
       "segment_id": "morning_json_020",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 20,
       "start_s": 257.0,
@@ -835,7 +835,7 @@
     {
       "segment_id": "morning_json_021",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 21,
       "start_s": 284.0,
@@ -845,7 +845,7 @@
     {
       "segment_id": "morning_json_022",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 22,
       "start_s": 314.0,
@@ -855,7 +855,7 @@
     {
       "segment_id": "morning_json_023",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 23,
       "start_s": 327.0,
@@ -865,7 +865,7 @@
     {
       "segment_id": "morning_json_024",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 24,
       "start_s": 357.0,
@@ -875,7 +875,7 @@
     {
       "segment_id": "morning_json_025",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 25,
       "start_s": 386.0,
@@ -885,7 +885,7 @@
     {
       "segment_id": "morning_json_026",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 26,
       "start_s": 408.0,
@@ -895,7 +895,7 @@
     {
       "segment_id": "morning_json_027",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 27,
       "start_s": 411.0,
@@ -905,7 +905,7 @@
     {
       "segment_id": "morning_json_028",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 28,
       "start_s": 418.0,
@@ -915,7 +915,7 @@
     {
       "segment_id": "morning_json_029",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 29,
       "start_s": 424.0,
@@ -925,7 +925,7 @@
     {
       "segment_id": "morning_json_030",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 30,
       "start_s": 428.0,
@@ -935,7 +935,7 @@
     {
       "segment_id": "morning_json_031",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 31,
       "start_s": 434.0,
@@ -945,7 +945,7 @@
     {
       "segment_id": "morning_json_032",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 32,
       "start_s": 440.0,
@@ -955,7 +955,7 @@
     {
       "segment_id": "morning_json_033",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 33,
       "start_s": 458.0,
@@ -965,7 +965,7 @@
     {
       "segment_id": "morning_json_034",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 34,
       "start_s": 462.0,
@@ -975,7 +975,7 @@
     {
       "segment_id": "morning_json_035",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 35,
       "start_s": 465.0,
@@ -985,7 +985,7 @@
     {
       "segment_id": "morning_json_036",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 36,
       "start_s": 468.0,
@@ -995,7 +995,7 @@
     {
       "segment_id": "morning_json_037",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 37,
       "start_s": 473.0,
@@ -1005,7 +1005,7 @@
     {
       "segment_id": "morning_json_038",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 38,
       "start_s": 478.0,
@@ -1015,7 +1015,7 @@
     {
       "segment_id": "morning_json_039",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 39,
       "start_s": 480.0,
@@ -1025,7 +1025,7 @@
     {
       "segment_id": "morning_json_040",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 40,
       "start_s": 485.0,
@@ -1035,7 +1035,7 @@
     {
       "segment_id": "morning_json_041",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 41,
       "start_s": 493.0,
@@ -1045,7 +1045,7 @@
     {
       "segment_id": "morning_json_042",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 42,
       "start_s": 497.0,
@@ -1055,7 +1055,7 @@
     {
       "segment_id": "morning_json_043",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 43,
       "start_s": 515.0,
@@ -1065,7 +1065,7 @@
     {
       "segment_id": "morning_json_044",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 44,
       "start_s": 527.0,
@@ -1075,7 +1075,7 @@
     {
       "segment_id": "morning_json_045",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 45,
       "start_s": 545.0,
@@ -1085,7 +1085,7 @@
     {
       "segment_id": "morning_json_046",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 46,
       "start_s": 559.0,
@@ -1095,7 +1095,7 @@
     {
       "segment_id": "morning_json_047",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 47,
       "start_s": 568.0,
@@ -1105,7 +1105,7 @@
     {
       "segment_id": "morning_json_048",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 48,
       "start_s": 579.0,
@@ -1115,7 +1115,7 @@
     {
       "segment_id": "morning_json_049",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 49,
       "start_s": 609.0,
@@ -1125,7 +1125,7 @@
     {
       "segment_id": "morning_json_050",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 50,
       "start_s": 634.0,
@@ -1135,7 +1135,7 @@
     {
       "segment_id": "morning_json_051",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 51,
       "start_s": 644.0,
@@ -1145,7 +1145,7 @@
     {
       "segment_id": "morning_json_052",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 52,
       "start_s": 650.0,
@@ -1155,7 +1155,7 @@
     {
       "segment_id": "morning_json_053",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 53,
       "start_s": 661.0,
@@ -1165,7 +1165,7 @@
     {
       "segment_id": "morning_json_054",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 54,
       "start_s": 669.0,
@@ -1175,7 +1175,7 @@
     {
       "segment_id": "morning_json_055",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 55,
       "start_s": 681.0,
@@ -1185,7 +1185,7 @@
     {
       "segment_id": "morning_json_056",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 56,
       "start_s": 684.0,
@@ -1195,7 +1195,7 @@
     {
       "segment_id": "morning_json_057",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 57,
       "start_s": 695.0,
@@ -1205,7 +1205,7 @@
     {
       "segment_id": "morning_json_058",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 58,
       "start_s": 713.0,
@@ -1215,7 +1215,7 @@
     {
       "segment_id": "morning_json_059",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 59,
       "start_s": 735.0,
@@ -1225,7 +1225,7 @@
     {
       "segment_id": "morning_json_060",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 60,
       "start_s": 764.0,
@@ -1235,7 +1235,7 @@
     {
       "segment_id": "morning_json_061",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 61,
       "start_s": 788.0,
@@ -1245,7 +1245,7 @@
     {
       "segment_id": "morning_json_062",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 62,
       "start_s": 793.0,
@@ -1255,7 +1255,7 @@
     {
       "segment_id": "morning_json_063",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 63,
       "start_s": 823.0,
@@ -1265,7 +1265,7 @@
     {
       "segment_id": "morning_json_064",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 64,
       "start_s": 845.0,
@@ -1275,7 +1275,7 @@
     {
       "segment_id": "morning_json_065",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 65,
       "start_s": 855.0,
@@ -1285,7 +1285,7 @@
     {
       "segment_id": "morning_json_066",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 66,
       "start_s": 873.0,
@@ -1295,7 +1295,7 @@
     {
       "segment_id": "morning_json_067",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 67,
       "start_s": 876.0,
@@ -1305,7 +1305,7 @@
     {
       "segment_id": "morning_json_068",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 68,
       "start_s": 898.0,
@@ -1315,7 +1315,7 @@
     {
       "segment_id": "morning_json_069",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 69,
       "start_s": 928.0,
@@ -1325,7 +1325,7 @@
     {
       "segment_id": "morning_json_070",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 70,
       "start_s": 957.0,
@@ -1335,7 +1335,7 @@
     {
       "segment_id": "morning_json_071",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 71,
       "start_s": 986.0,
@@ -1345,7 +1345,7 @@
     {
       "segment_id": "morning_json_072",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 72,
       "start_s": 1013.0,
@@ -1355,7 +1355,7 @@
     {
       "segment_id": "morning_json_073",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 73,
       "start_s": 1038.0,
@@ -1365,7 +1365,7 @@
     {
       "segment_id": "morning_json_074",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 74,
       "start_s": 1050.0,
@@ -1375,7 +1375,7 @@
     {
       "segment_id": "morning_json_075",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 75,
       "start_s": 1054.0,
@@ -1385,7 +1385,7 @@
     {
       "segment_id": "morning_json_076",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 76,
       "start_s": 1070.0,
@@ -1395,7 +1395,7 @@
     {
       "segment_id": "morning_json_077",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 77,
       "start_s": 1083.0,
@@ -1405,7 +1405,7 @@
     {
       "segment_id": "morning_json_078",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 78,
       "start_s": 1087.0,
@@ -1415,7 +1415,7 @@
     {
       "segment_id": "morning_json_079",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 79,
       "start_s": 1089.0,
@@ -1425,7 +1425,7 @@
     {
       "segment_id": "morning_json_080",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 80,
       "start_s": 1111.0,
@@ -1435,7 +1435,7 @@
     {
       "segment_id": "morning_json_081",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 81,
       "start_s": 1117.0,
@@ -1445,7 +1445,7 @@
     {
       "segment_id": "morning_json_082",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 82,
       "start_s": 1145.0,
@@ -1455,7 +1455,7 @@
     {
       "segment_id": "morning_json_083",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 83,
       "start_s": 1174.0,
@@ -1465,7 +1465,7 @@
     {
       "segment_id": "morning_json_084",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 84,
       "start_s": 1201.0,
@@ -1475,7 +1475,7 @@
     {
       "segment_id": "morning_json_085",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 85,
       "start_s": 1230.0,
@@ -1485,7 +1485,7 @@
     {
       "segment_id": "morning_json_086",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 86,
       "start_s": 1259.0,
@@ -1495,7 +1495,7 @@
     {
       "segment_id": "morning_json_087",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 87,
       "start_s": 1289.0,
@@ -1505,7 +1505,7 @@
     {
       "segment_id": "morning_json_088",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 88,
       "start_s": 1318.0,
@@ -1515,7 +1515,7 @@
     {
       "segment_id": "morning_json_089",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 89,
       "start_s": 1345.0,
@@ -1525,7 +1525,7 @@
     {
       "segment_id": "morning_json_090",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 90,
       "start_s": 1374.0,
@@ -1535,7 +1535,7 @@
     {
       "segment_id": "morning_json_091",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 91,
       "start_s": 1403.0,
@@ -1545,7 +1545,7 @@
     {
       "segment_id": "morning_json_092",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 92,
       "start_s": 1428.0,
@@ -1555,7 +1555,7 @@
     {
       "segment_id": "morning_json_093",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 93,
       "start_s": 1457.0,
@@ -1565,7 +1565,7 @@
     {
       "segment_id": "morning_json_094",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 94,
       "start_s": 1486.0,
@@ -1575,7 +1575,7 @@
     {
       "segment_id": "morning_json_095",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 95,
       "start_s": 1516.0,
@@ -1585,7 +1585,7 @@
     {
       "segment_id": "morning_json_096",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 96,
       "start_s": 1528.0,
@@ -1595,7 +1595,7 @@
     {
       "segment_id": "morning_json_097",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 97,
       "start_s": 1556.0,
@@ -1605,7 +1605,7 @@
     {
       "segment_id": "morning_json_098",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 98,
       "start_s": 1586.0,
@@ -1615,7 +1615,7 @@
     {
       "segment_id": "morning_json_099",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 99,
       "start_s": 1616.0,
@@ -1625,7 +1625,7 @@
     {
       "segment_id": "morning_json_100",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 100,
       "start_s": 1638.0,
@@ -1635,7 +1635,7 @@
     {
       "segment_id": "morning_json_101",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 101,
       "start_s": 1665.0,
@@ -1645,7 +1645,7 @@
     {
       "segment_id": "morning_json_102",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 102,
       "start_s": 1692.0,
@@ -1655,7 +1655,7 @@
     {
       "segment_id": "morning_json_103",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 103,
       "start_s": 1720.0,
@@ -1665,7 +1665,7 @@
     {
       "segment_id": "morning_json_104",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 104,
       "start_s": 1749.0,
@@ -1675,7 +1675,7 @@
     {
       "segment_id": "morning_json_105",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 105,
       "start_s": 1771.0,
@@ -1685,7 +1685,7 @@
     {
       "segment_id": "morning_json_106",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 106,
       "start_s": 1798.0,
@@ -1695,7 +1695,7 @@
     {
       "segment_id": "morning_json_107",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 107,
       "start_s": 1825.0,
@@ -1705,7 +1705,7 @@
     {
       "segment_id": "morning_json_108",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 108,
       "start_s": 1854.0,
@@ -1715,7 +1715,7 @@
     {
       "segment_id": "morning_json_109",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 109,
       "start_s": 1865.0,
@@ -1725,7 +1725,7 @@
     {
       "segment_id": "morning_json_110",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 110,
       "start_s": 1874.0,
@@ -1735,7 +1735,7 @@
     {
       "segment_id": "morning_json_111",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 111,
       "start_s": 1901.0,
@@ -1745,7 +1745,7 @@
     {
       "segment_id": "morning_json_112",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 112,
       "start_s": 1929.0,
@@ -1755,7 +1755,7 @@
     {
       "segment_id": "morning_json_113",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 113,
       "start_s": 1956.0,
@@ -1765,7 +1765,7 @@
     {
       "segment_id": "morning_json_114",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 114,
       "start_s": 1985.0,
@@ -1775,7 +1775,7 @@
     {
       "segment_id": "morning_json_115",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 115,
       "start_s": 2014.0,
@@ -1785,7 +1785,7 @@
     {
       "segment_id": "morning_json_116",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 116,
       "start_s": 2043.0,
@@ -1795,7 +1795,7 @@
     {
       "segment_id": "morning_json_117",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 117,
       "start_s": 2072.0,
@@ -1805,7 +1805,7 @@
     {
       "segment_id": "morning_json_118",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 118,
       "start_s": 2101.0,
@@ -1815,7 +1815,7 @@
     {
       "segment_id": "morning_json_119",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 119,
       "start_s": 2120.0,
@@ -1825,7 +1825,7 @@
     {
       "segment_id": "morning_json_120",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 120,
       "start_s": 2149.0,
@@ -1835,7 +1835,7 @@
     {
       "segment_id": "morning_json_121",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 121,
       "start_s": 2176.0,
@@ -1845,7 +1845,7 @@
     {
       "segment_id": "morning_json_122",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 122,
       "start_s": 2203.0,
@@ -1855,7 +1855,7 @@
     {
       "segment_id": "morning_json_123",
       "session_id": "morning_liquid_pour_2_2026-05-21",
-      "source_path": "/home/frosty40/rexus/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
+      "source_path": "$REPO/human/raw_incoming_audio_and_sidecars/liquid_pour_2.json",
       "source_kind": "whisper_json",
       "source_index": 123,
       "start_s": 2231.0,

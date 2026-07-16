@@ -9,7 +9,7 @@ training; no ranked/live scorecard runs; no git commits; new files only.
 ## Entry 1 — 2026-07-06 — DISCOVERY: offline game acquisition CONFIRMED
 
 **How the stack works (read from installed SDK, not guessed):**
-- The SDK is `arc_agi` (0.1.0-era, at `/home/frosty40/miniconda3/lib/python3.13/site-packages/arc_agi/`)
+- The SDK is `arc_agi` (0.1.0-era, at `python3/lib/python3.13/site-packages/arc_agi/`)
   plus `arcengine` (the local game engine: `ARCBaseGame`, `GameAction`, `ActionInput`, sprites/levels/camera).
 - ARC-AGI-3 games are **plain Python source files** (subclass of `arcengine.ARCBaseGame`) executed
   locally by `LocalEnvironmentWrapper` (`arc_agi/local_wrapper.py`). A game on disk =
@@ -1100,7 +1100,7 @@ Result:
 - trace: `checkpoints_enabled=false`, `checkpoint_numbered=false`, seed
   `868634289`, seed source `stable_game_id_hash`
 - Tufa experiment dir:
-  `/home/frosty40/megarexus/codexlab/runs/tufa_action_sidecars/20260707_060341`
+  `$REPO/codexlab/runs/tufa_action_sidecars/20260707_060341`
 
 Filesystem check:
 - No top-level `runs/20260707_*` directories were created.
@@ -1178,7 +1178,7 @@ Seed sweep result:
   `34` resets.
 
 Repeat command:
-`ARC_TUFA_SEED=101 ARC_TUFA_RUNS_DIR=/home/frosty40/megarexus/codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z/tufa_sidecars python3 codexlab/arc_suite_runner.py --policy arcade_portfolio_v1 --games r11l-495a7899 --env-dir synthesis_lab/experiments/other_games/environment_files --seed 7 --max-actions 600 --run-id tufa_seed_repeat_r11l_101_20260707T111500Z --out-dir codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z`
+`ARC_TUFA_SEED=101 ARC_TUFA_RUNS_DIR=$REPO/codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z/tufa_sidecars python3 codexlab/arc_suite_runner.py --policy arcade_portfolio_v1 --games r11l-495a7899 --env-dir synthesis_lab/experiments/other_games/environment_files --seed 7 --max-actions 600 --run-id tufa_seed_repeat_r11l_101_20260707T111500Z --out-dir codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z`
 
 Repeat result:
 - `total_levels_completed=1`

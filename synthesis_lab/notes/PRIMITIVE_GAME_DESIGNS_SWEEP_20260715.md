@@ -3,7 +3,7 @@
 **What they are:** basic **primitive game designs**, not Atari ports or a
 training corpus of old games.
 
-**Where:** `/home/frosty40/rexus/.external/pufferlib-4.0-newjordan/ocean/`  
+**Where:** `$REPO/.external/pufferlib-4.0-newjordan/ocean/`  
 (~62 minimal envs in C + bindings)
 
 **Doctrine:** plant every design primitive into the base model; training rises

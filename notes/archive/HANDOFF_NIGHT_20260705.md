@@ -33,14 +33,14 @@ that it ranks above random L1 arrangements. v52: fill 0.56, lava 0.045, score +0
 97%. (v48 scored it fill 0.003 = a total loss — the over-claim tell.)
 
 ## 4. INFRASTRUCTURE (+ critical gotcha)
-- Training box: Apollo (RTX 4080). Workspace `/home/frosty/megarexus_train_20260703`.
-  venv `/home/frosty/Loom/.venv/bin/python`. Apollo has only ~15GB RAM (10 free) — cache
+- Training box: Apollo (RTX 4080). Workspace `$TRAIN_WORKSPACE`.
+  venv `$LOOM_ROOT/.venv/bin/python`. Apollo has only ~15GB RAM (10 free) — cache
   encodings as float16, preallocate-and-fill (see train_outcome.precompute_enc), or OOM.
-- Sync local->Apollo with `rsync -az <file> apollo:/home/frosty/megarexus_train_20260703/<path>`.
+- Sync local->Apollo with `rsync -az <file> remote-host:$TRAIN_WORKSPACE/<path>`.
 - **SSH GOTCHA (cost me an hour):** long-lived ssh sessions to Apollo DROP (exit 255) or HANG
   (exit 124). Short read-only commands (ps/tail/cat) mostly work. To launch training, use a
   wrapper script + FULLY DETACHED launch that survives the ssh dying:
-  `ssh -o ControlMaster=no apollo 'cd <ws> && setsid nohup bash run_X.sh > X.log 2>&1 </dev/null &'`
+  `ssh remote-host 'cd <ws> && setsid nohup bash run_X.sh > X.log 2>&1 </dev/null &'`
   Then VERIFY with a separate short ssh (retry loop). Do NOT rely on the launch ssh returning.
   Wrapper scripts live in the scratchpad; pattern in `run_v52.sh` etc.
 - Watch completion via a background bash `until timeout 15 ssh ... grep -q "EXIT"; do sleep 30; done`.

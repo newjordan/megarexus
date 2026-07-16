@@ -11,9 +11,9 @@ any single system is currently the live primary.
 
 | Tree | Role in the grand design |
 |---|---|
-| `/home/frosty40/dreamweaver` | Chronometric body, Dream Kernel, A/B Q/A, CellWave, perception trust, DW-TJEPA plan |
-| `/home/frosty40/megarexus` | CONTRA frame substrate, 3D pour world, legal mine, ONE LANE learned physics, wide model |
-| `/home/frosty40/Loom` (+ Loom-gepa-bg) | Rexus core loop, LeWM chassis, GRAM/TIMR/Meta-Horizon, transcript algorithms |
+| `$HOME/dreamweaver` | Chronometric body, Dream Kernel, A/B Q/A, CellWave, perception trust, DW-TJEPA plan |
+| `$REPO` | CONTRA frame substrate, 3D pour world, legal mine, ONE LANE learned physics, wide model |
+| `$LOOM_ROOT` (+ Loom-gepa-bg) | Rexus core loop, LeWM chassis, GRAM/TIMR/Meta-Horizon, transcript algorithms |
 
 ---
 

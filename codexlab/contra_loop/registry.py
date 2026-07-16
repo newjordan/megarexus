@@ -37,7 +37,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]          # repo root  (e.g. /home/frosty40/rexus)
+ROOT = Path(__file__).resolve().parents[2]          # repo root
 CODEXLAB = ROOT / "codexlab"
 REGISTRY_DIR = Path(__file__).resolve().parent / "registry"
 

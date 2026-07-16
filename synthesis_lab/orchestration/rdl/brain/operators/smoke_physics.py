@@ -2,7 +2,7 @@
 """Tiny WP-A smoke: BodyOp + RayOp on a synthetic 64x64 board.
 
 Run:
-  /home/frosty40/miniconda3/bin/python3 -B \\
+  python3 -B \\
     synthesis_lab/orchestration/rdl/brain/operators/smoke_physics.py
 """
 from __future__ import annotations

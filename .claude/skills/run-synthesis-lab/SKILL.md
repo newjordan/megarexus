@@ -9,7 +9,7 @@ environment (SP80 "liquid pour", `sp80-589a99af`). The agent handle is
 `.claude/skills/run-synthesis-lab/driver.py`: `preflight` verifies the
 whole stack, `probe` plays real paired episodes, `render` screenshots a
 frame. All paths below are relative to the repo root
-(`/home/frosty40/megarexus`).
+(`$REPO`).
 
 Everything here is SCOUT_EXPERIMENT, offline only. **Before making any
 claim or training anything, read `synthesis_lab/notes/HANDOFF.md`** —
@@ -23,7 +23,7 @@ Everything is preinstalled on this rig — no install step was needed.
 The stack runs on the miniconda interpreter (NOT `python3` from PATH
 unless it resolves there):
 
-- `/home/frosty40/miniconda3/bin/python3` — Python 3.13.12 with
+- `python3` — Python 3.13.12 with
   torch 2.11.0+cu130 (CUDA on NVIDIA GB10), numpy 2.4.3, PIL, and
   `arc_agi` (site-packages).
 - Game definition: `environment_files/sp80/589a99af/sp80.py` (loaded
@@ -42,7 +42,7 @@ None. No build step, no env vars, no services.
 ### 1. Pre-flight — is the stack healthy?
 
 ```bash
-/home/frosty40/miniconda3/bin/python3 -B .claude/skills/run-synthesis-lab/driver.py preflight
+python3 -B .claude/skills/run-synthesis-lab/driver.py preflight
 ```
 
 ~30 s. Boots the offline Arcade, runs the Portband adapter on the real
@@ -55,7 +55,7 @@ shard counts. Ends with `ALL SECTIONS PASSED` and exit 0, or a
 ### 2. Probe — actually play the game, model vs random
 
 ```bash
-/home/frosty40/miniconda3/bin/python3 -B .claude/skills/run-synthesis-lab/driver.py probe --episodes 2
+python3 -B .claude/skills/run-synthesis-lab/driver.py probe --episodes 2
 ```
 
 ~10 s for 2 episodes. Runs full paired episodes through
@@ -76,7 +76,7 @@ model 20/20 level-1 completions, random 5/20, paired seeds
 ### 3. Render — screenshot a frame
 
 ```bash
-/home/frosty40/miniconda3/bin/python3 -B .claude/skills/run-synthesis-lab/driver.py render --out /tmp/sp80_reset.png
+python3 -B .claude/skills/run-synthesis-lab/driver.py render --out /tmp/sp80_reset.png
 ```
 
 Boots the env, resets, saves a 512×512 PNG (project palette from
@@ -136,7 +136,7 @@ stored val metrics it prints (catch 1.0 vs 0.528 base, control 1.0 vs
 ## Troubleshooting
 
 - **`ModuleNotFoundError: No module named 'arc_agi'` (or torch)**:
-  wrong interpreter — use `/home/frosty40/miniconda3/bin/python3`.
+  wrong interpreter — use `python3`.
 - **`TypeError: int() argument must be a string … not 'dict'` in
   `glove_ports`**: you passed `frame_components()` output; pass
   `comp["bbox_xyxy"]` and `comp["component_id"]`.

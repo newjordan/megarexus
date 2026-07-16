@@ -27,7 +27,7 @@
     "condition_name": "SP80 Liquid Pour audio-frame alignment corpus",
     "condition": "Render every SP80 win-bank frame and align frames to human narration using documented manual anchors.",
     "command_line": "python scripts/build_sp80_liquid_pour_corpus.py",
-    "working_directory": "/home/frosty40/rexus",
+    "working_directory": "$REPO",
     "start_time_utc": "2026-05-25T18:48:25.309351Z",
     "builder_script": "scripts/build_sp80_liquid_pour_corpus.py",
     "source_code_hashes": {

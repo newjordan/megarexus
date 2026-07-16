@@ -25,8 +25,8 @@ if str(CODEXLAB) not in sys.path:
 
 from contra_service import projections  # noqa: E402  (reporting reads CONTRA internals via the internal-API projection contract)
 
-ANGEL_DIST_DATA = Path("/home/frosty40/angel/dist/data")
-ANGEL_PUBLIC_DATA = Path("/home/frosty40/angel/public/data")
+ANGEL_DIST_DATA = Path.home() / "angel" / "dist" / "data"
+ANGEL_PUBLIC_DATA = Path.home() / "angel" / "public" / "data"
 REPORT_SCHEMA = "angel.contra_gameplay_report_manifest.v1"
 TRACE_SCHEMA = "angel.report_trace_event.v1"
 CONTRAVIEW_SCHEMA = "angel.contra_oracle_view_test.v1"

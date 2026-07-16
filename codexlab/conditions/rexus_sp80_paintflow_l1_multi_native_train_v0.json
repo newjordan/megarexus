@@ -12,7 +12,7 @@
     "codexlab/pufferlib_envs/rexus_sp80_paintflow_l1_multi/binding.c",
     "codexlab/pufferlib_envs/rexus_sp80_paintflow_l1_multi/rexus_sp80_paintflow_l1_multi.ini"
   ],
-  "install_command": "PYTHONPATH=codexlab /home/frosty40/miniconda3/bin/python3 -B codexlab/install_pufferlib_envs.py --env rexus_sp80_paintflow_l1_multi",
+  "install_command": "PYTHONPATH=codexlab python3 -B codexlab/install_pufferlib_envs.py --env rexus_sp80_paintflow_l1_multi",
   "build_command": "cd .external/pufferlib-4.0-newjordan && NVCC_ARCH=sm_120 bash ./build.sh rexus_sp80_paintflow_l1_multi",
   "action_space": {
     "0": "noop",

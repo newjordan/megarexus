@@ -160,7 +160,7 @@ agent-generated episodes under pre-registered conditions.
 - **Mechanics:** every run = CONDITION.json first (evidence_class,
   assist_env_flags_allowed, hashes), launched ONLY via `train_watch.py`,
   no-imitation guard green, Apollo for GPU (workspace
-  `/home/frosty/megarexus_train_20260703`, venv `/home/frosty/Loom/.venv`).
+  `$TRAIN_WORKSPACE`, venv `$LOOM_ROOT/.venv`).
   Commit toolchain before conditions record hashes (contract rule 8 — note the
   sim3d lane itself is currently UNCOMMITTED working-tree; committing it is the
   first prerequisite for any P3 condition).
@@ -208,7 +208,7 @@ Next per §3: <phase>
 ## 5. Quick start for a fresh agent
 
 ```bash
-cd /home/frosty40/megarexus
+cd $REPO
 python3 synthesis_lab/orchestration/honesty_audit.py            # must lead your report
 cd synthesis_lab/orchestration/sim3d
 python3 decisive_test.py --lane stream                          # S0 must PASS before+after your work

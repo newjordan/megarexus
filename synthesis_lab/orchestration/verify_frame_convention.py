@@ -16,7 +16,7 @@ from pathlib import Path
 
 import numpy as np
 
-REPO = Path("/home/frosty40/megarexus")
+REPO = Path(__file__).resolve().parents[2]
 os.environ["MEGAREXUS_CKPT"] = str(
     REPO / "synthesis_lab/experiments/megarexus_cnn/runs/outcome_v9_retry_20260702/last.pt"
 )

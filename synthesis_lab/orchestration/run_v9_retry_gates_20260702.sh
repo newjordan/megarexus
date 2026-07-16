@@ -3,8 +3,8 @@
 # Waits for its train.py process to exit, then runs the same v9 gates
 # against outcome_v8. Judgment and release docs stay with the agent.
 set -u
-PY=/home/frosty40/miniconda3/bin/python3
-REPO=/home/frosty40/megarexus
+REPO="${REPO:-$(cd "$(dirname "$0")/../.." && pwd)}"
+PY="${PY:-python3}"
 D=$REPO/synthesis_lab/experiments/megarexus_cnn
 V9=$D/runs/outcome_v9_retry_20260702
 V8=$D/runs/outcome_v8

@@ -380,7 +380,7 @@ Verification:
 
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/paint_control_skill_regression.py` passed.
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/dev_check.py` passed.
-- `PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh` passed.
+- `PYTHON=python3 bash codexlab/sp80_integration_smoke.sh` passed.
 
 Controlled level-2 evidence after local-delta reranking:
 
@@ -437,7 +437,7 @@ Verification:
 
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/paint_control_skill_regression.py` passed.
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/dev_check.py` passed.
-- `PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh` passed.
+- `PYTHON=python3 bash codexlab/sp80_integration_smoke.sh` passed.
 
 Controlled level-2 evidence after the committed outcome-history guard:
 
@@ -684,7 +684,7 @@ Verified local gates for the source-diversity pass:
 
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/paint_control_skill_regression.py` passed.
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/dev_check.py` passed.
-- `PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh` passed.
+- `PYTHON=python3 bash codexlab/sp80_integration_smoke.sh` passed.
 
 Controlled run artifact:
 
@@ -751,7 +751,7 @@ Verified local gates:
 
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/paint_control_skill_regression.py` passed.
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/dev_check.py` passed.
-- `PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh` passed.
+- `PYTHON=python3 bash codexlab/sp80_integration_smoke.sh` passed.
 
 Controlled run: source-edge activation probe:
 

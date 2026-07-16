@@ -4,7 +4,7 @@
 base model can load **all of them** as seeds. Testing rises what works; absence
 from the base is not acceptable.
 
-**Sources:** `/home/frosty40/Loom`, Loom memory, Loom-gepa-bg scouts.
+**Sources:** `$LOOM_ROOT`, Loom memory, Loom-gepa-bg scouts.
 
 ---
 

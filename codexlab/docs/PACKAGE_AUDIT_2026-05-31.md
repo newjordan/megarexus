@@ -15,7 +15,7 @@ Scope: `codexlab/` canonical CONTRA/SP80 work folder.
 
 ## Verification
 
-Commands run from `/home/frosty40/rexus`:
+Commands run from `$REPO`:
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/dev_check.py

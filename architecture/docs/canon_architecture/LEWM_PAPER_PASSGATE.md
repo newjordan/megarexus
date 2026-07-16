@@ -36,10 +36,10 @@ Primary paper: Maes et al., `LeWorldModel`, arXiv:2603.19312v2.
 
 ## Evidence
 
-- `/home/frosty40/Loom/docs/canon_architecture/README.md` exists=True sha256=443409c64217d35a9fcaaea28e865a260ea0b7479969bc026066cd12f5c9b33a
-- `/home/frosty40/Loom/docs/canon_architecture/DOC_MAP.md` exists=True sha256=79c582cd39e5b507f0728a01c24723d66e84ae5fda9e650d4dc8d9741696d9ab
-- `/home/frosty40/Loom/docs/REXUS_CORE_ACTION_LOOP.md` exists=True sha256=36b1e054b9c95281fa74e9569c941f3f38fc0fcaf042f0517c8675388e845b06
-- `/home/frosty40/Loom/lab/comm/latest/LEWM_FORWARD_SURFACE_LOCK_2026-05-24.md` exists=True sha256=806518adabfc559646aba831e6ee848b668a1ba01ce14b6c09e13956c422ca66
+- `external/loom/docs/canon_architecture/README.md` exists=True sha256=443409c64217d35a9fcaaea28e865a260ea0b7479969bc026066cd12f5c9b33a
+- `external/loom/docs/canon_architecture/DOC_MAP.md` exists=True sha256=79c582cd39e5b507f0728a01c24723d66e84ae5fda9e650d4dc8d9741696d9ab
+- `external/loom/docs/REXUS_CORE_ACTION_LOOP.md` exists=True sha256=36b1e054b9c95281fa74e9569c941f3f38fc0fcaf042f0517c8675388e845b06
+- `external/loom/lab/comm/latest/LEWM_FORWARD_SURFACE_LOCK_2026-05-24.md` exists=True sha256=806518adabfc559646aba831e6ee848b668a1ba01ce14b6c09e13956c422ca66
 
 ## Deviations
 

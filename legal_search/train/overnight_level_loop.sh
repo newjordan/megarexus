@@ -4,8 +4,8 @@
 set -u
 set -o pipefail
 
-REPO="${REPO:-/home/frosty40/megarexus}"
-PY="${PY:-/home/frosty40/miniconda3/bin/python3}"
+REPO="${REPO:-$(cd "$(dirname "$0")/../.." && pwd)}"
+PY="${PY:-python3}"
 ROOT_OUT="${ROOT_OUT:-$REPO/legal_search/runs/overnight_level}"
 STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
 LOG_DIR="$ROOT_OUT/logs"

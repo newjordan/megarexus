@@ -28,7 +28,7 @@ Do not mix new code into `runs/`. New reusable control logic belongs under `cont
 
 - Keep `__pycache__`, local envs, package installs, and frontend build outputs out of the tree.
 - Use `PYTHONDONTWRITEBYTECODE=1 python -B codexlab/dev_check.py` for the fast dev check so verification does not leave bytecode behind.
-- Use `PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh` for the live SP80 harness smoke.
+- Use `PYTHON=python3 bash codexlab/sp80_integration_smoke.sh` for the live SP80 harness smoke.
 - Keep failed same-basin scout outputs only long enough to capture a durable handoff.
 - Preserve review-surface and provenance fields for historical runs that may be cited.
 - Treat `claudelab/` as scratch/reference unless a file is intentionally promoted into `codexlab/`.

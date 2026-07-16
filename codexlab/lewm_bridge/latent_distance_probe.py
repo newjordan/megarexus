@@ -8,7 +8,7 @@ fall roughly monotonically over the trajectory. This is the falsification test
 for the planned CONTRA->LeWM goal-cost bridge; it admits no truth and feeds no
 solver path.
 
-Requires the Loom repo (default /home/frosty40/Loom) and its Phase-0 checkpoint.
+Requires the Loom repo (default $LOOM_ROOT or ~/Loom) and its Phase-0 checkpoint.
 """
 
 from __future__ import annotations
@@ -17,6 +17,7 @@ import argparse
 import json
 import sys
 from datetime import datetime, timezone
+import os
 from pathlib import Path
 from typing import Any
 
@@ -37,7 +38,7 @@ from contra_head.crucible.corpus import (  # noqa: E402
 )
 
 DEFAULT_EPISODES_DIR = _CODEXLAB / "datasets" / "sp80_lewm_episodes_v0"
-DEFAULT_LOOM_ROOT = Path("/home/frosty40/Loom")
+DEFAULT_LOOM_ROOT = Path(os.environ.get("LOOM_ROOT", Path.home() / "Loom"))
 DEFAULT_CHECKPOINT_REL = Path("experiments/2026-05-23_phase0_production_rtx6k/bs64_lr1e-4/best.pt")
 DEFAULT_OUT_ROOT = _CODEXLAB / "runs" / "_lewm_bridge"
 REPORT_SCHEMA = "codexlab.lewm_latent_distance_probe.v1"

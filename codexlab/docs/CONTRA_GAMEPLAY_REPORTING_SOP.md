@@ -152,7 +152,7 @@ Every packet row, slide row, action row, and manifest entry must carry stable ID
   "report_status": "static_review",
   "run_id": "contra_sp80_example_20260531T000000Z",
   "game_id": "sp80-589a99af",
-  "working_directory": "/home/frosty40/rexus",
+  "working_directory": "$REPO",
   "git_commit": "<commit>",
   "git_dirty": true,
   "command": "<exact command>",

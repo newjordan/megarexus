@@ -91,7 +91,7 @@ Verified on 2026-07-07:
 Detached review server:
 
 ```text
-PID 754451: python3 -m http.server -b 0.0.0.0 -d /home/frosty40/megarexus/codexlab/runs/arc_ranked_sp80_megarexus_dw_directgrid_20260707T1623Z 18790
+PID 754451: python3 -m http.server -b 0.0.0.0 -d $REPO/codexlab/runs/arc_ranked_sp80_megarexus_dw_directgrid_20260707T1623Z 18790
 ```
 
 ## Boundary

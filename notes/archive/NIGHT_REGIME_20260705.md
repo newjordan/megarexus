@@ -27,7 +27,7 @@ maximizing contra/ghost/oracle concepts."
    more targeted purposeful data / add oracle goal planes → repeat.
 
 ## Compute
-- TRAIN on Apollo 4080 (`/home/frosty/Loom/.venv/bin/python`, 15GB RAM → keep
+- TRAIN on Apollo 4080 (`$LOOM_ROOT/.venv/bin/python`, 15GB RAM → keep
   corpus lean/subsampled). Spark (this box, dgx-spark) freed for user's GPU work;
   CPU-only Contra collection here is OK. turbo blocked (tailscale ACL, TCP/22).
 - Every run: fresh-from-0 (`init:none`), pre-registered CONDITION.json,

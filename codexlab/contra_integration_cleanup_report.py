@@ -205,7 +205,7 @@ def run_verifications(log_dir: Path) -> list[dict[str, Any]]:
             "sp80_integration_smoke",
             ["bash", "codexlab/sp80_integration_smoke.sh"],
             log_dir=log_dir,
-            env=command_env({"PYTHON": "/home/frosty40/miniconda3/bin/python3"}),
+            env=command_env({"PYTHON": "python3"}),
         ),
         run_command(
             "contra_api_verify_smoke_fixtures",

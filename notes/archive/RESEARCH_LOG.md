@@ -281,7 +281,7 @@ Wrapper PID `2643869`; actual `train.py` PID `2643873`.
 Stopped the relaunch at `2026-07-03T23:05:51-05:00` because an unrelated
 GB10 compute process appeared after preflight:
 `llama-dspark-cache-probe` PID `2643087`, command rooted at
-`/home/frosty40/llama-nvfp4-dspark/build-dspark/bin/llama-dspark-cache-probe`.
+`$LOCAL_TOOL/build-dspark/bin/llama-dspark-cache-probe`.
 Only the Stage23 wrapper process group was terminated (`2643869`, `2643873`,
 `2643874`). Post-stop: no Megarexus `train.py`, no v13 output directory,
 no checkpoint, no `history.json`; train log is 40 bytes and contains only
@@ -302,7 +302,7 @@ wrapper PID `2647364`, actual `train.py` PID `2647368`.
 Stopped the second relaunch at `2026-07-03T23:09:21-05:00` because another
 unrelated GB10 compute process appeared after preflight: DeepSpec Leanstral
 export PID `2647359`, command rooted at
-`/home/frosty40/DeepSpec/scripts/leanstral/train_export_leanstral_qwen3_dspark_tiny.py`.
+`$LOCAL_TOOL/scripts/leanstral/train_export_leanstral_qwen3_dspark_tiny.py`.
 Only the Stage23 wrapper process group was terminated (`2647364`, `2647368`,
 `2647369`). Post-stop: no Megarexus `train.py`, no v13 output directory,
 no checkpoint, no `history.json`; train log is 60 bytes and contains only
@@ -334,20 +334,20 @@ Apollo relaunch after user-approved host switch: created
 to record the changed host/GPU/path explicitly. Source condition remains
 `stage23_v13_level3_human_mined_20260704/CONDITION.json` sha256
 `45f68d8c2ad979e6ae9a77379b506e4a911220d229bf151a5eabc5690e39a718`.
-Apollo condition uses workspace `/home/frosty/megarexus_train_20260703`,
+Apollo condition uses workspace `$TRAIN_WORKSPACE`,
 GPU `NVIDIA GeForce RTX 4080`, and CUDA-capable Python
-`/home/frosty/Loom/.venv/bin/python`; all source-condition code hashes,
+`$LOOM_ROOT/.venv/bin/python`; all source-condition code hashes,
 train/val shards, and v12 init checkpoint were verified on Apollo.
 
-First Apollo attempt with `/home/frosty/miniconda3/bin/python3` was stopped
+First Apollo attempt with `python3` was stopped
 immediately because it logged `[train] device=cpu` (CPU-only torch), with no
 checkpoint/history/output directory. Second Apollo attempt with
-`/home/frosty/ARC3-solution/.venv/bin/python` logged `[train] device=cuda`
+`$LOCAL_TOOL/.venv/bin/python` logged `[train] device=cuda`
 but was stopped before output because torch 2.8's `torch.load` default
 rejected the trusted numpy-containing `.pt` shards.
 
 Final active relaunch at `2026-07-03T23:29:37-05:00` uses
-`/home/frosty/Loom/.venv/bin/python` (torch 2.5.1+cu121); startup log line
+`$LOOM_ROOT/.venv/bin/python` (torch 2.5.1+cu121); startup log line
 is `[train] device=cuda`. Wrapper PID `622267`, launcher PID `622272`,
 train PID `622279`; log path:
 `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704_train.log`.
@@ -405,7 +405,7 @@ condition.
 Apollo status at `2026-07-03T23:53:38-05:00`: v13 training is still active
 on train PID `622279`, RTX 4080 allocation about 2964 MiB, and epochs 1-5
 have checkpointed in
-`/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704`.
+`$TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704`.
 Recent fixed-val lines still show level false positives (`fp=8-9`), so do
 not claim v13 success before the full gate chain.
 
@@ -1475,8 +1475,8 @@ Apollo handoff condition recorded:
 `runs/stage2_v10sel_apollo_cont_20260703/CONDITION.json`, sha256
 `2521e43c0f8052ddf9df9247d27fbef8c36114db0ab151aecffe257474f82200`.
 Workspace:
-`apollo:/home/frosty/megarexus_train_20260703`. Python:
-`/home/frosty/.local/share/mamba/envs/loom/bin/python` with CUDA torch
+`remote-host:$TRAIN_WORKSPACE`. Python:
+`$PYTHON_ENV/bin/python` with CUDA torch
 `2.12.0+cu130` on RTX 4080. Apollo run PID at cutover: `2679123`.
 It is a weights-only continuation from
 `outcome_v10sel_course_correction_20260703/epoch_001.pt`, sha256
@@ -1546,7 +1546,7 @@ imagined next-frame dynamics while preserving v8 BC/catch/control/settle
 and level-head behavior.
 
 Apollo launch verified before SSH became flaky: PID `2697981`,
-workspace `/home/frosty/megarexus_train_20260703`, train dataset
+workspace `$TRAIN_WORKSPACE`, train dataset
 98,250 transitions / 64,882 unique frames, val dataset 18,406
 transitions / 12,330 unique frames, v8 init hash matched, trainable
 params `1,587,217/3,644,714`. After this point Apollo stayed pingable
@@ -1643,9 +1643,9 @@ paired random `levels=0`.
 The full 10-episode Stage 1a adapter gate is now running detached on
 Apollo with nice level 10: Python PID `87565` under launcher shell
 `87563`. Remote output:
-`/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703`;
+`$TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703`;
 remote log:
-`/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703.log`.
+`$TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703.log`.
 Next valid action: monitor and sync this Stage 1a gate; if it passes,
 run Stage 1b perturbation arrange gate on the same `best.pt`; no live
 scout before the full gate stack closes.

@@ -37,7 +37,7 @@ packet regressions, and import-smokes the current package split.
 Fast integration smoke:
 
 ```bash
-PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh
+PYTHON=python3 bash codexlab/sp80_integration_smoke.sh
 ```
 
 This drives the live SP80 harness with `tiny_mlp`, checks rendered frames, runs
@@ -46,7 +46,7 @@ This drives the live SP80 harness with `tiny_mlp`, checks rendered frames, runs
 Run CONTRA on SP80 levels 0 and 1:
 
 ```bash
-PYTHONPATH=codexlab /home/frosty40/miniconda3/bin/python3 -B codexlab/sp80_run_contra_levels.py --levels 0,1 --backend tiny_mlp --scale 8 --max-actions 20
+PYTHONPATH=codexlab python3 -B codexlab/sp80_run_contra_levels.py --levels 0,1 --backend tiny_mlp --scale 8 --max-actions 20
 ```
 
 This is the canonical gameplay path for "run CONTRA on L0 and L1." It runs

@@ -12,9 +12,9 @@
     "codexlab/pufferlib_envs/rexus_sp80_paintflow/binding.c",
     "codexlab/pufferlib_envs/rexus_sp80_paintflow/rexus_sp80_paintflow.ini"
   ],
-  "install_command": "PYTHONPATH=codexlab /home/frosty40/miniconda3/bin/python3 -B codexlab/install_pufferlib_envs.py",
+  "install_command": "PYTHONPATH=codexlab python3 -B codexlab/install_pufferlib_envs.py",
   "build_command": "cd .external/pufferlib-4.0-newjordan && NVCC_ARCH=sm_120 bash ./build.sh rexus_sp80_paintflow",
-  "probe_command": "PYTHONPATH=codexlab:.external/pufferlib-4.0-newjordan /home/frosty40/miniconda3/bin/python3 -B codexlab/pufferlib_lateral_target_probe.py --samples 256 --out-dir codexlab/runs/_system_run/rexus_sp80_paintflow_lateral_random_target_v0",
+  "probe_command": "PYTHONPATH=codexlab:.external/pufferlib-4.0-newjordan python3 -B codexlab/pufferlib_lateral_target_probe.py --samples 256 --out-dir codexlab/runs/_system_run/rexus_sp80_paintflow_lateral_random_target_v0",
   "action_space": {
     "0": "noop",
     "1": "move_up",

@@ -2,7 +2,7 @@
 
 ## Current State
 
-Active repo: `/home/frosty40/rexus`
+Active repo: `$REPO`
 
 Current pushed commit at handoff: `a2b2bf3`
 

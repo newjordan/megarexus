@@ -58,18 +58,18 @@ This is a runtime/provenance update only, not a training result.
   created Apollo-specific condition
   `synthesis_lab/experiments/megarexus_cnn/runs/stage23_v13_level3_human_mined_apollo_20260704/CONDITION.json`.
   It records the host/GPU/path change explicitly: Apollo RTX 4080, workspace
-  `/home/frosty/megarexus_train_20260703`, CUDA-capable Python
-  `/home/frosty/Loom/.venv/bin/python` (torch 2.5.1+cu121), same source
+  `$TRAIN_WORKSPACE`, CUDA-capable Python
+  `$LOOM_ROOT/.venv/bin/python` (torch 2.5.1+cu121), same source
   condition/data/checkpoint/settings otherwise. Condition sha256 after final
   launch provenance:
   `691c4148849781f13d7b1b5d7823b8569da2fddb20bdda1d41144aab8a4b7ab3`.
 - Apollo launch details: first Apollo attempt with base
-  `/home/frosty/miniconda3/bin/python3` was stopped immediately because it
+  `python3` was stopped immediately because it
   logged `[train] device=cpu` (CPU-only torch, no checkpoint/history/output
-  dir). Second attempt with `/home/frosty/ARC3-solution/.venv/bin/python`
+  dir). Second attempt with `$LOCAL_TOOL/.venv/bin/python`
   logged `[train] device=cuda` but was stopped before output because torch
   2.8's `torch.load` default rejected the trusted numpy-containing `.pt`
-  shards. Final active launch uses `/home/frosty/Loom/.venv/bin/python`;
+  shards. Final active launch uses `$LOOM_ROOT/.venv/bin/python`;
   wrapper PID `622267`, launcher PID `622272`, train PID `622279`, log
   `synthesis_lab/experiments/megarexus_cnn/runs/outcome_v13_level3_human_mined_apollo_torch25_20260704_train.log`.
   Boundary at last check: startup/data-load only, no checkpoint/history yet.

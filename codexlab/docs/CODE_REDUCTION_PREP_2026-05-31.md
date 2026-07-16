@@ -1,7 +1,7 @@
 # CONTRA Code Reduction Prep
 
 Date: 2026-05-31
-Working tree: `/home/frosty40/rexus`
+Working tree: `$REPO`
 
 ## Cleanup Completed
 
@@ -13,7 +13,7 @@ Working tree: `/home/frosty40/rexus`
 - Added `codexlab/__init__.py` and `codexlab/docs/PACKAGE_GUIDE.md` to mark the canonical package boundary and document the legacy `PYTHONPATH=codexlab` import convention.
 - Added `codexlab/dev_check.py` as the fast no-bytecode readiness check.
 - Searched for `autoloop`, `auto_loop`, `auto loop`, and loop-named directories/files; none were present in this checkout.
-- Follow-up search found the failed loop family in `/home/frosty40/CODEX_GOAL_RUN/codexlab/runs/sp80_transcript_prior*`; deleted `94` generated run directories after confirming `/home/frosty40/CODEX_GOAL_RUN/codexlab/SP80_TRANSCRIPT_ALGORITHM_LOOP_HANDOFF_20260530.md` remains.
+- Follow-up search found the failed loop family in `$HOME/CODEX_GOAL_RUN/codexlab/runs/sp80_transcript_prior*`; deleted `94` generated run directories after confirming `$HOME/CODEX_GOAL_RUN/codexlab/SP80_TRANSCRIPT_ALGORITHM_LOOP_HANDOFF_20260530.md` remains.
 
 ## Current Size And LOC Baseline
 

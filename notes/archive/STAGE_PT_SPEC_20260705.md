@@ -194,14 +194,14 @@ Lead with honesty_audit output. Update `HANDOFF.md` §0 (3–6 lines), append fi
 
 ## 7. INFRA (verbatim gotchas — they have each cost an hour+ before)
 
-- Apollo: workspace `/home/frosty/megarexus_train_20260703`, venv
-  `/home/frosty/Loom/.venv/bin/python`, ~15GB RAM (10 free) — float16 caches,
+- Apollo: workspace `$TRAIN_WORKSPACE`, venv
+  `$LOOM_ROOT/.venv/bin/python`, ~15GB RAM (10 free) — float16 caches,
   preallocate-and-fill (see `train_outcome.precompute_enc`).
 - SSH drops/hangs: launch DETACHED only:
-  `ssh -o ControlMaster=no apollo 'cd <ws> && setsid nohup bash run_X.sh > X.log 2>&1 </dev/null &'`
+  `ssh remote-host 'cd <ws> && setsid nohup bash run_X.sh > X.log 2>&1 </dev/null &'`
   then verify with a separate short ssh; watch via
   `until timeout 15 ssh ... grep -q EXIT; do sleep 30; done` in background.
-- Sync: `rsync -az <file> apollo:/home/frosty/megarexus_train_20260703/<path>`.
+- Sync: `rsync -az <file> remote-host:$TRAIN_WORKSPACE/<path>`.
 - Local GB10 may be shared — check `nvidia-smi` before local GPU work.
 
 ---

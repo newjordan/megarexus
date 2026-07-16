@@ -18,8 +18,8 @@ from typing import Any
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-ANGEL_DIST_DATA = Path("/home/frosty40/angel/dist/data")
-ANGEL_PUBLIC_DATA = Path("/home/frosty40/angel/public/data")
+ANGEL_DIST_DATA = Path.home() / "angel" / "dist" / "data"
+ANGEL_PUBLIC_DATA = Path.home() / "angel" / "public" / "data"
 
 
 STAGE_ORDER = [

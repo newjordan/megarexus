@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 import numpy as np
 
-LAB = Path('/home/frosty40/megarexus/synthesis_lab')
+LAB = Path(__file__).resolve().parents[2]
 for p in (LAB, LAB / 'orchestration', LAB / 'experiments' / 'megarexus_cnn',
           LAB / 'orchestration' / 'sim3d'):
     sys.path.insert(0, str(p))
@@ -15,7 +15,7 @@ from arc_agi import Arcade
 from arc_agi.base import OperationMode
 
 arc = Arcade(arc_api_key="anonymous",
-             environments_dir='/home/frosty40/megarexus/environment_files',
+             environments_dir=str(LAB.parent / 'environment_files'),
              operation_mode=OperationMode.OFFLINE)
 
 def fresh():

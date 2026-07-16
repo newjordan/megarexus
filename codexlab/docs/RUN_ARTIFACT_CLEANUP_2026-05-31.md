@@ -1,7 +1,7 @@
 # Run Artifact Cleanup Ledger
 
 Date: 2026-05-31
-Scope: `/home/frosty40/rexus`
+Scope: `$REPO`
 Status: capture-before-delete ledger for factory-floor cleanup.
 
 ## Boundary

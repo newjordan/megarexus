@@ -63,7 +63,7 @@ For a fresh agent session picking up this work. Read this top to bottom
 before touching anything. The two notes files are the ground truth:
 `notes/megarexus_cnn_scout.md` (full experiment detail) and
 `notes/RESEARCH_LOG.md` (dated summary entries). User memory lives in
-`~/.claude/projects/-home-frosty40-megarexus/memory/`.
+`~/.claude/projects/<session>/memory/`.
 
 ## 0-NOW (2026-07-13 ~15:20): THE SP80 IMAGINATION GAP IS CLOSED — THE POUR DYNAMICS WAS ARCHITECTURALLY UNDER-POWERED, AND THE WIDE LANE FIXED IT
 
@@ -1165,7 +1165,7 @@ Repeat check:
 - Review surface:
   `codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z/index.html`.
 - Command:
-  `ARC_TUFA_SEED=101 ARC_TUFA_RUNS_DIR=/home/frosty40/megarexus/codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z/tufa_sidecars python3 codexlab/arc_suite_runner.py --policy arcade_portfolio_v1 --games r11l-495a7899 --env-dir synthesis_lab/experiments/other_games/environment_files --seed 7 --max-actions 600 --run-id tufa_seed_repeat_r11l_101_20260707T111500Z --out-dir codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z`
+  `ARC_TUFA_SEED=101 ARC_TUFA_RUNS_DIR=$REPO/codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z/tufa_sidecars python3 codexlab/arc_suite_runner.py --policy arcade_portfolio_v1 --games r11l-495a7899 --env-dir synthesis_lab/experiments/other_games/environment_files --seed 7 --max-actions 600 --run-id tufa_seed_repeat_r11l_101_20260707T111500Z --out-dir codexlab/runs/tufa_seed_repeat_r11l_101_20260707T111500Z`
 - Result reproduced: `total_levels_completed=1`,
   score `1.3065543677788576`, actions `566`, resets `34`,
   `policy_error_count=0`, seed source `ARC_TUFA_SEED`.
@@ -1257,7 +1257,7 @@ Controlled local/offline smoke:
 - Trace fields: `checkpoints_enabled=false`, `checkpoint_numbered=false`,
   seed `868634289`, seed source `stable_game_id_hash`,
   Tufa experiment dir
-  `/home/frosty40/megarexus/codexlab/runs/tufa_action_sidecars/20260707_060341`.
+  `$REPO/codexlab/runs/tufa_action_sidecars/20260707_060341`.
 - Filesystem check:
   - no top-level `runs/20260707_*` directories were created.
   - `codexlab/runs/tufa_action_sidecars` was `492K`.
@@ -2402,7 +2402,7 @@ still to be env-grounded (see head_rank_gate below). Gate = `imagine_search_gate
 
 Apollo GPU chain auto-advances via detached watchers (each waits on the prior
 train pid, launches next — no idle gap). Apollo workspace
-`/home/frosty/megarexus_train_20260703`, venv `/home/frosty/Loom/.venv/bin/python`.
+`$TRAIN_WORKSPACE`, venv `$LOOM_ROOT/.venv/bin/python`.
 
 New tools this session (all honesty-guarded, env-graded; C5-compliant additions):
 `imagine_search_gate.py` (scoreboard + A1 secondary paint-mass), `tta_search_gate.py`
@@ -2424,12 +2424,12 @@ RUNNING NOW:
   `runs/stage62_noimit_fromzero_mastery_apollo_20260704/CONDITION.json`
   (init=none/random; 8 clean train + 5 val shards; corpus 68900 train / 12062
   val, 0 human; 40 epochs, bs64, lr3e-4, stack2; venv
-  `/home/frosty/Loom/.venv/bin/python` torch 2.5.1+cu121). Out:
+  `$LOOM_ROOT/.venv/bin/python` torch 2.5.1+cu121). Out:
   `runs/outcome_v28_noimit_fromzero_mastery_apollo_20260704`. Launched via
   `train_watch.py --max-hours 10`. Apollo workspace
-  `/home/frosty/megarexus_train_20260703`; code+shards rsync'd from GB10 this
+  `$TRAIN_WORKSPACE`; code+shards rsync'd from GB10 this
   session (Apollo train.py now HAS the no-imitation guard).
-  Watch: `ssh apollo 'tail -f /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v28_noimit_fromzero_mastery_apollo_20260704_train.log'`
+  Watch: `ssh remote-host 'tail -f $TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v28_noimit_fromzero_mastery_apollo_20260704_train.log'`
 - GB10 twin of stage62 (batch32) was STOPPED once Apollo confirmed CUDA (no
   training gap). GB10 collection finished.
 
@@ -2447,7 +2447,7 @@ INTELLIGENT LOOP (daemon, owns the chain) — running on Apollo:
   a HUMAN call), a weakness only injection/imitation could feed (e.g. level-2+
   positives = the D3 bootstrap boundary), or any guard/dry-run refusal. On all
   heads passing it writes `CONVERGED.json` (→ run the full gate stack + live scout).
-- Watch: `ssh apollo 'tail -f /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/intelligent_loop_20260704/loop.log'`
+- Watch: `ssh remote-host 'tail -f $TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/intelligent_loop_20260704/loop.log'`
 - To stop the loop: kill the `intelligent_train_loop.py` PID (in-flight
   train_watch/train.py continue; the loop just won't start the next cycle).
 
@@ -3217,7 +3217,7 @@ Stage 1a adapter gate on Apollo:
 - No `adapter_gate.json` exists yet because the 10-episode run is still
   active.
 - Remote output dir:
-  `apollo:/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703`.
+  `remote-host:$TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703`.
 
 Stage 1b perturb gate on local host:
 
@@ -3304,7 +3304,7 @@ Stage 2 v11 perturb-recovery training running on Apollo:
   `skip_gate`, `head_next_frame`, `settle_conv`, `head_settle`,
   `head_level`; lr `5e-5`, epochs `12`, batch `64`, workers `0`.
 - Remote Python PID `184675`, nice level 10. Log:
-  `apollo:/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v11_perturb_recovery_mining_20260703_train.log`.
+  `remote-host:$TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v11_perturb_recovery_mining_20260703_train.log`.
 - The stale v10 Apollo adapter gate was stopped at 5/10 because v10 was
   already disqualified by Stage 1b perturb failures. The stale local
   perturb gate was also stopped after two repeated heldout failures.
@@ -3420,13 +3420,13 @@ Adapter gate status:
   Apollo, nice level 10:
   Python PID `87565`, launcher shell `87563`.
 - Remote output:
-  `apollo:/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703`
+  `remote-host:$TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703`
 - Remote log:
-  `apollo:/home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703.log`
+  `remote-host:$TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703.log`
 
 Monitor the active adapter gate:
 
-    ssh -o BatchMode=yes apollo 'ps -eo pid,ppid,stat,ni,etime,pcpu,pmem,rss,cmd | grep -E "87565|adapter_gate.py" | grep -v grep; tail -n 40 /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703.log'
+    ssh remote-host 'ps -eo pid,ppid,stat,ni,etime,pcpu,pmem,rss,cmd | grep -E "87565|adapter_gate.py" | grep -v grep; tail -n 40 $TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v10dynonly_memsafe_best_apollo_20260703.log'
 
 When Stage 1a finishes, sync the remote adapter gate dir and log back.
 If Stage 1a passes, run Stage 1b perturbation arrange gate on the same
@@ -3462,7 +3462,7 @@ PID `2697981` or output
 
 Current active training is the memsafe relaunch:
 
-- Remote workspace: `apollo:/home/frosty/megarexus_train_20260703`
+- Remote workspace: `remote-host:$TRAIN_WORKSPACE`
 - Active Python PID: `9451` (launcher shell parent `9450` may remain
   until the job exits).
 - Condition:
@@ -3498,7 +3498,7 @@ condition.
 
 Monitor:
 
-    ssh -o BatchMode=yes apollo 'tail -n 120 /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703_train.log'
+    ssh remote-host 'tail -n 120 $TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_memsafe_course_correction_20260703_train.log'
 
 When checkpoints exist, copy the memsafe output dir and log back, then
 gate all `epoch_*.pt` plus `last.pt` against the fixed v8 valset with
@@ -3513,7 +3513,7 @@ supersedes the 12:00 Apollo block immediately below.
 
 Current active condition:
 
-- Remote workspace: `apollo:/home/frosty/megarexus_train_20260703`
+- Remote workspace: `remote-host:$TRAIN_WORKSPACE`
 - Active remote PID at launch verification: `2697981`
 - Condition:
   `synthesis_lab/experiments/megarexus_cnn/runs/stage2_v10dynonly_course_correction_20260703/CONDITION.json`,
@@ -3565,7 +3565,7 @@ pingable and port 22 was open, but SSH began timing out during banner
 exchange on both LAN and tailnet routes. Do not infer job failure from
 that alone. Retry later with:
 
-    ssh -o BatchMode=yes apollo 'tail -n 120 /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_course_correction_20260703_train.log'
+    ssh remote-host 'tail -n 120 $TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10dynonly_course_correction_20260703_train.log'
 
 When SSH recovers, first check whether epoch checkpoints exist, then
 copy the run back and gate all `epoch_*.pt` against the fixed v8 valset
@@ -3578,9 +3578,9 @@ run. The local duplicate was intentionally stopped after epoch 6 with
 KeyboardInterrupt and is NOT the active lane.
 
 - Remote host/workspace:
-  `apollo:/home/frosty/megarexus_train_20260703`
+  `remote-host:$TRAIN_WORKSPACE`
 - Remote Python:
-  `/home/frosty/.local/share/mamba/envs/loom/bin/python`
+  `$PYTHON_ENV/bin/python`
   (`torch 2.12.0+cu130`, CUDA true, RTX 4080).
 - Active remote PID at cutover: `2679123`.
 - Remote condition:
@@ -3627,7 +3627,7 @@ Apollo handoff verification:
 
 Monitor:
 
-    ssh -o BatchMode=yes apollo 'tail -f /home/frosty/megarexus_train_20260703/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10sel_apollo_cont_20260703_train.log'
+    ssh remote-host 'tail -f $TRAIN_WORKSPACE/synthesis_lab/experiments/megarexus_cnn/runs/outcome_v10sel_apollo_cont_20260703_train.log'
 
 When Apollo finishes, copy the remote run dir and log back, then gate
 candidate checkpoints on the same v8 valset with `gate_eval_many.py`
@@ -3644,7 +3644,7 @@ This section supersedes the older "NEXT COMMANDS" language below.
   `runs/adapter_gate_v8last_20260703/adapter_gate.json`, sha256
   `29a71b966ba8e9be70e12739fa15c2accbfb7e39434b7816e1b6b43249a932e6`.
   Command used:
-  `/home/frosty40/miniconda3/bin/python3 -B synthesis_lab/orchestration/adapter_gate.py --ckpt synthesis_lab/experiments/megarexus_cnn/runs/outcome_v8/last.pt --out-dir synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v8last_20260703 --episodes 10`.
+  `python3 -B synthesis_lab/orchestration/adapter_gate.py --ckpt synthesis_lab/experiments/megarexus_cnn/runs/outcome_v8/last.pt --out-dir synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v8last_20260703 --episodes 10`.
   Result: model 10/10 passed, paired random 0/10 reached
   `levels_completed>=2`; all model checks green (`levels_ge_2`,
   `zero_policy_errors`, `no_frames_fallback`, `no_pour_loop`,
@@ -3761,7 +3761,7 @@ level head's positive range) — measure first, don't hand-tune.
 
 NEXT COMMANDS (Stage 1a, run from repo root, ~40–60 min each on GPU):
 
-    nohup /home/frosty40/miniconda3/bin/python3 -B \
+    nohup python3 -B \
       synthesis_lab/orchestration/adapter_gate.py \
       --ckpt synthesis_lab/experiments/megarexus_cnn/runs/outcome_v8/last.pt \
       --out-dir synthesis_lab/experiments/megarexus_cnn/runs/adapter_gate_v8last_20260703 \
@@ -3947,7 +3947,7 @@ Sufficient context = this section + §2 (rules) + §4 (results) +
 ADDING_CNN_ELEMENTS.md (repo root) + the last two RESEARCH_LOG
 entries. Do NOT re-read model.py/dataset.py/train.py or old probe
 transcripts unless you are editing them — probe JSONs and run configs
-are the evidence. Python is `/home/frosty40/miniconda3/bin/python3 -B`;
+are the evidence. Python is `python3 -B`;
 run from the repo root with absolute or repo-relative paths (cd does
 not persist); NOT a git repo.
 

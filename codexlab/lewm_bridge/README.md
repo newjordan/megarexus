@@ -7,7 +7,7 @@ CONTRA to solve levels on its own, and only bring LeWM in when a trigger fires
 (see "When to pick this up" below). This folder just keeps the future bridge
 cheap and pre-answers the riskiest assumption.
 
-LeWM = LeWorldModel, the JEPA-style latent world model in `/home/frosty40/Loom`
+LeWM = LeWorldModel, the JEPA-style latent world model in `$LOOM_ROOT`
 (ViT-Tiny encoder → AdaLN action-conditioned predictor, CEM planner). The
 intended integration: CONTRA informs the **goal function** (CEM `cost_fn`) of
 LeWM — LeWM owns "what happens if I act", CONTRA owns "what counts as progress".
@@ -27,7 +27,7 @@ python3 -B codexlab/lewm_bridge/latent_distance_probe.py            # longest so
 python3 -B codexlab/lewm_bridge/latent_distance_probe.py --episode-id <id>
 ```
 
-The probe needs the Loom repo (`--loom-root`, default `/home/frosty40/Loom`)
+The probe needs the Loom repo (`--loom-root`, default `$LOOM_ROOT`)
 and its Phase-0 checkpoint
 (`experiments/2026-05-23_phase0_production_rtx6k/bs64_lr1e-4/best.pt`).
 

@@ -34,7 +34,7 @@ from arc_suite_runner import (  # noqa: E402
     write_trace,
 )
 
-DEFAULT_ENV = Path("/home/frosty40/.env")
+DEFAULT_ENV = Path.home() / ".env"
 TRUE_VALUES = {"1", "true", "yes", "y", "on"}
 
 
@@ -144,7 +144,7 @@ def main() -> int:
         print(f"missing ARC_API_KEY in {args.env}", file=sys.stderr)
         return 2
     if key_loaded:
-        os.environ["ARC_API_KEY_PATH"] = "/home/frosty40/.arc_live_suite_no_key_file"
+        os.environ["ARC_API_KEY_PATH"] = str(Path.home() / ".arc_live_suite_no_key_file")
 
     games = list(args.games) if args.games else discover_game_ids()
     if args.limit is not None:

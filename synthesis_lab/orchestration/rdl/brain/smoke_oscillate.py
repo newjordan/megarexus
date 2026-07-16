@@ -2,7 +2,7 @@
 """Synthetic smoke: dual-hemisphere oscillation trains without Arcade.
 
 Run:
-  /home/frosty40/miniconda3/bin/python3 -B \\
+  python3 -B \\
     synthesis_lab/orchestration/rdl/brain/smoke_oscillate.py
 """
 

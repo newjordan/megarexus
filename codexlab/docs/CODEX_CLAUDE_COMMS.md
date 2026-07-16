@@ -11,7 +11,7 @@ Every handoff or request between agents must start by naming the active path:
 ```text
 active_implementation_path: codexlab/
 review_or_charter_path: claudelab/
-repo_root: /home/frosty40/rexus
+repo_root: $REPO
 git_commit: <short hash>
 ```
 
@@ -46,7 +46,7 @@ Use this compact header for every cross-agent handoff:
 CONTRA_COMMS_V1
 from: <codex|claude>
 to: <codex|claude|human>
-repo_root: /home/frosty40/rexus
+repo_root: $REPO
 active_path: <codexlab|claudelab>
 commit: <short hash or uncommitted>
 condition: <static_review|controlled_run|charter_review|implementation>
@@ -151,7 +151,7 @@ It does not:
 CONTRA_COMMS_V1
 from: codex
 to: claude
-repo_root: /home/frosty40/rexus
+repo_root: $REPO
 active_path: codexlab
 commit: f2ea50f
 condition: static_review

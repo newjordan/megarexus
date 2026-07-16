@@ -22,7 +22,7 @@ checkout could import top-level while the native backend was still missing.
 The persistent local checkout should live here:
 
 ```bash
-/home/frosty40/rexus/.external/pufferlib-4.0-newjordan
+$REPO/.external/pufferlib-4.0-newjordan
 ```
 
 The previous spike checkout may also exist here:
@@ -43,20 +43,20 @@ source codexlab/pufferlib_env.sh
 Then run the hard readiness gate:
 
 ```bash
-PYTHONPATH=codexlab:$PUFFERLIB_PATH /home/frosty40/miniconda3/bin/python3 -B codexlab/pufferlib_env_check.py
+PYTHONPATH=codexlab:$PUFFERLIB_PATH python3 -B codexlab/pufferlib_env_check.py
 ```
 
 For a machine-checkable report:
 
 ```bash
-PYTHONPATH=codexlab:$PUFFERLIB_PATH /home/frosty40/miniconda3/bin/python3 -B codexlab/pufferlib_env_check.py \
+PYTHONPATH=codexlab:$PUFFERLIB_PATH python3 -B codexlab/pufferlib_env_check.py \
   --out codexlab/runs/_system_run/pufferlib_env_check.json
 ```
 
 To also run a tiny PufferLib-owned trainer smoke on the built `minimal` env:
 
 ```bash
-PYTHONPATH=codexlab:$PUFFERLIB_PATH /home/frosty40/miniconda3/bin/python3 -B codexlab/pufferlib_env_check.py \
+PYTHONPATH=codexlab:$PUFFERLIB_PATH python3 -B codexlab/pufferlib_env_check.py \
   --run-trainer-smoke \
   --trainer-backend native \
   --out codexlab/runs/_system_run/pufferlib_env_check.json
@@ -121,7 +121,7 @@ codexlab/pufferlib_envs/rexus_sp80_paintflow/
 Install it into the active PufferLib checkout:
 
 ```bash
-PYTHONPATH=codexlab /home/frosty40/miniconda3/bin/python3 -B codexlab/install_pufferlib_envs.py
+PYTHONPATH=codexlab python3 -B codexlab/install_pufferlib_envs.py
 ```
 
 Build it as the active native CUDA trainer env:
@@ -134,7 +134,7 @@ NVCC_ARCH=sm_120 bash ./build.sh rexus_sp80_paintflow
 Verify the native env:
 
 ```bash
-/home/frosty40/miniconda3/bin/python3 -B codexlab/pufferlib_env_check.py \
+python3 -B codexlab/pufferlib_env_check.py \
   --known-env rexus_sp80_paintflow \
   --run-trainer-smoke \
   --trainer-backend native \

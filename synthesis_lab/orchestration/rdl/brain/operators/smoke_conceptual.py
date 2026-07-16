@@ -2,7 +2,7 @@
 """Smoke: map_trust + FieldOp + ConceptualOp on a synthetic frame.
 
 Run:
-  /home/frosty40/miniconda3/bin/python3 -B \\
+  python3 -B \\
     synthesis_lab/orchestration/rdl/brain/operators/smoke_conceptual.py
 """
 

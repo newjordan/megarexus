@@ -8,7 +8,8 @@ observed truth the old fixed-delta rule misread).
 Writes fixtures/r4_phaseb_loader_20260706.json.
 """
 import sys, json
-sys.path.insert(0, "/home/frosty40/megarexus/synthesis_lab/orchestration/sim3d")
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import numpy as np
 import _paths  # noqa
 from _paths import FIXTURES

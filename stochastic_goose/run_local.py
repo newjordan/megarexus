@@ -11,7 +11,7 @@ directly (not via Swarm) so we can set that cap.
 
 Examples:
   python run_local.py --game ls20 --max-actions 500
-  python run_local.py --game ls20,vc33 --env-dir /home/frosty40/rexus/environment/environment_files
+  python run_local.py --game ls20,vc33 --env-dir synthesis_lab/experiments/other_games/environment_files
 """
 from __future__ import annotations
 
@@ -21,10 +21,14 @@ import logging
 import os
 import sys
 
-FRAMEWORK = os.environ.get("ARC_FRAMEWORK", "/home/frosty40/arc/ARC-AGI-3-Agents")
+FRAMEWORK = os.environ.get("ARC_FRAMEWORK", "").strip()
 GOOSE = os.path.dirname(os.path.abspath(__file__))
+_REPO = os.path.abspath(os.path.join(GOOSE, ".."))
+_DEFAULT_ENV = os.path.join(
+    _REPO, "synthesis_lab", "experiments", "other_games", "environment_files"
+)
 for _p in (FRAMEWORK, GOOSE, os.path.join(GOOSE, "custom_agents")):
-    if _p not in sys.path:
+    if _p and _p not in sys.path:
         sys.path.insert(0, _p)
 
 # Import the StochasticGoose agent directly. Avoids the framework's
@@ -69,8 +73,8 @@ def main() -> None:
     ap.add_argument("-a", "--agent", default="action")
     ap.add_argument("-g", "--game", default="ls20", help="comma-separated game ids")
     ap.add_argument("--max-actions", type=int, default=300)
-    ap.add_argument("--env-dir", default="/home/frosty40/rexus/environment/environment_files",
-                    help="local metadata.json corpus (default: rexus 25-game corpus)")
+    ap.add_argument("--env-dir", default=_DEFAULT_ENV,
+                    help="local metadata.json corpus (default: in-repo other_games suite)")
     ap.add_argument("--record", action="store_true")
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args()

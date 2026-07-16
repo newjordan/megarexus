@@ -4,7 +4,7 @@
 
 ## 0. Mission
 
-Bring the user's Dreamweaver architecture (`/home/frosty40/dreamweaver`) into megarexus sim3d:
+Bring the user's Dreamweaver architecture (`$HOME/dreamweaver`) into megarexus sim3d:
 the **V031 perception trust gate** (frame → grid → 3D geometry → raymap → strict re-render/ray
 accuracy gate), the **Dream Kernel contract** (deterministic imagination over provenance-tagged
 known maps), and **cellwave potential proposals** — replacing the retracted source-derived

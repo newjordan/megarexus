@@ -1,6 +1,6 @@
 # Claude Overnight Loop Prompt
 
-You are working in `/home/frosty40/rexus`.
+You are working in `$REPO`.
 
 Use `codexlab/` as the only active lab area. Put new scratch work under:
 

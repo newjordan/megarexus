@@ -15,6 +15,7 @@
 | **Pad status** | [`synthesis_lab/orchestration/rdl/brain/STATUS.md`](synthesis_lab/orchestration/rdl/brain/STATUS.md) |
 | **Lab (not primary)** | [`docs/LAB.md`](docs/LAB.md) |
 | **Mathematics** | [`docs/MATHEMATICS_OF_WORLD_CAPTURE.md`](docs/MATHEMATICS_OF_WORLD_CAPTURE.md) |
+| **Docs index** | [`docs/README.md`](docs/README.md) |
 
 ## Operate
 

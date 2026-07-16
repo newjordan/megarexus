@@ -35,7 +35,7 @@
   },
   "renderable": {
    "pass": true,
-   "png": "/home/frosty40/megarexus/synthesis_lab/orchestration/sim3d/fixtures/kernel_smoke_rollout_20260706.png",
+   "png": "$REPO/synthesis_lab/orchestration/sim3d/fixtures/kernel_smoke_rollout_20260706.png",
    "grids_npy": "kernel_smoke_grids_20260706.npy",
    "ray_count": 24,
    "ray_networks": [

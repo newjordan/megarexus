@@ -27,7 +27,7 @@ SP80 (`sp80-589a99af`) is solved **6/6 levels (L0-L5)** on the live engine, at t
 ## Reproduce / verify
 
 ```
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab /home/frosty40/miniconda3/bin/python -B \
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python3 -B \
   codexlab/sp80_spill_model_validate.py            # 48/48 vs engine
   codexlab/sp80_spill_solver.py                    # 6/6 standalone, delta=1
 # gated (per level N=0..5):

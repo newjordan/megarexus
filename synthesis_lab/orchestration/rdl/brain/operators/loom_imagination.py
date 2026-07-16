@@ -11,6 +11,7 @@ with concept_id still present (still in the pad, still in the garden).
 from __future__ import annotations
 
 import math
+import os
 import sys
 from pathlib import Path
 from typing import Any, Callable
@@ -20,8 +21,8 @@ import numpy as np
 from synthesis_lab.orchestration.rdl.brain.types import KnownMapView, OperatorResult, TruthFlags
 
 _REPO = Path(__file__).resolve().parents[5]
-_LOOM = Path("/home/frosty40/Loom")
-_LOOM_GEPA = Path("/home/frosty40/Loom-gepa-bg")
+_LOOM = Path(os.environ.get("LOOM_ROOT", Path.home() / "Loom"))
+_LOOM_GEPA = Path(os.environ.get("LOOM_GEPA_ROOT", Path.home() / "Loom-gepa-bg"))
 
 # Canonical catalog — do not drop IDs without user order
 LOOM_IDEA_IDS: tuple[str, ...] = (

@@ -1,12 +1,13 @@
 """ALL Rexus-folder ideas as base-model seeds.
 
-Source: /home/frosty40/rexus (+ notes/REXUS_CONCEPT_SWEEP_20260715.md).
+Source: external Rexus archive when REXUS_ROOT is set (+ notes/REXUS_CONCEPT_SWEEP_20260715.md).
 Doctrine: plant everything; training rises what works. Spill/win-bank = fence only.
 """
 
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Any, Callable
@@ -15,8 +16,8 @@ import numpy as np
 
 from synthesis_lab.orchestration.rdl.brain.types import KnownMapView, OperatorResult, TruthFlags
 
-_REXUS = Path("/home/frosty40/rexus")
 _MEGA = Path(__file__).resolve().parents[5]
+_REXUS = Path(os.environ.get("REXUS_ROOT", _MEGA / ".external" / "rexus"))
 
 REXUS_IDEA_IDS: tuple[str, ...] = (
     "R1_admission_fail_closed",

@@ -213,7 +213,7 @@ Final full-report run:
 Command:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab:/tmp/pufferlib-4.0-newjordan /home/frosty40/miniconda3/bin/python3 -B codexlab/sp80_run_contra_levels.py --levels 0 --backend puffer_paintflow_learned --require-pufferlib --target-bucket-index 0 --max-actions 20 --scale 8 --out-dir codexlab/runs/puffer_contra_l1_learned_paintflow_v0_20260611T_full_report_v2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab:/tmp/pufferlib-4.0-newjordan python3 -B codexlab/sp80_run_contra_levels.py --levels 0 --backend puffer_paintflow_learned --require-pufferlib --target-bucket-index 0 --max-actions 20 --scale 8 --out-dir codexlab/runs/puffer_contra_l1_learned_paintflow_v0_20260611T_full_report_v2
 ```
 
 Result:
@@ -246,7 +246,7 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/dev_check.py
 Passed:
 
 ```bash
-PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh
+PYTHON=python3 bash codexlab/sp80_integration_smoke.sh
 ```
 
 Observed integration smoke summary:

@@ -9,18 +9,26 @@ primitives** — the elementary patterns a world/controller brain should know:
   survival craft · continuous race · jump · flock · laser-mirror · combat ·
   abstract MDP · reaction · domain paintflow …
 
-Source: `/home/frosty40/rexus/.external/pufferlib-4.0-newjordan/ocean/`
+Source: optional `$REXUS_ROOT/.external/pufferlib-4.0-newjordan/ocean/` (or in-repo external)
 Doctrine: plant every primitive; training rises what works.
 """
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any, Callable
 
 from synthesis_lab.orchestration.rdl.brain.types import KnownMapView, OperatorResult, TruthFlags
 
-_OCEAN = Path("/home/frosty40/rexus/.external/pufferlib-4.0-newjordan/ocean")
+_MEGA = Path(__file__).resolve().parents[5]
+_REXUS = Path(os.environ.get("REXUS_ROOT", _MEGA / ".external" / "rexus"))
+_OCEAN = Path(
+    os.environ.get(
+        "PUFFER_OCEAN_ROOT",
+        str(_REXUS / ".external" / "pufferlib-4.0-newjordan" / "ocean"),
+    )
+)
 
 # Design primitive → realizing envs (canonical names under ocean/)
 PRIMITIVE_CATALOG: dict[str, tuple[str, ...]] = {

@@ -53,7 +53,7 @@ frame one-hot [B,16,64,64]
 ## Train command
 
 ```bash
-/home/frosty40/miniconda3/bin/python3 -B legal_search/train/train_lora.py \
+python3 -B legal_search/train/train_lora.py \
   --out-dir legal_search/runs/blend_lora_v0 \
   --epochs 8 --batch-size 64
 ```

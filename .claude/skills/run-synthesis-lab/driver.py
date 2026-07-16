@@ -14,7 +14,7 @@ benchmark claims. Three subcommands:
               (project palette, nearest-neighbor upscale).
 
 Run with the rig's miniconda python:
-  /home/frosty40/miniconda3/bin/python3 -B .claude/skills/run-synthesis-lab/driver.py preflight
+  python3 -B .claude/skills/run-synthesis-lab/driver.py preflight
 """
 from __future__ import annotations
 

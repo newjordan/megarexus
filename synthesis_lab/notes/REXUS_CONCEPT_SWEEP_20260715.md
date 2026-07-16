@@ -1,6 +1,6 @@
 # Rexus Concept Sweep — 2026-05/06 archive into base model
 
-**Source tree:** `/home/frosty40/rexus`  
+**Source tree:** `$REPO`  
 **Doctrine:** model is ground; testing rises what works; **all ideas planted**.
 
 ---
@@ -108,7 +108,7 @@ scores. Spill/win-bank appear only as **fence** channels (never labels).
 | CentralConfig.extra_feats default | 2032 |
 
 ```bash
-CUDA_VISIBLE_DEVICES= /home/frosty40/miniconda3/bin/python3 -B \
+CUDA_VISIBLE_DEVICES= python3 -B \
   synthesis_lab/orchestration/rdl/brain/smoke_all_ideas.py
 # ALL IDEAS IN BASE MODEL — garden complete (Loom + Rexus)
 ```

@@ -176,12 +176,12 @@ If any fail → **exit non-zero, no data.pt write, no best.pt write.**
 
 ```bash
 # snack (smoke-scale) — not a claim regime
-/home/frosty40/miniconda3/bin/python3 -B legal_search/train/train_lora.py \
+python3 -B legal_search/train/train_lora.py \
   --out-dir legal_search/runs/blend_lora_gated_v1 \
   --epochs 20 --batch-size 48 --collect-episodes 40 --lr 2e-3 --seed 42
 
 # huge regime (default scale for real claims)
-/home/frosty40/miniconda3/bin/python3 -B legal_search/train/train_lora.py \
+python3 -B legal_search/train/train_lora.py \
   --out-dir legal_search/runs/blend_lora_gated_v2_regime \
   --regime huge --force-collect --seed 42
 # huge ⇒ ~600 synth eps + 40 arcade (multi-game) × 80 steps, 100 epochs, batch 128

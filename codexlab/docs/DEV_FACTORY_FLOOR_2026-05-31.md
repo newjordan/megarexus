@@ -1,7 +1,7 @@
 # CONTRA Dev Factory Floor
 
 Date: 2026-05-31
-Scope: `/home/frosty40/rexus`, canonical lane `codexlab/`.
+Scope: `$REPO`, canonical lane `codexlab/`.
 
 ## Ready Check
 
@@ -18,7 +18,7 @@ the controller helper split, and leaves no `__pycache__` or `.pyc` files.
 Use this for the live SP80 integration smoke:
 
 ```bash
-PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh
+PYTHON=python3 bash codexlab/sp80_integration_smoke.sh
 ```
 
 Current result: passed. It drives the `tiny_mlp` SP80 harness, checks rendered

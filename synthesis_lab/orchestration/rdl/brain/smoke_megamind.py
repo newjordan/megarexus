@@ -2,7 +2,7 @@
 """End-to-end MegaMind smoke: observe + train_transition, truth_flags all false.
 
 Run (prefer CPU — vLLM often OOMs the GPU):
-  CUDA_VISIBLE_DEVICES= /home/frosty40/miniconda3/bin/python3 -B \\
+  CUDA_VISIBLE_DEVICES= python3 -B \\
     synthesis_lab/orchestration/rdl/brain/smoke_megamind.py
 """
 

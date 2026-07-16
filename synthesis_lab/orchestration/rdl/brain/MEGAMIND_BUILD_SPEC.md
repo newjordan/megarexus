@@ -10,7 +10,7 @@ Env/frame deltas only for training signals.
 **Existing scaffold (do not rewrite blindly):**  
 `hemispheres.py`, `central.py`, `oscillate.py`, `smoke_oscillate.py`, `DESIGN.md`
 
-**Python:** `/home/frosty40/miniconda3/bin/python3`  
+**Python:** `python3`  
 **GPU:** often OOM (vLLM); prefer CPU for smokes unless free.
 
 ---

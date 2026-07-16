@@ -46,7 +46,7 @@ Core checks run during this work:
 
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/dev_check.py`
   - Passed.
-- `PYTHON=/home/frosty40/miniconda3/bin/python3 bash codexlab/sp80_integration_smoke.sh`
+- `PYTHON=python3 bash codexlab/sp80_integration_smoke.sh`
   - Passed.
 - `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=codexlab python -B codexlab/sp80_frame_backend_planning_regression.py`
   - Passed 3/3 checks.

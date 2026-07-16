@@ -77,7 +77,7 @@
   "verifier_records": {
     "0": {
       "cmd": [
-        "/home/frosty40/miniconda3/bin/python3",
+        "python3",
         "codexlab/sp80_verify_run.py",
         "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_00"
       ],
@@ -87,7 +87,7 @@
     },
     "1": {
       "cmd": [
-        "/home/frosty40/miniconda3/bin/python3",
+        "python3",
         "codexlab/sp80_verify_run.py",
         "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_01"
       ],
@@ -97,7 +97,7 @@
     },
     "2": {
       "cmd": [
-        "/home/frosty40/miniconda3/bin/python3",
+        "python3",
         "codexlab/sp80_verify_run.py",
         "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_02"
       ],
@@ -107,7 +107,7 @@
     },
     "3": {
       "cmd": [
-        "/home/frosty40/miniconda3/bin/python3",
+        "python3",
         "codexlab/sp80_verify_run.py",
         "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_03"
       ],
@@ -117,7 +117,7 @@
     },
     "4": {
       "cmd": [
-        "/home/frosty40/miniconda3/bin/python3",
+        "python3",
         "codexlab/sp80_verify_run.py",
         "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_04"
       ],
@@ -127,7 +127,7 @@
     },
     "5": {
       "cmd": [
-        "/home/frosty40/miniconda3/bin/python3",
+        "python3",
         "codexlab/sp80_verify_run.py",
         "codexlab/runs/sp80_player_harness_tiny_mlp_levels/level_05"
       ],

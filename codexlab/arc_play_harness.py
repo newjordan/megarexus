@@ -32,7 +32,7 @@ import contra_structural_sense as st  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 KEY_PATH = Path(os.environ.get("ARC_API_KEY_PATH", REPO_ROOT / ".arc_api_key"))
-HOME_ENV_PATH = Path("/home/frosty40/.env")
+HOME_ENV_PATH = Path.home() / ".env"
 DEFAULT_LOCAL_ENV_DIR = REPO_ROOT / "environment_files"
 LEGACY_LOCAL_ENV_DIR = REPO_ROOT / "environment" / "environment_files"
 LOCAL_ENV_DIR = Path(
