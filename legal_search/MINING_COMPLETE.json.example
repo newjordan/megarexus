@@ -1,0 +1,16 @@
+{
+  "schema": "legal_search.mining_complete.v1",
+  "complete": true,
+  "completed_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "feature_schema": "legal_search.features.v2_fullmine",
+  "feature_dim": 392,
+  "n_systems": 25,
+  "checklist": {
+    "registry_smoke": true,
+    "features_25_present": true,
+    "depth_not_stub": true,
+    "docs_synced": true,
+    "legal_audit": true
+  },
+  "notes": "Sign off only after MINING_THEN_TRAIN.md JOB 1 A–E are done. Copy to MINING_COMPLETE.json to open training."
+}
