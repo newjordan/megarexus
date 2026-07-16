@@ -1,8 +1,11 @@
 # MEGAMIND — base model garden (ALL ideas planted)
 
+**This is the one brain.** Repo primary: [`docs/PRIMARY.md`](../../../../docs/PRIMARY.md) · public import: `brain/`.
+
 **Doctrine:** the model is ground. Testing rises what works.  
 **Nothing important is left out of the base pad.**  
-**Geometry = dynamic multi-variate pattern growth — not SP80 train focus.**
+**Geometry = dynamic multi-variate pattern growth — not SP80 train focus.**  
+**Train = multi-game level-group flywheel + private keep-if-better.**
 
 ## Smoke (authoritative)
 

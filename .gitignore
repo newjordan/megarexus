@@ -1,2 +1,65 @@
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+.claude/scheduled_tasks.lock
+
+# ── Run artifacts (never commit) ──
+**/runs/
+**/__pycache__/
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.onnx
+*.log
+*.pid
+
+# Flywheel live state (keep README; ignore weight dumps & cycles)
+synthesis_lab/experiments/megamind_flywheel/cycles/
+synthesis_lab/experiments/megamind_flywheel/best/*.pt
+synthesis_lab/experiments/megamind_flywheel/journal.jsonl
+synthesis_lab/experiments/megamind_flywheel/HEARTBEAT.json
+synthesis_lab/experiments/megamind_flywheel/FLYWHEEL.json
+synthesis_lab/experiments/megamind_flywheel/flywheel.*
+synthesis_lab/experiments/megamind_level_groups/
+
+# Experiment data dumps
+synthesis_lab/experiments/megarexus_cnn/data/**
+synthesis_lab/experiments/megarexus_cnn/runs/**
+synthesis_lab/experiments/learned_physics/**
+synthesis_lab/experiments/wide_world_model/**
+synthesis_lab/experiments/local_model_dw/**
+!synthesis_lab/experiments/megarexus_cnn/**/*.py
+!synthesis_lab/experiments/megarexus_cnn/**/*.md
+!synthesis_lab/experiments/megarexus_cnn/**/*.json
+!synthesis_lab/experiments/**/README.md
+
+# Legal search run bank
+legal_search/runs/
+legal_search/MINING_COMPLETE.json
+
+# Codexlab run bank
+codexlab/runs/
+codexlab/datasets/**/*.jsonl
+
+# Root junk
+runs/
+experiments/
+.pytest_cache/
+
+# Quarantine / illegal (if recreated)
+**/_invalid/
+**/*QUARANTINED*
+**/sp80_spill_model.py
