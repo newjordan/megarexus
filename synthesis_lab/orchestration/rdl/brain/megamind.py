@@ -17,7 +17,7 @@ from .hemisphere_i import EXTRA_FEAT_DIM, InternalHemisphereFull, pack_operator_
 from .hemisphere_i import _as_frame_tensor
 from .hemispheres import ExternalHemisphere, HemisphereBundle, InternalHemisphere
 from .oscillate import OscillationConfig, OscillationTrainer
-from .types import BrainState, TruthFlags
+from .brain_types import BrainState, TruthFlags
 
 
 class MegaMind:

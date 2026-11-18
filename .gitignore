@@ -76,3 +76,4 @@ experiments/
 .claude/settings.local.json
 .claude/scheduled_tasks.lock
 .claude/*.lock
+synthesis_lab/orchestration/rdl/brain/operators/_smoke_conceptual_exit.txt

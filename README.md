@@ -39,6 +39,13 @@ mm = MegaMind(device="cpu")  # or "cuda"
 state = mm.observe(frame)   # HxW color-index board
 ```
 
+## Requirements
+
+Python 3.10+ with [PyTorch](https://pytorch.org) (`pip install torch`) —
+that is the only third-party dependency of `brain/`. Run scripts from the
+repo root (they add the repo to `sys.path` themselves); no install step.
+
+
 ## Layout
 
 ```text

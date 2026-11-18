@@ -13,7 +13,7 @@ from typing import Any
 
 import numpy as np
 
-from synthesis_lab.orchestration.rdl.brain.types import KnownMapView
+from synthesis_lab.orchestration.rdl.brain.brain_types import KnownMapView
 
 # orchestration/sim3d (for optional gate path)
 _SIM3D = Path(__file__).resolve().parents[2] / "sim3d"

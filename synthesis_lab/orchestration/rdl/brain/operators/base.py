@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Protocol, runtime_checkable
 
-from synthesis_lab.orchestration.rdl.brain.types import OperatorResult
+from synthesis_lab.orchestration.rdl.brain.brain_types import OperatorResult
 
 __all__ = ["Operator", "OperatorResult"]
 

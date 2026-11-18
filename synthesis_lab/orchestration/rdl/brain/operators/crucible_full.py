@@ -6,7 +6,7 @@ from typing import Any
 
 import numpy as np
 
-from synthesis_lab.orchestration.rdl.brain.types import KnownMapView, OperatorResult, TruthFlags
+from synthesis_lab.orchestration.rdl.brain.brain_types import KnownMapView, OperatorResult, TruthFlags
 
 
 def _as_transitions(raw: list[Any], game_id: str) -> list[Any]:

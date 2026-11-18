@@ -18,7 +18,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from synthesis_lab.orchestration.rdl.brain.megamind import MegaMind
-from synthesis_lab.orchestration.rdl.brain.types import TruthFlags
+from synthesis_lab.orchestration.rdl.brain.brain_types import TruthFlags
 
 
 def _flags_all_false(tf) -> bool:
