@@ -18,7 +18,7 @@ from typing import Any, Callable
 
 import numpy as np
 
-from synthesis_lab.orchestration.rdl.brain.types import KnownMapView, OperatorResult, TruthFlags
+from synthesis_lab.orchestration.rdl.brain.brain_types import KnownMapView, OperatorResult, TruthFlags
 
 _REPO = Path(__file__).resolve().parents[5]
 _LOOM = Path(os.environ.get("LOOM_ROOT", Path.home() / "Loom"))

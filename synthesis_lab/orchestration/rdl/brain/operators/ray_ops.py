@@ -11,7 +11,7 @@ from typing import Any
 
 import numpy as np
 
-from synthesis_lab.orchestration.rdl.brain.types import (
+from synthesis_lab.orchestration.rdl.brain.brain_types import (
     KnownMapView,
     OperatorResult,
     TruthFlags,

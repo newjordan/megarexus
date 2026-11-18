@@ -14,7 +14,7 @@ from typing import Any, Callable
 
 import numpy as np
 
-from synthesis_lab.orchestration.rdl.brain.types import KnownMapView, OperatorResult, TruthFlags
+from synthesis_lab.orchestration.rdl.brain.brain_types import KnownMapView, OperatorResult, TruthFlags
 
 _MEGA = Path(__file__).resolve().parents[5]
 _REXUS = Path(os.environ.get("REXUS_ROOT", _MEGA / ".external" / "rexus"))

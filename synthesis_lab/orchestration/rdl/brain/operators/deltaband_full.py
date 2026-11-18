@@ -8,7 +8,7 @@ from typing import Any
 
 import numpy as np
 
-from synthesis_lab.orchestration.rdl.brain.types import KnownMapView, OperatorResult, TruthFlags
+from synthesis_lab.orchestration.rdl.brain.brain_types import KnownMapView, OperatorResult, TruthFlags
 
 _CODEX = Path(__file__).resolve().parents[5] / "codexlab"
 

@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 
 from .hemispheres import InternalHemisphere
-from .types import KnownMapView, OperatorResult
+from .brain_types import KnownMapView, OperatorResult
 
 # Full load: physics + legal mine + FULL CONTRA view fanout.
 # Center learns which seeds grow. OP_SLOT scalars each.
