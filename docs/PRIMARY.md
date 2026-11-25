@@ -17,7 +17,7 @@
 
 1. **One brain** — MegaMind. Not five primaries.  
 2. **Plant everything useful** on the operator pad; training raises what works.  
-3. **Multi-game level groups** (24 envs) — robust patterns, not SP80-only.  
+3. **Multi-game level groups** — the training target is every discovered game, not SP80-only. Historical notes aimed at 24 games; `suite_24()` returns the games present in this checkout.  
 4. **Keep only if better** on private multi-game score (Weco-aligned).  
 5. **Fail-closed truth** — env grades; no spill / win-bank / human-route labels.  
 6. **Illegal stays out** — `_invalid/`, spill models, answer-key solvers.
@@ -36,7 +36,7 @@
 
 - `legal_search/algorithms/*` + features (geometry, crucible, …)  
 - `codexlab/contra_head` (full CONTRA view)  
-- `synthesis_lab/experiments/other_games/environment_files` (24-game suite)  
+- `synthesis_lab/experiments/other_games/environment_files` (discovered suite; see the root README for the games in this checkout)  
 - Optional: sim3d pour/body plugs (degrade if absent)
 
 ## Cleanup rule

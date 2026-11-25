@@ -13,7 +13,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from .hemispheres import ExternalHemisphere
-from .hemisphere_i import _as_frame_tensor
+from .hemisphere_i import _as_frame_tensor, align_actions
 from .world_model_plug import WorldModelPlug
 
 
@@ -63,14 +63,7 @@ class ExternalHemisphereFull(nn.Module):
     ) -> dict[str, Any]:
         """E.run(frame, action, h_I?, dream?) → h_E, pred, judge_I, disagreement."""
         frames = _as_frame_tensor(frame, self.device)
-        if isinstance(action, torch.Tensor):
-            actions = action.long().reshape(-1).to(self.device)
-            if actions.numel() == 1 and frames.shape[0] > 1:
-                actions = actions.expand(frames.shape[0])
-        else:
-            actions = torch.tensor(
-                [int(action) % self.n_actions], device=self.device, dtype=torch.long
-            )
+        actions = align_actions(action, int(frames.shape[0]), self.n_actions, self.device)
 
         with torch.set_grad_enabled(self.net.training):
             out = self.net(frames, actions, h_I=h_I, dream_next=dream)
@@ -148,12 +141,11 @@ class ExternalHemisphereFull(nn.Module):
         self.net.train()
         frames = _as_frame_tensor(s, self.device)
         frames_next = _as_frame_tensor(s_prime, self.device)
-        if isinstance(a, torch.Tensor):
-            actions = a.long().reshape(-1).to(self.device)
-        else:
-            actions = torch.tensor(
-                [int(a) % self.n_actions], device=self.device, dtype=torch.long
+        if frames.shape[0] != frames_next.shape[0]:
+            raise ValueError(
+                f"s and s' batch sizes differ ({frames.shape[0]} vs {frames_next.shape[0]})"
             )
+        actions = align_actions(a, int(frames.shape[0]), self.n_actions, self.device)
 
         pred = self.net.predict_next(frames, actions)
         target = self.net.encode(frames_next)

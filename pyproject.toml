@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "megarexus"
+version = "0.1.0"
+description = "MegaMind dual-hemisphere brain: internal dream, external judge, central LoRA."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "torch>=2.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+megamind-flywheel = "synthesis_lab.orchestration.rdl.brain.train_flywheel:main"
+megamind-gate = "synthesis_lab.orchestration.rdl.brain.rsi_outer_gate:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["brain*", "synthesis_lab*", "legal_search*", "codexlab*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "legal_search/tests"]
+pythonpath = ["."]

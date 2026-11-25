@@ -15,6 +15,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 
 ORACLE_ASSUMPTION_SCHEMA = "codexlab.oracle_assumption.v1"
 ORACLE_ASSUMPTION_PACKET_SCHEMA = "codexlab.oracle_assumption_packet.v1"
@@ -32,6 +34,10 @@ TRUTH_FLAGS = {
 COLORFUL_RAW_VALUES = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
 ASYMMETRY_CONFIDENCE_THRESHOLD = 0.2
 NON_CENTROID_DISTANCE_THRESHOLD = 0.18
+# Cavity search used to slide every component through every other component.
+# A noisy 64x64 frame has thousands of components, so that pass does not
+# finish. Boards with at most this many candidates are unchanged.
+_CAVITY_CANDIDATE_LIMIT = 64
 
 
 def _as_list(value: Any) -> list[Any]:
@@ -136,62 +142,52 @@ def _mask_area(mask: list[list[int]]) -> int:
     return sum(sum(row) for row in mask)
 
 
+def _mask_array(rows: Any) -> np.ndarray:
+    parsed = _mask_from_rows(rows)
+    if not parsed:
+        return np.zeros((0, 0), dtype=np.int32)
+    return np.asarray(parsed, dtype=np.int32)
+
+
 def _best_open_cavity_fit(lock_component: dict[str, Any], key_component: dict[str, Any]) -> dict[str, Any]:
-    lock_mask = _mask_from_rows(lock_component.get("shape_mask_rows"))
-    key_mask = _mask_from_rows(key_component.get("shape_mask_rows"))
-    if not lock_mask or not key_mask:
+    lock_mask = _mask_array(lock_component.get("shape_mask_rows"))
+    key_mask = _mask_array(key_component.get("shape_mask_rows"))
+    if lock_mask.size == 0 or key_mask.size == 0:
         return {
             "status": "missing_shape_masks",
             "fit_score": 0.0,
             "lock_key_shape_fit": False,
         }
-    lock_h = len(lock_mask)
-    lock_w = len(lock_mask[0])
-    key_h = len(key_mask)
-    key_w = len(key_mask[0])
-    key_area = _mask_area(key_mask)
+    lock_h, lock_w = lock_mask.shape
+    key_h, key_w = key_mask.shape
+    key_area = int(key_mask.sum())
     if key_area <= 0 or key_h > lock_h or key_w > lock_w:
         return {
             "status": "shape_size_mismatch",
             "fit_score": 0.0,
             "lock_key_shape_fit": False,
-            "lock_shape": [lock_w, lock_h],
-            "key_shape": [key_w, key_h],
+            "lock_shape": [int(lock_w), int(lock_h)],
+            "key_shape": [int(key_w), int(key_h)],
         }
-    complement_area = lock_w * lock_h - _mask_area(lock_mask)
-    best: dict[str, Any] = {
-        "fit_score": 0.0,
-        "offset_xy": [0, 0],
-        "key_into_open_space_ratio": 0.0,
-        "collision_ratio": 1.0,
-        "open_space_coverage_ratio": 0.0,
+    complement_area = int(lock_w * lock_h - int(lock_mask.sum()))
+    windows = np.lib.stride_tricks.sliding_window_view(lock_mask, (key_h, key_w))
+    collisions = np.tensordot(windows, key_mask, axes=([2, 3], [0, 1]))
+    overlap_open = key_area - collisions
+    key_into_open = overlap_open / float(max(1, key_area))
+    collision_ratio = collisions / float(max(1, key_area))
+    open_space_coverage = overlap_open / float(max(1, complement_area))
+    fit_score = np.maximum(0.0, key_into_open - 0.85 * collision_ratio) * (
+        0.55 + 0.45 * np.minimum(1.0, open_space_coverage)
+    )
+    flat = int(np.argmax(fit_score))
+    oy, ox = divmod(flat, int(fit_score.shape[1]))
+    best = {
+        "fit_score": round(float(fit_score[oy, ox]), 6),
+        "offset_xy": [int(ox), int(oy)],
+        "key_into_open_space_ratio": round(float(key_into_open[oy, ox]), 6),
+        "collision_ratio": round(float(collision_ratio[oy, ox]), 6),
+        "open_space_coverage_ratio": round(float(open_space_coverage[oy, ox]), 6),
     }
-    for oy in range(lock_h - key_h + 1):
-        for ox in range(lock_w - key_w + 1):
-            overlap_open = 0
-            collision = 0
-            for ky in range(key_h):
-                for kx in range(key_w):
-                    if not key_mask[ky][kx]:
-                        continue
-                    if lock_mask[oy + ky][ox + kx]:
-                        collision += 1
-                    else:
-                        overlap_open += 1
-            key_into_open = overlap_open / float(max(1, key_area))
-            collision_ratio = collision / float(max(1, key_area))
-            open_space_coverage = overlap_open / float(max(1, complement_area))
-            fit_score = max(0.0, key_into_open - 0.85 * collision_ratio) * (
-                0.55 + 0.45 * min(1.0, open_space_coverage)
-            )
-            if fit_score > float(best["fit_score"]):
-                best = {
-                    "fit_score": round(float(fit_score), 6),
-                    "offset_xy": [int(ox), int(oy)],
-                    "key_into_open_space_ratio": round(float(key_into_open), 6),
-                    "collision_ratio": round(float(collision_ratio), 6),
-                    "open_space_coverage_ratio": round(float(open_space_coverage), 6),
-                }
     same_raw_value = int(lock_component.get("raw_pixel_value")) == int(key_component.get("raw_pixel_value"))
     lock_key_shape_fit = (
         float(best["fit_score"]) >= 0.78
@@ -206,8 +202,8 @@ def _best_open_cavity_fit(lock_component: dict[str, Any], key_component: dict[st
         "color_match_required": False,
         "lock_raw_pixel_value": int(lock_component.get("raw_pixel_value")),
         "key_raw_pixel_value": int(key_component.get("raw_pixel_value")),
-        "lock_shape": [lock_w, lock_h],
-        "key_shape": [key_w, key_h],
+        "lock_shape": [int(lock_w), int(lock_h)],
+        "key_shape": [int(key_w), int(key_h)],
         "lock_open_space_pixels": int(complement_area),
         "key_area_pixels": int(key_area),
         "lock_key_shape_fit": lock_key_shape_fit,
@@ -437,11 +433,28 @@ def actor_goal_relation_from_contra_scene(scene_surfaces: dict[str, Any]) -> dic
 def _goal_candidate_from_source_packet(source_packet: dict[str, Any]) -> dict[str, Any]:
     component_candidates = _component_candidates_from_source_packet(source_packet)
     actor_anchor = _actor_anchor_from_components(component_candidates)
+    ranked = sorted(
+        component_candidates,
+        key=lambda row: (-int(row.get("area_pixels") or 0), str(row.get("component_id"))),
+    )
+    fit_pool = ranked[:_CAVITY_CANDIDATE_LIMIT]
+    fits_by_id = {
+        str(component.get("component_id")): _best_key_fit_for_lock(component, fit_pool)
+        for component in fit_pool
+    }
     candidates = []
     for component in component_candidates:
         geometry = _actor_goal_geometry_metrics(actor_anchor, component)
         actor_goal_geometry = bool(geometry.get("geometry_relation_strong"))
-        lock_key_fit = _best_key_fit_for_lock(component, component_candidates)
+        lock_key_fit = fits_by_id.get(str(component.get("component_id")))
+        if lock_key_fit is None:
+            lock_key_fit = {
+                "status": "skipped_below_size_cap",
+                "fit_score": 0.0,
+                "lock_key_shape_fit": False,
+                "goal_lock_component_id": component.get("component_id"),
+                "actor_key_component_id": None,
+            }
         lock_key_shape_fit = bool(lock_key_fit.get("lock_key_shape_fit"))
         criteria = {
             "colorful_raw_value": bool(component["colorful_raw_value"]),

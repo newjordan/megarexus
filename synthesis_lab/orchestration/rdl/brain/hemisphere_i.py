@@ -262,23 +262,72 @@ OP_FAMILIES = (
 EXTRA_FEAT_DIM = OP_SLOT * len(OP_FAMILIES)
 
 
+def _is_channel_last_image(t: torch.Tensor) -> bool:
+    """True for one H×W×C image, false for a ``[B,H,W]`` color-index batch.
+
+    A batch whose width is 1 or 3 has to stay ``[B,H,W]``. Channel-last is
+    only a single board: floating RGB, values outside the 16-color palette,
+    or an integer board whose spatial axes are both at least 48.
+    """
+    if t.dim() != 3 or int(t.shape[-1]) not in (1, 3):
+        return False
+    height, width, channels = (int(t.shape[0]), int(t.shape[1]), int(t.shape[2]))
+    if height <= channels or width <= channels or height <= 3 or width <= 3:
+        return False
+    if t.is_floating_point():
+        return True
+    peak = int(t.detach().max().item()) if t.numel() else 0
+    if peak > 15:
+        return True
+    return height >= 48 and width >= 48
+
+
 def _as_frame_tensor(frame: Any, device: torch.device) -> torch.Tensor:
-    """Normalize frame to [1,H,W] long color indices."""
+    """Return long color-index frames shaped ``[B,H,W]``."""
     if isinstance(frame, torch.Tensor):
-        t = frame
+        tensor = frame
     else:
-        t = torch.as_tensor(frame)
-    if t.dim() == 2:
-        t = t.unsqueeze(0)
-    elif t.dim() == 3 and t.shape[0] not in (1,) and t.shape[-1] in (1, 3):
-        t = t[..., 0]
-        if t.dim() == 2:
-            t = t.unsqueeze(0)
-    elif t.dim() == 3 and t.shape[0] > 1 and t.shape[0] not in (1,):
-        # already [B,H,W]
-        pass
-    t = t.long()
-    return t.to(device)
+        tensor = torch.as_tensor(frame)
+    if (
+        tensor.dim() == 4
+        and int(tensor.shape[-1]) in (1, 3)
+        and int(tensor.shape[-1]) < int(tensor.shape[-2])
+    ):
+        tensor = tensor[..., 0]
+    elif tensor.dim() == 3 and _is_channel_last_image(tensor):
+        tensor = tensor[..., 0]
+    if tensor.dim() == 2:
+        tensor = tensor.unsqueeze(0)
+    elif tensor.dim() != 3:
+        raise ValueError(f"frame must be [H,W] or [B,H,W], got shape {tuple(tensor.shape)}")
+    return tensor.long().to(device)
+
+
+def align_actions(
+    action: Any,
+    batch: int,
+    n_actions: int,
+    device: torch.device,
+) -> torch.Tensor:
+    """Return ``batch`` action ids in ``[0, n_actions)``.
+
+    A scalar action is repeated across the frame batch. Any other length
+    must already match the frames.
+    """
+    if n_actions <= 0:
+        raise ValueError(f"n_actions must be positive, got {n_actions}")
+    if isinstance(action, torch.Tensor):
+        actions = action.to(device=device, dtype=torch.long).reshape(-1)
+    else:
+        actions = torch.tensor([int(action)], device=device, dtype=torch.long)
+    actions = torch.remainder(actions, int(n_actions))
+    if actions.numel() == 1 and batch != 1:
+        actions = actions.expand(batch)
+    elif int(actions.numel()) != int(batch):
+        raise ValueError(
+            f"action batch {int(actions.numel())} does not match frame batch {batch}"
+        )
+    return actions.contiguous()
 
 
 def _empty_operator_packet() -> dict[str, Any]:
@@ -293,12 +342,21 @@ def _empty_operator_packet() -> dict[str, Any]:
     }
 
 
+def _score_value(value: Any) -> Any:
+    """Keep JSON booleans boolean. ``bool`` is a subclass of ``int``."""
+    if isinstance(value, bool):
+        return bool(value)
+    if isinstance(value, (int, float)):
+        return float(value)
+    return value
+
+
 def _result_to_dict(result: OperatorResult | dict[str, Any], fam: str) -> dict[str, Any]:
     if isinstance(result, OperatorResult):
         return {
             "name": result.name or fam,
             "scores": {
-                k: (float(v) if isinstance(v, (int, float)) else bool(v) if isinstance(v, bool) else v)
+                k: _score_value(v)
                 for k, v in (result.scores or {}).items()
                 if isinstance(v, (int, float, bool, str)) or v is None
             },
@@ -314,7 +372,7 @@ def _result_to_dict(result: OperatorResult | dict[str, Any], fam: str) -> dict[s
         return {
             "name": str(result.get("name", fam)),
             "scores": {
-                k: (float(v) if isinstance(v, (int, float)) else bool(v) if isinstance(v, bool) else v)
+                k: _score_value(v)
                 for k, v in scores.items()
                 if isinstance(v, (int, float, bool, str)) or v is None
             },
@@ -910,7 +968,10 @@ class InternalHemisphereFull(nn.Module):
 
         Does not admit any solve/control truth.
         """
-        available_actions = list(available_actions or list(range(1, min(7, self.n_actions))))
+        if available_actions is None:
+            available_actions = list(range(1, min(7, self.n_actions)))
+        else:
+            available_actions = [int(a) for a in available_actions]
         frames = _as_frame_tensor(frame, self.device)
 
         map_view = _try_map_trust(frame)
@@ -960,18 +1021,25 @@ class InternalHemisphereFull(nn.Module):
                 propose = apply_macro_bias_to_logits(propose, available_actions)
             except Exception:
                 pass
-            plan = propose.clone()
-            if available_actions:
-                mask = torch.ones(self.n_actions, dtype=torch.bool, device=self.device)
-                for a in available_actions:
-                    if 0 <= int(a) < self.n_actions:
-                        mask[int(a)] = False
-                plan = plan.masked_fill(mask.unsqueeze(0), float("-inf"))
+            mask = torch.ones(self.n_actions, dtype=torch.bool, device=self.device)
+            for raw_action in available_actions:
+                action_id = int(raw_action)
+                if 0 <= action_id < self.n_actions:
+                    mask[action_id] = False
+            propose = propose.masked_fill(mask.view(1, -1), float("-inf"))
+            plan = propose
 
             if action_for_dream is None:
-                action_for_dream = int(propose[0].argmax().item())
-            act_t = torch.tensor(
-                [int(action_for_dream) % self.n_actions], device=self.device
+                row = propose[0]
+                if bool(torch.isfinite(row).any()):
+                    action_for_dream = int(torch.argmax(row).item())
+                else:
+                    action_for_dream = 0
+            act_t = align_actions(
+                int(action_for_dream),
+                int(frames.shape[0]),
+                self.n_actions,
+                self.device,
             )
             dream_next = self.net.dream_next(frames, act_t)
         if was_training:

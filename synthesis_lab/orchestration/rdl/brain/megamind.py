@@ -13,8 +13,13 @@ import torch
 from .ada_online import CentralAdaOnline
 from .central import CentralConfig, CentralCortex
 from .hemisphere_e import ExternalHemisphereFull
-from .hemisphere_i import EXTRA_FEAT_DIM, InternalHemisphereFull, pack_operator_feats
-from .hemisphere_i import _as_frame_tensor
+from .hemisphere_i import (
+    EXTRA_FEAT_DIM,
+    InternalHemisphereFull,
+    _as_frame_tensor,
+    align_actions,
+    pack_operator_feats,
+)
 from .hemispheres import ExternalHemisphere, HemisphereBundle, InternalHemisphere
 from .oscillate import OscillationConfig, OscillationTrainer
 from .brain_types import BrainState, TruthFlags
@@ -145,8 +150,8 @@ class MegaMind:
 
         with torch.no_grad():
             frames = _as_frame_tensor(frame, self.device)
-            act_t = torch.tensor(
-                [int(action) % self.n_actions], device=self.device, dtype=torch.long
+            act_t = align_actions(
+                int(action), int(frames.shape[0]), self.n_actions, self.device
             )
             h_I = self._net_I.encode(frames)
             dream = self._net_I.dream_next(frames, act_t)
@@ -218,7 +223,7 @@ class MegaMind:
         if plan is not None:
             new_state.world_summary["plan_provided"] = True
         new_state.dream_summary["_dream_next"] = dream
-        new_state.dream_summary["_action_for_dream"] = int(action)
+        new_state.dream_summary["_action_for_dream"] = int(act_t[0].item())
         self._last_state = new_state
         return new_state
 

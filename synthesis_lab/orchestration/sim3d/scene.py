@@ -261,7 +261,12 @@ def extract_scene(frame, depth=1, emit_volume=None):
     # housing; whether it re-emits is a DYNAMICS question left to observation).
     # Single-source levels yield the identical old reservoir-pixel computation.
     def _spout_of(ys, xs):
-        sy, sx = int(np.max(ys)) // u + 1, int(round(float(np.mean(xs)))) // u
+        # The cell just below the paint can land one row past the lattice
+        # when the reservoir touches the bottom of the padded frame.
+        sy = int(np.max(ys)) // u + 1
+        sx = int(round(float(np.mean(xs)))) // u
+        sy = min(max(sy, 0), solid.shape[0] - 1)
+        sx = min(max(sx, 0), solid.shape[1] - 1)
         while sy > 0 and solid[sy, sx]:
             sy -= 1
         return (sy, sx)

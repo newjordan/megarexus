@@ -163,13 +163,15 @@ class OscillationTrainer:
             )
             # weak SSL: predict taken action
             loss_pol = F.cross_entropy(out_C["action_logits"], actions.long())
-            # after-the-fact: trust should prefer E when disagreement high
-            # target trust_E high when disagree > median
-            with torch.no_grad():
-                d = disagree if disagree is not None else torch.zeros(actions.shape[0], device=self.device)
-                prefer_E = (d > d.median()).float()
-                trust_target = torch.stack([1.0 - prefer_E, prefer_E], dim=-1)
-            loss_trust = F.mse_loss(out_C["trust"], trust_target)
+            # Trust prefers External only when disagreement is above the batch
+            # median. A single row is never above its own median, so that
+            # comparison would always train "prefer Internal".
+            loss_trust = torch.zeros((), device=self.device)
+            if disagree is not None and int(disagree.numel()) >= 2:
+                with torch.no_grad():
+                    prefer_E = (disagree > disagree.median()).float()
+                    trust_target = torch.stack([1.0 - prefer_E, prefer_E], dim=-1)
+                loss_trust = F.mse_loss(out_C["trust"], trust_target)
             loss = loss_pol + 0.2 * loss_trust
             loss.backward()
             self.opt_C.step()

@@ -128,35 +128,45 @@ def private_axes(metrics: dict[str, Any]) -> dict[str, float]:
 
         n_trans += float(col.get("n_transitions") or tr.get("n_transitions") or 0)
 
-        # cohort-level env progress (v3 collect)
-        if isinstance(col.get("mean_max_levels"), (int, float)):
-            max_lvls.append(float(col["mean_max_levels"]))
-        if isinstance(col.get("total_level_ups"), (int, float)):
-            level_ups.append(float(col["total_level_ups"]))
-        if isinstance(col.get("mean_delta_frac"), (int, float)):
-            delta_fracs.append(float(col["mean_delta_frac"]))
-        if isinstance(col.get("games_with_level_up"), (int, float)):
-            games_with_up = max(games_with_up, float(col["games_with_level_up"]))
-
         gh = tr.get("game_hits") or {}
         if isinstance(gh, dict) and gh:
-            vals = [float(v) for v in gh.values() if isinstance(v, (int, float))]
+            vals = [float(v) for v in gh.values() if isinstance(v, (int, float)) and not isinstance(v, bool)]
             if vals:
                 hit_mins.append(min(vals))
                 hit_maxs.append(max(vals))
 
+        # Per-game rows already roll up into the cohort totals. Adding both
+        # doubles level-up counts (a sum) and pulls means toward the aggregate.
+        pg_levels: list[float] = []
+        pg_ups: list[float] = []
+        pg_deltas: list[float] = []
         for pg in col.get("per_game") or []:
             if not isinstance(pg, dict):
                 continue
             n_pg += 1.0
             if pg.get("source") == "arcade_offline" or pg.get("status") == "ok":
                 n_arcade += 1.0
-            if pg.get("max_levels_seen") is not None:
-                max_lvls.append(float(pg["max_levels_seen"]))
-            if pg.get("n_level_ups") is not None:
-                level_ups.append(float(pg["n_level_ups"]))
-            if pg.get("mean_delta_frac") is not None:
-                delta_fracs.append(float(pg["mean_delta_frac"]))
+            if isinstance(pg.get("max_levels_seen"), (int, float)) and not isinstance(pg.get("max_levels_seen"), bool):
+                pg_levels.append(float(pg["max_levels_seen"]))
+            if isinstance(pg.get("n_level_ups"), (int, float)) and not isinstance(pg.get("n_level_ups"), bool):
+                pg_ups.append(float(pg["n_level_ups"]))
+            if isinstance(pg.get("mean_delta_frac"), (int, float)) and not isinstance(pg.get("mean_delta_frac"), bool):
+                pg_deltas.append(float(pg["mean_delta_frac"]))
+
+        if pg_levels:
+            max_lvls.extend(pg_levels)
+        elif isinstance(col.get("mean_max_levels"), (int, float)) and not isinstance(col.get("mean_max_levels"), bool):
+            max_lvls.append(float(col["mean_max_levels"]))
+        if pg_ups:
+            level_ups.extend(pg_ups)
+        elif isinstance(col.get("total_level_ups"), (int, float)) and not isinstance(col.get("total_level_ups"), bool):
+            level_ups.append(float(col["total_level_ups"]))
+        if pg_deltas:
+            delta_fracs.extend(pg_deltas)
+        elif isinstance(col.get("mean_delta_frac"), (int, float)) and not isinstance(col.get("mean_delta_frac"), bool):
+            delta_fracs.append(float(col["mean_delta_frac"]))
+        if isinstance(col.get("games_with_level_up"), (int, float)) and not isinstance(col.get("games_with_level_up"), bool):
+            games_with_up += float(col["games_with_level_up"])
 
     robust_frac = _mean(robust)
     hit_frac = _mean(hit)
@@ -177,7 +187,13 @@ def private_axes(metrics: dict[str, Any]) -> dict[str, float]:
     # level-ups across suite (env truth — private)
     total_ups = sum(level_ups)
     up_axis = _clamp(math.log1p(total_ups) / math.log1p(12.0))
-    games_up_frac = _clamp(games_with_up / max(1.0, n_pg if n_pg > 0 else 24.0))
+    suite_n = float((metrics.get("suite") or {}).get("n_games") or 0)
+    if suite_n <= 0:
+        suite_n = float(
+            sum(float((r.get("train") or {}).get("n_games") or 0) for r in results)
+        )
+    games_denom = n_pg if n_pg > 0 else suite_n
+    games_up_frac = _clamp(games_with_up / games_denom) if games_denom > 0 else 0.0
     # controllable dynamics: frame actually changes under actions
     delta_axis = _clamp(_mean(delta_fracs) * 4.0)  # ~0.25 mean → 1.0
 
@@ -333,12 +349,68 @@ def gate_metrics_file(
     return decision
 
 
-if __name__ == "__main__":
+def _json_safe(value: Any) -> Any:
+    """Replace non-finite floats so the CLI report is valid JSON."""
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
+    if isinstance(value, dict):
+        return {str(key): _json_safe(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_json_safe(item) for item in value]
+    return value
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Print a one-line decision on stderr and the JSON report on stdout."""
+    import argparse
     import sys
 
-    cand = Path(sys.argv[1]) if len(sys.argv) > 1 else None
-    inc = Path(sys.argv[2]) if len(sys.argv) > 2 else None
-    if cand is None:
-        print("usage: rsi_outer_gate.py candidate_metrics.json [incumbent_metrics.json]")
-        raise SystemExit(2)
-    print(json.dumps(gate_metrics_file(cand, inc), indent=2, sort_keys=True))
+    parser = argparse.ArgumentParser(
+        description=(
+            "Decide whether a MegaMind checkpoint beats the incumbent "
+            "on the private multi-game score."
+        )
+    )
+    parser.add_argument("candidate", type=Path, help="Candidate metrics JSON")
+    parser.add_argument(
+        "incumbent",
+        nargs="?",
+        type=Path,
+        help="Incumbent metrics JSON. Omit when there is no checkpoint yet.",
+    )
+    parser.add_argument(
+        "--min-private",
+        type=float,
+        default=0.35,
+        help="Reject a candidate whose private composite is below this floor (default: 0.35).",
+    )
+    args = parser.parse_args(argv)
+    if not args.candidate.is_file():
+        print(f"candidate metrics not found: {args.candidate}", file=sys.stderr)
+        return 1
+    if args.incumbent is not None and not args.incumbent.is_file():
+        print(f"incumbent metrics not found: {args.incumbent}", file=sys.stderr)
+        return 1
+    decision = gate_metrics_file(
+        args.candidate,
+        args.incumbent,
+        min_private=args.min_private,
+    )
+    kept = "KEEP" if decision.get("keep") else "REJECT"
+    cand_p = decision.get("candidate_private")
+    inc_p = decision.get("incumbent_private")
+
+    def _fmt(number: Any) -> str:
+        return f"{float(number):.4f}" if isinstance(number, (int, float)) else str(number)
+
+    if inc_p is None:
+        score = f"private={_fmt(cand_p)}"
+    else:
+        score = f"private {_fmt(inc_p)} -> {_fmt(cand_p)}"
+    print(f"{kept}  reason={decision.get('reason')}  {score}", file=sys.stderr)
+    print(json.dumps(_json_safe(decision), indent=2, sort_keys=True))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

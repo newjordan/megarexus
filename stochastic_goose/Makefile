@@ -1,9 +1,13 @@
+AGENTS := ARC-AGI-3-Agents
+
 action:
-	uv run ARC-AGI-3-Agents/main.py --agent=action
+	@test -d $(AGENTS) || { echo "missing $(AGENTS). This checkout does not include that submodule."; exit 1; }
+	uv run $(AGENTS)/main.py --agent=action
 
 install:
+	@test -d $(AGENTS) || { echo "missing $(AGENTS). This checkout does not include that submodule."; exit 1; }
 	uv venv
-	cd ARC-AGI-3-Agents && UV_PROJECT_ENVIRONMENT=../.venv uv sync --all-extras
+	cd $(AGENTS) && UV_PROJECT_ENVIRONMENT=../.venv uv sync --all-extras
 	uv pip install -r requirements.txt
 
 tensorboard:

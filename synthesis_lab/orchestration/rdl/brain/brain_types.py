@@ -6,8 +6,49 @@ All truth admission flags default False (fail-closed / hypothesis-only).
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 from typing import Any
+
+_DROP = object()
+
+
+def _json_value(value: Any) -> Any:
+    """Copy a snapshot value into something ``json.dumps`` can emit.
+
+    Private keys (prefix ``_``) and tensors stay out of the snapshot. The
+    facade stashes dream tensors under those keys for ``judge_plan``.
+    """
+    if isinstance(value, bool) or value is None or isinstance(value, str):
+        return value
+    if isinstance(value, (int, float)):
+        if isinstance(value, float) and not math.isfinite(value):
+            return None
+        return value
+    shape = getattr(value, "shape", None)
+    if hasattr(value, "item") and shape is not None and len(shape) == 0:
+        return _json_value(value.item())
+    if shape is not None:
+        return _DROP
+    if isinstance(value, dict):
+        out: dict[str, Any] = {}
+        for key, item in value.items():
+            if str(key).startswith("_"):
+                continue
+            packed = _json_value(item)
+            if packed is _DROP:
+                continue
+            out[str(key)] = packed
+        return out
+    if isinstance(value, (list, tuple)):
+        packed_items = []
+        for item in value:
+            packed = _json_value(item)
+            if packed is _DROP:
+                continue
+            packed_items.append(packed)
+        return packed_items
+    return _DROP
 
 
 @dataclass
@@ -254,13 +295,15 @@ class BrainState:
         return not any(self.truth_flags_dict().values())
 
     def to_dict(self) -> dict[str, Any]:
+        disagreement = float(self.disagreement)
+        judge = float(self.judge_I)
         return {
             "trusted": bool(self.trusted),
-            "gate_failures": list(self.gate_failures),
-            "dream_summary": dict(self.dream_summary),
-            "world_summary": dict(self.world_summary),
-            "disagreement": float(self.disagreement),
-            "judge_I": float(self.judge_I),
+            "gate_failures": _json_value(list(self.gate_failures)),
+            "dream_summary": _json_value(self.dream_summary) or {},
+            "world_summary": _json_value(self.world_summary) or {},
+            "disagreement": disagreement if math.isfinite(disagreement) else None,
+            "judge_I": judge if math.isfinite(judge) else None,
             "truth_flags": self.truth_flags_dict(),
             "status": self.status,
             "map": None if self.map_view is None else self.map_view.to_dict(),
