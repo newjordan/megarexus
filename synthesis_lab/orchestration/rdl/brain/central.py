@@ -16,6 +16,53 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from .hemisphere_i import EXTRA_FEAT_DIM
+
+
+def _as_column(
+    value: torch.Tensor | None,
+    batch: int,
+    device: torch.device,
+    dtype: torch.dtype,
+) -> torch.Tensor:
+    """Broadcast a per-row scalar to ``[batch, 1]``."""
+    if value is None:
+        return torch.zeros(batch, 1, device=device, dtype=dtype)
+    column = value.to(device=device, dtype=dtype).reshape(-1)
+    if column.numel() == 1 and batch != 1:
+        column = column.expand(batch)
+    if int(column.numel()) != int(batch):
+        raise ValueError(f"expected {batch} row values, got {int(column.numel())}")
+    return column.reshape(batch, 1)
+
+
+def _as_feature_rows(
+    extra: torch.Tensor | None,
+    batch: int,
+    width: int,
+    device: torch.device,
+    dtype: torch.dtype,
+) -> torch.Tensor:
+    """Broadcast ``[F]`` or ``[1, F]`` operator features to ``[batch, width]``."""
+    if extra is None:
+        return torch.zeros(batch, width, device=device, dtype=dtype)
+    rows = extra.to(device=device, dtype=dtype)
+    if rows.dim() == 1:
+        rows = rows.unsqueeze(0)
+    if rows.dim() != 2:
+        raise ValueError(f"extra features must be [F] or [B, F], got shape {tuple(rows.shape)}")
+    if rows.shape[0] == 1 and batch != 1:
+        rows = rows.expand(batch, int(rows.shape[-1]))
+    if int(rows.shape[0]) != int(batch):
+        raise ValueError(f"extra batch {int(rows.shape[0])} does not match frame batch {batch}")
+    feat = int(rows.shape[-1])
+    if feat < width:
+        pad = torch.zeros(batch, width - feat, device=device, dtype=dtype)
+        rows = torch.cat([rows.contiguous(), pad], dim=-1)
+    elif feat > width:
+        rows = rows[..., :width]
+    return rows
+
 
 class LoRALinear(nn.Module):
     def __init__(self, base: nn.Linear, rank: int = 8, alpha: float = 16.0) -> None:
@@ -23,7 +70,9 @@ class LoRALinear(nn.Module):
         self.in_features = base.in_features
         self.out_features = base.out_features
         self.rank = int(rank)
-        self.scale = float(alpha) / float(rank)
+        if self.rank < 1:
+            raise ValueError(f"LoRA rank must be >= 1, got {self.rank}")
+        self.scale = float(alpha) / float(self.rank)
         self.weight = nn.Parameter(base.weight.detach().clone(), requires_grad=False)
         if base.bias is not None:
             self.bias = nn.Parameter(base.bias.detach().clone(), requires_grad=False)
@@ -47,9 +96,10 @@ class CentralConfig:
     hidden: int = 256
     lora_rank: int = 8
     lora_alpha: float = 16.0
-    # input = h_I + h_E + diff + absdiff + judge + disagree + feat_pad
-    # full garden pad — MegaMind sets from hemisphere_i.EXTRA_FEAT_DIM (~159×16)
-    extra_feats: int = 2544
+    # input = h_I + h_E + diff + absdiff + judge + disagree + feat pad
+    # Default matches the operator garden. A shorter vector is zero-padded;
+    # a longer one is truncated, so this must stay equal to EXTRA_FEAT_DIM.
+    extra_feats: int = EXTRA_FEAT_DIM
 
 
 class CentralCortex(nn.Module):
@@ -83,20 +133,10 @@ class CentralCortex(nn.Module):
         b = h_I.shape[0]
         diff = h_I - h_E
         adiff = diff.abs()
-        if judge_I is None:
-            judge_I = torch.zeros(b, device=h_I.device, dtype=h_I.dtype)
-        if disagreement is None:
-            disagreement = torch.zeros(b, device=h_I.device, dtype=h_I.dtype)
-        if extra is None:
-            extra = torch.zeros(b, self.cfg.extra_feats, device=h_I.device, dtype=h_I.dtype)
-        elif extra.shape[-1] < self.cfg.extra_feats:
-            pad = torch.zeros(b, self.cfg.extra_feats - extra.shape[-1], device=h_I.device, dtype=h_I.dtype)
-            extra = torch.cat([extra, pad], dim=-1)
-        elif extra.shape[-1] > self.cfg.extra_feats:
-            extra = extra[..., : self.cfg.extra_feats]
-        j = judge_I.reshape(b, 1)
-        d = disagreement.reshape(b, 1)
-        return torch.cat([h_I, h_E, diff, adiff, j, d, extra], dim=-1)
+        j = _as_column(judge_I, b, h_I.device, h_I.dtype)
+        d = _as_column(disagreement, b, h_I.device, h_I.dtype)
+        feats = _as_feature_rows(extra, b, self.cfg.extra_feats, h_I.device, h_I.dtype)
+        return torch.cat([h_I, h_E, diff, adiff, j, d, feats], dim=-1)
 
     def forward(
         self,

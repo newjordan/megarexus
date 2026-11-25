@@ -64,15 +64,24 @@ def _batch_iter(n: int, batch_size: int):
 
 
 def _mean_phase_loss(logs: list[dict[str, Any]]) -> float:
+    """Mean of the canonical per-step loss.
+
+    Phase logs also carry component keys (``loss_E``, ``loss_pol``, …).
+    Averaging every key whose name contains "loss" counts one step several times.
+    """
     losses = []
     for row in logs:
         if not isinstance(row, dict):
             continue
-        for k, v in row.items():
-            if "loss" in str(k).lower() and isinstance(v, (int, float)):
-                losses.append(float(v))
-        if "mean_loss" in row and isinstance(row["mean_loss"], (int, float)):
-            losses.append(float(row["mean_loss"]))
+        primary = row.get("loss")
+        if isinstance(primary, (int, float)) and not isinstance(primary, bool):
+            losses.append(float(primary))
+            continue
+        for key in ("loss_E", "loss_I", "loss_C", "mean_loss"):
+            value = row.get(key)
+            if isinstance(value, (int, float)) and not isinstance(value, bool):
+                losses.append(float(value))
+                break
     return float(sum(losses) / len(losses)) if losses else 0.0
 
 

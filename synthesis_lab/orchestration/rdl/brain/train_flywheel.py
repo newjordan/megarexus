@@ -60,6 +60,31 @@ def _iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
+def _status(message: str) -> None:
+    """Human-readable progress. Machine-readable JSON stays on stdout."""
+    print(message, file=sys.stderr, flush=True)
+
+
+def resolve_device(requested: str) -> str:
+    """``auto`` picks cuda when it is available, otherwise cpu."""
+    name = (requested or "auto").strip()
+    key = name.lower()
+    if key == "auto":
+        return "cuda" if torch.cuda.is_available() else "cpu"
+    if key.startswith("cuda") and not torch.cuda.is_available():
+        _status("cuda was requested but is not available; using cpu")
+        return "cpu"
+    return name
+
+
+def _release_pid(path: Path) -> None:
+    try:
+        if path.is_file() and path.read_text().strip() == str(os.getpid()):
+            path.unlink()
+    except OSError:
+        return
+
+
 def _write_json(path: Path, obj: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
@@ -408,7 +433,11 @@ def main(argv: list[str] | None = None) -> int:
         default=str(_ROOT / "synthesis_lab" / "experiments" / "megamind_flywheel"),
         help="Flywheel root (journal, best, cycles)",
     )
-    ap.add_argument("--device", default="cuda")
+    ap.add_argument(
+        "--device",
+        default="auto",
+        help="cpu, cuda, cuda:N, or auto (default: cuda when available, else cpu)",
+    )
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--batch-size", type=int, default=8)
     ap.add_argument("--max-actions", type=int, default=70)
@@ -435,10 +464,7 @@ def main(argv: list[str] | None = None) -> int:
     stop_file = root / "STOP"
     pid_file = root / "flywheel.pid"
 
-    device = args.device
-    if device.startswith("cuda") and not torch.cuda.is_available():
-        print("WARN: cuda unavailable → cpu", flush=True)
-        device = "cpu"
+    device = resolve_device(args.device)
 
     # seed best from prior raise if empty
     if args.seed_best_from and not best_ckpt.is_file():
@@ -453,6 +479,34 @@ def main(argv: list[str] | None = None) -> int:
             print(f"seeded best from {src}", flush=True)
 
     pid_file.write_text(str(os.getpid()) + "\n")
+    try:
+        return _run_logged_flywheel(
+            args=args,
+            root=root,
+            cycles_root=cycles_root,
+            best_ckpt=best_ckpt,
+            best_metrics=best_metrics,
+            journal=journal,
+            heartbeat=heartbeat,
+            stop_file=stop_file,
+            device=device,
+        )
+    finally:
+        _release_pid(pid_file)
+
+
+def _run_logged_flywheel(
+    *,
+    args: argparse.Namespace,
+    root: Path,
+    cycles_root: Path,
+    best_ckpt: Path,
+    best_metrics: Path,
+    journal: Path,
+    heartbeat: Path,
+    stop_file: Path,
+    device: str,
+) -> int:
     _write_json(
         root / "FLYWHEEL.json",
         {
@@ -483,6 +537,8 @@ def main(argv: list[str] | None = None) -> int:
         ),
         flush=True,
     )
+    cycle_budget = "forever" if args.max_cycles <= 0 else str(args.max_cycles)
+    _status(f"flywheel  device={device}  root={root}  max_cycles={cycle_budget}")
 
     cycle = int(args.start_cycle)
     consecutive_fail = 0
@@ -542,6 +598,10 @@ def main(argv: list[str] | None = None) -> int:
             ),
             flush=True,
         )
+        _status(
+            f"cycle {cycle}  {label}  groups={groups}  "
+            f"steps={steps_eff}  epochs={epochs_eff}"
+        )
 
         try:
             row = run_one_cycle(
@@ -589,6 +649,7 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(err, sort_keys=True), flush=True)
             if consecutive_fail >= 8:
                 print(json.dumps({"event": "abort_too_many_failures"}), flush=True)
+                _status(f"flywheel stopped at cycle {cycle} after {consecutive_fail} failures")
                 return 1
             time.sleep(min(60.0, 5.0 * consecutive_fail))
 
@@ -606,6 +667,7 @@ def main(argv: list[str] | None = None) -> int:
         },
     )
     print(json.dumps({"event": "flywheel_stop", "cycle": cycle}), flush=True)
+    _status(f"flywheel stopped at cycle {cycle}")
     return 0
 
 

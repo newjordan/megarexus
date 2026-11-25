@@ -648,6 +648,22 @@ def _pass_row(*, pass_order: int, pass_id: str, definition: str, rows: list[dict
     }
 
 
+# Pair and reverse passes only keep the highest-scoring 96 rows, but they used
+# to score every unordered pair. A noisy 64x64 board has thousands of
+# components, and that quadratic pass does not finish. Components beyond this
+# cap still receive self-symmetry; pairwise search uses the largest ones.
+_PAIRWISE_COMPONENT_LIMIT = 96
+
+
+def _pairwise_components(components: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if len(components) <= _PAIRWISE_COMPONENT_LIMIT:
+        return components
+    return sorted(
+        components,
+        key=lambda row: (-int(row.get("area_pixels") or 0), str(row.get("component_id"))),
+    )[:_PAIRWISE_COMPONENT_LIMIT]
+
+
 def build_symmetry_hypotheses(
     *,
     frame: np.ndarray,
@@ -712,11 +728,13 @@ def build_symmetry_hypotheses(
                 self_rows.append(row)
 
     pair_rows: list[dict[str, Any]] = []
-    pair_components = [
-        component
-        for component in non_floor_components
-        if str(component.get("component_id")) not in divider_component_ids
-    ]
+    pair_components = _pairwise_components(
+        [
+            component
+            for component in non_floor_components
+            if str(component.get("component_id")) not in divider_component_ids
+        ]
+    )
     for idx, left in enumerate(pair_components):
         for right in pair_components[idx + 1 :]:
             for axis in ("vertical", "horizontal"):

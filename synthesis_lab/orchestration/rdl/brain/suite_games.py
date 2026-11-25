@@ -34,7 +34,11 @@ def discover_game_ids(env_dir: Path | None = None) -> list[str]:
 
 
 def suite_24(env_dir: Path | None = None) -> list[str]:
-    """The full multi-game suite (expect 24 public prefixes)."""
+    """Every game directory under ``env_dir``.
+
+    The name is historical. Training notes aimed at 24 games; the returned
+    list is whatever ``prefix/ident`` folders contain a ``.py`` file.
+    """
     return discover_game_ids(env_dir)
 
 

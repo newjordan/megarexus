@@ -72,15 +72,30 @@ class CentralAdaOnline:
         if action.numel() == 1 and frame.shape[0] > 1:
             action = action.expand(frame.shape[0])
 
+        extra_rows = None
+        if extra is not None:
+            extra_rows = extra.detach()
+            if extra_rows.dim() == 1:
+                extra_rows = extra_rows.unsqueeze(0)
+            if extra_rows.dim() != 2:
+                raise ValueError(
+                    f"extra features must be [F] or [B, F], got shape {tuple(extra.shape)}"
+                )
+            if extra_rows.shape[0] == 1 and frame.shape[0] > 1:
+                extra_rows = extra_rows.expand(frame.shape[0], int(extra_rows.shape[-1]))
+            if int(extra_rows.shape[0]) != int(frame.shape[0]):
+                raise ValueError(
+                    f"extra batch {int(extra_rows.shape[0])} does not match frame batch {int(frame.shape[0])}"
+                )
+
         for i in range(frame.shape[0]):
             row = {
                 "frame": frame[i].detach().cpu().long(),
                 "action": action[i].detach().cpu().long(),
                 "frame_next": frame_next[i].detach().cpu().long(),
             }
-            if extra is not None:
-                e = extra[i] if extra.dim() > 1 else extra
-                row["extra"] = e.detach().cpu().float()
+            if extra_rows is not None:
+                row["extra"] = extra_rows[i].detach().cpu().float().clone()
             self.buffer.append(row)
 
         metrics: dict[str, Any] = {"buffer": len(self.buffer), "adapted": False}
@@ -133,8 +148,9 @@ class CentralAdaOnline:
         )
         # weak policy SSL on taken action + tiny change proxy via mode gas vs brake
         loss = F.cross_entropy(out_C["action_logits"], actions)
-        # prefer trust_E when frames differ a lot (world more informative)
-        if disagree is not None:
+        # Prefer trust_E when disagreement is above the batch median.
+        # One row is never above its own median, so skip that target then.
+        if disagree is not None and int(disagree.numel()) >= 2:
             prefer_E = (disagree.detach() > disagree.detach().median()).float()
             trust_t = torch.stack([1.0 - prefer_E, prefer_E], dim=-1)
             loss = loss + 0.15 * F.mse_loss(out_C["trust"], trust_t)

@@ -51,11 +51,14 @@ def macro_action_bias(
 ) -> np.ndarray:
     """Return additive logit bias [n_actions] from all macros (sum)."""
     bias = np.zeros(n_actions, dtype=np.float32)
-    avail = set(int(a) for a in (available_actions or list(range(1, 7))))
+    if available_actions is None:
+        avail = set(range(1, min(7, n_actions)))
+    else:
+        avail = {int(a) for a in available_actions}
     for m in MACROS:
         for a, v in (m.get("bias_actions") or {}).items():
             ai = int(a)
-            if ai < n_actions and (not avail or ai in avail):
+            if 0 <= ai < n_actions and ai in avail:
                 bias[ai] += float(v)
     return bias
 
